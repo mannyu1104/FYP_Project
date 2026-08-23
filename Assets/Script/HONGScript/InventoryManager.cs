@@ -21,8 +21,13 @@ public class InventoryManager : MonoBehaviour
     void SetNewItem(GameObject item, InventorySlot slot)
     {
         DragableItem dragableitem = item.GetComponent<DragableItem>();
-        dragableitem.thisGet = true;
+        if (dragableitem.thisGet == false)
+        {
+            dragableitem.thisGet = true;
+        }
         dragableitem.parentAfterDrag = slot.transform;
+        dragableitem.LoadSetParent();
+        Debug.Log("Adding");
     }
 
     //void SetNewItem(Item item, InventorySlot slot)

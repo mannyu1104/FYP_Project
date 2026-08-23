@@ -12,8 +12,12 @@ public class UsingEvent : MonoBehaviour
         Debug.Log("GOTIN");
         if (collision.gameObject.layer == LayerMask.NameToLayer("Item"))
         {
-            Debug.Log("IN");
-            currentTarget = collision.gameObject;
+            DragableItem item = collision.gameObject.GetComponent<DragableItem>();
+            if (item.thisGet == true)
+            {
+                Debug.Log("IN");
+                currentTarget = collision.gameObject;
+            }
         }
     }
 

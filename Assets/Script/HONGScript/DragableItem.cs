@@ -71,4 +71,17 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             InvenUI.SetActive(false);
         }
     }
+
+    public void LoadSetParent()
+    {
+        if (parentAfterDrag != null)
+        {
+            transform.SetParent(parentAfterDrag);
+        }
+        else
+        {
+            return;
+        }
+    }
+
 }

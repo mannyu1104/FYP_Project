@@ -27,7 +27,10 @@ public class InventoryManagerINFO : MonoBehaviour
     void SetNewItem(GameObject item, InventorySlot slot)
     {
         DragableItem dragableitem = item.GetComponent<DragableItem>();
-        dragableitem.thisUsed = true;
+        if (dragableitem.thisUsed == false)
+        {
+            dragableitem.thisUsed = true;
+        }
         dragableitem.transform.SetParent(slot.transform);
     }
 }
