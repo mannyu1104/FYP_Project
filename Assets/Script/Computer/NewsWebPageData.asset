@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4952ed6f33625c8459e0f2eab395c948, type: 3}
+  m_Name: NewsWebPageData
+  m_EditorClassIdentifier: Assembly-CSharp::WebPageDataScriptableObject
+  pageId: 1
+  tabTitle: "\u6BCF\u65E5\u65B0\u95FB"
+  tabIcon: {fileID: 0}
