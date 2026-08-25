@@ -59,7 +59,6 @@ public class DialogueController : MonoBehaviour
     [Header("Auto Mode")]
     [Min(0.1f)]
     public float autoAdvanceSeconds = 3f;
-    public string skippedLinePrefix = "[已跳过] ";
 
     private readonly List<string> historyEntries = new List<string>();
     private List<DialogueLine> currentLines;
@@ -166,6 +165,12 @@ public class DialogueController : MonoBehaviour
         isDialogueActive = true;
         isAutoMode = false;
         suppressAdvance = true;
+
+        if (historyEntries.Count > 0)
+        {
+            historyEntries.Add(string.Empty);
+        }
+
         UpdateHistoryText();
         SetPanelVisible(historyPanel, false);
         SetPanelVisible(dialoguePanel, true);
@@ -350,7 +355,7 @@ public class DialogueController : MonoBehaviour
                 ? line.dialogueText
                 : line.speakerName + ": " + line.dialogueText;
 
-            historyEntries.Add(skippedLinePrefix + entry);
+            historyEntries.Add(entry);
         }
 
         UpdateHistoryText();
@@ -515,7 +520,7 @@ public class DialogueController : MonoBehaviour
 
         if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
         {
-            return !IsPointerOverUI();
+            return !IsPointerOverProtectedUI();
         }
 #endif
 
@@ -524,24 +529,51 @@ public class DialogueController : MonoBehaviour
             return true;
         }
 
-        return Input.GetMouseButtonDown(0) && !IsPointerOverUI();
+        return Input.GetMouseButtonDown(0) && !IsPointerOverProtectedUI();
     }
 
-    private bool IsPointerOverUI()
+    private bool IsPointerOverProtectedUI()
     {
         if (EventSystem.current == null)
         {
             return false;
         }
 
+        PointerEventData pointerData = new PointerEventData(EventSystem.current)
+        {
+            position = GetMousePosition()
+        };
+        List<RaycastResult> raycastResults = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointerData, raycastResults);
+
+        for (int i = 0; i < raycastResults.Count; i++)
+        {
+            GameObject hitObject = raycastResults[i].gameObject;
+
+            if (hitObject.GetComponent<Button>() != null)
+            {
+                return true;
+            }
+
+            if (historyPanel != null && hitObject.transform.IsChildOf(historyPanel))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private Vector2 GetMousePosition()
+    {
 #if ENABLE_INPUT_SYSTEM
         if (Mouse.current != null)
         {
-            return EventSystem.current.IsPointerOverGameObject(Mouse.current.deviceId);
+            return Mouse.current.position.ReadValue();
         }
 #endif
 
-        return EventSystem.current.IsPointerOverGameObject();
+        return Input.mousePosition;
     }
 
     private void SetHoverEffectsPaused(bool paused)

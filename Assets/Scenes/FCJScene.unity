@@ -571,10 +571,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Auto
+  m_text: "\u81EA\u52A8"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 712f61c002bbf664f970624e73666d76, type: 2}
+  m_sharedMaterial: {fileID: 1770514314165170862, guid: 712f61c002bbf664f970624e73666d76, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1368,10 +1368,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Skip
+  m_text: "\u8DF3\u8FC7\u4EBA\u751F"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 712f61c002bbf664f970624e73666d76, type: 2}
+  m_sharedMaterial: {fileID: 1770514314165170862, guid: 712f61c002bbf664f970624e73666d76, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1982,10 +1982,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: History
+  m_text: "\u5386\u53F2\u8BB0\u5F55"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 712f61c002bbf664f970624e73666d76, type: 2}
+  m_sharedMaterial: {fileID: 1770514314165170862, guid: 712f61c002bbf664f970624e73666d76, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2889,7 +2889,7 @@ MonoBehaviour:
   dialoguePanel: {fileID: 1168926637}
   tmpSpeakerText: {fileID: 184812217}
   tmpDialogueText: {fileID: 413624443}
-  chineseFontAsset: {fileID: 0}
+  chineseFontAsset: {fileID: 11400000, guid: 712f61c002bbf664f970624e73666d76, type: 2}
   historyPanel: {fileID: 1746073319}
   historyController: {fileID: 1746073316}
   tmpHistoryText: {fileID: 39790204}
