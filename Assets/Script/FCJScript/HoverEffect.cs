@@ -50,6 +50,9 @@ public class HoverEffect : MonoBehaviour
     public HoverParameters hoverParameters = new HoverParameters();
 
     private readonly List<HoverState> hoverStates = new List<HoverState>();
+    private bool isPaused;
+
+    public bool IsPaused => isPaused;
 
     void Start()
     {
@@ -71,6 +74,11 @@ public class HoverEffect : MonoBehaviour
 
     void Update()
     {
+        if (isPaused)
+        {
+            return;
+        }
+
         EnsureHoverParameters();
         SyncHoverStatesWithList();
 
@@ -294,6 +302,31 @@ public class HoverEffect : MonoBehaviour
             {
                 state.glowLayers[i].SetActive(isActive);
             }
+        }
+    }
+
+    public void SetPaused(bool paused)
+    {
+        isPaused = paused;
+
+        if (!paused)
+        {
+            return;
+        }
+
+        for (int i = 0; i < hoverStates.Count; i++)
+        {
+            HoverState state = hoverStates[i];
+            state.isHovered = false;
+            SetItemColorImmediate(state, hoverParameters.normalColor);
+            state.itemObject.transform.localScale = state.normalScale;
+
+            if (state.glowOutline != null)
+            {
+                state.glowOutline.SetActive(false);
+            }
+
+            SetGlowLayersActive(state, false);
         }
     }
 

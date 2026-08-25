@@ -37,6 +37,9 @@ public class LookController : MonoBehaviour
     private float maxMove;
     private float targetX;
     private int currentSceneIndex = -1;
+    private bool isPaused;
+
+    public bool IsPaused => isPaused;
 
     void Start()
     {
@@ -89,6 +92,11 @@ public class LookController : MonoBehaviour
         SelectSceneImage(previousIndex);
     }
 
+    public void SetPaused(bool paused)
+    {
+        isPaused = paused;
+    }
+
     private bool SelectSceneImage(int sceneIndex)
     {
         if (sceneImages.Count > 0)
@@ -134,6 +142,11 @@ public class LookController : MonoBehaviour
     void Update()
     {
         EnsureLookParameters();
+
+        if (isPaused)
+        {
+            return;
+        }
 
         if (sceneImages.Count > 0 && activeSceneIndex != currentSceneIndex)
         {
