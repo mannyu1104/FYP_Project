@@ -10,25 +10,25 @@ public class HoverEffect : MonoBehaviour
     [System.Serializable]
     public class HoverParameters
     {
-        public Color normalColor = Color.white;
-        public Color hoverColor = Color.white;
-        public Color glowColor = new Color(1f, 1f, 1f, 0.85f);
-        [Min(1f)]
-        public float glowScale = 1.08f;
+        [Header("Glow")]
+        public bool autoCreateGlowOutline = true;
+        public bool autoCalculateGlowRange = true;
         [Min(1f)]
         public float outlineWidth = 6f;
-        public bool autoCalculateGlowRange = true;
         [Range(0.01f, 0.15f)]
         public float glowRangeRatio = 0.04f;
         [Min(0f)]
         public float minimumGlowWidth = 2f;
         [Min(0f)]
         public float maximumGlowWidth = 24f;
+
+        [Header("Hover")]
+        public Color normalColor = Color.white;
+        public Color hoverColor = Color.white;
         [Min(1f)]
         public float hoverScale = 1f;
         [Min(0f)]
         public float transitionSpeed = 12f;
-        public bool autoCreateGlowOutline = true;
     }
 
     private class HoverState
@@ -61,7 +61,6 @@ public class HoverEffect : MonoBehaviour
     {
         EnsureHoverParameters();
 
-        hoverParameters.glowScale = Mathf.Max(1f, hoverParameters.glowScale);
         hoverParameters.outlineWidth = Mathf.Max(1f, hoverParameters.outlineWidth);
         hoverParameters.glowRangeRatio = Mathf.Clamp(hoverParameters.glowRangeRatio, 0.01f, 0.15f);
         hoverParameters.minimumGlowWidth = Mathf.Max(0f, hoverParameters.minimumGlowWidth);
@@ -188,7 +187,7 @@ public class HoverEffect : MonoBehaviour
             }
             else
             {
-                state.glowOutline = FindExistingGlowOutline(state) ?? CreateGlowOutline(state);
+                state.glowOutline = CreateSpriteGlow(state);
             }
         }
 
@@ -298,49 +297,19 @@ public class HoverEffect : MonoBehaviour
         }
     }
 
-    private GameObject CreateGlowOutline(HoverState state)
+    private GameObject CreateSpriteGlow(HoverState state)
     {
-        if (state.uiGraphic is Image sourceImage)
-        {
-            GameObject outline = new GameObject(
-                state.itemObject.name + " Glow Outline",
-                typeof(RectTransform),
-                typeof(CanvasRenderer),
-                typeof(Image)
-            );
-
-            outline.transform.SetParent(sourceImage.transform, false);
-            outline.transform.SetAsFirstSibling();
-
-            RectTransform outlineRect = outline.GetComponent<RectTransform>();
-            outlineRect.anchorMin = Vector2.zero;
-            outlineRect.anchorMax = Vector2.one;
-            outlineRect.offsetMin = Vector2.zero;
-            outlineRect.offsetMax = Vector2.zero;
-            outlineRect.pivot = sourceImage.rectTransform.pivot;
-            outlineRect.localScale = Vector3.one * hoverParameters.glowScale;
-
-            Image outlineImage = outline.GetComponent<Image>();
-            outlineImage.sprite = sourceImage.sprite;
-            outlineImage.type = sourceImage.type;
-            outlineImage.preserveAspect = sourceImage.preserveAspect;
-            outlineImage.color = hoverParameters.glowColor;
-            outlineImage.raycastTarget = false;
-
-            return outline;
-        }
-
         if (state.spriteRenderer != null)
         {
-            GameObject outline = new GameObject(state.itemObject.name + " Glow Outline");
+            GameObject outline = new GameObject(state.itemObject.name + " Glow");
             outline.transform.SetParent(state.itemObject.transform, false);
             outline.transform.localPosition = Vector3.zero;
             outline.transform.localRotation = Quaternion.identity;
-            outline.transform.localScale = Vector3.one * hoverParameters.glowScale;
+            outline.transform.localScale = Vector3.one * 1.08f;
 
             SpriteRenderer outlineRenderer = outline.AddComponent<SpriteRenderer>();
             outlineRenderer.sprite = state.spriteRenderer.sprite;
-            outlineRenderer.color = hoverParameters.glowColor;
+            outlineRenderer.color = new Color(1f, 1f, 1f, 0.85f);
             outlineRenderer.sortingLayerID = state.spriteRenderer.sortingLayerID;
             outlineRenderer.sortingOrder = state.spriteRenderer.sortingOrder - 1;
 
@@ -348,15 +317,6 @@ public class HoverEffect : MonoBehaviour
         }
 
         return null;
-    }
-
-    private GameObject FindExistingGlowOutline(HoverState state)
-    {
-        string outlineName = state.itemObject.name + " Glow Outline";
-        Transform parent = state.uiGraphic != null ? state.uiGraphic.transform : state.itemObject.transform;
-        Transform existingOutline = parent.Find(outlineName);
-
-        return existingOutline != null ? existingOutline.gameObject : null;
     }
 
     private bool IsPointerOverItem(HoverState state, Vector2 mousePosition)
