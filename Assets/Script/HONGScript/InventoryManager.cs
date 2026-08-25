@@ -3,7 +3,6 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
     public InventorySlot[] inventorySlots;
-    //public GameObject InventoryItemPrefab;
     public void AddItem(GameObject item)
     {
         for (int i = 0; i < inventorySlots.Length; i++)
@@ -27,13 +26,5 @@ public class InventoryManager : MonoBehaviour
         }
         dragableitem.parentAfterDrag = slot.transform;
         dragableitem.LoadSetParent();
-        Debug.Log("Adding");
     }
-
-    //void SetNewItem(Item item, InventorySlot slot)
-    //{
-    //    GameObject newItemGO = Instantiate(InventoryItemPrefab, slot.transform);
-    //    DragableItem dragableitem = newItemGO.GetComponent<DragableItem>();
-    //    dragableitem.InitialiseItem(item);
-    //}
 }

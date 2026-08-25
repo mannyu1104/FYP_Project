@@ -9,13 +9,11 @@ public class UsingEvent : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("GOTIN");
         if (collision.gameObject.layer == LayerMask.NameToLayer("Item"))
         {
             DragableItem item = collision.gameObject.GetComponent<DragableItem>();
             if (item.thisGet == true)
             {
-                Debug.Log("IN");
                 currentTarget = collision.gameObject;
             }
         }
@@ -25,7 +23,6 @@ public class UsingEvent : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Item"))
         {
-            Debug.Log("OUT");
             currentTarget = null;
         }
     }
@@ -36,31 +33,13 @@ public class UsingEvent : MonoBehaviour
         {
             if (currentTarget != null)
             {
-                Debug.Log("OnIT");
                 DragableItem dragableItem = currentTarget.GetComponent<DragableItem>();
                 if (dragableItem.thisID == CorrectID)
                 {
                     inventoryUsing.AddItem(currentTarget);
-                    Debug.Log("Used");
                     gameObject.SetActive(false);
                 }
             }
         }
     }
-
-    //public void OnDrop(PointerEventData eventData)
-    //{
-    //    Debug.Log("OnIT");
-    //    GameObject dropped = eventData.pointerDrag;
-    //    DragableItem dragableItem = dropped.GetComponent<DragableItem>();
-    //    if (dragableItem.thisID == CorrectID)
-    //    {
-    //        inventoryUsing.AddItem(dropped);
-    //        Debug.Log("Used");
-    //    }
-    //    else
-    //    {
-    //        return;
-    //    }
-    //}
 }

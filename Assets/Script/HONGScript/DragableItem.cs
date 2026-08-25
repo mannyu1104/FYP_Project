@@ -1,4 +1,3 @@
-using UnityEditor.Profiling;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -35,7 +34,6 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     {
         if (!thisUsed && thisUnlocked == true)
         {
-            Debug.Log("StartDrag");
             parentAfterDrag = transform.parent;
             transform.SetParent(transform.root);
             transform.SetAsLastSibling();
@@ -47,7 +45,6 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     {
         if (!thisUsed && thisUnlocked == true)
         {
-            Debug.Log("Dragging");
             transform.position = Input.mousePosition;
         }
     }
@@ -56,7 +53,6 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     {
         if (!thisUsed && thisUnlocked == true)
         {
-            Debug.Log("EndDrag");
             transform.SetParent(parentAfterDrag);
             image.raycastTarget = true;
         }

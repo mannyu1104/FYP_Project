@@ -55,19 +55,12 @@ public class SaveSystem: MonoBehaviour
 
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(path, json);
-
-        Debug.Log("Save to" + path);
-        //foreach (Slot slot in DragableItem.instance.GetAllSlots())
-        //{
-
-        //}
     }
 
     public void LoadGame()
     {
         if (!File.Exists(path))
         {
-            Debug.Log("No Save File Found");
             return;
         }
 
@@ -92,7 +85,6 @@ public class SaveSystem: MonoBehaviour
         }
 
         PutInInventory();
-        Debug.Log("GameLoad");
     }
     private void PutInInventory()
     {
@@ -105,13 +97,7 @@ public class SaveSystem: MonoBehaviour
             }
             else if (putitem.thisUsed == false && putitem.thisGet == true)
             {
-                Debug.Log("Getload");
-                GameObject ItemPut = putitem.gameObject;
-                inventorymanager.AddItem(ItemPut);
-            }
-            else
-            {
-                return;
+                inventorymanager.AddItem(putitem.gameObject);
             }
         }
     }

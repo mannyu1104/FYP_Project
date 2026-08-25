@@ -16,7 +16,6 @@ public class LookController : MonoBehaviour
         [Min(0f)]
         public float smoothSpeed = 8f;
         public bool invertX = false;
-        public bool showDebugInfo = true;
         public bool hideInactiveSceneImages = true;
     }
 
@@ -24,6 +23,7 @@ public class LookController : MonoBehaviour
     [HideInInspector]
     public RectTransform roomImage;
     public RectTransform canvasRect;
+    public RectTransform movementRoot;
 
     [Header("Scene Images")]
     public List<RectTransform> sceneImages = new List<RectTransform>();
@@ -36,8 +36,6 @@ public class LookController : MonoBehaviour
     private float centerX;
     private float maxMove;
     private float targetX;
-    private float debugTimer;
-    private string inputSource;
     private int currentSceneIndex = -1;
 
     void Start()
@@ -104,6 +102,11 @@ public class LookController : MonoBehaviour
             return false;
         }
 
+        if (movementRoot == null)
+        {
+            movementRoot = roomImage.parent as RectTransform;
+        }
+
         activeSceneIndex = sceneIndex;
         currentSceneIndex = sceneIndex;
 
@@ -112,7 +115,7 @@ public class LookController : MonoBehaviour
         Canvas.ForceUpdateCanvases();
         CenterRoomInView();
 
-        centerX = roomImage.anchoredPosition.x;
+        centerX = movementRoot != null ? movementRoot.anchoredPosition.x : roomImage.anchoredPosition.x;
         targetX = centerX;
 
         RecalculateMoveLimit();
@@ -174,24 +177,25 @@ public class LookController : MonoBehaviour
         targetX = centerX - normalizedLook * maxMove * lookParameters.mouseSensitivity * direction;
         targetX = Mathf.Clamp(targetX, centerX - maxMove, centerX + maxMove);
 
-        LogDebugInfo();
     }
 
     private void MoveRoom()
     {
+        RectTransform target = movementRoot != null ? movementRoot : roomImage;
+
         if (lookParameters.smoothSpeed <= 0f)
         {
-            roomImage.anchoredPosition = new Vector2(targetX, roomImage.anchoredPosition.y);
+            target.anchoredPosition = new Vector2(targetX, target.anchoredPosition.y);
             return;
         }
 
         float newX = Mathf.Lerp(
-            roomImage.anchoredPosition.x,
+            target.anchoredPosition.x,
             targetX,
             Time.deltaTime * lookParameters.smoothSpeed
         );
 
-        roomImage.anchoredPosition = new Vector2(newX, roomImage.anchoredPosition.y);
+        target.anchoredPosition = new Vector2(newX, target.anchoredPosition.y);
     }
 
     private float GetMousePositionFromScreenCenter()
@@ -221,12 +225,10 @@ public class LookController : MonoBehaviour
 #if ENABLE_INPUT_SYSTEM
         if (Mouse.current != null)
         {
-            inputSource = "New Input System";
             return Mouse.current.position.ReadValue();
         }
 #endif
 
-        inputSource = "Old Input Manager";
         return Input.mousePosition;
     }
 
@@ -244,42 +246,12 @@ public class LookController : MonoBehaviour
     {
         Bounds roomBounds = RectTransformUtility.CalculateRelativeRectTransformBounds(canvasRect, roomImage);
         float offsetFromCanvasCenter = roomBounds.center.x - canvasRect.rect.center.x;
+        RectTransform target = movementRoot != null ? movementRoot : roomImage;
 
-        roomImage.anchoredPosition = new Vector2(
-            roomImage.anchoredPosition.x - offsetFromCanvasCenter,
-            roomImage.anchoredPosition.y
+        target.anchoredPosition = new Vector2(
+            target.anchoredPosition.x - offsetFromCanvasCenter,
+            target.anchoredPosition.y
         );
     }
 
-    private void LogDebugInfo()
-    {
-        if (!lookParameters.showDebugInfo)
-        {
-            return;
-        }
-
-        debugTimer -= Time.deltaTime;
-
-        if (debugTimer > 0f)
-        {
-            return;
-        }
-
-        debugTimer = 0.5f;
-
-        Vector2 mousePosition = GetMousePosition();
-
-        Debug.Log(
-            "LookController | Input Source: " + inputSource +
-            " | Mouse X: " + mousePosition.x +
-            " | Screen Center X: " + (Screen.width / 2f) +
-            " | Normalized Look: " + GetMousePositionFromScreenCenter() +
-            " | Room X: " + roomImage.anchoredPosition.x +
-            " | Target X: " + targetX +
-            " | Center X: " + centerX +
-            " | Max Move: " + maxMove +
-            " | Room Width: " + roomImage.rect.width +
-            " | Canvas Width: " + canvasRect.rect.width
-        );
-    }
 }

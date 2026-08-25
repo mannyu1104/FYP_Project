@@ -4,12 +4,6 @@ public class InventoryManagerINFO : MonoBehaviour
 {
     public InventorySlot[] inventorySlots;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    //void Start()
-    //{
-
-    //}
-
     public void AddItem(GameObject item)
     {
         for (int i = 0; i < inventorySlots.Length; i++)
