@@ -32,7 +32,6 @@ public class SaveSystem: MonoBehaviour
 
         path = Application.persistentDataPath + "/inventory.json";
 
-
     }
 
     public void SaveInventory()
