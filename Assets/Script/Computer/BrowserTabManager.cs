@@ -46,6 +46,8 @@ public class BrowserTabManager : MonoBehaviour
 
     public void CloseTab(BrowserTab tab)
     {
+        Debug.Log($"Closing tab: {tab.Page.TabTitle} (ID: {tab.Page.PageId})");
+
         int index = openTabs.IndexOf(tab);
         if (index < 0) return;
 
@@ -64,17 +66,20 @@ public class BrowserTabManager : MonoBehaviour
         // Falls back to the tab that was to the left of the closed one.
         int fallbackIndex = Mathf.Clamp(index - 1, 0, openTabs.Count - 1);
         SetActiveTab(openTabs[fallbackIndex]);
+        Debug.Log($"Switched to tab: {ActiveTab.Page.TabTitle} (ID: {ActiveTab.Page.PageId})");
     }
 
     public void SwitchTab(BrowserTab tab)
     {
         if (!openTabs.Contains(tab)) return;
         SetActiveTab(tab);
+        Debug.Log($"Switched to tab: {tab.Page.TabTitle} (ID: {tab.Page.PageId})");
     }
 
     public void ResetActiveTab()
     {
         SetActiveTab(null);
+        Debug.Log("Active tab reset.");
     }
 
     private void SetActiveTab(BrowserTab tab)

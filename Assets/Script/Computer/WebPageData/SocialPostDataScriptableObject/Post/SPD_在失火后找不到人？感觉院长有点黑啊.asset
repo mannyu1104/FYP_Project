@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d613c920529365743a062cf772b5632e, type: 3}
+  m_Name: "SPD_\u5728\u5931\u706B\u540E\u627E\u4E0D\u5230\u4EBA\uFF1F\u611F\u89C9\u9662\u957F\u6709\u70B9\u9ED1\u554A"
+  m_EditorClassIdentifier: Assembly-CSharp::SocialPostData
+  account: {fileID: 11400000, guid: 09e46448cfbf66248990c0af7fa77bda, type: 2}
+  content: "\u5728\u5931\u706B\u540E\u627E\u4E0D\u5230\u4EBA\uFF1F\u611F\u89C9\u9662\u957F\u6709\u70B9\u9ED1\u554A"
+  comments:
+  - commenterName: "\u7559\u8A001"
+    commentText: "\u679C\u7136\u662F\u8DD1\u8DEF\u4E86\u5417"
+  - commenterName: "\u7559\u8A002"
+    commentText: "\u771F\u7684\uFF0C\u4E0D\u53EF\u80FD\u8FD9\u4E48\u521A\u597D\u5427"
+  - commenterName: "\u7559\u8A003"
+    commentText: "\u300C\u65B0\u95FB\u76EE\u524D\u4E5F\u53EA\u8BF4\u5931\u8E2A\uFF0C\u8FD9\u4E48\u5FEB\u4E0B\u7ED3\u8BBA\u4E0D\u597D\u5427"

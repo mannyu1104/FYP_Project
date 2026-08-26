@@ -2,24 +2,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-/// <summary>
-/// Shows the content of the currently active tab. This is the missing piece
-/// between "a tab exists" and "the player actually sees the page" - it
-/// listens to the exact same event TabBarController uses to update tab
-/// highlights, just to drive different UI (the content area instead of
-/// the tab bar).
-///
-/// Which of the state views is shown is picked from webPage.LayoutType -
-/// each Show...Page method below is responsible for exactly one view.
-/// </summary>
 public class WebPageContentController : MonoBehaviour
 {
     [Header("States")]
     [SerializeField] private GameObject emptyStateView;       // no tabs open at all
-    [SerializeField] private GameObject mainStateView;        // PageLayoutType.Main
-    [SerializeField] private GameObject newsStateView;        // PageLayoutType.News
-    [SerializeField] private GameObject socialMediaStateView; // PageLayoutType.SocialMedia
-    [SerializeField] private GameObject tutorialStateView;    // PageLayoutType.Tutorial
+    [SerializeField] private GameObject mainStateView;        
+    [SerializeField] private GameObject newsStateView;        
+    [SerializeField] private GameObject socialMediaStateView; 
+    [SerializeField] private GameObject tutorialStateView;    
 
     [Header("News Page View References")]
     [SerializeField] private TMP_Text newsPageTitleText;
@@ -56,6 +46,7 @@ public class WebPageContentController : MonoBehaviour
         if (tab == null)
         {
             //emptyStateView.SetActive(true);
+            HideAllStates();
             return;
         }
 
@@ -63,9 +54,10 @@ public class WebPageContentController : MonoBehaviour
         {
             // Fallback for anything implementing IBrowserPage without real
             // content yet (e.g. a PlaceholderPage used during early testing).
-            mainStateView.SetActive(true);
+            //mainStateView.SetActive(true);
             //pageTitleText.text = tab.Page.TabTitle;
             //pageBodyText.text = "(no content on this page yet)";
+            HideAllStates();
             return;
         }
 
@@ -94,7 +86,6 @@ public class WebPageContentController : MonoBehaviour
         socialMediaStateView.SetActive(false);
         tutorialStateView.SetActive(false);
 
-        BrowserTabManager.Instance.ResetActiveTab();
     }
 
     private void ShowMainPage(WebPageDataScriptableObject webPage)
@@ -138,5 +129,10 @@ public class WebPageContentController : MonoBehaviour
         // TODO: tutorial pages might be fully static (nothing to populate
         // from webPage at all), or might pull step text from it - depends
         // on how you plan to author tutorial content.
+    }
+
+    public void ResetActiveTab()
+    {
+        BrowserTabManager.Instance.ResetActiveTab();
     }
 }

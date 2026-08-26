@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SosialMediaWebPageData
   m_EditorClassIdentifier: Assembly-CSharp::WebPageDataScriptableObject
   pageId: 2
-  tabTitle: "\u793E\u4EA4\u5A92\u4F53"
+  tabTitle: "\u63A8\u4E66"
   tabIcon: {fileID: 0}
   layoutType: 2
   bodyText: This is social media web page test

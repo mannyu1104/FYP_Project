@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ea5ecae014f11d4bb517071feea9c14, type: 3}
+  m_Name: "SA_\u8DEF\u4EBA 7"
+  m_EditorClassIdentifier: Assembly-CSharp::SocialAccountData
+  accountName: "\u8DEF\u4EBA7"
+  avatar: {fileID: 456587062, guid: 63964432fecded048bfe5cf9ba8910ba, type: 3}
+  bio: 
