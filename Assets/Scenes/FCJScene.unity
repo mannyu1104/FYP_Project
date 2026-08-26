@@ -1038,6 +1038,7 @@ GameObject:
   - component: {fileID: 480085859}
   - component: {fileID: 480085861}
   - component: {fileID: 480085860}
+  - component: {fileID: 480085862}
   m_Layer: 5
   m_Name: Image1
   m_TagString: Untagged
@@ -1102,6 +1103,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 480085858}
   m_CullTransparentMesh: 1
+--- !u!114 &480085862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480085858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b415fa0449598804d909f214e96a005d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
+  cursorPresetName: test
+  customCursorPresetName: View
+  customCursorPresetIndex: 0
+  interactionType: 2
+  useCustomPreset: 0
+  cursorPresetIndex: 0
 --- !u!1 &555074124
 GameObject:
   m_ObjectHideFlags: 0
@@ -1188,6 +1207,7 @@ GameObject:
   - component: {fileID: 561498797}
   - component: {fileID: 561498796}
   - component: {fileID: 561498795}
+  - component: {fileID: 561498798}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1269,6 +1289,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &561498798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561498794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
+  m_Version: 2
 --- !u!1 &561853960
 GameObject:
   m_ObjectHideFlags: 0
@@ -1426,6 +1490,7 @@ GameObject:
   - component: {fileID: 719280680}
   - component: {fileID: 719280682}
   - component: {fileID: 719280681}
+  - component: {fileID: 719280683}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -1490,6 +1555,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 719280679}
   m_CullTransparentMesh: 1
+--- !u!114 &719280683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719280679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b415fa0449598804d909f214e96a005d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
+  cursorPresetName: View
+  customCursorPresetName: View
+  customCursorPresetIndex: 0
+  interactionType: 2
+  useCustomPreset: 0
+  cursorPresetIndex: 0
 --- !u!1 &802627486
 GameObject:
   m_ObjectHideFlags: 0
@@ -2061,6 +2144,7 @@ GameObject:
   - component: {fileID: 1209178916}
   - component: {fileID: 1209178915}
   - component: {fileID: 1209178914}
+  - component: {fileID: 1209178917}
   m_Layer: 5
   m_Name: Image1 (1)
   m_TagString: Untagged
@@ -2125,6 +2209,24 @@ RectTransform:
   m_AnchoredPosition: {x: 2790.6753, y: -29.356201}
   m_SizeDelta: {x: 202.6492, y: 200.7124}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1209178917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209178913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b415fa0449598804d909f214e96a005d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
+  cursorPresetName: other
+  customCursorPresetName: View
+  customCursorPresetIndex: 0
+  interactionType: 2
+  useCustomPreset: 0
+  cursorPresetIndex: 0
 --- !u!1 &1259115311
 GameObject:
   m_ObjectHideFlags: 0
@@ -2449,6 +2551,73 @@ RectTransform:
   m_AnchoredPosition: {x: -1361, y: 195}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1545463322
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1545463324}
+  - component: {fileID: 1545463323}
+  m_Layer: 0
+  m_Name: CursorManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1545463323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545463322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca11b31880388654580db19d44682369, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractionCursorController
+  cursorPresets:
+  - presetName: View
+    cursorTexture: {fileID: 2800000, guid: e40371d76b9a9ab44bc17b3a8bae4905, type: 3}
+    hotspot: {x: 0, y: 0}
+    cursorMode: 0
+  - presetName: talk
+    cursorTexture: {fileID: 2800000, guid: 35e5bcbfc83dbdf44ab306b946b9de9c, type: 3}
+    hotspot: {x: 0, y: 0}
+    cursorMode: 0
+  - presetName: other
+    cursorTexture: {fileID: 2800000, guid: 68fdbe0e30dc3784198c6010a64e9f84, type: 3}
+    hotspot: {x: 0, y: 0}
+    cursorMode: 0
+  - presetName: test
+    cursorTexture: {fileID: 2800000, guid: 68fdbe0e30dc3784198c6010a64e9f84, type: 3}
+    hotspot: {x: 0, y: 0}
+    cursorMode: 0
+  worldCamera: {fileID: 561498796}
+  pauseDuringDialogue: 1
+  viewPresetName: View
+  dialoguePresetName: talk
+  viewPresetIndex: 0
+  dialoguePresetIndex: 1
+--- !u!4 &1545463324
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545463322}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1363.1411, y: 597.9912, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1614137977
 GameObject:
   m_ObjectHideFlags: 0
@@ -2461,6 +2630,7 @@ GameObject:
   - component: {fileID: 1614137982}
   - component: {fileID: 1614137981}
   - component: {fileID: 1614137980}
+  - component: {fileID: 1614137983}
   m_Layer: 5
   m_Name: npc
   m_TagString: Untagged
@@ -2553,6 +2723,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1614137977}
   m_CullTransparentMesh: 1
+--- !u!114 &1614137983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1614137977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b415fa0449598804d909f214e96a005d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
+  cursorPresetName: talk
+  customCursorPresetName: 
+  customCursorPresetIndex: 0
+  interactionType: 1
+  useCustomPreset: 0
+  cursorPresetIndex: 0
 --- !u!1 &1667290816
 GameObject:
   m_ObjectHideFlags: 0
@@ -3214,3 +3402,4 @@ SceneRoots:
   - {fileID: 1850314228}
   - {fileID: 802627488}
   - {fileID: 1975308693}
+  - {fileID: 1545463324}
