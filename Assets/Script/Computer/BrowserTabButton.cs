@@ -1,13 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 [RequireComponent(typeof(CustomButtonUi))]
-public class BrowserButton : MonoBehaviour
+public class BrowserTabButton : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private CustomButtonUi clickable;
     [SerializeField] private Image iconImage;
-    [SerializeField] private Text titleText; 
+    [SerializeField] private TMP_Text titleText;
     [SerializeField] private Button closeButton;
 
     private BrowserTab targetTab;

@@ -72,6 +72,11 @@ public class BrowserTabManager : MonoBehaviour
         SetActiveTab(tab);
     }
 
+    public void ResetActiveTab()
+    {
+        SetActiveTab(null);
+    }
+
     private void SetActiveTab(BrowserTab tab)
     {
         if (ActiveTab == tab) return;

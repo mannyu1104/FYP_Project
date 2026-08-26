@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class TabBarController : MonoBehaviour
 {
-    [SerializeField] private BrowserButton tabButtonPrefab;
+    [SerializeField] private BrowserTabButton tabButtonPrefab;
     [SerializeField] private Transform tabButtonContainer; 
 
-    private readonly Dictionary<BrowserTab, BrowserButton> spawnedButtons = new Dictionary<BrowserTab, BrowserButton>();
+    private readonly Dictionary<BrowserTab, BrowserTabButton> spawnedButtons = new Dictionary<BrowserTab, BrowserTabButton>();
 
     private void OnEnable()
     {
@@ -29,7 +29,7 @@ public class TabBarController : MonoBehaviour
 
         foreach (BrowserTab tab in BrowserTabManager.Instance.OpenTabs)
         {
-            BrowserButton button = Instantiate(tabButtonPrefab, tabButtonContainer);
+            BrowserTabButton button = Instantiate(tabButtonPrefab, tabButtonContainer);
             button.Bind(tab);
             spawnedButtons[tab] = button;
         }
@@ -39,7 +39,7 @@ public class TabBarController : MonoBehaviour
 
     private void RefreshActiveVisuals(BrowserTab activeTab)
     {
-        foreach (KeyValuePair<BrowserTab, BrowserButton> pair in spawnedButtons)
+        foreach (KeyValuePair<BrowserTab, BrowserTabButton> pair in spawnedButtons)
         {
             pair.Value.SetActiveVisual(pair.Key == activeTab);
         }

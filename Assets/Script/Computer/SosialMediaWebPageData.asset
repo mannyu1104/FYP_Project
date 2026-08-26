@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4952ed6f33625c8459e0f2eab395c948, type: 3}
-  m_Name: NewsWebPageData
+  m_Name: SosialMediaWebPageData
   m_EditorClassIdentifier: Assembly-CSharp::WebPageDataScriptableObject
-  pageId: 1
-  tabTitle: "\u6BCF\u65E5\u65B0\u95FB"
+  pageId: 2
+  tabTitle: "\u793E\u4EA4\u5A92\u4F53"
   tabIcon: {fileID: 0}
-  layoutType: 1
-  bodyText: This is news web page test
+  layoutType: 2
+  bodyText: This is social media web page test
