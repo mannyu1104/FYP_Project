@@ -14,8 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SocialPostData
   account: {fileID: 11400000, guid: 55f2ac4166d741a4b8418cbcfdabc812, type: 2}
   content: "\u6628\u5929\u6DF1\u591C\u770B\u5230\u4E00\u8F86\u8D85\u9ED1\u7684\u8F66\uFF0C\u8FDE\u8F66\u73BB\u7483\u90FD\u548C\u6211\u5BB6\u90A3\u53EA\u9ED1\u732B\u4E00\u6837\u9ED1\u3002"
+  postImage: {fileID: 0}
   comments:
-  - commenterName: "\u7559\u8A001"
+  - account: {fileID: 11400000, guid: 35667f68b8540f8418ea24243cc2da12, type: 2}
     commentText: "\u5927\u534A\u591C\u7684\u4E0D\u662F\u770B\u4EC0\u4E48\u90FD\u662F\u9ED1\u7684\u5417\uFF1F"
-  - commenterName: "\u7559\u8A002"
+    hasProfilePage: 0
+  - account: {fileID: 11400000, guid: 09e46448cfbf66248990c0af7fa77bda, type: 2}
     commentText: "\u6CA1\u62CD\u4E0B\u6765\u5417\uFF0C\u8FD9\u79CD\u8FDD\u6CD5\u4EA4\u901A\u7684\u53EF\u4EE5\u62FF\u53BB\u4E3E\u62A5\u4E86"
+    hasProfilePage: 0

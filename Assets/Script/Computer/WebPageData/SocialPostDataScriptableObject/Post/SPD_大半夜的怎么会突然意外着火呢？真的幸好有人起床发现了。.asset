@@ -14,12 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SocialPostData
   account: {fileID: 11400000, guid: a74786eb4efd77b4bb5171762d4e0279, type: 2}
   content: "\u5927\u534A\u591C\u7684\u600E\u4E48\u4F1A\u7A81\u7136\u610F\u5916\u7740\u706B\u5462\uFF1F\u771F\u7684\u5E78\u597D\u6709\u4EBA\u8D77\u5E8A\u53D1\u73B0\u4E86\u3002"
+  postImage: {fileID: 0}
   comments:
-  - commenterName: "\u7559\u8A001"
+  - account: {fileID: 11400000, guid: 55f2ac4166d741a4b8418cbcfdabc812, type: 2}
     commentText: "\u771F\u7684\u662F\u610F\u5916\u5417\uFF1F"
-  - commenterName: "\u7559\u8A002"
+    hasProfilePage: 0
+  - account: {fileID: 11400000, guid: cb125a8decf8463438ebc6e9b5418fe6, type: 2}
     commentText: "\u53EF\u80FD\u662F\u5EFA\u7B51\u6BD4\u8F83\u8001\u4E86\uFF0C\u54EA\u91CC\u7684\u7535\u8DEF\u6709\u95EE\u9898\u5427"
-  - commenterName: "\u7559\u8A003"
+    hasProfilePage: 0
+  - account: {fileID: 11400000, guid: a74786eb4efd77b4bb5171762d4e0279, type: 2}
     commentText: "\u53EF\u90A3\u5B64\u513F\u9662\u5F88\u50CF\u7EF4\u62A4\u7684\u5F88\u597D\u554A\uFF0C\u4F3C\u4E4E\u8FD8\u62FF\u8FC7\u4EC0\u4E48\u7F8E\u5316\u5956"
-  - commenterName: "\u7559\u8A004"
+    hasProfilePage: 0
+  - account: {fileID: 11400000, guid: 09e46448cfbf66248990c0af7fa77bda, type: 2}
     commentText: "\u4E0D\u7BA1\u600E\u6837\uFF0C\u5E78\u597D\u5B69\u5B50\u90FD\u6CA1\u4E8B"
+    hasProfilePage: 0

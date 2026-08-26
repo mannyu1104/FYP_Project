@@ -4,27 +4,20 @@ using TMPro;
 
 public class WebPageContentController : MonoBehaviour
 {
-    [Header("States")]
-    [SerializeField] private GameObject emptyStateView;       // no tabs open at all
-    [SerializeField] private GameObject mainStateView;        
-    [SerializeField] private GameObject newsStateView;        
-    [SerializeField] private GameObject socialMediaStateView; 
-    [SerializeField] private GameObject tutorialStateView;    
+    [Header("States (keep these GameObjects active - hide via CanvasGroup only)")]
+    [SerializeField] private CanvasGroup emptyStateView;       // no tabs open at all
+    [SerializeField] private CanvasGroup mainStateView;        // PageLayoutType.Main
+    [SerializeField] private CanvasGroup newsStateView;        // PageLayoutType.News
+    [SerializeField] private CanvasGroup socialMediaStateView; // PageLayoutType.SocialMedia
+    [SerializeField] private CanvasGroup tutorialStateView;    // PageLayoutType.Tutorial
 
-    [Header("News Page View References")]
-    [SerializeField] private TMP_Text newsPageTitleText;
-    [SerializeField] private TMP_Text newsPageBodyText;
+    [Header("Main Page View References")]
+    [SerializeField] private TMP_Text pageTitleText;
+    [SerializeField] private TMP_Text pageBodyText;
 
-    [Header("Social Media Page View References")]
-    [SerializeField] private TMP_Text socialMediaPageTitleText;
-    [SerializeField] private TMP_Text socialMediaPageBodyText;
-
-    [Header("Tutorial Page View References")]
-    [SerializeField] private TMP_Text tutorialPageTitleText;
-    [SerializeField] private TMP_Text tutorialPageBodyText;
-
-    // News/SocialMedia/Tutorial reference fields go here as their layouts
-    // are designed - see the TODOs in each Show...Page method below.
+    [Header("Sub-Controllers (reset to their default internal view on reopen)")]
+    [SerializeField] private NewsPageController newsPageController;
+    [SerializeField] private SocialMediaPageController socialMediaPageController;
 
     private void OnEnable()
     {
@@ -45,8 +38,7 @@ public class WebPageContentController : MonoBehaviour
 
         if (tab == null)
         {
-            //emptyStateView.SetActive(true);
-            HideAllStates();
+            Show(emptyStateView);
             return;
         }
 
@@ -54,10 +46,9 @@ public class WebPageContentController : MonoBehaviour
         {
             // Fallback for anything implementing IBrowserPage without real
             // content yet (e.g. a PlaceholderPage used during early testing).
-            //mainStateView.SetActive(true);
-            //pageTitleText.text = tab.Page.TabTitle;
-            //pageBodyText.text = "(no content on this page yet)";
-            HideAllStates();
+            Show(mainStateView);
+            pageTitleText.text = tab.Page.TabTitle;
+            pageBodyText.text = "(no content on this page yet)";
             return;
         }
 
@@ -80,55 +71,56 @@ public class WebPageContentController : MonoBehaviour
 
     public void HideAllStates()
     {
-        emptyStateView.SetActive(false);
-        mainStateView.SetActive(false);
-        newsStateView.SetActive(false);
-        socialMediaStateView.SetActive(false);
-        tutorialStateView.SetActive(false);
-
+        Hide(emptyStateView);
+        Hide(mainStateView);
+        Hide(newsStateView);
+        Hide(socialMediaStateView);
+        Hide(tutorialStateView);
     }
 
     private void ShowMainPage(WebPageDataScriptableObject webPage)
     {
-        mainStateView.SetActive(true);
-        //pageTitleText.text = webPage.TabTitle;
-        //pageBodyText.text = webPage.BodyText;
+        Show(mainStateView);
+        pageTitleText.text = webPage.TabTitle;
+        pageBodyText.text = webPage.BodyText;
     }
 
     private void ShowNewsPage(WebPageDataScriptableObject webPage)
     {
-        newsStateView.SetActive(true);
-
-        newsPageTitleText.text = webPage.TabTitle;
-        newsPageBodyText.text = webPage.BodyText;
-
-        // TODO: once the news layout's own fields exist (headline, date,
-        // author, comment list, etc.), add [SerializeField] references for
-        // them above and populate them here the same way ShowMainPage does.
+        Show(newsStateView);
+        // Explicit call instead of relying on NewsPageController's OnEnable -
+        // its GameObject no longer goes inactive/active, so OnEnable would
+        // otherwise only ever fire once, at scene start.
+        newsPageController.ShowList();
     }
 
     private void ShowSocialMediaPage(WebPageDataScriptableObject webPage)
     {
-        socialMediaStateView.SetActive(true);
-
-        socialMediaPageTitleText.text = webPage.TabTitle;
-        socialMediaPageBodyText.text = webPage.BodyText;
-
-        // TODO: social posts will likely need poster name/avatar, post text,
-        // and a comment list (see the CommentData idea discussed earlier) -
-        // add the reference fields and populate them here once that's built.
+        Show(socialMediaStateView);
+        socialMediaPageController.ShowFeed();
     }
 
     private void ShowTutorialPage(WebPageDataScriptableObject webPage)
     {
-        tutorialStateView.SetActive(true);
-
-        tutorialPageTitleText.text = webPage.TabTitle;
-        tutorialPageBodyText.text = webPage.BodyText;
+        Show(tutorialStateView);
 
         // TODO: tutorial pages might be fully static (nothing to populate
         // from webPage at all), or might pull step text from it - depends
         // on how you plan to author tutorial content.
+    }
+
+    private void Show(CanvasGroup group)
+    {
+        group.alpha = 1f;
+        group.interactable = true;
+        group.blocksRaycasts = true;
+    }
+
+    private void Hide(CanvasGroup group)
+    {
+        group.alpha = 0f;
+        group.interactable = false;
+        group.blocksRaycasts = false;
     }
 
     public void ResetActiveTab()

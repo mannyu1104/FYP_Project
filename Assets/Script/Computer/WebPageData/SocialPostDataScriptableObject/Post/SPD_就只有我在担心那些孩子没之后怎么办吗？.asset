@@ -15,11 +15,15 @@ MonoBehaviour:
   account: {fileID: 11400000, guid: 0d6f3b10396c1f9438365347062d938c, type: 2}
   content: "\u5C31\u53EA\u6709\u6211\u5728\u62C5\u5FC3\u90A3\u4E9B\u5B69\u5B50\u6CA1\u4E4B\u540E\u600E\u4E48\u529E\u5417\uFF1F"
   comments:
-  - commenterName: "\u7559\u8A001"
+  - account: {fileID: 11400000, guid: 09e46448cfbf66248990c0af7fa77bda, type: 2}
     commentText: "\u5E94\u8BE5\u4F1A\u88AB\u9001\u53BB\u54EA\u4E2A\u4E34\u65F6\u5B89\u7F6E\u4E2D\u5FC3\u5427"
-  - commenterName: "\u55B5\u55B5\uFF1A3"
+    hasProfilePage: 0
+  - account: {fileID: 11400000, guid: e0029cd83e0e41e4aa4e9aa7e493ef70, type: 2}
     commentText: "\u6211\u4EEC\u534F\u4F1A\u521A\u521A\u6536\u5230\u6D88\u606F\uFF0C\u5E94\u8BE5\u5C31\u662F\u90A3\u8FB9\u4E86"
-  - commenterName: "\u7559\u8A003"
+    hasProfilePage: 1
+  - account: {fileID: 11400000, guid: a74786eb4efd77b4bb5171762d4e0279, type: 2}
     commentText: "\u5E0C\u671B\u5B69\u5B50\u4EEC\u4E0D\u8981\u5413\u5230\u5C31\u597D"
-  - commenterName: "\u7559\u8A004"
+    hasProfilePage: 0
+  - account: {fileID: 11400000, guid: d92a60538fdc62f48805c8afaa7a5474, type: 2}
     commentText: "\u5458\u5DE5\u4EEC\u5E94\u8BE5\u4F1A\u4E00\u8D77\u8FC7\u53BB\u966A\u4ED6\u4EEC\u5427"
+    hasProfilePage: 0

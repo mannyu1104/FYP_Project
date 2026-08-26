@@ -5,6 +5,7 @@ using UnityEngine;
 [Serializable]
 public class SocialCommentEntry
 {
-    public string commenterName;
+    public SocialAccountData account;
     [TextArea(1, 4)] public string commentText;
+    public bool hasProfilePage = false;
 }

@@ -14,8 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SocialPostData
   account: {fileID: 11400000, guid: cb125a8decf8463438ebc6e9b5418fe6, type: 2}
   content: "\u60F3\u7740\u53BB\u90A3\u95F4\u51FA\u4E8B\u7684\u5B64\u513F\u9662\u51D1\u51D1\u70ED\u95F9\uFF0C\u7ED3\u679C\u76F8\u673A\u653E\u5927\u62CD\u5230\u4E86\u8FD9\u5F20\u56FE\u3002\u8FD8\u771F\u6709\u4EBA\u4F1A\u5C06\u5BC6\u7801\u8BBE\u8BA1\u4E3A\u751F\u65E5\u65E5\u671F\u554A\u54C8\u54C8\u54C8\u54C8\u3002"
+  postImage: {fileID: 1366167481, guid: e3c09cc79b4d6c948bf6dd70ec60f69d, type: 3}
   comments:
-  - commenterName: "\u7559\u8A001"
+  - account: {fileID: 11400000, guid: 0d6f3b10396c1f9438365347062d938c, type: 2}
     commentText: "\u6211\u4E5F\u4F1A\u8FD9\u6837\uFF0C\u5BC6\u7801\u5C31\u771F\u7684\u5F88\u96BE\u8BB0\u554A"
-  - commenterName: "\u7559\u8A002"
+    hasProfilePage: 0
+  - account: {fileID: 11400000, guid: c8f08e80ee5df9740930b80a26fbb62c, type: 2}
     commentText: "\u5B89\u5168\u610F\u8BC6\u6709\u5F85\u63D0\u9AD8\u554A"
+    hasProfilePage: 0

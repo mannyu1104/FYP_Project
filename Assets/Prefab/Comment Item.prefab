@@ -178,7 +178,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 556.42865, y: -30.11}
+  m_AnchoredPosition: {x: 556.42865, y: -34.165}
   m_SizeDelta: {x: 543.0571, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9075106976940493924
@@ -211,8 +211,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Comment Content
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 23355c7b5fd799c4a98dd3e31afbe373, type: 2}
+  m_sharedMaterial: {fileID: -2843963497593350622, guid: 23355c7b5fd799c4a98dd3e31afbe373, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -555,7 +555,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9d30d0668271d4aba0728832a0738c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SocialCommentItemUI
+  commenterAvatarButton: {fileID: 3349935340690617518}
+  commenterNameButton: {fileID: 1623394908204956130}
+  commenterAvatarImage: {fileID: 8045248722821329279}
+  commenterNameText: {fileID: 5487533407171895151}
   commentText: {fileID: 1978457397682050864}
+  normalNameColor: {r: 0, g: 0, b: 0, a: 1}
+  hasProfileNameColor: {r: 0.2, g: 0.45, b: 0.9, a: 1}
 --- !u!1 &8119046183699494498
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,8 +629,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Name
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 23355c7b5fd799c4a98dd3e31afbe373, type: 2}
+  m_sharedMaterial: {fileID: -2843963497593350622, guid: 23355c7b5fd799c4a98dd3e31afbe373, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

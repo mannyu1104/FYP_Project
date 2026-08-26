@@ -24,52 +24,77 @@ public class SocialMediaPageController : MonoBehaviour
     [SerializeField] private List<SocialPostData> feedPosts;
 
     [Header("Feed View")]
-    [SerializeField] private GameObject feedView;
+    [SerializeField] private CanvasGroup feedCanvasGroup;
+    [SerializeField] private LayoutElement feedLayoutElement; // for the scroll rect to size correctly
     [SerializeField] private Transform feedContainer; // parent with a Vertical Layout Group
     [SerializeField] private SocialPostUI postPrefab;
 
     [Header("Profile Data")]
     [SerializeField] private List<SocialPostData> profilePosts;
 
-    //[Header("Profile View")]
-    //[SerializeField] private GameObject profileView;
-    //[SerializeField] private Image profileAvatarImage;
-    //[SerializeField] private TMP_Text profileNameText;
-    //[SerializeField] private TMP_Text profileBioText;
-    //[SerializeField] private Transform profilePostsContainer; // parent with a Vertical Layout Group
-    //[SerializeField] private CustomButtonUi profileBackButton;
+    [Header("Profile View")]
+    [SerializeField] private CanvasGroup profileCanvasGroup;
+    [SerializeField] private LayoutElement profileLayoutElement; // for the scroll rect to size correctly
+    [SerializeField] private Image profileAvatarImage;
+    [SerializeField] private TMP_Text profileNameText;
+    [SerializeField] private TMP_Text profileBioText;
+    [SerializeField] private Transform profilePostsContainer; // parent with a Vertical Layout Group
+    [SerializeField] private CustomButtonUi profileBackButton;
 
     private void Awake()
     {
-        //profileBackButton.onLeftClick.AddListener(ShowFeed);
+        profileBackButton.onLeftClick.AddListener(ShowFeed);
 
         BuildFeedOnce();
         BuildProfilePostsOnce();
-    }
 
-    private void OnEnable()
-    {
-        // Every time the player (re)opens the Social Media tab, start back
-        // at the feed - same reasoning as NewsPageController.
-        ShowFeed();
+        // Both containers get laid out once, right here at scene start,
+        // while both views are still active - long before the player can
+        // ever open this tab.
+        Canvas.ForceUpdateCanvases();
+        LayoutRebuilder.ForceRebuildLayoutImmediate(feedContainer.GetComponent<RectTransform>());
+        LayoutRebuilder.ForceRebuildLayoutImmediate(profilePostsContainer.GetComponent<RectTransform>());
+
+        Show(feedCanvasGroup, feedLayoutElement);
+        Hide(profileCanvasGroup, profileLayoutElement);
     }
 
     public void ShowFeed()
     {
-        feedView.SetActive(true);
-        //profileView.SetActive(false);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(feedContainer.GetComponent<RectTransform>());
+
+        Hide(profileCanvasGroup, profileLayoutElement);
+        Show(feedCanvasGroup, feedLayoutElement);
     }
 
     public void ShowProfile(SocialAccountData poster)
     {
-        feedView.SetActive(false);
-        //profileView.SetActive(true);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(profilePostsContainer.GetComponent<RectTransform>());
 
-        //profileAvatarImage.sprite = poster.Avatar;
-        //profileNameText.text = poster.AccountName;
-        //profileBioText.text = poster.Bio;
-        // profilePostsContainer's rows were already built once in Awake -
-        // nothing to rebuild here, since the list is fixed.
+        profileAvatarImage.sprite = poster.Avatar;
+        profileNameText.text = poster.AccountName;
+        profileBioText.text = poster.Bio;
+
+        Hide(feedCanvasGroup, feedLayoutElement);
+        Show(profileCanvasGroup, profileLayoutElement);
+    }
+
+    private void Show(CanvasGroup group, LayoutElement layoutElement)
+    {
+        layoutElement.ignoreLayout = false;
+
+        group.alpha = 1f;
+        group.interactable = true;
+        group.blocksRaycasts = true;
+    }
+
+    private void Hide(CanvasGroup group, LayoutElement layoutElement)
+    {
+        layoutElement.ignoreLayout = true;
+
+        group.alpha = 0f;
+        group.interactable = false;
+        group.blocksRaycasts = false;
     }
 
     private void BuildFeedOnce()
@@ -85,8 +110,8 @@ public class SocialMediaPageController : MonoBehaviour
     {
         foreach (SocialPostData post in profilePosts)
         {
-            //SocialPostUI item = Instantiate(postPrefab, profilePostsContainer);
-            //item.Bind(post, this);
+            SocialPostUI item = Instantiate(postPrefab, profilePostsContainer);
+            item.Bind(post, this);
         }
     }
 }
