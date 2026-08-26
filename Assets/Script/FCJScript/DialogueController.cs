@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +12,12 @@ using UnityEngine.InputSystem;
 
 public class DialogueController : MonoBehaviour
 {
+    [System.Serializable]
+    private class DialogueSaveData
+    {
+        public List<string> historyEntries = new List<string>();
+    }
+
     [System.Serializable]
     public class DialogueLine
     {
@@ -60,6 +67,10 @@ public class DialogueController : MonoBehaviour
     [Min(0.1f)]
     public float autoAdvanceSeconds = 3f;
 
+    [Header("Save")]
+    public bool saveHistoryAutomatically = true;
+    public bool loadHistoryAutomatically = true;
+
     private readonly List<string> historyEntries = new List<string>();
     private List<DialogueLine> currentLines;
     private NPCDialogueTrigger currentNpc;
@@ -70,12 +81,15 @@ public class DialogueController : MonoBehaviour
     private bool suppressAdvance;
     private bool lookWasPaused;
     private HoverEffect[] hoverEffects;
+    private string dialogueSavePath;
 
     public bool IsDialogueActive => isDialogueActive;
     public bool IsAutoMode => isAutoMode;
 
     void Awake()
     {
+        dialogueSavePath = Path.Combine(Application.persistentDataPath, "dialogue_history.json");
+
         if (lookController == null)
         {
             lookController = FindFirstObjectByType<LookController>();
@@ -96,6 +110,11 @@ public class DialogueController : MonoBehaviour
         }
 
         ApplyChineseFont();
+
+        if (loadHistoryAutomatically)
+        {
+            LoadDialogueHistory();
+        }
 
         SetButtonVisible(historyButton, false);
         SetButtonVisible(autoButton, false);
@@ -247,6 +266,7 @@ public class DialogueController : MonoBehaviour
             ? line.dialogueText
             : line.speakerName + ": " + line.dialogueText);
         UpdateHistoryText();
+        SaveDialogueHistoryIfEnabled();
 
         if (isAutoMode)
         {
@@ -359,6 +379,7 @@ public class DialogueController : MonoBehaviour
         }
 
         UpdateHistoryText();
+        SaveDialogueHistoryIfEnabled();
     }
 
     private void FinishDialogue()
@@ -468,6 +489,67 @@ public class DialogueController : MonoBehaviour
     {
         historyEntries.Clear();
         UpdateHistoryText();
+        SaveDialogueHistoryIfEnabled();
+    }
+
+    public void SaveDialogueHistory()
+    {
+        if (string.IsNullOrEmpty(dialogueSavePath))
+        {
+            dialogueSavePath = Path.Combine(Application.persistentDataPath, "dialogue_history.json");
+        }
+
+        DialogueSaveData data = new DialogueSaveData
+        {
+            historyEntries = new List<string>(historyEntries)
+        };
+
+        File.WriteAllText(dialogueSavePath, JsonUtility.ToJson(data, true));
+    }
+
+    public void LoadDialogueHistory()
+    {
+        if (string.IsNullOrEmpty(dialogueSavePath))
+        {
+            dialogueSavePath = Path.Combine(Application.persistentDataPath, "dialogue_history.json");
+        }
+
+        if (!File.Exists(dialogueSavePath))
+        {
+            return;
+        }
+
+        DialogueSaveData data = JsonUtility.FromJson<DialogueSaveData>(File.ReadAllText(dialogueSavePath));
+
+        if (data == null || data.historyEntries == null)
+        {
+            return;
+        }
+
+        historyEntries.Clear();
+        historyEntries.AddRange(data.historyEntries);
+        UpdateHistoryText();
+    }
+
+    private void SaveDialogueHistoryIfEnabled()
+    {
+        if (saveHistoryAutomatically)
+        {
+            SaveDialogueHistory();
+        }
+    }
+
+    void OnApplicationQuit()
+    {
+        SaveDialogueHistoryIfEnabled();
+    }
+
+    void OnApplicationPause(bool paused)
+    {
+        if (paused)
+        {
+            SaveDialogueHistoryIfEnabled();
+        }
     }
 
     private void ApplyChineseFont()
