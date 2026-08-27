@@ -1,7 +1,8 @@
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 // Post item UI for the social media page. 
 public class SocialPostItemUI : MonoBehaviour
@@ -11,7 +12,7 @@ public class SocialPostItemUI : MonoBehaviour
     [SerializeField] private TMP_Text posterNameText;
 
     [Header("Content")]
-    [SerializeField] private TMP_Text contentText;
+    [SerializeField] private TMP_InputField contentText;
     [SerializeField] private GameObject imageContainer; // toggled on/off depending on whether the post has image or not
     [SerializeField] private Image postImageDisplay;
 
@@ -24,6 +25,42 @@ public class SocialPostItemUI : MonoBehaviour
 
     private readonly List<GameObject> spawnedComments = new List<GameObject>();
     private SocialMediaPageController owner;
+    private ScrollRect parentScrollRect;
+
+    private void Awake()
+    {
+        parentScrollRect = GetComponentInParent<ScrollRect>();
+
+        SetupScrollForwarding(contentText);
+    }
+
+    private void SetupScrollForwarding(TMP_InputField inputField)
+    {
+        if (inputField == null)
+            return;
+
+        EventTrigger trigger = inputField.GetComponent<EventTrigger>();
+
+        if (trigger == null)
+        {
+            trigger = inputField.gameObject.AddComponent<EventTrigger>();
+        }
+
+        EventTrigger.Entry scrollEntry = new EventTrigger.Entry();
+        scrollEntry.eventID = EventTriggerType.Scroll;
+
+        scrollEntry.callback.AddListener((data) =>
+        {
+            PointerEventData pointerData = (PointerEventData)data;
+
+            if (parentScrollRect != null)
+            {
+                parentScrollRect.OnScroll(pointerData);
+            }
+        });
+
+        trigger.triggers.Add(scrollEntry);
+    }
 
     public void Bind(SocialPostData post, SocialMediaPageController owner)
     {

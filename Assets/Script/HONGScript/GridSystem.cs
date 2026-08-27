@@ -4,25 +4,35 @@ using UnityEngine.InputSystem.Utilities;
 
 public class GridSystem : MonoBehaviour
 {
-    //private bool choosing;
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.G))
-    //    {
-    //        choosing = true;
-    //        GridSystemAble();
-    //    }
-    //}
-
     [SerializeField] private int width, height;
     [SerializeField] private GameObject GridPrefab;
-    private float cellSizeofx;
-    private float cellSizeofy;
     [SerializeField] private RectTransform canvaRect;
+
+    public float cellSizeofx;
+    public float cellSizeofy;
+    public int DetectorCount;
+    private bool GridOpen;
 
     private void Start()
     {
-        GenerateGrid();
+        GridOpen = false;
+        DetectorCount = 0;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            if (!GridOpen)
+            {
+                GenerateGrid();
+            }
+            else if (GridOpen)
+            {
+                DestroyGrid();
+                DetectorCount = 0;
+            }
+        }
     }
 
     void GenerateGrid()
@@ -57,5 +67,20 @@ public class GridSystem : MonoBehaviour
                 spawnTile.name = $"Grid {x} {y}";
             }
         }
+
+        GridOpen = true;
+    }
+
+    void DestroyGrid()
+    {
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        Unlocking unlockbutton = FindAnyObjectByType<Unlocking>();
+        Destroy(unlockbutton.gameObject);
+
+        GridOpen = false;
     }
 }

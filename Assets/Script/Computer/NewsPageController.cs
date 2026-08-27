@@ -17,24 +17,26 @@ public class NewsPageController : MonoBehaviour
     [Header("Detail View")]
     [SerializeField] private CanvasGroup detailCanvasGroup;
     [SerializeField] private Transform detailTextContainer;
-    [SerializeField] private TMP_Text detailHeadlineText;
-    [SerializeField] private TMP_Text detailDateText;
-    [SerializeField] private TMP_Text detailContentText;
-    [SerializeField] private ScrollRect detailContentScrollRect;
+    [SerializeField] private TMP_InputField detailHeadlineText;
+    [SerializeField] private TMP_InputField detailDateText;
+    [SerializeField] private TMP_InputField detailContentText;
+    //[SerializeField] private ScrollRect detailContentScrollRect;
     [SerializeField] private CustomButtonUi backButton;
 
     [Header("Clue")]
     [SerializeField] private ClueRecordButton clueRecordButton;
+
+    //private ScrollRect detailContentScrollRect;
 
     private void Awake()
     {
         backButton.onLeftClick.AddListener(ShowList);
         BuildListOnce();
 
+        //detailContentScrollRect = detailContentText.GetComponentInChildren<ScrollRect>();
+
         Canvas.ForceUpdateCanvases();
         LayoutRebuilder.ForceRebuildLayoutImmediate(listContainer.GetComponent<RectTransform>());
-        LayoutRebuilder.ForceRebuildLayoutImmediate(detailTextContainer.GetComponent<RectTransform>());
-        LayoutRebuilder.ForceRebuildLayoutImmediate(detailContentScrollRect.content.GetComponent<RectTransform>());
         
         Show(listCanvasGroup);
         Hide(detailCanvasGroup);
@@ -60,10 +62,10 @@ public class NewsPageController : MonoBehaviour
         detailHeadlineText.text = article.Headline;
         detailDateText.text = article.Date;
         detailContentText.text = article.Content;
-        detailContentScrollRect.verticalNormalizedPosition = 1f; // scroll to top
 
         LayoutRebuilder.ForceRebuildLayoutImmediate(detailTextContainer.GetComponent<RectTransform>());
-        LayoutRebuilder.ForceRebuildLayoutImmediate(detailContentScrollRect.content.GetComponent<RectTransform>());
+        detailContentText.verticalScrollbar.value = 0f; // Scroll to top
+
 
         Show(detailCanvasGroup);
         Hide(listCanvasGroup);
@@ -93,4 +95,5 @@ public class NewsPageController : MonoBehaviour
             item.Bind(article, this);
         }
     }
+
 }

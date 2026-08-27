@@ -51,6 +51,8 @@ public class ClueManager : MonoBehaviour
         RecordedClue clue = new RecordedClue { title = title, summary = summary };
         recordedClues.Add(clue);
         OnClueRecorded?.Invoke(clue);
+
+        Debug.Log($"Clue recorded: {title}");
     }
 
     // For debugging purposes, print all recorded clues to the console
