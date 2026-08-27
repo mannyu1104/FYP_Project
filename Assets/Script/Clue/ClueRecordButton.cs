@@ -5,7 +5,7 @@ using UnityEngine;
 public class ClueRecordButton : MonoBehaviour
 {
     [SerializeField] private CustomButtonUi clickable;
-    [SerializeField] private ClueSourceData source;
+    [SerializeField] private ClueSourceData source; // Optional or can be set via SetSource() if not assigned in inspector.
 
     private void Reset()
     {
@@ -17,10 +17,6 @@ public class ClueRecordButton : MonoBehaviour
         clickable.onLeftClick.AddListener(RecordClue);
     }
 
-    /// <summary>
-    /// Assigns (or reassigns) which piece of content this button records.
-    /// Safe to call every time a prefab row is bound to new data.
-    /// </summary>
     public void SetSource(ClueSourceData newSource)
     {
         source = newSource;

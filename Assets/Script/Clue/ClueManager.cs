@@ -18,7 +18,7 @@ public class ClueManager : MonoBehaviour
     public IReadOnlyList<RecordedClue> RecordedClues => recordedClues;
     private readonly List<RecordedClue> recordedClues = new List<RecordedClue>();
 
-    // Fired whenever a new clue is recorded
+    // Fire whenever a new clue is recorded
     public event Action<RecordedClue> OnClueRecorded;
 
     private void Awake()
@@ -41,9 +41,7 @@ public class ClueManager : MonoBehaviour
 
     public void RecordClue(string title, string summary)
     {
-        // Clicking the button twice on the same source (or on two different
-        // sources that happen to share the same clue text) should not
-        // create a duplicate entry on the clue board.
+        // Same clue should not be recorded twice
         foreach (RecordedClue existing in recordedClues)
         {
             if (existing.title == title && existing.summary == summary)
@@ -55,6 +53,7 @@ public class ClueManager : MonoBehaviour
         OnClueRecorded?.Invoke(clue);
     }
 
+    // For debugging purposes, print all recorded clues to the console
     public void PrintAllClues()
     {
         foreach (RecordedClue clue in recordedClues)
