@@ -27,7 +27,7 @@ public class SocialMediaPageController : MonoBehaviour
     [SerializeField] private CanvasGroup feedCanvasGroup;
     [SerializeField] private LayoutElement feedLayoutElement; // for the scroll rect to size correctly
     [SerializeField] private Transform feedContainer; // parent with a Vertical Layout Group
-    [SerializeField] private SocialPostUI postPrefab;
+    [SerializeField] private SocialPostItemUI postPrefab;
 
     [Header("Profile Data")]
     [SerializeField] private List<SocialPostData> profilePosts;
@@ -101,7 +101,7 @@ public class SocialMediaPageController : MonoBehaviour
     {
         foreach (SocialPostData post in feedPosts)
         {
-            SocialPostUI item = Instantiate(postPrefab, feedContainer);
+            SocialPostItemUI item = Instantiate(postPrefab, feedContainer);
             item.Bind(post, this);
         }
     }
@@ -110,7 +110,7 @@ public class SocialMediaPageController : MonoBehaviour
     {
         foreach (SocialPostData post in profilePosts)
         {
-            SocialPostUI item = Instantiate(postPrefab, profilePostsContainer);
+            SocialPostItemUI item = Instantiate(postPrefab, profilePostsContainer);
             item.Bind(post, this);
         }
     }

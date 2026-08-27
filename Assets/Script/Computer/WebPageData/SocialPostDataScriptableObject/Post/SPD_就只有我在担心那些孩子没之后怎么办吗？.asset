@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d613c920529365743a062cf772b5632e, type: 3}
   m_Name: "SPD_\u5C31\u53EA\u6709\u6211\u5728\u62C5\u5FC3\u90A3\u4E9B\u5B69\u5B50\u6CA1\u4E4B\u540E\u600E\u4E48\u529E\u5417\uFF1F"
   m_EditorClassIdentifier: Assembly-CSharp::SocialPostData
+  clueTitle: "\u5B69\u5B50\u4EEC\u7684\u540E\u7EED\u60C5\u51B5"
+  clueSummary: "- \u5173\u7CFB\u5B64\u513F\u4EEC\u540E\u7EED\u7684\u5E16\u5B50\n-
+    \u8BC4\u8BBA\u533A\u4F3C\u4E4E\u53EF\u4EE5\u627E\u5230\u4E00\u70B9\u76F8\u5173\u60C5\u62A5"
   account: {fileID: 11400000, guid: 0d6f3b10396c1f9438365347062d938c, type: 2}
   content: "\u5C31\u53EA\u6709\u6211\u5728\u62C5\u5FC3\u90A3\u4E9B\u5B69\u5B50\u6CA1\u4E4B\u540E\u600E\u4E48\u529E\u5417\uFF1F"
+  postImage: {fileID: 0}
   comments:
   - account: {fileID: 11400000, guid: 09e46448cfbf66248990c0af7fa77bda, type: 2}
     commentText: "\u5E94\u8BE5\u4F1A\u88AB\u9001\u53BB\u54EA\u4E2A\u4E34\u65F6\u5B89\u7F6E\u4E2D\u5FC3\u5427"

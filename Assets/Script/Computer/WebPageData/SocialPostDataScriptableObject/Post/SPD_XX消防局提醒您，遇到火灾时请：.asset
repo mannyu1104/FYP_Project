@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d613c920529365743a062cf772b5632e, type: 3}
   m_Name: "SPD_XX\u6D88\u9632\u5C40\u63D0\u9192\u60A8\uFF0C\u9047\u5230\u706B\u707E\u65F6\u8BF7\uFF1A"
   m_EditorClassIdentifier: Assembly-CSharp::SocialPostData
+  clueTitle: "XX\u6D88\u9632\u5C40\u7684\u63D0\u9192"
+  clueSummary: "- \u4E00\u4E9B\u5173\u4E8E\u9047\u5230\u706B\u707E\u65F6\u7684\u63AA\u65BD"
   account: {fileID: 11400000, guid: d92a60538fdc62f48805c8afaa7a5474, type: 2}
   content: "XX\u6D88\u9632\u5C40\u63D0\u9192\u60A8\uFF0C\u9047\u5230\u706B\u707E\u65F6\u8BF7\uFF1A\n\n1.
     \u82E5\u60C5\u51B5\u5141\u8BB8\uFF0C\u8BF7\u5927\u58F0\u547C\u558A\uFF0C\u901A\u77E5\u9644\u8FD1\u7684\u5176\u4ED6\u4EBA\n2.

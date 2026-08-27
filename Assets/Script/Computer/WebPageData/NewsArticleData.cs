@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewNewsArticle", menuName = "ScriptableObject/News Article")]
-public class NewsArticleData : ScriptableObject
+public class NewsArticleData : ClueSourceData
 {
     [SerializeField] private string headline;
     [SerializeField] private string date;

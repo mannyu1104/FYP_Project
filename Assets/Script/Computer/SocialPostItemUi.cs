@@ -3,14 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-/// <summary>
-/// One full post row - used identically in the main feed and in the profile
-/// page's post list. Shows the poster's icon/name (display only - the
-/// post's own poster is NOT clickable), the post's content, and all of its
-/// comments. Each comment's own commenter icon/name IS clickable and opens
-/// that commenter's profile - see SocialCommentItemUI.
-/// </summary>
-public class SocialPostUI : MonoBehaviour
+// Post item UI for the social media page. 
+public class SocialPostItemUI : MonoBehaviour
 {
     [Header("Poster Header")]
     [SerializeField] private Image posterAvatarImage;
@@ -22,8 +16,11 @@ public class SocialPostUI : MonoBehaviour
     [SerializeField] private Image postImageDisplay;
 
     [Header("Comments")]
-    [SerializeField] private Transform commentContainer; // parent with a Vertical Layout Group
+    [SerializeField] private Transform commentContainer; 
     [SerializeField] private SocialCommentItemUI commentItemPrefab;
+
+    [Header("Clue")]
+    [SerializeField] private ClueRecordButton clueRecordButton;
 
     private readonly List<GameObject> spawnedComments = new List<GameObject>();
     private SocialMediaPageController owner;
@@ -42,6 +39,8 @@ public class SocialPostUI : MonoBehaviour
         {
             postImageDisplay.sprite = post.PostImage;
         }
+
+        clueRecordButton.SetSource(post);
 
         BuildComments(post);
     }

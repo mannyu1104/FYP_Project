@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d613c920529365743a062cf772b5632e, type: 3}
   m_Name: "SPD_\u55B5\u55B5\u55B5"
   m_EditorClassIdentifier: Assembly-CSharp::SocialPostData
+  clueTitle: "\u55B5\u55B5\u53EB"
+  clueSummary: "\u55B5\u55B5\u55B5\u55B5\u55B5~~~~"
   account: {fileID: 11400000, guid: e0029cd83e0e41e4aa4e9aa7e493ef70, type: 2}
   content: "\u55B5\u55B5\u55B5"
+  postImage: {fileID: 0}
   comments: []

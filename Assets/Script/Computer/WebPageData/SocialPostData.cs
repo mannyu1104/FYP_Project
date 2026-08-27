@@ -3,7 +3,7 @@ using UnityEngine;
 
 // Social media post. Create instances via Assets > Create > Browser >
 [CreateAssetMenu(fileName = "NewSocialPost", menuName = "ScriptableObject/Social Post")]
-public class SocialPostData : ScriptableObject
+public class SocialPostData : ClueSourceData
 {
     [SerializeField] private SocialAccountData account;
     [SerializeField][TextArea(3, 10)] private string content;

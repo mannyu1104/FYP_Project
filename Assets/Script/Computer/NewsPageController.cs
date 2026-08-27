@@ -10,22 +10,34 @@ public class NewsPageController : MonoBehaviour
     [SerializeField] private List<NewsArticleData> articles;
 
     [Header("List View")]
-    [SerializeField] private GameObject listView;
-    [SerializeField] private Transform listContainer; // parent with a Vertical Layout Group
+    [SerializeField] private CanvasGroup listCanvasGroup;
+    [SerializeField] private Transform listContainer;
     [SerializeField] private NewsListItemUI listItemPrefab;
 
     [Header("Detail View")]
-    [SerializeField] private GameObject detailView;
+    [SerializeField] private CanvasGroup detailCanvasGroup;
+    [SerializeField] private Transform detailTextContainer;
     [SerializeField] private TMP_Text detailHeadlineText;
     [SerializeField] private TMP_Text detailDateText;
     [SerializeField] private TMP_Text detailContentText;
     [SerializeField] private ScrollRect detailContentScrollRect;
-    [SerializeField] private CustomButtonUi backButton; 
+    [SerializeField] private CustomButtonUi backButton;
+
+    [Header("Clue")]
+    [SerializeField] private ClueRecordButton clueRecordButton;
 
     private void Awake()
     {
         backButton.onLeftClick.AddListener(ShowList);
         BuildListOnce();
+
+        Canvas.ForceUpdateCanvases();
+        LayoutRebuilder.ForceRebuildLayoutImmediate(listContainer.GetComponent<RectTransform>());
+        LayoutRebuilder.ForceRebuildLayoutImmediate(detailTextContainer.GetComponent<RectTransform>());
+        LayoutRebuilder.ForceRebuildLayoutImmediate(detailContentScrollRect.content.GetComponent<RectTransform>());
+        
+        Show(listCanvasGroup);
+        Hide(detailCanvasGroup);
     }
 
     private void OnEnable()
@@ -36,19 +48,41 @@ public class NewsPageController : MonoBehaviour
 
     public void ShowList()
     {
-        detailView.SetActive(false);
-        listView.SetActive(true);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(listContainer.GetComponent<RectTransform>());
+
+        Show(listCanvasGroup);
+        Hide(detailCanvasGroup);
     }
 
     public void ShowArticleDetail(NewsArticleData article)
     {
-        listView.SetActive(false);
-        detailView.SetActive(true);
 
         detailHeadlineText.text = article.Headline;
         detailDateText.text = article.Date;
         detailContentText.text = article.Content;
         detailContentScrollRect.verticalNormalizedPosition = 1f; // scroll to top
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(detailTextContainer.GetComponent<RectTransform>());
+        LayoutRebuilder.ForceRebuildLayoutImmediate(detailContentScrollRect.content.GetComponent<RectTransform>());
+
+        Show(detailCanvasGroup);
+        Hide(listCanvasGroup);
+
+        clueRecordButton.SetSource(article);
+    }
+
+    private void Show(CanvasGroup group)
+    {
+        group.alpha = 1f;
+        group.interactable = true;
+        group.blocksRaycasts = true;
+    }
+
+    private void Hide(CanvasGroup group)
+    {
+        group.alpha = 0f;
+        group.interactable = false;
+        group.blocksRaycasts = false;
     }
 
     private void BuildListOnce()
