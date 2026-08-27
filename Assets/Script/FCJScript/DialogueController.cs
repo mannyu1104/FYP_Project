@@ -16,6 +16,15 @@ public class DialogueController : MonoBehaviour
     private class DialogueSaveData
     {
         public List<string> historyEntries = new List<string>();
+        public List<NPCSaveData> npcProgress = new List<NPCSaveData>();
+    }
+
+    [System.Serializable]
+    private class NPCSaveData
+    {
+        public string saveId;
+        public int nextConversationIndex;
+        public bool hasTalked;
     }
 
     [System.Serializable]
@@ -67,6 +76,15 @@ public class DialogueController : MonoBehaviour
     [Min(0.1f)]
     public float autoAdvanceSeconds = 3f;
 
+    [Header("Typewriter Settings")]
+    public bool enableTypewriterEffect = true;
+    [Min(1f)]
+    public float charactersPerSecond = 30f;
+    [Tooltip("Add or remove speed presets here. Values mean characters displayed per second.")]
+    public List<float> typingSpeedPresets = new List<float> { 15f, 30f, 60f, 120f };
+    [Min(0)]
+    public int activeSpeedPreset = 1;
+
     [Header("Save")]
     public bool saveHistoryAutomatically = true;
     public bool loadHistoryAutomatically = true;
@@ -82,6 +100,9 @@ public class DialogueController : MonoBehaviour
     private bool lookWasPaused;
     private HoverEffect[] hoverEffects;
     private string dialogueSavePath;
+    private Coroutine typingRoutine;
+    private bool isTyping;
+    private string currentDialogueText = string.Empty;
 
     public bool IsDialogueActive => isDialogueActive;
     public bool IsAutoMode => isAutoMode;
@@ -133,6 +154,22 @@ public class DialogueController : MonoBehaviour
         if (skipButton != null)
         {
             skipButton.onClick.AddListener(SkipDialogue);
+        }
+    }
+
+    void OnValidate()
+    {
+        charactersPerSecond = Mathf.Max(1f, charactersPerSecond);
+        activeSpeedPreset = Mathf.Max(0, activeSpeedPreset);
+
+        if (typingSpeedPresets == null)
+        {
+            typingSpeedPresets = new List<float>();
+        }
+
+        for (int i = 0; i < typingSpeedPresets.Count; i++)
+        {
+            typingSpeedPresets[i] = Mathf.Max(1f, typingSpeedPresets[i]);
         }
     }
 
@@ -215,6 +252,13 @@ public class DialogueController : MonoBehaviour
             return;
         }
 
+        if (isTyping)
+        {
+            SetDialogueText(currentDialogueText);
+            StopTypingRoutine();
+            return;
+        }
+
         currentLineIndex++;
 
         if (currentLineIndex >= currentLines.Count)
@@ -223,7 +267,10 @@ public class DialogueController : MonoBehaviour
             return;
         }
 
+        StopTypingRoutine();
+
         DialogueLine line = currentLines[currentLineIndex];
+        currentDialogueText = line.dialogueText;
         if (speakerText != null)
         {
             speakerText.text = line.speakerName;
@@ -236,7 +283,6 @@ public class DialogueController : MonoBehaviour
 
         if (dialogueText != null)
         {
-            dialogueText.text = line.dialogueText;
             dialogueText.fontSize = Mathf.RoundToInt(dialogueFontSize);
 
             if (autoFitText)
@@ -250,7 +296,6 @@ public class DialogueController : MonoBehaviour
 
         if (tmpDialogueText != null)
         {
-            tmpDialogueText.text = line.dialogueText;
             tmpDialogueText.fontSize = dialogueFontSize;
 
             if (autoFitText)
@@ -260,6 +305,15 @@ public class DialogueController : MonoBehaviour
                     maximumTextWidth
                 );
             }
+        }
+
+        if (enableTypewriterEffect)
+        {
+            typingRoutine = StartCoroutine(TypeDialogue(line.dialogueText));
+        }
+        else
+        {
+            SetDialogueText(line.dialogueText);
         }
 
         historyEntries.Add(string.IsNullOrEmpty(line.speakerName)
@@ -384,6 +438,8 @@ public class DialogueController : MonoBehaviour
 
     private void FinishDialogue()
     {
+        StopTypingRoutine();
+
         if (autoRoutine != null)
         {
             StopCoroutine(autoRoutine);
@@ -393,6 +449,7 @@ public class DialogueController : MonoBehaviour
         if (currentNpc != null)
         {
             currentNpc.MarkTalked();
+            SaveDialogueHistoryIfEnabled();
         }
 
         isDialogueActive = false;
@@ -425,7 +482,12 @@ public class DialogueController : MonoBehaviour
 
     private IEnumerator AutoAdvanceRoutine()
     {
-        yield return new WaitForSeconds(autoAdvanceSeconds);
+        while (isTyping)
+        {
+            yield return null;
+        }
+
+        yield return new WaitForSecondsRealtime(autoAdvanceSeconds);
 
         if (isDialogueActive && isAutoMode)
         {
@@ -461,6 +523,69 @@ public class DialogueController : MonoBehaviour
         {
             historyController.SetEntries(historyEntries);
         }
+    }
+
+    private IEnumerator TypeDialogue(string text)
+    {
+        isTyping = true;
+        SetDialogueText(string.Empty);
+
+        float speed = GetActiveTypingSpeed();
+        float characterTimer = 0f;
+        int visibleCharacterCount = 0;
+
+        while (visibleCharacterCount < text.Length)
+        {
+            characterTimer += Time.unscaledDeltaTime * speed;
+            int targetCharacterCount = Mathf.Min(text.Length, Mathf.FloorToInt(characterTimer));
+
+            if (targetCharacterCount > visibleCharacterCount)
+            {
+                visibleCharacterCount = targetCharacterCount;
+                SetDialogueText(text.Substring(0, visibleCharacterCount));
+            }
+
+            yield return null;
+        }
+
+        SetDialogueText(text);
+        isTyping = false;
+        typingRoutine = null;
+    }
+
+    private void SetDialogueText(string text)
+    {
+        if (dialogueText != null)
+        {
+            dialogueText.text = text;
+        }
+
+        if (tmpDialogueText != null)
+        {
+            tmpDialogueText.text = text;
+        }
+    }
+
+    private float GetActiveTypingSpeed()
+    {
+        if (typingSpeedPresets != null && typingSpeedPresets.Count > 0)
+        {
+            int presetIndex = Mathf.Clamp(activeSpeedPreset, 0, typingSpeedPresets.Count - 1);
+            return Mathf.Max(1f, typingSpeedPresets[presetIndex]);
+        }
+
+        return Mathf.Max(1f, charactersPerSecond);
+    }
+
+    private void StopTypingRoutine()
+    {
+        if (typingRoutine != null)
+        {
+            StopCoroutine(typingRoutine);
+            typingRoutine = null;
+        }
+
+        isTyping = false;
     }
 
     private void SetPanelVisible(RectTransform panel, bool visible)
@@ -501,7 +626,8 @@ public class DialogueController : MonoBehaviour
 
         DialogueSaveData data = new DialogueSaveData
         {
-            historyEntries = new List<string>(historyEntries)
+            historyEntries = new List<string>(historyEntries),
+            npcProgress = CreateNPCSaveData()
         };
 
         File.WriteAllText(dialogueSavePath, JsonUtility.ToJson(data, true));
@@ -521,14 +647,80 @@ public class DialogueController : MonoBehaviour
 
         DialogueSaveData data = JsonUtility.FromJson<DialogueSaveData>(File.ReadAllText(dialogueSavePath));
 
-        if (data == null || data.historyEntries == null)
+        if (data == null)
         {
             return;
         }
 
         historyEntries.Clear();
-        historyEntries.AddRange(data.historyEntries);
+
+        if (data.historyEntries != null)
+        {
+            historyEntries.AddRange(data.historyEntries);
+        }
+
+        RestoreNPCProgress(data.npcProgress);
         UpdateHistoryText();
+    }
+
+    public void ResetAllNPCProgress()
+    {
+        if (isDialogueActive)
+        {
+            return;
+        }
+
+        NPCDialogueTrigger[] npcs = FindObjectsByType<NPCDialogueTrigger>(FindObjectsSortMode.None);
+
+        for (int i = 0; i < npcs.Length; i++)
+        {
+            npcs[i].ResetProgress();
+        }
+
+        SaveDialogueHistory();
+    }
+
+    private List<NPCSaveData> CreateNPCSaveData()
+    {
+        NPCDialogueTrigger[] npcs = FindObjectsByType<NPCDialogueTrigger>(FindObjectsSortMode.None);
+        List<NPCSaveData> data = new List<NPCSaveData>();
+
+        for (int i = 0; i < npcs.Length; i++)
+        {
+            data.Add(new NPCSaveData
+            {
+                saveId = npcs[i].SaveId,
+                nextConversationIndex = npcs[i].NextConversationIndex,
+                hasTalked = npcs[i].HasTalked
+            });
+        }
+
+        return data;
+    }
+
+    private void RestoreNPCProgress(List<NPCSaveData> savedProgress)
+    {
+        if (savedProgress == null)
+        {
+            return;
+        }
+
+        NPCDialogueTrigger[] npcs = FindObjectsByType<NPCDialogueTrigger>(FindObjectsSortMode.None);
+
+        for (int i = 0; i < npcs.Length; i++)
+        {
+            for (int j = 0; j < savedProgress.Count; j++)
+            {
+                if (npcs[i].SaveId == savedProgress[j].saveId)
+                {
+                    npcs[i].RestoreProgress(
+                        savedProgress[j].nextConversationIndex,
+                        savedProgress[j].hasTalked
+                    );
+                    break;
+                }
+            }
+        }
     }
 
     private void SaveDialogueHistoryIfEnabled()
