@@ -1,4 +1,5 @@
 using UnityEditor.Profiling;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -8,6 +9,7 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     public Item item;
     [HideInInspector] public Transform parentAfterDrag;
     public Image image;
+    public bool thisShow;
     public bool thisUnlocked;
     public bool thisGet;
     public bool thisUsed;
@@ -22,14 +24,22 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         InitialiseItem(item);
     }
 
+    void Update()
+    {
+        if (thisShow == true)
+        {
+            image.sprite = item.Image;
+        }
+    }
+
     public void InitialiseItem(Item newItem)
     {
         item = newItem;
-        image.sprite = newItem.Image;
         thisUnlocked = newItem.Unlocked;
         thisGet = newItem.Get;
         thisUsed = newItem.Used;
         thisID = newItem.ItemID;
+        thisShow = newItem.Show;
         isdragging = false; 
     }
 
