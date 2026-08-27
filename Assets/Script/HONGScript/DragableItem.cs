@@ -1,3 +1,4 @@
+using UnityEditor.Profiling;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -14,6 +15,7 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     [SerializeField] GameObject Description;
     public GameObject DesUI;
     public GameObject InvenUI;
+    public bool isdragging;
 
     public void Start()
     {
@@ -28,12 +30,14 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         thisGet = newItem.Get;
         thisUsed = newItem.Used;
         thisID = newItem.ItemID;
+        isdragging = false; 
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (!thisUsed && thisUnlocked == true)
         {
+            Debug.Log("StartDrag");
             parentAfterDrag = transform.parent;
             transform.SetParent(transform.root);
             transform.SetAsLastSibling();
@@ -45,7 +49,9 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     {
         if (!thisUsed && thisUnlocked == true)
         {
+            Debug.Log("Dragging");
             transform.position = Input.mousePosition;
+            isdragging = true;
         }
     }
 
@@ -53,9 +59,17 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     {
         if (!thisUsed && thisUnlocked == true)
         {
+            Debug.Log("EndDrag");
+            isdragging = false;
             transform.SetParent(parentAfterDrag);
             image.raycastTarget = true;
         }
+        //else if (!thisUsed && thisGet == true)
+        //{
+        //    transform.SetParent(parentAfterDrag);
+        //    transform.position = transform.parent.position;
+        //    image.raycastTarget = true;
+        //}
     }
 
     public void OnPointerClick(PointerEventData eventData)
