@@ -26,7 +26,10 @@ public class InventoryManager : MonoBehaviour
             dragableitem.thisGet = true;
         }
         dragableitem.parentAfterDrag = slot.transform;
-        dragableitem.LoadSetParent();
+        if (dragableitem.isdragging == false)
+        {
+            dragableitem.LoadSetParent();
+        }
         Debug.Log("Adding");
     }
 

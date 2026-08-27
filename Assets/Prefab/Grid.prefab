@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2008285235966265360}
   - component: {fileID: 9128399004561563892}
   - component: {fileID: 3440289411294801874}
-  - component: {fileID: 8526163346735670813}
+  - component: {fileID: 4488446229578018405}
   m_Layer: 5
   m_Name: Grid
   m_TagString: Untagged
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8526163346735670813
+--- !u!114 &4488446229578018405
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,6 +85,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 9148004362415284406}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a3ddc9cd70e37a4da43a28fb75ef50a, type: 3}
+  m_Script: {fileID: 11500000, guid: d00909d6f0193e245a147b8c0af9decc, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Grid
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnScanner
+  DetectorPrefab: {fileID: 2535367027312310029, guid: 4962e2ee05e543141b94e86d7fea81c3, type: 3}
+  MaxDetect: 7

@@ -7110,6 +7110,9 @@ MonoBehaviour:
   height: 12
   GridPrefab: {fileID: 9148004362415284406, guid: 8b26d9e0177ac0f46a0c4c33e8cd7157, type: 3}
   canvaRect: {fileID: 407339251}
+  cellSizeofx: 0
+  cellSizeofy: 0
+  DetectorCount: 0
 --- !u!224 &1882135635
 RectTransform:
   m_ObjectHideFlags: 0
