@@ -1195,8 +1195,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1261.7756, y: -305.29822}
-  m_SizeDelta: {x: 553.2061, y: 510.5968}
+  m_AnchoredPosition: {x: 1634, y: -354}
+  m_SizeDelta: {x: 181.894, y: 167.884}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &480085860
 MonoBehaviour:
@@ -1286,7 +1286,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 903269129}
-  m_Father: {fileID: 2117607574}
+  m_Father: {fileID: 736582503}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1839,6 +1839,42 @@ MonoBehaviour:
   interactionType: 2
   useCustomPreset: 0
   cursorPresetIndex: 0
+--- !u!1 &736582502
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 736582503}
+  m_Layer: 5
+  m_Name: ForTestingUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &736582503
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736582502}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 482050612}
+  m_Father: {fileID: 1163867197}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &802627486
 GameObject:
   m_ObjectHideFlags: 0
@@ -1898,6 +1934,81 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &883663583
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 883663584}
+  - component: {fileID: 883663586}
+  - component: {fileID: 883663585}
+  m_Layer: 5
+  m_Name: Room
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &883663584
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883663583}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1714649665}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 2560, y: 1080}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &883663585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883663583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -1047057236, guid: 215e5238634c95b4a98b61e2b5584474, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &883663586
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883663583}
+  m_CullTransparentMesh: 1
 --- !u!1 &903269128
 GameObject:
   m_ObjectHideFlags: 0
@@ -2365,6 +2476,7 @@ MonoBehaviour:
   canvasRect: {fileID: 1163867197}
   movementRoot: {fileID: 1259115312}
   sceneImages:
+  - {fileID: 883663584}
   - {fileID: 1449250669}
   - {fileID: 555074125}
   activeSceneIndex: 0
@@ -2452,6 +2564,7 @@ RectTransform:
   m_Children:
   - {fileID: 1259115312}
   - {fileID: 2117607574}
+  - {fileID: 736582503}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2609,7 +2722,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2790.6753, y: -29.356201}
+  m_AnchoredPosition: {x: 1334, y: -20}
   m_SizeDelta: {x: 202.6492, y: 200.7124}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1209178917
@@ -2858,7 +2971,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1449250669
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3194,8 +3307,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 616, y: 83}
-  m_SizeDelta: {x: 613.3727, y: 599.3556}
+  m_AnchoredPosition: {x: -917, y: -241}
+  m_SizeDelta: {x: 215.7596, y: 210.83}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1614137980
 MonoBehaviour:
@@ -3461,6 +3574,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 883663584}
   - {fileID: 1449250669}
   - {fileID: 555074125}
   m_Father: {fileID: 1259115312}
@@ -3886,6 +4000,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueController
   lookController: {fileID: 1163867193}
+  dialogueUIRoot: {fileID: 2117607574}
   dialoguePanel: {fileID: 1168926637}
   tmpSpeakerText: {fileID: 184812217}
   tmpDialogueText: {fileID: 413624443}
@@ -3961,7 +4076,6 @@ RectTransform:
   - {fileID: 561853961}
   - {fileID: 1746073319}
   - {fileID: 131989049}
-  - {fileID: 482050612}
   m_Father: {fileID: 1163867197}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

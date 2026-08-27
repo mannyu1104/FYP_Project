@@ -37,6 +37,8 @@ public class DialogueController : MonoBehaviour
 
     [Header("Core References")]
     public LookController lookController;
+    [Tooltip("Optional parent of the whole dialogue UI. It stays hidden until a conversation starts.")]
+    public RectTransform dialogueUIRoot;
     public RectTransform dialoguePanel;
 
     [Header("Dialogue Text")]
@@ -124,6 +126,13 @@ public class DialogueController : MonoBehaviour
 
         SetPanelVisible(dialoguePanel, false);
         SetPanelVisible(historyPanel, false);
+
+        if (dialogueUIRoot == null && dialoguePanel != null)
+        {
+            dialogueUIRoot = dialoguePanel.parent as RectTransform;
+        }
+
+        SetPanelVisible(dialogueUIRoot, false);
 
         if (historyController == null && historyPanel != null)
         {
@@ -228,6 +237,7 @@ public class DialogueController : MonoBehaviour
         }
 
         UpdateHistoryText();
+        SetPanelVisible(dialogueUIRoot, true);
         SetPanelVisible(historyPanel, false);
         SetPanelVisible(dialoguePanel, true);
         SetButtonVisible(historyButton, true);
@@ -458,6 +468,7 @@ public class DialogueController : MonoBehaviour
         currentNpc = null;
         SetPanelVisible(dialoguePanel, false);
         SetPanelVisible(historyPanel, false);
+        SetPanelVisible(dialogueUIRoot, false);
         SetButtonVisible(historyButton, false);
         SetButtonVisible(autoButton, false);
         SetButtonVisible(skipButton, false);
