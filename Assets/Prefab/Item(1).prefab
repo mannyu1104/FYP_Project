@@ -166,6 +166,7 @@ MonoBehaviour:
   item: {fileID: 0}
   parentAfterDrag: {fileID: 0}
   image: {fileID: 5650918123153233944}
+  thisShow: 0
   thisUnlocked: 0
   thisGet: 0
   thisUsed: 0
@@ -173,3 +174,4 @@ MonoBehaviour:
   Description: {fileID: 0}
   DesUI: {fileID: 0}
   InvenUI: {fileID: 0}
+  isdragging: 0

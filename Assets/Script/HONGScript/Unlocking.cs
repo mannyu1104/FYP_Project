@@ -9,5 +9,6 @@ public class Unlocking : MonoBehaviour
     {
         ItemState = UnlockingTarget.GetComponent<DragableItem>();
         ItemState.thisUnlocked = true;
+        ItemState.thisShow = true;
     }
 }
