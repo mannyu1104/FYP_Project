@@ -26,10 +26,14 @@ public class NewsPageController : MonoBehaviour
     [Header("Clue")]
     [SerializeField] private ClueRecordButton clueRecordButton;
 
+    //private ScrollRect detailContentScrollRect;
+
     private void Awake()
     {
         backButton.onLeftClick.AddListener(ShowList);
         BuildListOnce();
+
+        //detailContentScrollRect = detailContentText.GetComponentInChildren<ScrollRect>();
 
         Canvas.ForceUpdateCanvases();
         LayoutRebuilder.ForceRebuildLayoutImmediate(listContainer.GetComponent<RectTransform>());
@@ -60,7 +64,7 @@ public class NewsPageController : MonoBehaviour
         detailContentText.text = article.Content;
 
         LayoutRebuilder.ForceRebuildLayoutImmediate(detailTextContainer.GetComponent<RectTransform>());
-        
+        detailContentText.verticalScrollbar.value = 0f; // Scroll to top
 
 
         Show(detailCanvasGroup);
