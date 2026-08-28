@@ -13,6 +13,7 @@ public class ClueManager : MonoBehaviour
     {
         public string title;
         public string summary;
+        public bool isCredible;
     }
 
     public IReadOnlyList<RecordedClue> RecordedClues => recordedClues;
@@ -39,7 +40,7 @@ public class ClueManager : MonoBehaviour
         }
     }
 
-    public void RecordClue(string title, string summary)
+    public void RecordClue(string title, string summary, bool isCredible)
     {
         // Same clue should not be recorded twice
         foreach (RecordedClue existing in recordedClues)
@@ -48,11 +49,17 @@ public class ClueManager : MonoBehaviour
                 return;
         }
 
-        RecordedClue clue = new RecordedClue { title = title, summary = summary };
+        RecordedClue clue = new RecordedClue { title = title, summary = summary, isCredible = isCredible };
         recordedClues.Add(clue);
         OnClueRecorded?.Invoke(clue);
 
         Debug.Log($"Clue recorded: {title}");
+    }
+
+    // Call this if the player can retry the puzzle without reloading the scene.
+    public void ClearAllClues()
+    {
+        recordedClues.Clear();
     }
 
     // For debugging purposes, print all recorded clues to the console
@@ -60,7 +67,7 @@ public class ClueManager : MonoBehaviour
     {
         foreach (RecordedClue clue in recordedClues)
         {
-            Debug.Log($"Title: {clue.title}, Summary: {clue.summary}");
+            Debug.Log($"Title: {clue.title}, Summary: {clue.summary}, Credible: {clue.isCredible}");
         }
     }
 }
