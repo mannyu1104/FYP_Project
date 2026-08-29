@@ -1524,10 +1524,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -7106,8 +7106,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bf8083c43f512843b48dbadbdd46e62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridSystem
-  width: 24
-  height: 12
+  width: 12
+  height: 8
   GridPrefab: {fileID: 9148004362415284406, guid: 8b26d9e0177ac0f46a0c4c33e8cd7157, type: 3}
   canvaRect: {fileID: 407339251}
   cellSizeofx: 0
