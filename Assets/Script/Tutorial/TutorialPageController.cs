@@ -18,7 +18,7 @@ public class TutorialPageController : MonoBehaviour
     [SerializeField] private CanvasGroup detailCanvasGroup;
     [SerializeField] private Transform detailTextContainer;
     [SerializeField] private TMP_InputField detailNameText;
-    [SerializeField] private TMP_InputField detailTestimonyText;
+    [SerializeField] private TMP_InputField detailContentText;
     [SerializeField] private Image detailPhotoImage; // hidden automatically if the witness has no photo
     [SerializeField] private CustomButtonUi backButton;
 
@@ -54,7 +54,7 @@ public class TutorialPageController : MonoBehaviour
     public void ShowTutorialClueDetail(TutorialClueData tutorialClue)
     {
         detailNameText.text = tutorialClue.TutorialClueName;
-        detailTestimonyText.text = tutorialClue.TutorialClueDescription;
+        detailContentText.text = tutorialClue.TutorialClueDescription;
 
         bool hasPhoto = tutorialClue.ClueImage != null;
         detailPhotoImage.gameObject.SetActive(hasPhoto);

@@ -13,8 +13,11 @@ public class ClueManager : MonoBehaviour
     {
         public string title;
         public string summary;
-        public bool isCredible;
+        public ClueCredibility credibility;
+        public CaseDefinition caseDefinition;
     }
+
+    public CaseDefinition CurrentCase { get; set; }
 
     public IReadOnlyList<RecordedClue> RecordedClues => recordedClues;
     private readonly List<RecordedClue> recordedClues = new List<RecordedClue>();
@@ -40,7 +43,7 @@ public class ClueManager : MonoBehaviour
         }
     }
 
-    public void RecordClue(string title, string summary, bool isCredible)
+    public void RecordClue(string title, string summary, ClueCredibility credibility, CaseDefinition caseDefinition)
     {
         // Same clue should not be recorded twice
         foreach (RecordedClue existing in recordedClues)
@@ -49,11 +52,17 @@ public class ClueManager : MonoBehaviour
                 return;
         }
 
-        RecordedClue clue = new RecordedClue { title = title, summary = summary, isCredible = isCredible };
+        RecordedClue clue = new RecordedClue
+        {
+            title = title,
+            summary = summary,
+            credibility = credibility,
+            caseDefinition = caseDefinition,
+        };
         recordedClues.Add(clue);
         OnClueRecorded?.Invoke(clue);
 
-        Debug.Log($"Clue recorded: {title}");
+        Debug.Log($"Clue recorded: {title} (case: {caseDefinition?.CaseName})");
     }
 
     // Call this if the player can retry the puzzle without reloading the scene.
@@ -67,7 +76,7 @@ public class ClueManager : MonoBehaviour
     {
         foreach (RecordedClue clue in recordedClues)
         {
-            Debug.Log($"Title: {clue.title}, Summary: {clue.summary}, Credible: {clue.isCredible}");
+            Debug.Log($"Title: {clue.title}, Summary: {clue.summary}, Credibility: {clue.credibility}, Case: {clue.caseDefinition?.CaseName}");
         }
     }
 }

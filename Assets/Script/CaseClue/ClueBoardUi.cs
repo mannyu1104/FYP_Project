@@ -6,6 +6,7 @@ using UnityEngine;
 public class ClueBoardUI : MonoBehaviour
 {
     [SerializeField] private ClueBoardEntryUI entryPrefab;
+    [SerializeField] private CaseDefinition caseDefinition;
     [SerializeField] private Transform unsortedContent; // 未整理线索区's content container
 
     private readonly List<ClueBoardEntryUI> entries = new List<ClueBoardEntryUI>();
@@ -51,6 +52,11 @@ public class ClueBoardUI : MonoBehaviour
 
     private void AddEntry(ClueManager.RecordedClue clue)
     {
+        if (clue.caseDefinition != caseDefinition)
+        {
+            return;
+        }
+
         spawnedClueKeys.Add(clue.title);
         ClueBoardEntryUI entry = Instantiate(entryPrefab, unsortedContent);
         entry.Set(clue);
