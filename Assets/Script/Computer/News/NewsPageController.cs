@@ -1,99 +1,34 @@
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
+using UnityEngine;
 
 // Manages navigation within news pages
-public class NewsPageController : MonoBehaviour
+public class NewsPageController : ListDetailPageController<NewsArticleData, NewsListItemUI>
 {
-    [Header("Data")]
-    [SerializeField] private List<NewsArticleData> articles;
-
-    [Header("List View")]
-    [SerializeField] private CanvasGroup listCanvasGroup;
-    [SerializeField] private Transform listContainer;
-    [SerializeField] private NewsListItemUI listItemPrefab;
-
-    [Header("Detail View")]
-    [SerializeField] private CanvasGroup detailCanvasGroup;
-    [SerializeField] private Transform detailTextContainer;
+    [Header("Detail View Fields")]
     [SerializeField] private TMP_InputField detailHeadlineText;
     [SerializeField] private TMP_InputField detailDateText;
     [SerializeField] private TMP_InputField detailContentText;
-    //[SerializeField] private ScrollRect detailContentScrollRect;
-    [SerializeField] private CustomButtonUi backButton;
 
     [Header("Clue")]
     [SerializeField] private ClueRecordButton clueRecordButton;
 
-    //private ScrollRect detailContentScrollRect;
+    public void ShowArticleDetail(NewsArticleData article) => ShowDetail(article);
 
-    private void Awake()
+    protected override void PopulateDetail(NewsArticleData article)
     {
-        backButton.onLeftClick.AddListener(ShowList);
-        BuildListOnce();
-
-        //detailContentScrollRect = detailContentText.GetComponentInChildren<ScrollRect>();
-
-        Canvas.ForceUpdateCanvases();
-        LayoutRebuilder.ForceRebuildLayoutImmediate(listContainer.GetComponent<RectTransform>());
-        
-        Show(listCanvasGroup);
-        Hide(detailCanvasGroup);
-    }
-
-    private void OnEnable()
-    {
-        // Start from list view every time the player opens the News tab
-        ShowList();
-    }
-
-    public void ShowList()
-    {
-        LayoutRebuilder.ForceRebuildLayoutImmediate(listContainer.GetComponent<RectTransform>());
-
-        Show(listCanvasGroup);
-        Hide(detailCanvasGroup);
-    }
-
-    public void ShowArticleDetail(NewsArticleData article)
-    {
-
         detailHeadlineText.text = article.Headline;
         detailDateText.text = article.Date;
         detailContentText.text = article.Content;
-
-        LayoutRebuilder.ForceRebuildLayoutImmediate(detailTextContainer.GetComponent<RectTransform>());
         detailContentText.verticalScrollbar.value = 0f; // Scroll to top
+    }
 
-
-        Show(detailCanvasGroup);
-        Hide(listCanvasGroup);
-
+    protected override void OnDetailShown(NewsArticleData article)
+    {
         clueRecordButton.SetSource(article);
     }
 
-    private void Show(CanvasGroup group)
+    protected override void BindListItem(NewsListItemUI listItemUI, NewsArticleData article)
     {
-        group.alpha = 1f;
-        group.interactable = true;
-        group.blocksRaycasts = true;
+        listItemUI.Bind(article, this);
     }
-
-    private void Hide(CanvasGroup group)
-    {
-        group.alpha = 0f;
-        group.interactable = false;
-        group.blocksRaycasts = false;
-    }
-
-    private void BuildListOnce()
-    {
-        foreach (NewsArticleData article in articles)
-        {
-            NewsListItemUI item = Instantiate(listItemPrefab, listContainer);
-            item.Bind(article, this);
-        }
-    }
-
 }
