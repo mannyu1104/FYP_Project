@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 // Wire the "Submit" button's OnClick() to Submit(). Put this on the Clue
 // Board panel alongside a Text for the outcome.
@@ -7,7 +8,8 @@ public class ClueSubmission : MonoBehaviour
 {
     [SerializeField] private ClueBoardUI clueBoard;
     [SerializeField] private Transform judgmentContent; // 判定区's content container
-    [SerializeField] private Text resultText; // swap for TMP_Text if needed
+    [SerializeField] private Button submitButton;
+    [SerializeField] private TMP_Text resultText; 
 
     [Header("Scoring")]
     [SerializeField] private int pointsPerCorrectSelection = 10;
@@ -18,6 +20,15 @@ public class ClueSubmission : MonoBehaviour
     //   in judgment zone + actually credible     -> +pointsPerCorrectSelection
     //   in judgment zone + actually not credible -> -penaltyPerWrongSelection
     //   still in the unsorted zone               -> not counted either way
+
+    private void Awake()
+    {
+        if (submitButton != null)
+        {
+            submitButton.onClick.AddListener(Submit);
+        }
+    }
+
     public void Submit()
     {
         int score = 0;

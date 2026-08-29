@@ -3,21 +3,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-/// <summary>
-/// Manages the Social Media page's two views: Feed and Profile. There is no
-/// detail page - each row (SocialPostPreviewUI) already shows its full
-/// content and comments, in both the feed and the profile list. Clicking a
-/// post's poster icon switches to that poster's profile; the profile's
-/// back button returns to the feed. Only one level deep, so no history
-/// stack is needed (unlike an earlier version of this file).
-///
-/// feedPosts and profilePosts are fixed, manually-assigned lists - drag the
-/// relevant SocialPostData assets into each in the Inspector. Nothing is
-/// filtered or computed at runtime.
-///
-/// Entirely separate from BrowserTabManager - none of this creates new tabs,
-/// it only changes what is shown inside the Social Media tab's content area.
-/// </summary>
 public class SocialMediaPageController : MonoBehaviour
 {
     [Header("Feed Data")]
