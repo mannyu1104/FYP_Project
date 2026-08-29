@@ -4,17 +4,17 @@ using UnityEngine;
 [RequireComponent(typeof(CustomButtonUi))]
 public class ClueRecordButton : MonoBehaviour
 {
-    [SerializeField] private CustomButtonUi clickable;
+    [SerializeField] private CustomButtonUi customButton;
     [SerializeField] private ClueSourceData source; // Optional or can be set via SetSource() if not assigned in inspector.
 
     private void Reset()
     {
-        clickable = GetComponent<CustomButtonUi>();
+        customButton = GetComponent<CustomButtonUi>();
     }
 
     private void Awake()
     {
-        clickable.onLeftClick.AddListener(RecordClue);
+        customButton.onLeftClick.AddListener(RecordClue);
     }
 
     public void SetSource(ClueSourceData newSource)
@@ -30,6 +30,6 @@ public class ClueRecordButton : MonoBehaviour
             return;
         }
 
-        ClueManager.Instance.RecordClue(source.ClueTitle, source.ClueSummary);
+        ClueManager.Instance.RecordClue(source.ClueTitle, source.ClueSummary, source.IsCredible);
     }
 }

@@ -4,27 +4,39 @@ using TMPro;
 
 public class WebPageContentController : MonoBehaviour
 {
-    [Header("States (keep these GameObjects active - hide via CanvasGroup only)")]
-    [SerializeField] private CanvasGroup emptyStateView;       // no tabs open at all
-    [SerializeField] private CanvasGroup mainStateView;        // PageLayoutType.Main
-    [SerializeField] private CanvasGroup newsStateView;        // PageLayoutType.News
-    [SerializeField] private CanvasGroup socialMediaStateView; // PageLayoutType.SocialMedia
-    [SerializeField] private CanvasGroup tutorialStateView;    // PageLayoutType.Tutorial
+    public static WebPageContentController Instance { get; private set; }
 
-    [Header("Main Page View References")]
-    [SerializeField] private TMP_Text pageTitleText;
-    [SerializeField] private TMP_Text pageBodyText;
+    [Header("States (keep these GameObjects active - hide via CanvasGroup only)")]
+    [SerializeField] private CanvasGroup newsStateView;         // PageLayoutType.News
+    [SerializeField] private CanvasGroup socialMediaStateView;  // PageLayoutType.SocialMedia
+    [SerializeField] private CanvasGroup searchResultsStateView; // SearchResultsTabPage
 
     [Header("Sub-Controllers (reset to their default internal view on reopen)")]
     [SerializeField] private NewsPageController newsPageController;
     [SerializeField] private SocialMediaPageController socialMediaPageController;
+    [SerializeField] private SearchResultsPageController searchResultsPageController;
+
+    [Header("App Page Data (same assets used by BrowserAppButton)")]
+    [Tooltip("The News app's WebPageDataScriptableObject. Used to open the News tab when a search result links to an article.")]
+    [SerializeField] private WebPageDataScriptableObject newsAppPageData;
+    [Tooltip("The Social Media app's WebPageDataScriptableObject. Used to open the Social tab when a search result links to a profile.")]
+    [SerializeField] private WebPageDataScriptableObject socialAppPageData;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
 
     private void OnEnable()
     {
         BrowserTabManager.Instance.OnActiveTabChanged += DisplayTab;
-        // In case a tab is already active when this panel is enabled
-        // (e.g. player re-opens the browser after switching to Desktop).
-        DisplayTab(BrowserTabManager.Instance.ActiveTab);
+
+        HideAllStates();
     }
 
     private void OnDisable()
@@ -36,53 +48,34 @@ public class WebPageContentController : MonoBehaviour
     {
         HideAllStates();
 
-        if (tab == null)
+        if (tab == null) return;
+
+        // Search-results tabs are plain IBrowserPage instances (one per search),
+        // not WebPageDataScriptableObject assets - handle them first.
+        if (tab.Page is SearchResultsTabPage searchPage)
         {
-            Show(emptyStateView);
+            ShowSearchResultsPage(searchPage);
             return;
         }
 
-        if (tab.Page is not WebPageDataScriptableObject webPage)
-        {
-            // Fallback for anything implementing IBrowserPage without real
-            // content yet (e.g. a PlaceholderPage used during early testing).
-            Show(mainStateView);
-            pageTitleText.text = tab.Page.TabTitle;
-            pageBodyText.text = "(no content on this page yet)";
-            return;
-        }
+        if (tab.Page is not WebPageDataScriptableObject webPage) return;
 
         switch (webPage.LayoutType)
         {
-            case PageLayoutType.Main:
-                ShowMainPage(webPage);
-                break;
             case PageLayoutType.News:
                 ShowNewsPage(webPage);
                 break;
             case PageLayoutType.SocialMedia:
                 ShowSocialMediaPage(webPage);
                 break;
-            case PageLayoutType.Tutorial:
-                ShowTutorialPage(webPage);
-                break;
         }
     }
 
     public void HideAllStates()
     {
-        Hide(emptyStateView);
-        Hide(mainStateView);
         Hide(newsStateView);
         Hide(socialMediaStateView);
-        Hide(tutorialStateView);
-    }
-
-    private void ShowMainPage(WebPageDataScriptableObject webPage)
-    {
-        Show(mainStateView);
-        pageTitleText.text = webPage.TabTitle;
-        pageBodyText.text = webPage.BodyText;
+        Hide(searchResultsStateView);
     }
 
     private void ShowNewsPage(WebPageDataScriptableObject webPage)
@@ -100,13 +93,34 @@ public class WebPageContentController : MonoBehaviour
         socialMediaPageController.ShowFeed();
     }
 
-    private void ShowTutorialPage(WebPageDataScriptableObject webPage)
+    private void ShowSearchResultsPage(SearchResultsTabPage searchPage)
     {
-        Show(tutorialStateView);
+        Show(searchResultsStateView);
+        searchResultsPageController.DisplayResults(searchPage.Query, searchPage.Results);
+    }
 
-        // TODO: tutorial pages might be fully static (nothing to populate
-        // from webPage at all), or might pull step text from it - depends
-        // on how you plan to author tutorial content.
+    /// <summary>
+    /// Opens the News app tab (exactly like clicking its BrowserAppButton) and
+    /// jumps straight to the given article's detail view. Called from search
+    /// results whose destinationType is NewsArticle.
+    /// </summary>
+    public void OpenNewsArticle(NewsArticleData article)
+    {
+        // OpenPage synchronously fires OnActiveTabChanged -> DisplayTab -> ShowNewsPage,
+        // which calls newsPageController.ShowList(). We then override it below to
+        // jump straight to the article instead of landing on the list.
+        BrowserTabManager.Instance.OpenPage(newsAppPageData);
+        newsPageController.ShowArticleDetail(article);
+    }
+
+    /// <summary>
+    /// Opens the Social Media app tab and jumps straight to the given account's
+    /// profile view. Called from search results whose destinationType is SocialProfile.
+    /// </summary>
+    public void OpenSocialProfile(SocialAccountData account)
+    {
+        BrowserTabManager.Instance.OpenPage(socialAppPageData);
+        socialMediaPageController.ShowProfile(account);
     }
 
     private void Show(CanvasGroup group)

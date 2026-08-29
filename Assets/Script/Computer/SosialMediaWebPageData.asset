@@ -14,6 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WebPageDataScriptableObject
   pageId: 2
   tabTitle: "\u63A8\u4E66"
-  tabIcon: {fileID: 0}
-  layoutType: 2
-  bodyText: This is social media web page test
+  tabIcon: {fileID: -2124362347, guid: ea16c94e3829d08439204d01c286052a, type: 3}
+  layoutType: 1
