@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: caacd3caac5d0694980f1c7051103dcb, type: 3}
-  m_Name: NewSearchResultEntry
+  m_Name: "SRE_\u84DD\u8776\u5236\u836F\u5B98\u7F51"
   m_EditorClassIdentifier: Assembly-CSharp::SearchResultEntryData
   keywords:
-  - Testing
-  resultTitle: testestest
-  pageData: {fileID: 0}
-  newsArticleRef: {fileID: 11400000, guid: 0cd8844afb953b64ebe3aaf5d7ae82a8, type: 2}
+  - "\u84DD\u8776"
+  - "\u84DD\u8272\u8774\u8776"
+  - "\u84DD\u8272 \u8774\u8776"
+  resultTitle: "\u84DD\u8776\u5236\u836F"
+  pageData: {fileID: 11400000, guid: dfac9b0f932b88c4d876f02bfa1f1788, type: 2}
+  newsArticleRef: {fileID: 0}
   socialProfileRef: {fileID: 0}

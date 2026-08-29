@@ -11,6 +11,7 @@ public class WebPageContentController : MonoBehaviour
     [SerializeField] private CanvasGroup socialMediaStateView;  // PageLayoutType.SocialMedia
     [SerializeField] private CanvasGroup searchResultsStateView; // SearchResultsTabPage
     [SerializeField] private CanvasGroup orphanageHPStateView; // PageLayoutType.OrphanageHP
+    [SerializeField] private CanvasGroup blueMorphoHPStateView; // PageLayoutType.BlueMorphoHP
 
     [Header("Sub-Controllers (reset to their default internal view on reopen)")]
     [SerializeField] private NewsPageController newsPageController;
@@ -23,6 +24,7 @@ public class WebPageContentController : MonoBehaviour
     [SerializeField] private WebPageDataScriptableObject newsAppPageData;
     [SerializeField] private WebPageDataScriptableObject socialAppPageData;
     [SerializeField] private WebPageDataScriptableObject orphanageHPAppPageData;
+    [SerializeField] private WebPageDataScriptableObject blueMorphoHPAppPageData;
 
 
     private void Awake()
@@ -74,6 +76,9 @@ public class WebPageContentController : MonoBehaviour
             case PageLayoutType.OrphanageHP:
                 ShowOrphanageHPPage(webPage);
                 break;
+            case PageLayoutType.BlueMorphoHP:
+                ShowBlueMorphoHPPage(webPage);
+                break;
         }
     }
 
@@ -83,6 +88,7 @@ public class WebPageContentController : MonoBehaviour
         Hide(socialMediaStateView);
         Hide(searchResultsStateView);
         Hide(orphanageHPStateView);
+        Hide(blueMorphoHPStateView);
     }
 
     private void ShowNewsPage(WebPageDataScriptableObject webPage)
@@ -110,6 +116,11 @@ public class WebPageContentController : MonoBehaviour
     {
         Show(orphanageHPStateView);
         orphanageHPPageController.ShowList();
+    }
+
+    private void ShowBlueMorphoHPPage(WebPageDataScriptableObject webPage)
+    {
+        Show(blueMorphoHPStateView);
     }
 
     /// <summary>
