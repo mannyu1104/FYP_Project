@@ -1,0 +1,18 @@
+﻿
+Assets\Sce
+nes\FCJSce
+ne.unity:4
+65:       
+ m_MethodN
+ame: Clear
+History
+Assets\Sce
+nes\FCJSce
+ne.unity:1
+348:      
+  m_Method
+Name: Rese
+tAllNPCPro
+gress
+
+

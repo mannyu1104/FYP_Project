@@ -84,11 +84,21 @@ public class InteractionCursorController : MonoBehaviour
             isPaused = dialogueController != null && dialogueController.IsDialogueActive;
         }
 
-        if (MapButton.IsAnyMapOpen)
+        bool anyOverlayOpen = WhiteBoard.IsAnyWhiteBoardOpen || MapButton.IsAnyMapOpen;
+        if (anyOverlayOpen)
         {
-            CursorInteractionTarget mapUiTarget = FindUiTargetUnderPointer();
-            CursorPreset mapUiPreset = GetPresetForTarget(mapUiTarget);
-            SetCursor(mapUiPreset);
+            CursorInteractionTarget uiTarget = FindUiTargetUnderPointer();
+            if (uiTarget != null)
+            {
+                if (uiTarget.GetComponentInParent<Button>() != null || uiTarget.GetComponentInParent<Selectable>() != null)
+                {
+                    CursorPreset uiPreset = GetPresetForTarget(uiTarget);
+                    SetCursor(uiPreset);
+                    return;
+                }
+            }
+
+            ResetCursor();
             return;
         }
 

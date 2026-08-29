@@ -16,8 +16,10 @@ public class MapButton : MonoBehaviour
     public bool pauseLookWhenOpen = true;
 
     [Header("Button Cursor Behavior")]
-    [Tooltip("Only the open-map button should enable the custom map cursor on hover. The close button should stay at glow-only.")]
-    public bool useMapCursorOnHover = false;
+    [Tooltip("Preset used while the map is closed.")]
+    public string closedCursorPresetName = "Map";
+    [Tooltip("Preset used while the map is open.")]
+    public string openCursorPresetName = "Back";
 
     private CursorInteractionTarget cursorTarget;
     private bool isOpen;
@@ -59,6 +61,7 @@ public class MapButton : MonoBehaviour
         }
 
         cursorTarget.enableInspectDialogue = false;
+        cursorTarget.cursorPresetName = isOpen ? openCursorPresetName : closedCursorPresetName;
     }
 
     private void InitializeMapPanelOnce()
@@ -76,11 +79,22 @@ public class MapButton : MonoBehaviour
     {
         if (cursorTarget == null)
         {
+            SetupCursorTarget();
+        }
+
+        if (cursorTarget == null)
+        {
             return;
         }
 
-        bool shouldUseMapCursor = useMapCursorOnHover && !isAnyMapOpen;
-        cursorTarget.cursorPresetName = shouldUseMapCursor ? "Map" : string.Empty;
+        string targetPreset = isOpen ? openCursorPresetName : closedCursorPresetName;
+        if (string.IsNullOrWhiteSpace(targetPreset))
+        {
+            targetPreset = "View";
+        }
+
+        cursorTarget.enableInspectDialogue = false;
+        cursorTarget.cursorPresetName = targetPreset;
     }
 
     public void ToggleMap()

@@ -31,6 +31,11 @@ public class CursorInteractionTarget : MonoBehaviour, IPointerClickHandler
 
     public void TriggerInspection()
     {
+        if (WhiteBoard.IsAnyWhiteBoardOpen)
+        {
+            return;
+        }
+
         if (!enableInspectDialogue)
         {
             return;

@@ -43,6 +43,11 @@ public class NPCDialogueTrigger : MonoBehaviour, IPointerClickHandler
 
     public void StartDialogue()
     {
+        if (WhiteBoard.IsAnyWhiteBoardOpen)
+        {
+            return;
+        }
+
         if (dialogueController == null)
         {
             dialogueController = FindFirstObjectByType<DialogueController>();
