@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: caacd3caac5d0694980f1c7051103dcb, type: 3}
-  m_Name: NewSearchResultEntry
+  m_Name: NewSearchResultEntry 1
   m_EditorClassIdentifier: Assembly-CSharp::SearchResultEntryData
   keywords:
   - Testing
-  resultTitle: testestest
+  resultTitle: BBBBBBBBBB
   customPageData: {fileID: 0}
-  newsArticleRef: {fileID: 0}
-  socialProfileRef: {fileID: 11400000, guid: 55f2ac4166d741a4b8418cbcfdabc812, type: 2}
+  newsArticleRef: {fileID: 11400000, guid: 48da5007d34b8e94890e90a0d9d39eaa, type: 2}
+  socialProfileRef: {fileID: 0}

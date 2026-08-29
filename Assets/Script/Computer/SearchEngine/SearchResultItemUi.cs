@@ -8,8 +8,6 @@ public class SearchResultItemUI : MonoBehaviour
 {
     [Header("UI References")]
     [SerializeField] private TMP_Text titleText;
-    [SerializeField] private TMP_Text urlText;
-    [SerializeField] private TMP_Text snippetText;
 
     private CustomButtonUi clickable;
     private SearchResultEntryData entryData;

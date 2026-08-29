@@ -12,7 +12,6 @@ public class SearchResultsPageController : MonoBehaviour
     [SerializeField] private SearchResultItemUI resultItemPrefab;
 
     [Header("Empty State")]
-    [Tooltip("Shown when a search returns zero results.")]
     [SerializeField] private GameObject noResultsPanel;
 
     [Header("Query Display")]
@@ -76,14 +75,14 @@ public class SearchResultsPageController : MonoBehaviour
             // Opened exactly the same way a BrowserAppButton opens an app.
             BrowserTabManager.Instance.OpenPage(entry.customPageData);
         }
-        //else if (entry.newsArticleRef != null)
-        //{
-        //    WebPageContentController.Instance.OpenNewsArticle(entry.newsArticleRef);
-        //}
-        //else if (entry.socialProfileRef != null)
-        //{
-        //    WebPageContentController.Instance.OpenSocialProfile(entry.socialProfileRef);
-        //}
+        else if (entry.newsArticleRef != null)
+        {
+            WebPageContentController.Instance.OpenNewsArticle(entry.newsArticleRef);
+        }
+        else if (entry.socialProfileRef != null)
+        {
+            WebPageContentController.Instance.OpenSocialProfile(entry.socialProfileRef);
+        }
         else
         {
             Debug.LogError($"[SearchResultsPageController] '{entry.resultTitle}' has no destination assigned.");
