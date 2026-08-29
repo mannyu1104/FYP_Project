@@ -16,8 +16,6 @@ public class CursorInteractionTargetEditor : Editor
     {
         serializedObject.Update();
 
-        DrawDefaultInspector();
-
         if (string.IsNullOrWhiteSpace(cursorPresetName.stringValue))
         {
             SerializedProperty legacyName = serializedObject.FindProperty("customCursorPresetName");

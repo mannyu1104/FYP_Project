@@ -229,6 +229,11 @@ public class DialogueController : MonoBehaviour
             return;
         }
 
+        if (npc != null)
+        {
+            HideItemInspect();
+        }
+
         currentLines = lines;
         currentNpc = npc;
         currentLineIndex = -1;
@@ -454,6 +459,7 @@ public class DialogueController : MonoBehaviour
     private void FinishDialogue()
     {
         StopTypingRoutine();
+        HideItemInspect();
 
         if (autoRoutine != null)
         {

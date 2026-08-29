@@ -74,8 +74,22 @@ public class HoverEffect : MonoBehaviour
 
     void Update()
     {
-        if (isPaused)
+        if (isPaused || MapButton.IsAnyMapOpen)
         {
+            for (int i = 0; i < hoverStates.Count; i++)
+            {
+                HoverState state = hoverStates[i];
+                if (state != null)
+                {
+                    state.isHovered = false;
+                    SetItemColorImmediate(state, hoverParameters.normalColor);
+                    if (state.glowOutline != null)
+                    {
+                        state.glowOutline.SetActive(false);
+                    }
+                    SetGlowLayersActive(state, false);
+                }
+            }
             return;
         }
 

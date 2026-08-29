@@ -3,7 +3,8 @@ using UnityEngine.EventSystems;
 
 public class CursorInteractionTarget : MonoBehaviour, IPointerClickHandler
 {
-    [Tooltip("Use the preset already defined in the Cursor Preset list.")]
+    [HideInInspector]
+    [Tooltip("Choose an existing cursor preset from the Cursor Manager. Do not type manually.")]
     public string cursorPresetName;
 
     [Header("Item Inspect")]
@@ -47,11 +48,6 @@ public class CursorInteractionTarget : MonoBehaviour, IPointerClickHandler
     }
 
     public void OnPointerClick(PointerEventData eventData)
-    {
-        TriggerInspection();
-    }
-
-    private void OnMouseDown()
     {
         TriggerInspection();
     }

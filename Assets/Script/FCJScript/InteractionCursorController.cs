@@ -84,6 +84,14 @@ public class InteractionCursorController : MonoBehaviour
             isPaused = dialogueController != null && dialogueController.IsDialogueActive;
         }
 
+        if (MapButton.IsAnyMapOpen)
+        {
+            CursorInteractionTarget mapUiTarget = FindUiTargetUnderPointer();
+            CursorPreset mapUiPreset = GetPresetForTarget(mapUiTarget);
+            SetCursor(mapUiPreset);
+            return;
+        }
+
         if (isPaused)
         {
             ResetCursor();
@@ -103,29 +111,10 @@ public class InteractionCursorController : MonoBehaviour
 
     private CursorInteractionTarget FindTargetUnderPointer()
     {
-        if (EventSystem.current != null)
+        CursorInteractionTarget uiTarget = FindUiTargetUnderPointer();
+        if (uiTarget != null)
         {
-            PointerEventData pointerData = new PointerEventData(EventSystem.current)
-            {
-                position = Input.mousePosition
-            };
-            List<RaycastResult> results = new List<RaycastResult>();
-            EventSystem.current.RaycastAll(pointerData, results);
-
-            for (int i = 0; i < results.Count; i++)
-            {
-                CursorInteractionTarget target = results[i].gameObject.GetComponentInParent<CursorInteractionTarget>();
-                if (target != null)
-                {
-                    return target;
-                }
-
-                NPCDialogueTrigger npc = results[i].gameObject.GetComponentInParent<NPCDialogueTrigger>();
-                if (npc != null)
-                {
-                    return npc.GetComponent<CursorInteractionTarget>();
-                }
-            }
+            return uiTarget;
         }
 
         if (worldCamera == null)
@@ -136,6 +125,38 @@ public class InteractionCursorController : MonoBehaviour
         Vector3 worldPosition = worldCamera.ScreenToWorldPoint(Input.mousePosition);
         Collider2D collider = Physics2D.OverlapPoint(worldPosition);
         return collider != null ? collider.GetComponentInParent<CursorInteractionTarget>() : null;
+    }
+
+    private CursorInteractionTarget FindUiTargetUnderPointer()
+    {
+        if (EventSystem.current == null)
+        {
+            return null;
+        }
+
+        PointerEventData pointerData = new PointerEventData(EventSystem.current)
+        {
+            position = Input.mousePosition
+        };
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointerData, results);
+
+        for (int i = 0; i < results.Count; i++)
+        {
+            CursorInteractionTarget target = results[i].gameObject.GetComponentInParent<CursorInteractionTarget>();
+            if (target != null)
+            {
+                return target;
+            }
+
+            NPCDialogueTrigger npc = results[i].gameObject.GetComponentInParent<NPCDialogueTrigger>();
+            if (npc != null)
+            {
+                return npc.GetComponent<CursorInteractionTarget>();
+            }
+        }
+
+        return null;
     }
 
     private CursorPreset GetPresetForTarget(CursorInteractionTarget target)
