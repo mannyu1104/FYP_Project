@@ -87,6 +87,11 @@ public class DialogueController : MonoBehaviour
     [Min(0)]
     public int activeSpeedPreset = 1;
 
+    [Header("Item Inspect")]
+    public GameObject itemInspectRoot;
+    public Image itemInspectImage;
+    public TMP_Text itemInspectTitleText;
+
     [Header("Save")]
     public bool saveHistoryAutomatically = true;
     public bool loadHistoryAutomatically = true;
@@ -619,6 +624,70 @@ public class DialogueController : MonoBehaviour
     {
         GameObject buttonObject = GameObject.Find(objectName);
         return buttonObject != null ? buttonObject.GetComponent<Button>() : null;
+    }
+
+    public void ShowItemInspect(CursorInteractionTarget target)
+    {
+        if (target == null)
+        {
+            return;
+        }
+
+        ShowItemInspect(target.itemName, target.itemDescription, target.itemSprite, target.showInspectImage);
+    }
+
+    public void ShowItemInspect(string title, string description, Sprite sprite, bool showCenterImage = true)
+    {
+        if (string.IsNullOrWhiteSpace(title) && string.IsNullOrWhiteSpace(description) && sprite == null)
+        {
+            return;
+        }
+
+        string safeTitle = string.IsNullOrWhiteSpace(title) ? "Item" : title;
+        string safeDescription = string.IsNullOrWhiteSpace(description)
+            ? "This item has no description yet."
+            : description;
+
+        if (itemInspectTitleText != null)
+        {
+            itemInspectTitleText.text = safeTitle;
+        }
+
+        if (itemInspectImage != null)
+        {
+            itemInspectImage.sprite = sprite;
+            itemInspectImage.gameObject.SetActive(showCenterImage && sprite != null);
+        }
+
+        if (itemInspectRoot != null)
+        {
+            itemInspectRoot.SetActive(showCenterImage && sprite != null || !showCenterImage);
+        }
+
+        List<DialogueLine> itemLines = new List<DialogueLine>
+        {
+            new DialogueLine
+            {
+                speakerName = safeTitle,
+                dialogueText = safeDescription
+            }
+        };
+
+        StartConversation(itemLines, null);
+    }
+
+    public void HideItemInspect()
+    {
+        if (itemInspectImage != null)
+        {
+            itemInspectImage.sprite = null;
+            itemInspectImage.gameObject.SetActive(false);
+        }
+
+        if (itemInspectRoot != null)
+        {
+            itemInspectRoot.SetActive(false);
+        }
     }
 
     public void ClearHistory()

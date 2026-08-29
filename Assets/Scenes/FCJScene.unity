@@ -680,7 +680,7 @@ RectTransform:
   m_Father: {fileID: 391381412}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0.0198385}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -784,8 +784,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 352101613}
   m_HandleRect: {fileID: 352101611}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 1
+  m_Value: 0
+  m_Size: 0.0198385
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1248,12 +1248,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b415fa0449598804d909f214e96a005d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
-  cursorPresetName: test
+  cursorPresetName: View
+  enableInspectDialogue: 1
+  itemName: NoteBook
+  itemDescription: This is Notebook
+  itemSprite: {fileID: 672848932, guid: 30a7b23a1dd0acc4f9f11f05dd56c15c, type: 3}
+  showInspectImage: 1
   customCursorPresetName: View
   customCursorPresetIndex: 0
   interactionType: 2
   useCustomPreset: 0
   cursorPresetIndex: 0
+  dialogueController: {fileID: 0}
 --- !u!1 &482050611
 GameObject:
   m_ObjectHideFlags: 0
@@ -1834,11 +1840,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
   cursorPresetName: View
+  enableInspectDialogue: 1
+  itemName: Item
+  itemDescription: This is an item.
+  itemSprite: {fileID: 0}
+  showInspectImage: 1
   customCursorPresetName: View
   customCursorPresetIndex: 0
   interactionType: 2
   useCustomPreset: 0
   cursorPresetIndex: 0
+  dialogueController: {fileID: 0}
 --- !u!1 &736582502
 GameObject:
   m_ObjectHideFlags: 0
@@ -1873,7 +1885,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &802627486
 GameObject:
@@ -2437,7 +2449,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000016617, y: -0.00043481632}
+  m_AnchoredPosition: {x: -0.000016617, y: 0.000061035156}
   m_SizeDelta: {x: 0, y: 840.17}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1163867192
@@ -2738,11 +2750,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
   cursorPresetName: other
+  enableInspectDialogue: 1
+  itemName: Item
+  itemDescription: This is an item.
+  itemSprite: {fileID: 407990200, guid: 5f7dad24f86e86c4daa88ad40137aaf0, type: 3}
+  showInspectImage: 1
   customCursorPresetName: View
   customCursorPresetIndex: 0
   interactionType: 2
   useCustomPreset: 0
   cursorPresetIndex: 0
+  dialogueController: {fileID: 0}
 --- !u!1 &1259115311
 GameObject:
   m_ObjectHideFlags: 0
@@ -2781,6 +2799,81 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1279683487
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1279683488}
+  - component: {fileID: 1279683489}
+  - component: {fileID: 1279683490}
+  m_Layer: 5
+  m_Name: InspectImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1279683488
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279683487}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2117607574}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 57}
+  m_SizeDelta: {x: 350, y: 350}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1279683489
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279683487}
+  m_CullTransparentMesh: 1
+--- !u!114 &1279683490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279683487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &1372844113
 GameObject:
   m_ObjectHideFlags: 0
@@ -3414,11 +3507,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
   cursorPresetName: talk
+  enableInspectDialogue: 1
+  itemName: Item
+  itemDescription: This is an item.
+  itemSprite: {fileID: 0}
+  showInspectImage: 1
   customCursorPresetName: 
   customCursorPresetIndex: 0
   interactionType: 1
   useCustomPreset: 0
   cursorPresetIndex: 0
+  dialogueController: {fileID: 0}
 --- !u!1 &1667290816
 GameObject:
   m_ObjectHideFlags: 0
@@ -3915,9 +4014,9 @@ RectTransform:
   m_Father: {fileID: 585851294}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -19.3762, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1932992660
 MonoBehaviour:
@@ -4027,6 +4126,9 @@ MonoBehaviour:
   - 60
   - 120
   activeSpeedPreset: 1
+  itemInspectRoot: {fileID: 0}
+  itemInspectImage: {fileID: 1279683490}
+  itemInspectTitleText: {fileID: 0}
   saveHistoryAutomatically: 1
   loadHistoryAutomatically: 1
 --- !u!4 &1975308693
@@ -4059,7 +4161,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2117607574
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4076,12 +4178,13 @@ RectTransform:
   - {fileID: 561853961}
   - {fileID: 1746073319}
   - {fileID: 131989049}
+  - {fileID: 1279683488}
   m_Father: {fileID: 1163867197}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
