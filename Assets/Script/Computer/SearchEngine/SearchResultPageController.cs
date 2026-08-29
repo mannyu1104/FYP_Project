@@ -70,10 +70,10 @@ public class SearchResultsPageController : MonoBehaviour
     {
         if (entry == null) return;
 
-        if (entry.customPageData != null)
+        if (entry.pageData != null)
         {
             // Opened exactly the same way a BrowserAppButton opens an app.
-            BrowserTabManager.Instance.OpenPage(entry.customPageData);
+            BrowserTabManager.Instance.OpenPage(entry.pageData);
         }
         else if (entry.newsArticleRef != null)
         {

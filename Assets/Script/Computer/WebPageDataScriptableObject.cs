@@ -4,6 +4,7 @@ public enum PageLayoutType
 {
     News,
     SocialMedia,
+    OrphanageHP,
 }
 
 [CreateAssetMenu(fileName = "NewWebPage", menuName = "ScriptableObject/Web Page Data")]

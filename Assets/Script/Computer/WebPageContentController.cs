@@ -10,17 +10,20 @@ public class WebPageContentController : MonoBehaviour
     [SerializeField] private CanvasGroup newsStateView;         // PageLayoutType.News
     [SerializeField] private CanvasGroup socialMediaStateView;  // PageLayoutType.SocialMedia
     [SerializeField] private CanvasGroup searchResultsStateView; // SearchResultsTabPage
+    [SerializeField] private CanvasGroup orphanageHPStateView; // PageLayoutType.OrphanageHP
 
     [Header("Sub-Controllers (reset to their default internal view on reopen)")]
     [SerializeField] private NewsPageController newsPageController;
     [SerializeField] private SocialMediaPageController socialMediaPageController;
     [SerializeField] private SearchResultsPageController searchResultsPageController;
+    [SerializeField] private OrphanageHPPageController orphanageHPPageController;
+
 
     [Header("App Page Data (same assets used by BrowserAppButton)")]
-    [Tooltip("The News app's WebPageDataScriptableObject. Used to open the News tab when a search result links to an article.")]
     [SerializeField] private WebPageDataScriptableObject newsAppPageData;
-    [Tooltip("The Social Media app's WebPageDataScriptableObject. Used to open the Social tab when a search result links to a profile.")]
     [SerializeField] private WebPageDataScriptableObject socialAppPageData;
+    [SerializeField] private WebPageDataScriptableObject orphanageHPAppPageData;
+
 
     private void Awake()
     {
@@ -68,6 +71,9 @@ public class WebPageContentController : MonoBehaviour
             case PageLayoutType.SocialMedia:
                 ShowSocialMediaPage(webPage);
                 break;
+            case PageLayoutType.OrphanageHP:
+                ShowOrphanageHPPage(webPage);
+                break;
         }
     }
 
@@ -76,6 +82,7 @@ public class WebPageContentController : MonoBehaviour
         Hide(newsStateView);
         Hide(socialMediaStateView);
         Hide(searchResultsStateView);
+        Hide(orphanageHPStateView);
     }
 
     private void ShowNewsPage(WebPageDataScriptableObject webPage)
@@ -97,6 +104,12 @@ public class WebPageContentController : MonoBehaviour
     {
         Show(searchResultsStateView);
         searchResultsPageController.DisplayResults(searchPage.Query, searchPage.Results);
+    }
+
+    private void ShowOrphanageHPPage(WebPageDataScriptableObject webPage)
+    {
+        Show(orphanageHPStateView);
+        orphanageHPPageController.ShowList();
     }
 
     /// <summary>
