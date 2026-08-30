@@ -11,7 +11,11 @@ public class InventorySlot : MonoBehaviour, IDropHandler
             {
                 GameObject dropped = eventData.pointerDrag;
                 DragableItem draggableitem = dropped.GetComponent<DragableItem>();
-                if (draggableitem.thisUnlocked == true && draggableitem.thisGet == true)
+                //if (draggableitem.thisUnlocked == true && draggableitem.thisGet == true)
+                //{
+                //    draggableitem.parentAfterDrag = transform;
+                //}
+                if (draggableitem.thisGet == true)
                 {
                     draggableitem.parentAfterDrag = transform;
                 }

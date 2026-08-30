@@ -3,8 +3,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Item", menuName = "ScriptableObject/Item")]
 public class Item : ScriptableObject
 {
-    public Sprite Image;
-    public bool Unlocked;
+    public string ItemShowName;
+    public string Description;
     public bool Get;
     public bool Used;
     public bool Show;

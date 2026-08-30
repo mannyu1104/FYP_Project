@@ -13,9 +13,11 @@ public class InventorySaveData
 public class ItemBooleanData
 {
     public int ItemID;
-    public bool Unlocked;
+    public bool Show;
     public bool Get;
     public bool Used;
+    public string ItemShowName;
+    public string Description;
 }
 
 public class SaveSystem: MonoBehaviour
@@ -45,9 +47,11 @@ public class SaveSystem: MonoBehaviour
             ItemBooleanData dataItem = new ItemBooleanData();
 
             dataItem.ItemID = item.thisID;
-            dataItem.Unlocked = item.thisUnlocked;
+            dataItem.Show = item.thisShow;
             dataItem.Get = item.thisGet;
             dataItem.Used = item.thisUsed;
+            dataItem.Description = item.thisDescription;
+            dataItem.ItemShowName = item.thisName;
 
             data.ItemBool.Add(dataItem);
         }
@@ -74,7 +78,7 @@ public class SaveSystem: MonoBehaviour
             {
                 if (item.thisID == dataItem.ItemID)
                 {
-                    item.thisUnlocked = dataItem.Unlocked;
+                    item.thisShow = dataItem.Show;
                     item.thisGet = dataItem.Get;
                     item.thisUsed = dataItem.Used;
 
