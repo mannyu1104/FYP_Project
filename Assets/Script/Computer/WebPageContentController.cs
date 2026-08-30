@@ -9,7 +9,7 @@ public class WebPageContentController : MonoBehaviour
     [Header("States (keep these GameObjects active - hide via CanvasGroup only)")]
     [SerializeField] private CanvasGroup newsStateView;         // PageLayoutType.News
     [SerializeField] private CanvasGroup socialMediaStateView;  // PageLayoutType.SocialMedia
-    [SerializeField] private CanvasGroup searchResultsStateView; // SearchResultsTabPage
+    [SerializeField] private CanvasGroup searchResultsStateView; // PageLayoutType.SearchResults
     [SerializeField] private CanvasGroup orphanageHPStateView; // PageLayoutType.OrphanageHP
     [SerializeField] private CanvasGroup blueMorphoHPStateView; // PageLayoutType.BlueMorphoHP
 
