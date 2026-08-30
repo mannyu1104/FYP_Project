@@ -30,6 +30,6 @@ public class ClueRecordButton : MonoBehaviour
             return;
         }
 
-        ClueManager.Instance.RecordClue(source.ClueTitle, source.ClueSummary, source.IsCredible);
+        ClueManager.Instance.RecordClue(source.ClueTitle, source.ClueSummary, source.Credibility, source.Case);
     }
 }

@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TutorialClueData
   clueTitle: "\u6751\u91CC\u7684\u5730\u56FE"
   clueSummary: 
-  isCredible: 1
+  clueCredibility: 0
+  caseDefinition: {fileID: 11400000, guid: 27b7da3b7c866514694db554e6b7c3a1, type: 2}
   tutorialClueName: "\u6751\u91CC\u7684\u5730\u56FE"
   tutorialClueDescription: "\u3010\u5730\u56FE\u3011"
   clueImage: {fileID: 0}

@@ -23,7 +23,7 @@ public class TutorialClueItemUi : MonoBehaviour
     {
         if (clueData == null)
         {
-            Debug.LogWarning("WitnessListItemUI has no Clue Data assigned.", this);
+            Debug.LogWarning("TutorialClueItemUI has no Clue Data assigned.", this);
             return;
         }
 

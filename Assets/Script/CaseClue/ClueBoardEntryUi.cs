@@ -12,12 +12,12 @@ public class ClueBoardEntryUI : MonoBehaviour
     [SerializeField] private TMP_Text titleText;   
     [SerializeField] private TMP_Text summaryText;
 
-    public bool GroundTruthIsCredible { get; private set; }
+    public ClueCredibility Credibility { get; private set; }
 
     public void Set(ClueManager.RecordedClue clue)
     {
         titleText.text = clue.title;
         summaryText.text = clue.summary;
-        GroundTruthIsCredible = clue.isCredible;
+        Credibility = clue.credibility;
     }
 }
