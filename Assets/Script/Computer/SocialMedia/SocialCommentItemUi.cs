@@ -13,7 +13,7 @@ public class SocialCommentItemUI : MonoBehaviour
     [SerializeField] private TMP_InputField commentText;
 
     [Header("Name Color")]
-    [SerializeField] private Color normalNameColor = Color.black;
+    [SerializeField] private Color normalNameColor;
     [SerializeField] private Color hasProfileNameColor;
 
     private ScrollRect parentScrollRect;
