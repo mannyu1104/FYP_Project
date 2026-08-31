@@ -1,0 +1,1748 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Script Assets_en-US
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: en-US
+  m_SharedData: {fileID: 11400000, guid: bae3f0c0768e84a4b91ae3b46e2c292f, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 23825497923584
+    m_Localized: Entrance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23825497923585
+    m_Localized: In a corner near the entrance are some sports supplies, including
+      hula hoops, children's sandbags, jump ropes, and colorful plastic balls. They
+      seem to have been prepared for today's sports day. On the corridor wall leading
+      to the staff room is a bulletin board displaying the children's work, some
+      daily notices, and Hope Orphanage's staff organization chart.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23825497923586
+    m_Localized: Staff Room
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23825497923587
+    m_Localized: The staff room is a small office. Except for the director, every
+      staff member has their own workspace, with their name attached to their desk.
+      Zhang Huiling's desk has the schedule for the sports day. Wang Xiuli's desk
+      has some of the children's half-graded homework. A small note reminding Li
+      Xiufang of her password is stuck to the edge of her computer monitor.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23825497923588
+    m_Localized: Introduction
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23825497923589
+    m_Localized: '- July 31 -'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23825497923590
+    m_Localized: After returning home from solving a simple case, I glanced at the
+      date on my phone, then at the expiration date on my detective license... Only
+      one month left. It's about time I retook the detective qualification test to
+      renew it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23825497923591
+    m_Localized: I'm pretty confident I can pass the qualification test again, but
+      just in case, I should do some practice questions. After all, test questions
+      are still a little different from real-life cases.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23825497923592
+    m_Localized: I sat down at my computer, opened the Detective Association's website,
+      and accessed the practice test they had made available...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23825497923593
+    m_Localized: (Missing Cat Case)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23825497923594
+    m_Localized: By the time I finished the practice questions, it was already getting
+      late. After a simple dinner and washing up, I lay down in bed and drifted off
+      to sleep.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23825497923595
+    m_Localized: '- August 1 -'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23825497923596
+    m_Localized: I opened my eyes to another new day. I wonder if I'll get any well-paying
+      jobs today. If not, something interesting would be fine too. With those idle
+      thoughts in mind, I routinely opened a news site to see what was happening
+      today. Keeping up with the latest information is basic practice for a detective,
+      after all.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 23825497923597
+    m_Localized: -- Read "Hope Orphanage Fire; Director Missing!" --
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047897813002
+    m_Localized: I didn't expect something like this to happen while I was asleep.
+      Judging from the article and the comments below, it didn't seem to be just
+      a simple fire accident either. Just as I was about to look for more information,
+      the doorbell rang.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047897813003
+    m_Localized: I left the computer to answer the door. Standing outside was a middle-aged
+      woman. The moment she saw me, she spoke.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047897813004
+    m_Localized: '"Are you that famous detective? Please take my case!"'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047897813005
+    m_Localized: '"Did you see the news about the orphanage this morning? I''ve worked
+      there for a long time. For some reason, our director seems to have been accused
+      of things he never did. I''ve worked with him for so long, and I don''t believe
+      he''s the kind of person who would do something like that."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047897813006
+    m_Localized: '"It is suspicious that he disappeared at a time like this, though.
+      That''s why I want you to investigate and find out whether the director is
+      innocent."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047897813007
+    m_Localized: After hearing her out, I decided to accept the case and uncover
+      the truth hidden beneath the surface.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047897813008
+    m_Localized: OvO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047897813009
+    m_Localized: 'Notice: Regarding the Continued Operation of Hope Orphanage'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047897813010
+    m_Localized: 'Publication Date: May 2, 2009'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047897813011
+    m_Localized: Thank you for the concern and encouragement you have recently shown
+      Hope Orphanage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047897813012
+    m_Localized: We are pleased to announce that, with the care and support of the
+      community, our current operational difficulties have improved and the orphanage
+      will continue operating. The previously planned closure has therefore been
+      cancelled.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047897813013
+    m_Localized: Moving forward, we will remain committed to providing the children
+      with a safe, stable, and warm environment in which to grow. We will also make
+      responsible use of every generous contribution to create better learning and
+      living conditions for them.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047897813014
+    m_Localized: Sincerely, Hope Orphanage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047897813015
+    m_Localized: 'Notice: Regarding the Closure of Hope Orphanage'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047897813016
+    m_Localized: 'Publication Date: April 18, 2009'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047897813017
+    m_Localized: Thank you for your long-standing care and support for Hope Orphanage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047897813018
+    m_Localized: Due to persistent shortages in operating funds in recent years,
+      along with increasing building maintenance and childcare expenses, the orphanage
+      is currently facing serious financial difficulties. After extensive evaluation,
+      Hope Orphanage is expected to cease operations in the near future.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047897813019
+    m_Localized: We are currently working closely with relevant government departments
+      and child welfare organizations to properly arrange the children's future care
+      and placement, in hopes of minimizing the impact this situation may have on
+      them.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047897813020
+    m_Localized: Sincerely, Hope Orphanage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047897813021
+    m_Localized: Home
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047897813022
+    m_Localized: Bookshelf
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047897813023
+    m_Localized: Various books are neatly arranged on the bookshelf.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047897813024
+    m_Localized: Books useful for detective work, such as "The Detective's Guide
+      to Self-Improvement," "Hypothetical Logic Training," and "The Memory Palace
+      Method."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047897813025
+    m_Localized: There are also novels, comics, magazines, and other books collected
+      out of personal interest.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047897813026
+    m_Localized: Computer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047897813027
+    m_Localized: Can be used to search for information online or browse various websites
+      and social media platforms.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047897813028
+    m_Localized: Clue Board
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047897813029
+    m_Localized: Organize all relevant clues here and deduce the truth.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047897813030
+    m_Localized: First-Aid Kit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007296
+    m_Localized: There is a small first-aid kit on the bottom shelf of the bookshelf,
+      marked with a blue butterfly logo.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007297
+    m_Localized: You bought it just in case after you started living alone. Thankfully,
+      you've been healthy enough that the first-aid kit hasn't had a chance to do
+      its job yet.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007298
+    m_Localized: Social Media
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007299
+    m_Localized: Can't find him after the fire? The director seems kinda shady.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007300
+    m_Localized: Comments
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007301
+    m_Localized: 'Comment 1: "So he really did run away, huh?"'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007302
+    m_Localized: 'Comment 2: "Seriously, there''s no way the timing is that perfect."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007303
+    m_Localized: 'Comment 3: "The news only says he''s missing for now. Isn''t it
+      a bit early to jump to conclusions?"'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007304
+    m_Localized: How does a fire suddenly start by accident in the middle of the
+      night? Thank goodness someone woke up and noticed it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007305
+    m_Localized: Comments
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007306
+    m_Localized: 'Comment 1: "Was it really an accident?"'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007307
+    m_Localized: 'Comment 2: "Maybe the building is old and there was a problem with
+      the wiring somewhere."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007308
+    m_Localized: 'Comment 3: "But that orphanage looks really well maintained. Didn''t
+      it even win some kind of beautification award?"'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007309
+    m_Localized: 'Comment 4: "Either way, thank goodness the kids are safe."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007310
+    m_Localized: Am I the only one worried about what will happen to those kids now?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007311
+    m_Localized: Comments
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007312
+    m_Localized: 'Comment 1: "They''ll probably be sent to some temporary shelter
+      or placement center."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007313
+    m_Localized: 'Comment 2: "Our association just received word. I think that''s
+      where they''re going."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007314
+    m_Localized: 'Comment 3: "I just hope the kids aren''t too frightened."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007315
+    m_Localized: 'Comment 4: "The staff will probably go with them and stay by their
+      side."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007316
+    m_Localized: 'XX Fire Department reminds you: In the event of a fire, please:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007317
+    m_Localized: '1. If conditions allow, shout loudly to alert others nearby.
+
+      2.
+      Wet a towel, cover your nose and mouth, and stay low while moving.
+
+      3.
+      Leave the fire scene immediately. Do not risk your safety for belongings.
+
+      4.
+      Do not use elevators. Use the stairs to evacuate.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007318
+    m_Localized: Comments
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007319
+    m_Localized: 'Comment 1: "Thanks for the reminder. Shared."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007320
+    m_Localized: 'Comment 2: "Hope none of us ever have to use this knowledge."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007321
+    m_Localized: 'Comment 3: "Would it be better to keep a fire extinguisher at home?"'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007322
+    m_Localized: Saw an insanely black car late last night. Even the windows were
+      as black as my black cat.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007323
+    m_Localized: Comments
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007324
+    m_Localized: 'Comment 1: "Isn''t everything black in the middle of the night?"'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007325
+    m_Localized: 'Comment 2: "Didn''t you get a photo? If it was violating traffic
+      laws, you could report it."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007326
+    m_Localized: I remember reading somewhere that the orphanage was already planning
+      to close down. The director must not have wanted to deal with the aftermath,
+      so he just set the place on fire, right?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007327
+    m_Localized: Comments
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007328
+    m_Localized: 'Comment 1: "Wasn''t it supposed to be making a lot of money? Why
+      would it close?"'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007329
+    m_Localized: 'Comment 2: "Really? That sounds a little different from what I
+      heard."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007330
+    m_Localized: 'Comment 3: "Either way, this is getting more and more suspicious."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007331
+    m_Localized: I went over to that orphanage where the incident happened just to
+      see what was going on, and when I zoomed in with my camera, I got this shot.
+      People really do use their birthdays as passwords, huh? Hahahaha.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007332
+    m_Localized: '[A photo taken through the window shows one of the computers in
+      the orphanage staff room. A note stuck to the edge of the monitor says the
+      password is a birthday.]'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007333
+    m_Localized: Comments
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007334
+    m_Localized: 'Comment 1: "I do that too. Passwords are seriously hard to remember."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007335
+    m_Localized: 'Comment 2: "Someone needs better security awareness."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007336
+    m_Localized: 'Meow Meow: 3'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007337
+    m_Localized: Bio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007338
+    m_Localized: A volunteer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007339
+    m_Localized: Some posts
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007340
+    m_Localized: Photos of Kindness Welfare Home
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007341
+    m_Localized: Some posts
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007342
+    m_Localized: (If the board gets shifted, press Ctrl + 0 to return to the center.)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007343
+    m_Localized: Hope Orphanage Official Website
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007344
+    m_Localized: '"Hope Orphanage" "Hope Orphanage official website"'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007345
+    m_Localized: 'Notice: Temporary Suspension of Child Adoption Applications'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007346
+    m_Localized: 'Event: Hope Orphanage Mini Sports Day'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007347
+    m_Localized: 'Notice: Regarding the Continued Operation of Hope Orphanage'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007348
+    m_Localized: 'Notice: Regarding the Closure of Hope Orphanage'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007349
+    m_Localized: 'Notice: Temporary Suspension of Child Adoption Applications'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007350
+    m_Localized: 'Publication Date: July 19, 2012'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007351
+    m_Localized: To further improve our childcare system and accommodate the orphanage's
+      recent review of adoption procedures and related records, we will temporarily
+      stop accepting new child adoption applications effective immediately. The date
+      applications resume will be announced separately depending on our internal
+      progress. We apologize for any inconvenience caused.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007352
+    m_Localized: Thank you for the care and support you have always shown the children.
+      We hope you will continue to accompany and support them as they grow up healthy
+      and happy.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007353
+    m_Localized: Sincerely, Hope Orphanage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007354
+    m_Localized: 'Event: Hope Orphanage Mini Sports Day'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007355
+    m_Localized: 'Publication Date: July 13, 2012'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007356
+    m_Localized: Our orphanage will hold its annual mini sports day on the upcoming
+      August 1.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007357
+    m_Localized: The children will take part in all kinds of fun competitions, winning
+      prizes and making wonderful memories through laughter and challenges.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007358
+    m_Localized: On the day of the event, the orphanage will be open to visitors.
+      We sincerely invite everyone to come cheer the children on and spend a lively,
+      joyful time with them.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007359
+    m_Localized: 'Event Date: August 1, 2012'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007360
+    m_Localized: 'Event Time: 9:00 a.m. - 1:00 p.m.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007361
+    m_Localized: 'Event Location: Hope Orphanage'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047902007362
+    m_Localized: Hope Orphanage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201600
+    m_Localized: '"Location: Hope Orphanage"'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201601
+    m_Localized: From a distance, you can see that part of the orphanage has been
+      charred black. Relevant personnel have put up "Authorized Personnel Only" tape
+      while carrying out repairs and follow-up investigations. A few local residents
+      are also scattered around nearby.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201602
+    m_Localized: You can observe the orphanage from a short distance, ask the personnel
+      on site for permission to enter and investigate, or ask nearby residents for
+      information.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201603
+    m_Localized: Observe the Orphanage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201604
+    m_Localized: It seems the fire was brought under control in time, and only about
+      a quarter of the building was badly charred. ~~If the orphanage layout is still
+      the way you remember it, the burned area seems to include the director's office.~~
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201605
+    m_Localized: Information Inside the Orphanage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201606
+    m_Localized: Near the Entrance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201607
+    m_Localized: After showing your detective ID to a nearby police officer and receiving
+      permission, you enter the orphanage to investigate. In a corner near the entrance
+      are some sports supplies, including hula hoops, children's sandbags, jump ropes,
+      and colorful plastic balls. They seem to have been prepared for today's sports
+      day. On the corridor wall leading to the staff room is a bulletin board displaying
+      the children's work, some daily notices, and Hope Orphanage's staff organization
+      chart.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201608
+    m_Localized: Staff Organization Chart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201609
+    m_Localized: Contains the positions and photos of all staff members at Hope Orphanage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201610
+    m_Localized: 'Director: Chen Zhihong'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201611
+    m_Localized: 'Finance Staff: Huang Guoliang'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201612
+    m_Localized: 'Education Staff: Wang Xiuli'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201613
+    m_Localized: 'Head of Daily Care: Zhang Huiling (Client in this case)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201614
+    m_Localized: 'Care Staff: Lin Meihua, Li Xiufang, Liu Zhiming'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201615
+    m_Localized: '![](flowam:img-1787584472765-9g6phi =707x363)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201616
+    m_Localized: Staff Room
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201617
+    m_Localized: The staff room is a small office. Except for the director, every
+      staff member has their own workspace, with their name attached to their desk.
+      Zhang Huiling's desk has the schedule for the sports day. Wang Xiuli's desk
+      has some half-graded homework. A small note reminding Li Xiufang of her password
+      is stuck to the edge of her computer monitor.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201618
+    m_Localized: Information Obtained from Residents
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201619
+    m_Localized: '"I suddenly heard an alarm and people shouting in the middle of
+      the night. By the time I went outside to look, the fire was already pretty
+      big."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201620
+    m_Localized: '"Luckily, the staff had already gotten all the children out safely
+      by then."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201621
+    m_Localized: '"Recently, you could still see lights on in one of the orphanage
+      rooms late at night. I think it was the room that got burned."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201622
+    m_Localized: '"I was chatting with one of the staff recently and heard that more
+      children have been adopted over the past few months."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201623
+    m_Localized: '"What a shame. The children only get their sports day once a year,
+      and now it''s been ruined. Such bad luck."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201624
+    m_Localized: Kindness Welfare Home
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201625
+    m_Localized: '"Location: Kindness Welfare Home"'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201626
+    m_Localized: You arrive at Kindness Welfare Home, where volunteers are helping
+      settle the children who were transferred here.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201627
+    m_Localized: Ask the Volunteers for Information
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201628
+    m_Localized: 'Volunteer A: "After our group heard about the fire, we contacted
+      the staff there right away and told them we could provide the children with
+      a temporary shelter here."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201629
+    m_Localized: 'Volunteer B: "Some of the children seem frightened. We''re preparing
+      a few little games to play with them later. If you''re interested, you can
+      join us too."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201630
+    m_Localized: Ask the Children for Information
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201631
+    m_Localized: Perhaps because of the accident and the unfamiliar surroundings,
+      the children seem somewhat nervous. If you want to learn anything from them,
+      you'll probably need to calm them down first.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201632
+    m_Localized: '[Obtain information after playing a mini-game with the children]'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201633
+    m_Localized: 'Child A: "Where did Director Chen go? Will we still get to see
+      him...?"'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201634
+    m_Localized: 'Child B: "I promised Director Chen that we would go dig for treasure
+      in the park together."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201635
+    m_Localized: 'Child C: "Hmm? I''m drawing a butterfly~ I saw a really pretty
+      blue butterfly on a card Mr. Liu was holding before, and I want to draw it!"'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201636
+    m_Localized: News Platform
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201637
+    m_Localized: "News: BB-04 Breaks a Medical Barrier\u2014A Cure for Terminal Illnesses!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201638
+    m_Localized: 'Publication Date: June 29, 2012'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201639
+    m_Localized: Blue Morpho Pharmaceutical Company announced its latest research
+      achievement, "BB-04," today. The drug is expected to potentially cure terminal
+      illnesses that have long troubled the medical community, including cancer and
+      AIDS.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201640
+    m_Localized: According to the project's lead researcher, the drug is still in
+      the experimental stage, but they believe BB-04 will become a medical miracle
+      in the near future.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201641
+    m_Localized: '[Photo of the project lead giving a speech at the presentation]'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201642
+    m_Localized: A careful comparison reveals that the person speaking on stage is
+      Liu Zhiming, one of the staff members at Hope Orphanage.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201643
+    m_Localized: 'News: Hope Orphanage Fire; Director Missing!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201644
+    m_Localized: In the early hours of today (August 1), a fire suddenly broke out
+      at Hope Orphanage, located on the outskirts of town. Fortunately, several staff
+      members were already awake when the incident occurred. They immediately reported
+      the fire to the fire department and evacuated the children in an orderly manner.
+      Firefighters soon arrived, contained the blaze, and extinguished it. Thanks
+      to the staff's quick response, there were no casualties.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201645
+    m_Localized: Just when it seemed the incident had ended without serious harm,
+      news emerged that the orphanage director, Chen Zhihong, had gone missing. According
+      to several staff members, they had seen the director before going to bed, but
+      after the fire he was nowhere to be found and could not be contacted. Firefighters
+      also found no sign of anyone matching the director at the scene. The matter
+      has been reported to the police and is being treated as a missing-person case.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201646
+    m_Localized: Comments
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201647
+    m_Localized: 'Comment 1: "Thank goodness they noticed it in time..."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201648
+    m_Localized: 'Comment 2: "Did they say what caused the fire?"'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201649
+    m_Localized: 'Comment 3: "The director probably took the money and ran."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201650
+    m_Localized: 'Comment 4: "Seriously?! Then did the director start the fire too?"'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201651
+    m_Localized: 'Comment 5: "Where are all those orphans going to stay now?"'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201652
+    m_Localized: 'Comment 6: "A tiny orphanage managed to operate for this long.
+      They were probably doing something shady behind the scenes."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201653
+    m_Localized: "News: Hope Orphanage Fire and Director's Disappearance\u2014Were
+      There Suspicious Signs Before the Incident?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201654
+    m_Localized: A fire broke out at Hope Orphanage early this morning. After receiving
+      the emergency call, the fire department quickly arrived at the scene and successfully
+      brought the blaze under control. Fortunately, all children and staff members
+      were evacuated in time, and there were no casualties. Our reporter immediately
+      interviewed nearby residents and gathered the following accounts.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201655
+    m_Localized: One resident said the orphanage's facilities appeared to be regularly
+      inspected and renovated, so an accidental fire seemed unlikely. Another said
+      that for the past month, Director Chen Zhihong had been leaving early and returning
+      late every day, which was unlike his usual behavior. A third resident reported
+      seeing a black sedan parked near the orphanage that night.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201656
+    m_Localized: Comments
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201657
+    m_Localized: Comments are closed.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201658
+    m_Localized: 'News: Hope Orphanage Was Once WHAT?! Was This Fire Destined to
+      Happen...?'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201659
+    m_Localized: The site where Hope Orphanage now stands is suspected to have once
+      been a cemetery several decades ago. Our reporter interviewed several professional
+      feng shui masters, all of whom claimed that the fire was caused by an accumulation
+      of negative energy in the area. Some even suggested that the director's disappearance
+      may be connected to it...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201660
+    m_Localized: Comments
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201661
+    m_Localized: 'Comment 1: "Now they''re bringing feng shui into this..."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201662
+    m_Localized: 'Comment 2: "There are some things you just can''t dismiss."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201663
+    m_Localized: 'Comment 3: "Who are these experts? They didn''t even give any names."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201664
+    m_Localized: Blue Morpho Pharmaceutical Company Official Website
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201665
+    m_Localized: '"blue butterfly" "blue butterfly"'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201666
+    m_Localized: -- Exploring the Frontiers of Science, Bringing the Miracle of the
+      Blue Morpho to Everyone --
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201667
+    m_Localized: We will bring miracles in the near future.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201668
+    m_Localized: Describes the drug's effects and the major breakthrough it represents
+      for modern medicine.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201669
+    m_Localized: Park
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201670
+    m_Localized: '"Location: Park"'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201671
+    m_Localized: A small park near the orphanage with only a few types of playground
+      equipment. An elderly man can be seen feeding pigeons.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201672
+    m_Localized: Ask the Elderly Man for Information
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201673
+    m_Localized: '"I come to this park pretty often to take walks and feed the pigeons.
+      The children from the nearby orphanage come here from time to time too, and
+      I play with them."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201674
+    m_Localized: '"The last time they came, they told me they were having a sports
+      day today and invited me to watch. I never expected something like this to
+      happen."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201675
+    m_Localized: '"Come to think of it, I once ran into Director Chen by chance.
+      Without explaining anything, he asked me to keep a key for him. Now that this
+      has happened to him, I don''t know what I should do with it."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201676
+    m_Localized: '"Why don''t you take the key for now? Compared with leaving it
+      with me, you''re more likely to uncover something with it during your investigation."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201677
+    m_Localized: 'Detective Qualification Practice Test: "The Missing Cat"'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201678
+    m_Localized: 'Witness C: Mr. Zhao'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047906201679
+    m_Localized: '"At around 3:30 p.m., my daughter and I happened to pass by the
+      park and saw Little Orange. I''m certain it was Little Orange because of the
+      notch in its left ear. I even took a photo of my daughter with Little Orange
+      on my phone. This is the photo from then."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395904
+    m_Localized: Photo of Mr. Zhao's Daughter and Little Orange
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395905
+    m_Localized: The photo shows a young girl apparently trying to sneak up on an
+      orange cat lying on the ground. A small notch can clearly be seen on the cat's
+      left ear.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395906
+    m_Localized: 'Witness D: Mr. Chen'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395907
+    m_Localized: '"I stayed home all afternoon today. I did hear a dog barking near
+      the yard, and afterward I heard what sounded like a cat meowing nearby."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395908
+    m_Localized: 'Witness E: Mr. Zhou'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395909
+    m_Localized: '"At around 3:55 p.m., I needed some tools, so I went to the village''s
+      communal storage shed. I saw Little Orange nearby. It was lying leisurely in
+      the sun by the storage shed entrance."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395910
+    m_Localized: Village Map
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395911
+    m_Localized: '![](flowam:img-1787584472766-7q5cir)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395912
+    m_Localized: Case Request
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395913
+    m_Localized: 'Client: Ms. Zhang'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395914
+    m_Localized: My cat, "Little Orange," went missing this afternoon.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395915
+    m_Localized: Although Little Orange usually wanders around nearby, it normally
+      doesn't go far from home.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395916
+    m_Localized: This afternoon, I noticed it hadn't come back as usual. I searched
+      for a while but still couldn't find it.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395917
+    m_Localized: Fortunately, five nearby residents said they had seen Little Orange.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395918
+    m_Localized: However, the information they provided does not seem entirely consistent.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395919
+    m_Localized: Based on the information below, determine which witnesses' statements
+      are reliable.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395920
+    m_Localized: About Little Orange
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395921
+    m_Localized: A cat owned by the client, Ms. Zhang. It went missing this afternoon.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395922
+    m_Localized: 'Ms. Zhang says the following about Little Orange:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395923
+    m_Localized: '"I adopted Little Orange four years ago. It has orange fur all
+      over. It''s extremely afraid of dogs because a stray dog bit its ear when it
+      was young, leaving a noticeable notch near the tip of its left ear. I still
+      saw Little Orange at 3:00 p.m. while I was cleaning the living room."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395924
+    m_Localized: 'Witness A: Mr. Wang'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395925
+    m_Localized: '"I work at a convenience store, and I happened to be on shift at
+      the time. At around 3:15 p.m., I saw an orange cat walk past the store entrance.
+      Maybe I can check the outdoor security footage to see whether it was Little
+      Orange."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395926
+    m_Localized: '"Found it. This is the image captured at the time. I remember it
+      running toward the park."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395927
+    m_Localized: Convenience Store Security Footage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395928
+    m_Localized: The image shows an orange cat. There is a small notch on its left
+      ear.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395929
+    m_Localized: 'Witness B: Ms. Li'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395930
+    m_Localized: '"At around 4:00 p.m., I was just about to head out when I saw Little
+      Orange being chased by a dog toward Mr. Chen''s house."'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395931
+    m_Localized: How to Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395932
+    m_Localized: '1. Do not move the board.
+
+      2. Read the introduction first,
+      then investigate freely.
+
+      3. To search online, press Ctrl + F. First
+      enter a quotation mark ("), then type the keyword between the quotation marks.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395933
+    m_Localized: '```
+
+      Example: "keyword"
+
+      ```'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395934
+    m_Localized: 4. To investigate outside locations, press Ctrl + F. First enter
+      "Location:", then type the location name after the colon.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395935
+    m_Localized: '```
+
+      Example: "Location: Location Name"
+
+      ```'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395936
+    m_Localized: Pay attention to your input method. If it doesn't work, copy & paste.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395937
+    m_Localized: Physical Items / Clues
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395938
+    m_Localized: Characters
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395939
+    m_Localized: Photos / Images
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395940
+    m_Localized: Player / Detective
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395941
+    m_Localized: Chen Zhihong
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395942
+    m_Localized: Director of Hope Orphanage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395943
+    m_Localized: Zhang Huiling
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395944
+    m_Localized: Head of Daily Care at Hope Orphanage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395945
+    m_Localized: Client in this case
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395946
+    m_Localized: Huang Guoliang
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395947
+    m_Localized: Finance Staff at Hope Orphanage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395948
+    m_Localized: Wang Xiuli
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395949
+    m_Localized: Education Staff at Hope Orphanage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395950
+    m_Localized: Lin Meihua
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395951
+    m_Localized: Care Staff at Hope Orphanage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395952
+    m_Localized: Li Xiufang
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395953
+    m_Localized: Care Staff at Hope Orphanage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395954
+    m_Localized: Liu Zhiming*
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395955
+    m_Localized: Dual Identity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395956
+    m_Localized: Care Staff at Hope Orphanage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395957
+    m_Localized: Project Lead for "BB-04" at Blue Morpho Pharmaceutical Company
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395958
+    m_Localized: Most likely the mastermind, unless something unexpected happens.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395959
+    m_Localized: Elderly Man at the Park
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395960
+    m_Localized: Frequently visits the park
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395961
+    m_Localized: Keeps a key for the director
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395962
+    m_Localized: Hands the key to the detective
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395963
+    m_Localized: Volunteer A
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395964
+    m_Localized: Volunteer at Kindness Welfare Home
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395965
+    m_Localized: Volunteer B
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395966
+    m_Localized: Volunteer at Kindness Welfare Home
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395967
+    m_Localized: Child A
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395968
+    m_Localized: Child transferred from the orphanage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395969
+    m_Localized: Child B
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395970
+    m_Localized: Child transferred from the orphanage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395971
+    m_Localized: Child C
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395972
+    m_Localized: Child transferred from the orphanage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395973
+    m_Localized: Mentions that Mr. Liu had a card printed with a blue butterfly
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395974
+    m_Localized: Bookshelf
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395975
+    m_Localized: 'Location: Home'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395976
+    m_Localized: Various books are neatly arranged on the bookshelf.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395977
+    m_Localized: Books useful for detective work, such as "The Detective's Guide
+      to Self-Improvement," "Hypothetical Logic Training," and "The Memory Palace
+      Method."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395978
+    m_Localized: There are also novels, comics, magazines, and other books collected
+      out of personal interest.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395979
+    m_Localized: Computer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395980
+    m_Localized: 'Location: Home'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395981
+    m_Localized: Can be used to search for information online or browse various websites
+      and social media platforms.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395982
+    m_Localized: Clue Board
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395983
+    m_Localized: 'Location: Home'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395984
+    m_Localized: Organize all relevant clues here and deduce the truth.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395985
+    m_Localized: First-Aid Kit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395986
+    m_Localized: 'Location: Home'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395987
+    m_Localized: There is a small first-aid kit on the bottom shelf of the bookshelf,
+      marked with a blue butterfly logo.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395988
+    m_Localized: You bought it just in case after you started living alone. Thankfully,
+      you've been healthy enough that the first-aid kit hasn't had a chance to do
+      its job yet.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395989
+    m_Localized: Sports Supplies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395990
+    m_Localized: "Location: Hope Orphanage \xB7 Entrance"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395991
+    m_Localized: In a corner near the entrance are some sports supplies, including
+      hula hoops, children's sandbags, jump ropes, and colorful plastic balls. They
+      seem to have been prepared for today's sports day.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395992
+    m_Localized: Bulletin Board
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395993
+    m_Localized: "Location: Hope Orphanage \xB7 Entrance"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395994
+    m_Localized: The bulletin board displays the children's work, some daily notices,
+      and Hope Orphanage's staff organization chart.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395995
+    m_Localized: Children's Work
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395996
+    m_Localized: "Location: Hope Orphanage \xB7 Entrance \xB7 Bulletin Board"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395997
+    m_Localized: Any children's work, such as drawings, essays, poems, or other pieces.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395998
+    m_Localized: Daily Notices
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910395999
+    m_Localized: "Location: Hope Orphanage \xB7 Entrance \xB7 Bulletin Board"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396000
+    m_Localized: Any ordinary notices, such as a sports day poster, this week's menu,
+      class schedule, or something similar.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396001
+    m_Localized: Hope Orphanage Staff Organization Chart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396002
+    m_Localized: "Location: Hope Orphanage \xB7 Entrance \xB7 Bulletin Board"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396003
+    m_Localized: '![](flowam:img-1787584472765-9g6phi =813x417)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396004
+    m_Localized: Zhang Huiling's Desk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396005
+    m_Localized: "Location: Hope Orphanage \xB7 Staff Room"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396006
+    m_Localized: Zhang Huiling's name is attached to the corner of the desk. The
+      schedule for the sports day is on the desk.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396007
+    m_Localized: Wang Xiuli's Desk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396008
+    m_Localized: "Location: Hope Orphanage \xB7 Staff Room"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396009
+    m_Localized: Wang Xiuli's name is attached to the corner of the desk. Some half-graded
+      homework is on the desk.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396010
+    m_Localized: Li Xiufang's Desk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396011
+    m_Localized: "Location: Hope Orphanage \xB7 Staff Room"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396012
+    m_Localized: Li Xiufang's name is attached to the corner of the desk. A small
+      note reminding her of her password is stuck to the edge of the computer monitor.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396013
+    m_Localized: Password Note
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396014
+    m_Localized: "Location: Hope Orphanage \xB7 Staff Room \xB7 Li Xiufang's Desk"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396015
+    m_Localized: It says, "The password is my birthday."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396016
+    m_Localized: '*Same as the one photographed on social media'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396017
+    m_Localized: Key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396018
+    m_Localized: "Location: Park \xB7 Given by the Elderly Man"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396019
+    m_Localized: A key the director asked the elderly man to keep for him.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396020
+    m_Localized: The elderly man passes it on to the detective.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396021
+    m_Localized: Its purpose is unknown.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396022
+    m_Localized: '*Currently useless lol'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396023
+    m_Localized: Sports Supplies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396024
+    m_Localized: In a corner near the entrance are some sports supplies, including
+      hula hoops, children's sandbags, jump ropes, and colorful plastic balls. They
+      seem to have been prepared for today's sports day.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396025
+    m_Localized: Bulletin Board
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396026
+    m_Localized: The bulletin board displays the children's work, some daily notices,
+      and Hope Orphanage's staff organization chart.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396027
+    m_Localized: Zhang Huiling's Desk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396028
+    m_Localized: Zhang Huiling's name is attached to the corner of the desk. The
+      schedule for the sports day is on the desk.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396029
+    m_Localized: Wang Xiuli's Desk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396030
+    m_Localized: Wang Xiuli's name is attached to the corner of the desk. Some half-graded
+      homework is on the desk.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396031
+    m_Localized: Li Xiufang's Desk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396032
+    m_Localized: Li Xiufang's name is attached to the corner of the desk. A small
+      note reminding her of her password is stuck to the edge of the computer monitor.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396033
+    m_Localized: Password Note
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396034
+    m_Localized: It says, "The password is my birthday."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396035
+    m_Localized: '*Same as the one photographed on social media'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396036
+    m_Localized: Key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396037
+    m_Localized: A key the director asked the elderly man to keep for him.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396038
+    m_Localized: The elderly man passes it on to the detective.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396039
+    m_Localized: Its purpose is unknown.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396040
+    m_Localized: Elderly Man at the Park
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396041
+    m_Localized: Frequently visits the park
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396042
+    m_Localized: Keeps a key for the director
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396043
+    m_Localized: Hands the key to the detective
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396044
+    m_Localized: Volunteer A
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396045
+    m_Localized: Volunteer at Kindness Welfare Home
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396046
+    m_Localized: Volunteer B
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396047
+    m_Localized: Volunteer at Kindness Welfare Home
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396048
+    m_Localized: Child A
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396049
+    m_Localized: Child transferred from the orphanage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396050
+    m_Localized: Child B
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396051
+    m_Localized: Child transferred from the orphanage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396052
+    m_Localized: Child C
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396053
+    m_Localized: Child transferred from the orphanage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396054
+    m_Localized: Mentions that Mr. Liu had a card printed with a blue butterfly
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396055
+    m_Localized: Hope Orphanage Staff Photos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396056
+    m_Localized: 'Appears in: Hope Orphanage Staff Organization Chart'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396057
+    m_Localized: Photos of the seven staff members at Hope Orphanage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396058
+    m_Localized: '*Liu Zhiming''s face should match the "BB-04" project lead'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396059
+    m_Localized: Village Map
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047910396060
+    m_Localized: "Appears in: Detective Qualification Practice Test \u2014 \"The
+      Missing Cat\""
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047918784512
+    m_Localized: '![](flowam:img-1787584472766-7q5cir)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047918784513
+    m_Localized: Photo of the "BB-04" Project Lead
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047918784514
+    m_Localized: "Appears in: BB-04 Breaks a Medical Barrier\u2014A Cure for Terminal
+      Illnesses!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047918784515
+    m_Localized: A photo of the project lead taken while he is giving a speech.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047918784516
+    m_Localized: '*He is the same person as Liu Zhiming, so the face should be identical.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047918784517
+    m_Localized: Photo of the Hope Orphanage Staff Room
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047918784518
+    m_Localized: 'Appears in: A Social Media Platform'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047918784519
+    m_Localized: A photo of Li Xiufang's desk, with the small password note visible.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047918784520
+    m_Localized: Random Cat Photo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047918784521
+    m_Localized: 'Appears in: Someone''s Profile Page'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8047918784522
+    m_Localized: "Nothing particularly important\u2014just cats lol."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 173856490201088
+    m_Localized: Internet Discorvery
+    m_Metadata:
+      m_Items: []
+  - m_Id: 173856490201089
+    m_Localized: Test Tutorial
+    m_Metadata:
+      m_Items: []
+  - m_Id: 173856490201090
+    m_Localized: Everyday News
+    m_Metadata:
+      m_Items: []
+  - m_Id: 173856490201091
+    m_Localized: Bookers
+    m_Metadata:
+      m_Items: []
+  - m_Id: 173856490201092
+    m_Localized: Hope Orphanage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 173856490201093
+    m_Localized: Kindness Welfare Home
+    m_Metadata:
+      m_Items: []
+  - m_Id: 173856490201094
+    m_Localized: Blue Morpho Pharmaceutical
+    m_Metadata:
+      m_Items: []
+  - m_Id: 185277865205760
+    m_Localized: Everyday News
+    m_Metadata:
+      m_Items: []
+  - m_Id: 195979866742784
+    m_Localized: Home
+    m_Metadata:
+      m_Items: []
+  - m_Id: 195979875131392
+    m_Localized: Explore
+    m_Metadata:
+      m_Items: []
+  - m_Id: 195979875131393
+    m_Localized: Notification
+    m_Metadata:
+      m_Items: []
+  - m_Id: 195979875131394
+    m_Localized: Chat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 195979875131395
+    m_Localized: Profile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 195979875131396
+    m_Localized: Trending
+    m_Metadata:
+      m_Items: []
+  - m_Id: 195979875131397
+    m_Localized: '#Hope Orphanage'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 195979875131398
+    m_Localized: '#Fire'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 195979875131399
+    m_Localized: '#Ran'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 195979875131400
+    m_Localized: '#Missing'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 200622319542272
+    m_Localized: "Enter Keyword\u2026"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

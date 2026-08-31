@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5be51871efa6c3e4eae1703925c8f5ac, type: 3}
+  m_Name: Script Assets
+  m_EditorClassIdentifier: Unity.Localization.Editor::UnityEditor.Localization.StringTableCollection
+  m_SharedTableData: {fileID: 11400000, guid: bae3f0c0768e84a4b91ae3b46e2c292f, type: 2}
+  m_Tables:
+  - {fileID: 11400000, guid: b45ac42b20e105740a7a479b6fe5d133, type: 2}
+  - {fileID: 11400000, guid: 6083982c9a8a95e4fbf9b5d3f2326950, type: 2}
+  m_Extensions:
+  - rid: 1944176950501703719
+  m_Group: String Table
+  references:
+    version: 2
+    RefIds:
+    - rid: 1944176950501703719
+      type: {class: CsvExtension, ns: UnityEditor.Localization.Plugins.CSV, asm: Unity.Localization.Editor}
+      data:
+        m_Collection: {fileID: 11400000}
+        m_ColumnsList:
+        - rid: 1944176950501703720
+        - rid: 1944176950501703721
+        - rid: 1944176950501703722
+        m_ConnectedFile: "Assets/Localization/\u5E0C\u671B\u5B64\u513F\u9662_\u5267\u672C\u6587\u672C_Localization.csv"
+    - rid: 1944176950501703720
+      type: {class: KeyIdColumns, ns: UnityEditor.Localization.Plugins.CSV.Columns, asm: Unity.Localization.Editor}
+      data:
+        m_IncludeId: 1
+        m_IncludeSharedComments: 1
+        m_KeyFieldName: Key
+        m_IdFieldName: Id
+        m_CommentFieldName: Shared Comments
+    - rid: 1944176950501703721
+      type: {class: LocaleColumns, ns: UnityEditor.Localization.Plugins.CSV.Columns, asm: Unity.Localization.Editor}
+      data:
+        m_LocaleIdentifier:
+          m_Code: zh-CN
+        m_FieldName: Chinese (Simplified)(zh-CN)
+        m_CommentFieldName: Chinese (Simplified)(zh-CN) Comments
+        m_IncludeComments: 1
+    - rid: 1944176950501703722
+      type: {class: LocaleColumns, ns: UnityEditor.Localization.Plugins.CSV.Columns, asm: Unity.Localization.Editor}
+      data:
+        m_LocaleIdentifier:
+          m_Code: en-US
+        m_FieldName: English (United States)(en-US)
+        m_CommentFieldName: English (United States)(en-US) Comments
+        m_IncludeComments: 1
