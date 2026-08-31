@@ -65,6 +65,32 @@ public class LookController : MonoBehaviour
         SelectSceneImage(sceneIndex);
     }
 
+    /// <summary>
+    /// Sets the currently viewed image directly without changing scene image visibility.
+    /// </summary>
+    public void ShowSceneImage(RectTransform image)
+    {
+        if (image == null)
+        {
+            return;
+        }
+
+        if (movementRoot == null && image.parent != null)
+        {
+            movementRoot = image.parent as RectTransform;
+        }
+
+        roomImage = image;
+
+        Canvas.ForceUpdateCanvases();
+        CenterRoomInView();
+
+        centerX = movementRoot != null ? movementRoot.anchoredPosition.x : roomImage.anchoredPosition.x;
+        targetX = centerX;
+
+        RecalculateMoveLimit();
+    }
+
     public void ShowNextSceneImage()
     {
         if (sceneImages.Count == 0)

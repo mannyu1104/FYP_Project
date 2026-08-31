@@ -154,4 +154,16 @@ public class MapButton : MonoBehaviour
             }
         }
     }
+
+    public static void SyncMapState(bool visible)
+    {
+        isAnyMapOpen = visible;
+
+        MapButton[] allButtons = FindObjectsByType<MapButton>(FindObjectsSortMode.None);
+        for (int i = 0; i < allButtons.Length; i++)
+        {
+            allButtons[i].isOpen = visible;
+            allButtons[i].RefreshCursorState();
+        }
+    }
 }
