@@ -11,9 +11,28 @@ public class InventorySlot : MonoBehaviour, IDropHandler
             {
                 GameObject dropped = eventData.pointerDrag;
                 DragableItem draggableitem = dropped.GetComponent<DragableItem>();
-                if (draggableitem.thisUnlocked == true && draggableitem.thisGet == true)
+                DragableItemSave draggableitemSave = dropped.GetComponent<DragableItemSave>();
+                //if (draggableitem.thisUnlocked == true && draggableitem.thisGet == true)
+                //{
+                //    draggableitem.parentAfterDrag = transform;
+                //}
+                if (draggableitemSave != null)
                 {
-                    draggableitem.parentAfterDrag = transform;
+                    if (draggableitemSave.thisGet == true)
+                    {
+                        draggableitemSave.parentAfterDrag = transform;
+                    }
+                }
+                else if (draggableitem != null)
+                {
+                    if (draggableitem.thisGet == true)
+                    {
+                        draggableitem.parentAfterDrag = transform;
+                    }
+                }
+                else
+                {
+                    return;
                 }
             }
             else
