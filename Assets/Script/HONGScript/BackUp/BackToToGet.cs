@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class UsingEvent : MonoBehaviour
+public class BackToToGet : MonoBehaviour
 {
-    public InventoryManagerINFO inventoryUsing;
+    public InventoryManager inventoryUsing;
     //[SerializeField] int CorrectID;
 
     public GameObject currentTarget;
@@ -33,15 +33,8 @@ public class UsingEvent : MonoBehaviour
         {
             if (currentTarget != null)
             {
-                //DragableItem dragableItem = currentTarget.GetComponent<DragableItem>();
-                //if (dragableItem.thisID == CorrectID)
-                //{
-                //    inventoryUsing.AddItem(currentTarget);
-                //    gameObject.SetActive(false);
-                //}
                 inventoryUsing.AddItem(currentTarget);
                 currentTarget = null;
-                //gameObject.SetActive(false);
             }
         }
     }

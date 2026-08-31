@@ -1,8 +1,13 @@
 using UnityEngine;
 
-public class UsingEvent : MonoBehaviour
+public class MapUnlock : MonoBehaviour
 {
-    public InventoryManagerINFO inventoryUsing;
+    [SerializeField] private MapIcon Map1;
+    [SerializeField] private MapIcon Map2;
+    [SerializeField] private MapIcon Map3;
+    [SerializeField] private MapIcon Map4;
+    [SerializeField] private MapIcon Map5;
+
     //[SerializeField] int CorrectID;
 
     public GameObject currentTarget;
@@ -11,8 +16,8 @@ public class UsingEvent : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Item"))
         {
-            DragableItem item = collision.gameObject.GetComponent<DragableItem>();
-            if (item.thisGet == true && item.thisType == "Tutorial")
+            DragableItemSave item = collision.gameObject.GetComponent<DragableItemSave>();
+            if (item.thisGet == true)
             {
                 currentTarget = collision.gameObject;
             }
@@ -33,13 +38,22 @@ public class UsingEvent : MonoBehaviour
         {
             if (currentTarget != null)
             {
+                DragableItemSave item = currentTarget.GetComponent<DragableItemSave>();
+
+                if (item.thisID == 0)
+                {
+                    Map1.Unlocking();
+                    item.thisUsed = true;
+                    item.DeleteOther();
+                }
+
+
                 //DragableItem dragableItem = currentTarget.GetComponent<DragableItem>();
                 //if (dragableItem.thisID == CorrectID)
                 //{
                 //    inventoryUsing.AddItem(currentTarget);
                 //    gameObject.SetActive(false);
                 //}
-                inventoryUsing.AddItem(currentTarget);
                 currentTarget = null;
                 //gameObject.SetActive(false);
             }

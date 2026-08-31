@@ -2,24 +2,20 @@ using UnityEditor.Profiling;
 using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using TMPro;
 using UnityEngine.UI;
 
-public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
+public class DragableItemSave : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler //IPointerClickHandler
 {
-    public Item item;
-    public Image image;
+    public MapItem item;
     [HideInInspector] public Transform parentAfterDrag;
-    [SerializeField] private TMP_Text SumShowText;
-
+    public Image image;
+    public bool thisShow;
+    //public bool thisUnlocked;
     public string thisType;
-    public string thisName;
-    public string thisDescription;
-    //public bool thisShow;
     public bool thisGet;
     public bool thisUsed;
     public int thisID;
-    [SerializeField] private TMP_Text Description;
+    //[SerializeField] GameObject Description;
     public GameObject DesUI;
     public GameObject InvenUI;
     public bool isdragging;
@@ -28,29 +24,31 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     {
         InitialiseItem(item);
 
-        SumShowText.text = thisName;
+        if (thisShow == true)
+        {
+            image.sprite = item.Image;
+        }
+        if (thisUsed == true)
+        {
+            DeleteOther();
+            Destroy(gameObject);
+        }
     }
 
-    void Update()
-    {
-        //if (thisShow == true)
-        //{
-        //    image.sprite = item.Image;
-        //}
-    }
+    //void Update()
+    //{
 
-    public void InitialiseItem(Item newItem)
+    //}
+
+    public void InitialiseItem(MapItem newItem)
     {
         item = newItem;
+        //thisUnlocked = newItem.Unlocked;
         thisGet = newItem.Get;
         thisUsed = newItem.Used;
         thisID = newItem.ItemID;
-        //thisShow = newItem.Show;
-        thisDescription = newItem.Description;
-        thisName = newItem.ItemShowName;
-        thisType = newItem.TypeofItem;
+        thisShow = newItem.Show;
         isdragging = false;
-        
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -62,7 +60,6 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             transform.SetParent(transform.root);
             transform.SetAsLastSibling();
             image.raycastTarget = false;
-            SumShowText.raycastTarget = false;
         }
     }
 
@@ -83,9 +80,7 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             Debug.Log("EndDrag");
             isdragging = false;
             transform.SetParent(parentAfterDrag);
-            transform.position = transform.parent.position;
             image.raycastTarget = true;
-            SumShowText.raycastTarget = true;
         }
         //else if (!thisUsed && thisGet == true)
         //{
@@ -95,15 +90,15 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         //}
     }
 
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        if (thisGet && isdragging == false)
-        {
-            DesUI.SetActive(true);
-            Description.text = thisDescription;
-            InvenUI.SetActive(false);
-        }
-    }
+    //public void OnPointerClick(PointerEventData eventData)
+    //{
+    //    if (thisUsed)
+    //    {
+    //        DesUI.SetActive(true);
+    //        Description.SetActive(true);
+    //        InvenUI.SetActive(false);
+    //    }
+    //}
 
     public void LoadSetParent()
     {
@@ -114,6 +109,19 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         else
         {
             return;
+        }
+    }
+
+    public void DeleteOther()
+    {
+        DragableItemSave[] duplicatecheck = FindObjectsByType<DragableItemSave>();
+
+        foreach (DragableItemSave duplicate in duplicatecheck)
+        {
+            if (duplicate.thisID == thisID)
+            {
+                Destroy(duplicate.gameObject);
+            }
         }
     }
 

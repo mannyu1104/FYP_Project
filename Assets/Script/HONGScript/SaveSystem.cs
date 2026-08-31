@@ -18,6 +18,7 @@ public class ItemBooleanData
     public bool Used;
     public string ItemShowName;
     public string Description;
+    public string TypeofItem;
 }
 
 public class SaveSystem: MonoBehaviour
@@ -52,6 +53,7 @@ public class SaveSystem: MonoBehaviour
             dataItem.Used = item.thisUsed;
             dataItem.Description = item.thisDescription;
             dataItem.ItemShowName = item.thisName;
+            dataItem.TypeofItem = item.thisType;
 
             data.ItemBool.Add(dataItem);
         }

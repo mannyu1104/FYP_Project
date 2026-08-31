@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Map
   ImageLocked: {fileID: 0}
   ImageUnlocked: {fileID: 0}
+  PlaceName: "\u5236\u836F\u516C\u53F8"
   MapID: 2
   Unlocked: 0

@@ -1,0 +1,59 @@
+using UnityEngine;
+using System.Collections.Generic;
+using TMPro;
+
+public class CountingPoint : MonoBehaviour
+{
+    [SerializeField] public List<int> CorrectIDList = new List<int>();
+    [SerializeField] public List<int> WrongIDList = new List<int>();
+    [SerializeField] private TMP_Text ScoreShow;
+
+    private float Score;
+    private int ScoreShowin;
+
+    private void Start()
+    {
+        Score = 0;
+    }
+
+    public void CountingPoints()
+    {
+        DragableItem[] items = FindObjectsByType<DragableItem>();
+        
+
+        foreach (DragableItem item in items)
+        {
+            if (CorrectIDList.Contains(item.thisID))
+            {
+                if (item.thisUsed == true)
+                {
+                    Score += 100 / (CorrectIDList.Count + WrongIDList.Count);
+                }
+                else if (item.thisUsed == false) 
+                {
+                    Score -= 100 / ((CorrectIDList.Count + WrongIDList.Count)* 2f);
+                }
+            }
+            else if (WrongIDList.Contains(item.thisID))
+            {
+                if (item.thisUsed == false)
+                {
+                    Score += 100 / (CorrectIDList.Count + WrongIDList.Count);
+                }
+                else if (item.thisUsed == true)
+                {
+                    Score -= 100 / ((CorrectIDList.Count + WrongIDList.Count) * 2f);
+                }
+            }
+        }
+
+        ScoreShowin = (int)Score;
+
+        if (ScoreShowin < 0)
+        {
+            ScoreShowin = 0;
+        }
+
+        ScoreShow.text = "Score: " + ScoreShowin;
+    }
+}
