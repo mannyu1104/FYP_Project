@@ -13,6 +13,18 @@ MonoBehaviour:
   m_Name: OrphanageHPWebPageData
   m_EditorClassIdentifier: Assembly-CSharp::WebPageDataScriptableObject
   pageId: 3
-  tabTitle: "\u5E0C\u671B\u5B64\u513F\u9662"
+  tabTitle:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 173856490201092
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   tabIcon: {fileID: 21300000, guid: e326830aa25e04681af93fc492fefb92, type: 3}
+  tabText: 
   layoutType: 2
+  references:
+    version: 2
+    RefIds: []

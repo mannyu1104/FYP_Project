@@ -1,13 +1,15 @@
 using UnityEngine;
+using UnityEngine.Localization;
 
 [CreateAssetMenu(fileName = "NewOrphanageAnnouncement", menuName = "ScriptableObject/Orphanage Announcement")]
 public class OrphanageAnnouncementData : ClueSourceData
 {
-    [SerializeField] private string title;
-    [SerializeField] private string date;
-    [SerializeField][TextArea(5, 20)] private string content;
+    [Header("Orphanage Announcement Details")]
+    [SerializeField] private LocalizedString title;
+    [SerializeField] private LocalizedString date;
+    [SerializeField] private LocalizedString content;
 
-    public string Title => title;
-    public string Date => date;
-    public string Content => content;
+    public LocalizedString Title => title;
+    public LocalizedString Date => date;
+    public LocalizedString Content => content;
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Localization;
 
 // Central store of every clue the player has recorded
 public class ClueManager : MonoBehaviour
@@ -11,8 +12,8 @@ public class ClueManager : MonoBehaviour
     [Serializable]
     public class RecordedClue
     {
-        public string title;
-        public string summary;
+        public LocalizedString title;
+        public LocalizedString summary;
         public ClueCredibility credibility;
         public CaseDefinition caseDefinition;
     }
@@ -43,12 +44,12 @@ public class ClueManager : MonoBehaviour
         }
     }
 
-    public void RecordClue(string title, string summary, ClueCredibility credibility, CaseDefinition caseDefinition)
+    public void RecordClue(LocalizedString title, LocalizedString summary, ClueCredibility credibility, CaseDefinition caseDefinition)
     {
         // Same clue should not be recorded twice
         foreach (RecordedClue existing in recordedClues)
         {
-            if (existing.title == title && existing.summary == summary)
+            if (IsSameEntry(existing.title, title) && IsSameEntry(existing.summary, summary))
                 return;
         }
 
@@ -62,7 +63,13 @@ public class ClueManager : MonoBehaviour
         recordedClues.Add(clue);
         OnClueRecorded?.Invoke(clue);
 
-        Debug.Log($"Clue recorded: {title} (case: {caseDefinition?.CaseName})");
+        Debug.Log($"Clue recorded: {title.GetLocalizedString()} (case: {caseDefinition?.CaseName})");
+    }
+
+    private bool IsSameEntry(LocalizedString a, LocalizedString b)
+    {
+        if (a == null || b == null) return a == b;
+        return a.TableReference.Equals(b.TableReference) && a.TableEntryReference.Equals(b.TableEntryReference);
     }
 
     // Call this if the player can retry the puzzle without reloading the scene.
@@ -76,7 +83,7 @@ public class ClueManager : MonoBehaviour
     {
         foreach (RecordedClue clue in recordedClues)
         {
-            Debug.Log($"Title: {clue.title}, Summary: {clue.summary}, Credibility: {clue.credibility}, Case: {clue.caseDefinition?.CaseName}");
+            Debug.Log($"Title: {clue.title.GetLocalizedString()}, Summary: {clue.summary.GetLocalizedString()}, Credibility: {clue.credibility}, Case: {clue.caseDefinition?.CaseName}");
         }
     }
 }

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Localization Settings
   m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Settings.LocalizationSettings
   m_StartupSelectors:
+  - rid: 1944176950501703869
   - rid: 1944176950501703680
   - rid: 1944176950501703681
   - rid: 1944176950501703682
@@ -205,3 +206,8 @@ MonoBehaviour:
         - default
         - d
         - 
+    - rid: 1944176950501703869
+      type: {class: SpecificLocaleSelector, ns: UnityEngine.Localization.Settings, asm: Unity.Localization}
+      data:
+        m_LocaleId:
+          m_Code: zh-CN

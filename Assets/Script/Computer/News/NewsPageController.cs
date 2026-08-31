@@ -23,11 +23,15 @@ public class NewsPageController : ListDetailPageController<NewsArticleData, News
 
     private readonly List<GameObject> spawnedComments = new List<GameObject>();
 
+    private NewsArticleData articleData;
+
     protected override void PopulateDetail(NewsArticleData article)
     {
-        detailHeadlineText.text = article.Headline;
-        detailDateText.text = article.Date;
-        detailContentText.text = article.Content;
+        UnsubscribeFromLocalization();
+        articleData = article;
+
+        SubscribeToLocalization();
+
         detailContentText.verticalScrollbar.value = 0f; // Scroll to top
 
         BuildComments(article);
@@ -57,5 +61,41 @@ public class NewsPageController : ListDetailPageController<NewsArticleData, News
             item.Bind(comment, this);
             spawnedComments.Add(item.gameObject);
         }
+    }
+
+    private void SubscribeToLocalization()
+    {
+        if (articleData == null) return;
+        articleData.Headline.StringChanged += UpdateHeadlineText;
+        articleData.Date.StringChanged += UpdateDateText;
+        articleData.Content.StringChanged += UpdateContentText;
+    }
+
+    private void UnsubscribeFromLocalization()
+    {
+        if (articleData == null) return;
+        articleData.Headline.StringChanged -= UpdateHeadlineText;
+        articleData.Date.StringChanged -= UpdateDateText;
+        articleData.Content.StringChanged -= UpdateContentText;
+    }
+
+    private void UpdateHeadlineText(string value)
+    {
+        if (detailHeadlineText != null) detailHeadlineText.text = value;
+    }
+
+    private void UpdateDateText(string value)
+    {
+        if (detailDateText != null) detailDateText.text = value;
+    }
+
+    private void UpdateContentText(string value)
+    {
+        if (detailContentText != null) detailContentText.text = value;
+    }
+
+    private void OnDestroy()
+    {
+        UnsubscribeFromLocalization();
     }
 }

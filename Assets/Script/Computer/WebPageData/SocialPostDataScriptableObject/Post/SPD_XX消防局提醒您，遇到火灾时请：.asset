@@ -12,20 +12,71 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d613c920529365743a062cf772b5632e, type: 3}
   m_Name: "SPD_XX\u6D88\u9632\u5C40\u63D0\u9192\u60A8\uFF0C\u9047\u5230\u706B\u707E\u65F6\u8BF7\uFF1A"
   m_EditorClassIdentifier: Assembly-CSharp::SocialPostData
-  clueTitle: "XX\u6D88\u9632\u5C40\u7684\u63D0\u9192"
-  clueSummary: "- \u4E00\u4E9B\u5173\u4E8E\u9047\u5230\u706B\u707E\u65F6\u7684\u63AA\u65BD"
+  clueTitle:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 310111563620377
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  clueSummary:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 310111563620378
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  clueCredibility: 0
+  caseDefinition: {fileID: 11400000, guid: 4ac043355916a064280fd6ecf7cc4eca, type: 2}
   account: {fileID: 11400000, guid: d92a60538fdc62f48805c8afaa7a5474, type: 2}
-  content: "XX\u6D88\u9632\u5C40\u63D0\u9192\u60A8\uFF0C\u9047\u5230\u706B\u707E\u65F6\u8BF7\uFF1A\n\n1.
-    \u82E5\u60C5\u51B5\u5141\u8BB8\uFF0C\u8BF7\u5927\u58F0\u547C\u558A\uFF0C\u901A\u77E5\u9644\u8FD1\u7684\u5176\u4ED6\u4EBA\n2.
-    \u5C06\u6BDB\u5DFE\u5F04\u6E7F\uFF0C\u76D6\u4F4F\u53E3\u9F3B\u5E76\u5E95\u4E0B\u8EAB\u5B50\u524D\u8FDB\n3.\u8BF7\u7ACB\u523B\u79BB\u5F00\u706B\u707E\u73B0\u573A\uFF0C\u5207\u52FF\u8D2A\u604B\u8D22\u7269\n4.\u5207\u52FF\u642D\u4E58\u7535\u68AF\uFF0C\u800C\u4EE5\u697C\u68AF\u9003\u751F"
+  content:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047902007316
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   postImage: {fileID: 0}
   comments:
   - account: {fileID: 11400000, guid: 0d6f3b10396c1f9438365347062d938c, type: 2}
-    commentText: "\u611F\u8C22\u63D0\u9192\uFF0C\u5DF2\u8F6C\u53D1"
+    commentText:
+      m_TableReference:
+        m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+      m_TableEntryReference:
+        m_KeyId: 8047902007319
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     hasProfilePage: 0
   - account: {fileID: 11400000, guid: a74786eb4efd77b4bb5171762d4e0279, type: 2}
-    commentText: "\u5E0C\u671B\u5927\u5BB6\u4E00\u8F88\u5B50\u90FD\u4E0D\u4F1A\u7528\u4E0A\u8FD9\u4E9B\u77E5\u8BC6"
+    commentText:
+      m_TableReference:
+        m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+      m_TableEntryReference:
+        m_KeyId: 8047902007320
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     hasProfilePage: 0
   - account: {fileID: 11400000, guid: 542494bd2126b884c847c1c383c78d7d, type: 2}
-    commentText: "\u662F\u4E0D\u662F\u8981\u5728\u5BB6\u91CC\u81EA\u5907\u706D\u706B\u5668\u6BD4\u8F83\u597D\u554A"
+    commentText:
+      m_TableReference:
+        m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+      m_TableEntryReference:
+        m_KeyId: 8047902007321
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     hasProfilePage: 0
+  references:
+    version: 2
+    RefIds: []

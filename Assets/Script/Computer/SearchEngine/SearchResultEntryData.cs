@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Localization;
 
 // Data entry that can appear in search results.
 [CreateAssetMenu(fileName = "NewSearchResultEntry", menuName = "ScriptableObject/Search Result Entry")]
@@ -8,7 +9,7 @@ public class SearchResultEntryData : ScriptableObject
     public string[] keywords;
 
     [Header("Search Result List Display")]
-    public string resultTitle;
+    public LocalizedString resultTitle;
 
     [Header("Destination")]
     public WebPageDataScriptableObject pageData;

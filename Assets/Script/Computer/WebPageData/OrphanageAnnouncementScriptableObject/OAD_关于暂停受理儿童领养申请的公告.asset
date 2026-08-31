@@ -12,10 +12,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1d1c959a828f8a4493bee4c3d71a813, type: 3}
   m_Name: "OAD_\u5173\u4E8E\u6682\u505C\u53D7\u7406\u513F\u7AE5\u9886\u517B\u7533\u8BF7\u7684\u516C\u544A"
   m_EditorClassIdentifier: Assembly-CSharp::OrphanageAnnouncementData
-  clueTitle: "\u516C\u544A\uFF1A\u5173\u4E8E\u6682\u505C\u53D7\u7406\u513F\u7AE5\u9886\u517B\u7533\u8BF7\u7684\u516C\u544A"
-  clueSummary: 
-  isCredible: 1
-  title: "\u516C\u544A\uFF1A\u5173\u4E8E\u6682\u505C\u53D7\u7406\u513F\u7AE5\u9886\u517B\u7533\u8BF7\u7684\u516C\u544A"
-  date: "2012\u5E747\u670819\u65E5"
-  content: "\u4E3A\u4E86\u8FDB\u4E00\u6B65\u5B8C\u5584\u672C\u9662\u513F\u7AE5\u7167\u62A4\u5236\u5EA6\uFF0C\u5E76\u914D\u5408\u9662\u5185\u8FD1\u671F\u8FDB\u884C\u7684\u9886\u517B\u6D41\u7A0B\u68C0\u89C6\u53CA\u76F8\u5173\u8D44\u6599\u6574\u7406\u5DE5\u4F5C\uFF0C\u81EA\u5373\u65E5\u8D77\uFF0C\u672C\u9662\u5C06\u6682\u505C\u53D7\u7406\u65B0\u7684\u513F\u7AE5\u9886\u517B\u7533\u8BF7\u3002\u6062\u590D\u53D7\u7406\u65F6\u95F4\u5C06\u89C6\u9662\u5185\u4F5C\u4E1A\u8FDB\u5EA6\u53E6\u884C\u516C\u544A\uFF0C\u9020\u6210\u60A8\u7684\u4E0D\u4FBF\uFF0C\u656C\u8BF7\u89C1\u8C05\u3002\n\n\n\u611F\u8C22\u5927\u5BB6\u4E00\u76F4\u4EE5\u6765\u7ED9\u4E88\u5B69\u5B50\u4EEC\u7684\u5173\u6000\u4E0E\u652F\u6301\uFF0C\u4E5F\u5E0C\u671B\u5927\u5BB6\u80FD\u591F\u7EE7\u7EED\u966A\u4F34\u5B69\u5B50\u4EEC\u5065\u5EB7\u6210\u957F\u3002\n\n\n\n\u5E0C\u671B\u5B64\u513F\u9662
-    \u656C\u542F"
+  clueTitle:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  clueSummary:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  clueCredibility: 0
+  caseDefinition: {fileID: 0}
+  title:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047902007349
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  date:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047902007350
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  content:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047902007351
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []

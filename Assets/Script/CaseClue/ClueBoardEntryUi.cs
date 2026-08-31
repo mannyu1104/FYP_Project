@@ -14,10 +14,44 @@ public class ClueBoardEntryUI : MonoBehaviour
 
     public ClueCredibility Credibility { get; private set; }
 
+    private ClueManager.RecordedClue clueData;
+
     public void Set(ClueManager.RecordedClue clue)
     {
-        titleText.text = clue.title;
-        summaryText.text = clue.summary;
+        UnsubscribeFromLocalization();
+        clueData = clue;
+
+        SubscribeToLocalization();
+
         Credibility = clue.credibility;
+    }
+
+    private void SubscribeToLocalization()
+    {
+        if (clueData == null) return;
+        clueData.title.StringChanged += UpdateTitleText;
+        clueData.summary.StringChanged += UpdateSummaryText;
+    }
+
+    private void UnsubscribeFromLocalization()
+    {
+        if (clueData == null) return;
+        clueData.title.StringChanged -= UpdateTitleText;
+        clueData.summary.StringChanged -= UpdateSummaryText;
+    }
+
+    private void UpdateTitleText(string value)
+    {
+        if (titleText != null) titleText.text = value;
+    }
+
+    private void UpdateSummaryText(string value)
+    {
+        if (summaryText != null) summaryText.text = value;
+    }
+
+    private void OnDestroy()
+    {
+        UnsubscribeFromLocalization();
     }
 }

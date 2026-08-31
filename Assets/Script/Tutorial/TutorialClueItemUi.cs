@@ -21,13 +21,16 @@ public class TutorialClueItemUi : MonoBehaviour
     
     public void Bind(TutorialPageController owner)
     {
+        UnsubscribeFromLocalization();
+
         if (clueData == null)
         {
             Debug.LogWarning("TutorialClueItemUI has no Clue Data assigned.", this);
             return;
         }
 
-        nameText.text = clueData.TutorialClueName;
+        SubscribeToLocalization();
+
         if (clueImage != null)
         {
             clueImage.sprite = clueData.ClueImage;
@@ -35,5 +38,27 @@ public class TutorialClueItemUi : MonoBehaviour
 
         customButton.onLeftClick.RemoveAllListeners();
         customButton.onLeftClick.AddListener(() => owner.ShowTutorialClueDetail(clueData));
+    }
+
+    private void SubscribeToLocalization()
+    {
+        if (clueData == null) return;
+        clueData.TutorialClueName.StringChanged += UpdateNameText;
+    }
+
+    private void UnsubscribeFromLocalization()
+    {
+        if (clueData == null) return;
+        clueData.TutorialClueName.StringChanged -= UpdateNameText;
+    }
+
+    private void UpdateNameText(string value)
+    {
+        if (nameText != null) nameText.text = value;
+    }
+
+    private void OnDestroy()
+    {
+        UnsubscribeFromLocalization();
     }
 }

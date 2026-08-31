@@ -12,10 +12,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1d1c959a828f8a4493bee4c3d71a813, type: 3}
   m_Name: "OAD_\u5E0C\u671B\u5B64\u513F\u9662\u5C0F\u578B\u8FD0\u52A8\u4F1A"
   m_EditorClassIdentifier: Assembly-CSharp::OrphanageAnnouncementData
-  clueTitle: "\u6D3B\u52A8\uFF1A\u5E0C\u671B\u5B64\u513F\u9662\u5C0F\u578B\u8FD0\u52A8\u4F1A"
-  clueSummary: 
-  isCredible: 1
-  title: "\u6D3B\u52A8\uFF1A\u5E0C\u671B\u5B64\u513F\u9662\u5C0F\u578B\u8FD0\u52A8\u4F1A"
-  date: "2012\u5E747\u670813\u65E5"
-  content: "\u672C\u5B64\u513F\u9662\u5C06\u4E0E\u5373\u5C06\u5230\u6765\u76848\u67081\u65E5\u4E3E\u529E\u4E00\u5E74\u4E00\u5EA6\u7684\u4E00\u4E2A\u5C0F\u578B\u8FD0\u52A8\u4F1A\u3002\n\n\n\u5C4A\u65F6\uFF0C\u5B69\u5B50\u4EEC\u5C06\u4F1A\u53C2\u4E0E\u5404\u5F0F\u5404\u6837\u8DA3\u5473\u5341\u8DB3\u7684\u7ADE\u8D5B\u9879\u76EE\uFF0C\u5728\u6B22\u7B11\u4E0E\u6311\u6218\u4E2D\u8D62\u53D6\u5956\u54C1\u4E0E\u7559\u4E0B\u7F8E\u597D\u7684\u56DE\u5FC6\u3002\n\n\n\u6D3B\u52A8\u5F53\u5929\uFF0C\u672C\u9662\u5C06\u5F00\u653E\u53C2\u89C2\uFF0C\u8BDA\u631A\u9080\u8BF7\u5404\u4F4D\u849E\u4E34\u73B0\u573A\uFF0C\u4E3A\u5B69\u5B50\u4EEC\u52A0\u6CB9\u6253\u6C14\uFF0C\u4E0E\u4ED6\u4EEC\u4E00\u540C\u5EA6\u8FC7\u4E00\u4E2A\u70ED\u95F9\u4E14\u6B22\u4E50\u7684\u65F6\u95F4\u3002\n\n\n\u6D3B\u52A8\u65E5\u671F\uFF1A2012\u5E748\u67081\u65E5\n\u6D3B\u52A8\u65F6\u95F4\uFF1A9\uFF1A00
-    a.m. - 1\uFF1A00 p.m.\n\u6D3B\u52A8\u5730\u70B9\uFF1A\u5E0C\u671B\u5B64\u513F\u9662"
+  clueTitle:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  clueSummary:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  clueCredibility: 0
+  caseDefinition: {fileID: 0}
+  title:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047902007354
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  date:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047902007355
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  content:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047902007356
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []

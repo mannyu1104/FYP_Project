@@ -12,16 +12,71 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d613c920529365743a062cf772b5632e, type: 3}
   m_Name: "SPD_\u6211\u8BB0\u5F97\u6211\u5728\u54EA\u770B\u5230\u8BF4\u90A3\u95F4\u5B64\u513F\u9662\u672C\u6765\u5C31\u9884\u8BA1\u8981\u505C\u4E1A\u4E86\uFF0C\u90A3\u9662\u957F\u4E00\u5B9A\u662F\u4E0D\u60F3\u5904\u7406\u540E\u7EED\uFF0C\u6240\u4EE5\u76F4\u63A5\u653E\u706B\u70E7\u4E86\u5427\u3002"
   m_EditorClassIdentifier: Assembly-CSharp::SocialPostData
+  clueTitle:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 310111563620393
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  clueSummary:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 310111563620394
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  clueCredibility: 0
+  caseDefinition: {fileID: 11400000, guid: 4ac043355916a064280fd6ecf7cc4eca, type: 2}
   account: {fileID: 11400000, guid: c8f08e80ee5df9740930b80a26fbb62c, type: 2}
-  content: "\u6211\u8BB0\u5F97\u6211\u5728\u54EA\u770B\u5230\u8BF4\u90A3\u95F4\u5B64\u513F\u9662\u672C\u6765\u5C31\u9884\u8BA1\u8981\u505C\u4E1A\u4E86\uFF0C\u90A3\u9662\u957F\u4E00\u5B9A\u662F\u4E0D\u60F3\u5904\u7406\u540E\u7EED\uFF0C\u6240\u4EE5\u76F4\u63A5\u653E\u706B\u70E7\u4E86\u5427\u3002"
+  content:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047902007326
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   postImage: {fileID: 0}
   comments:
   - account: {fileID: 11400000, guid: cb125a8decf8463438ebc6e9b5418fe6, type: 2}
-    commentText: "\u4E0D\u662F\u8BF4\u5F88\u8D5A\u94B1\u5417\uFF0C\u600E\u4E48\u4F1A\u505C\u4E1A\uFF1F"
+    commentText:
+      m_TableReference:
+        m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+      m_TableEntryReference:
+        m_KeyId: 8047902007328
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     hasProfilePage: 0
   - account: {fileID: 11400000, guid: a74786eb4efd77b4bb5171762d4e0279, type: 2}
-    commentText: "\u662F\u5417\uFF1F\u8DDF\u6211\u542C\u8BF4\u7684\u597D\u50CF\u6709\u70B9\u4E0D\u4E00\u6837"
+    commentText:
+      m_TableReference:
+        m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+      m_TableEntryReference:
+        m_KeyId: 8047902007329
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     hasProfilePage: 0
   - account: {fileID: 11400000, guid: 09e46448cfbf66248990c0af7fa77bda, type: 2}
-    commentText: "\u4E0D\u7BA1\u600E\u6837\uFF0C\u611F\u89C9\u8D8A\u6765\u8D8A\u53EF\u7591\u4E86\u554A"
+    commentText:
+      m_TableReference:
+        m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+      m_TableEntryReference:
+        m_KeyId: 8047902007330
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
     hasProfilePage: 0
+  references:
+    version: 2
+    RefIds: []

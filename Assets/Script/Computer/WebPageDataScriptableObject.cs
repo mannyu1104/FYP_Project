@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Localization;
 
 public enum PageLayoutType
 {
@@ -13,7 +14,7 @@ public class WebPageDataScriptableObject : ScriptableObject, IBrowserPage
 {
     [Header("Tab Info")]
     [SerializeField] private string pageId;
-    [SerializeField] private string tabTitle;
+    [SerializeField] private LocalizedString tabTitle;
     [SerializeField] private Sprite tabIcon;
 
     [Header("Page Content")]
@@ -21,7 +22,7 @@ public class WebPageDataScriptableObject : ScriptableObject, IBrowserPage
 
 
     public string PageId => pageId;
-    public string TabTitle => tabTitle;
+    public LocalizedString TabTitle => tabTitle;
     public Sprite TabIcon => tabIcon;
     public PageLayoutType LayoutType => layoutType;
 
