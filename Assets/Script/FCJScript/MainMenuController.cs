@@ -23,6 +23,10 @@ public class MainMenuController : MonoBehaviour
     [Tooltip("The main gameplay root that should become visible after pressing Start Game.")]
     [SerializeField] private GameObject gameRootPanel;
 
+    [Header("Transition")]
+    [SerializeField] private ScreenTransitionController screenTransitionController;
+    [SerializeField] private bool useTransitionOnStartGame = true;
+
     [Header("Game Settings Button Visibility")]
     [Tooltip("The settings button used during gameplay.")]
     [SerializeField] private GameObject gameSettingsButton;
@@ -54,6 +58,19 @@ public class MainMenuController : MonoBehaviour
     }
 
     public void StartGame()
+    {
+        ResolveReferences();
+
+        if (useTransitionOnStartGame && screenTransitionController != null)
+        {
+            screenTransitionController.PlayTransition(StartGameImmediately);
+            return;
+        }
+
+        StartGameImmediately();
+    }
+
+    private void StartGameImmediately()
     {
         ResolveReferences();
 
@@ -153,6 +170,34 @@ public class MainMenuController : MonoBehaviour
 
     private void ResolveReferences()
     {
+        if (screenTransitionController == null)
+        {
+            screenTransitionController = FindFirstObjectByType<ScreenTransitionController>();
+        }
+
+        if (screenTransitionController == null)
+        {
+            GameObject overlayObject = GameObject.Find("BlackTransitionPanel");
+            if (overlayObject == null)
+            {
+                overlayObject = FindSceneObjectByName("BlackTransitionPanel");
+            }
+
+            if (overlayObject != null)
+            {
+                RectTransform overlay = overlayObject.transform as RectTransform;
+                CanvasGroup canvasGroup = overlayObject.GetComponent<CanvasGroup>();
+
+                if (canvasGroup == null)
+                {
+                    canvasGroup = overlayObject.AddComponent<CanvasGroup>();
+                }
+
+                screenTransitionController = gameObject.AddComponent<ScreenTransitionController>();
+                screenTransitionController.Configure(overlay, canvasGroup);
+            }
+        }
+
         if (returnToMainMenuButton == null && settingsPanel != null)
         {
             Transform button = FindChildByName(settingsPanel.transform, "ReturnToMainMenuButton");
@@ -181,6 +226,22 @@ public class MainMenuController : MonoBehaviour
             if (result != null)
             {
                 return result;
+            }
+        }
+
+        return null;
+    }
+
+    private static GameObject FindSceneObjectByName(string objectName)
+    {
+        Transform[] transforms = Resources.FindObjectsOfTypeAll<Transform>();
+
+        for (int i = 0; i < transforms.Length; i++)
+        {
+            Transform target = transforms[i];
+            if (target.name == objectName && target.gameObject.scene.IsValid())
+            {
+                return target.gameObject;
             }
         }
 

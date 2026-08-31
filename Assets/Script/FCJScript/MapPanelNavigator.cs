@@ -21,7 +21,29 @@ public class MapPanelNavigator : MonoBehaviour
     [SerializeField] private bool closeMapAfterSelection = true;
     [SerializeField] private bool unpauseLookAfterSelection = true;
 
+    [Header("Transition")]
+    [SerializeField] private ScreenTransitionController screenTransitionController;
+    [SerializeField] private bool useTransition = true;
+
+    private void Awake()
+    {
+        ResolveReferences();
+    }
+
     public void OpenPanel(int panelIndex)
+    {
+        ResolveReferences();
+
+        if (useTransition && screenTransitionController != null)
+        {
+            screenTransitionController.PlayTransition(() => OpenPanelImmediately(panelIndex));
+            return;
+        }
+
+        OpenPanelImmediately(panelIndex);
+    }
+
+    private void OpenPanelImmediately(int panelIndex)
     {
         if (locationPanels.Count == 0)
         {
@@ -80,6 +102,14 @@ public class MapPanelNavigator : MonoBehaviour
         if (lookController != null)
         {
             lookController.SetPaused(false);
+        }
+    }
+
+    private void ResolveReferences()
+    {
+        if (screenTransitionController == null)
+        {
+            screenTransitionController = FindFirstObjectByType<ScreenTransitionController>();
         }
     }
 

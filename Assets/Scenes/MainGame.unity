@@ -811,6 +811,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &180795052
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 180795053}
+  m_Layer: 0
+  m_Name: "----------\u8F6C\u573A\u7528---------"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &180795053
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180795052}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 37.619324, y: 30.922485, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1784880319}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &188171817
 GameObject:
   m_ObjectHideFlags: 0
@@ -2146,7 +2177,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &333899235
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4198,6 +4229,94 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 702765099}
   m_CullTransparentMesh: 1
+--- !u!1 &703855925
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 703855929}
+  - component: {fileID: 703855928}
+  - component: {fileID: 703855927}
+  - component: {fileID: 703855926}
+  m_Layer: 5
+  m_Name: BlackTransitionPanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!225 &703855926
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703855925}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &703855927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703855925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.08679241, g: 0.08679241, b: 0.08679241, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &703855928
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703855925}
+  m_CullTransparentMesh: 1
+--- !u!224 &703855929
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703855925}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1784880319}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -960, y: -540}
+  m_SizeDelta: {x: -1920, y: -1080}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &713246838
 GameObject:
   m_ObjectHideFlags: 0
@@ -4428,6 +4547,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LocationNavigator
   lookController: {fileID: 1784880320}
+  screenTransitionController: {fileID: 0}
+  useTransition: 1
   homeContainer: {fileID: 0}
   orphanageContainer: {fileID: 0}
   mainImage: {fileID: 2098407651}
@@ -6712,6 +6833,8 @@ MonoBehaviour:
   mapPanel: {fileID: 1029216207}
   closeMapAfterSelection: 1
   unpauseLookAfterSelection: 1
+  screenTransitionController: {fileID: 0}
+  useTransition: 1
 --- !u!4 &1309688711
 Transform:
   m_ObjectHideFlags: 0
@@ -9818,6 +9941,8 @@ RectTransform:
   - {fileID: 2092564178}
   - {fileID: 600168712}
   - {fileID: 2135843694}
+  - {fileID: 180795053}
+  - {fileID: 703855929}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -10103,6 +10228,8 @@ MonoBehaviour:
   settingsPanel: {fileID: 2135843693}
   returnToMainMenuButton: {fileID: 1575527451}
   gameRootPanel: {fileID: 547671120}
+  screenTransitionController: {fileID: 2056682094}
+  useTransitionOnStartGame: 1
   gameSettingsButton: {fileID: 333899234}
   visibleLocationPanels:
   - label: Home
@@ -10902,6 +11029,83 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &2056682093
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2056682095}
+  - component: {fileID: 2056682094}
+  m_Layer: 0
+  m_Name: ScreenTransitionManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2056682094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056682093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e0ad22126404a4aa820b2290ee11982, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScreenTransitionController
+  blackOverlay: {fileID: 703855929}
+  overlayCanvasGroup: {fileID: 703855926}
+  forceBlackOverlayColor: 1
+  useRuntimeOverlay: 1
+  runtimeSortingOrder: 32767
+  wipeInDuration: 0.35
+  holdDuration: 0.15
+  wipeOutDuration: 0.35
+  wipeDirection: 0
+  wipeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &2056682095
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056682093}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 997.6193, y: 570.9225, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2063759202
 GameObject:
   m_ObjectHideFlags: 0
@@ -11412,6 +11616,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LocationNavigator
   lookController: {fileID: 1784880320}
+  screenTransitionController: {fileID: 0}
+  useTransition: 1
   homeContainer: {fileID: 0}
   orphanageContainer: {fileID: 0}
   mainImage: {fileID: 2098407651}
@@ -11712,6 +11918,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LocationNavigator
   lookController: {fileID: 1784880320}
+  screenTransitionController: {fileID: 0}
+  useTransition: 1
   homeContainer: {fileID: 0}
   orphanageContainer: {fileID: 0}
   mainImage: {fileID: 2098407651}
@@ -12012,6 +12220,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LocationNavigator
   lookController: {fileID: 1784880320}
+  screenTransitionController: {fileID: 0}
+  useTransition: 1
   homeContainer: {fileID: 0}
   orphanageContainer: {fileID: 0}
   mainImage: {fileID: 2098407651}
@@ -12312,6 +12522,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LocationNavigator
   lookController: {fileID: 1784880320}
+  screenTransitionController: {fileID: 0}
+  useTransition: 1
   homeContainer: {fileID: 0}
   orphanageContainer: {fileID: 0}
   mainImage: {fileID: 2098407651}
@@ -12645,7 +12857,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2135843694
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12720,3 +12932,4 @@ SceneRoots:
   - {fileID: 154832339}
   - {fileID: 1309688711}
   - {fileID: 1805379824}
+  - {fileID: 2056682095}

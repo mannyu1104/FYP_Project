@@ -12,6 +12,10 @@ public class LocationNavigator : MonoBehaviour
     [Tooltip("If empty, the navigator will find the first LookController in the scene.")]
     [SerializeField] private LookController lookController;
 
+    [Header("Transition")]
+    [SerializeField] private ScreenTransitionController screenTransitionController;
+    [SerializeField] private bool useTransition = true;
+
     [Header("Location Containers")]
     [Tooltip("Container for the Home location.")]
     [SerializeField] private GameObject homeContainer;
@@ -64,9 +68,19 @@ public class LocationNavigator : MonoBehaviour
         {
             lookController = FindFirstObjectByType<LookController>();
         }
+
+        if (screenTransitionController == null)
+        {
+            screenTransitionController = FindFirstObjectByType<ScreenTransitionController>();
+        }
     }
 
     public void GoToOrphanage()
+    {
+        PlayWithTransition(GoToOrphanageImmediately);
+    }
+
+    private void GoToOrphanageImmediately()
     {
         SetGameObject(homeContainer, false);
         SetGameObject(orphanageContainer, true);
@@ -76,11 +90,21 @@ public class LocationNavigator : MonoBehaviour
 
     public void BackToOrphanage()
     {
+        PlayWithTransition(BackToOrphanageImmediately);
+    }
+
+    private void BackToOrphanageImmediately()
+    {
         EnsureOrphanageShown();
         ShowOrphanageMainArea();
     }
 
     public void GoToEntrance()
+    {
+        PlayWithTransition(GoToEntranceImmediately);
+    }
+
+    private void GoToEntranceImmediately()
     {
         EnsureOrphanageShown();
 
@@ -100,6 +124,11 @@ public class LocationNavigator : MonoBehaviour
 
     public void GoToStaffRoom()
     {
+        PlayWithTransition(GoToStaffRoomImmediately);
+    }
+
+    private void GoToStaffRoomImmediately()
+    {
         EnsureOrphanageShown();
 
         SetGameObject(mainImage, false);
@@ -118,6 +147,11 @@ public class LocationNavigator : MonoBehaviour
 
     public void GoToHome()
     {
+        PlayWithTransition(GoToHomeImmediately);
+    }
+
+    private void GoToHomeImmediately()
+    {
         SetGameObject(homeContainer, true);
         SetGameObject(orphanageContainer, false);
 
@@ -125,6 +159,19 @@ public class LocationNavigator : MonoBehaviour
         {
             lookController.SetSceneImage(homeImageIndex);
         }
+    }
+
+    private void PlayWithTransition(System.Action action)
+    {
+        TryFindLookController();
+
+        if (useTransition && screenTransitionController != null)
+        {
+            screenTransitionController.PlayTransition(action);
+            return;
+        }
+
+        action?.Invoke();
     }
 
     private void EnsureOrphanageShown()
