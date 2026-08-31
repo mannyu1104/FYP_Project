@@ -8,6 +8,9 @@ public class SpawnScanner : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
     private GridSystem GridInfo;
     private bool Spawned;
     [SerializeField] private int MaxDetect;
+    private Detector DetectorTrans;
+    public InventoryManager inventoryTrans2;
+    
 
     private void Start()
     {
@@ -49,6 +52,10 @@ public class SpawnScanner : MonoBehaviour, IPointerDownHandler, IPointerEnterHan
         rect.sizeDelta = new Vector2(GridInfo.cellSizeofx, GridInfo.cellSizeofy);
 
         detector.name = $"Detector {GridInfo.DetectorCount}";
+
+        DetectorTrans = detector.GetComponent<Detector>();
+
+        DetectorTrans.inventoryTrans3 = inventoryTrans2;
 
         GridInfo.DetectorCount += 1;
     }

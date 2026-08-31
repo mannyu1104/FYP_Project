@@ -14,43 +14,59 @@ public class InventoryManager : MonoBehaviour
     {
         Item = item.GetComponent<DragableItem>();
         MapItem = item.GetComponent<DragableItemSave>();
-        if (Item.thisType == "Tutorial")
+        if (Item != null )
         {
-            for (int i = 0; i < inventorySlotsForTutorial.Length; i++)
+            if (Item.thisType == "Tutorial")
             {
-                InventorySlot slot = inventorySlotsForTutorial[i];
-                DragableItem iteminslot = slot.GetComponentInChildren<DragableItem>();
-                if (iteminslot == null)
+                for (int i = 0; i < inventorySlotsForTutorial.Length; i++)
                 {
-                    SetNewItem(item, slot);
-                    return;
+                    InventorySlot slot = inventorySlotsForTutorial[i];
+                    DragableItem iteminslot = slot.GetComponentInChildren<DragableItem>();
+                    if (iteminslot == null)
+                    {
+                        SetNewItem(item, slot);
+                        return;
+                    }
                 }
             }
-        }
-        else if (Item.thisType == "Ingame")
-        {
-            for (int i = 0; i < inventorySlotsForIngame.Length; i++)
+            else if (Item.thisType == "Ingame")
             {
-                InventorySlot slot = inventorySlotsForIngame[i];
-                DragableItem iteminslot = slot.GetComponentInChildren<DragableItem>();
-                if (iteminslot == null)
+                for (int i = 0; i < inventorySlotsForIngame.Length; i++)
                 {
-                    SetNewItem(item, slot);
-                    return;
+                    InventorySlot slot = inventorySlotsForIngame[i];
+                    DragableItem iteminslot = slot.GetComponentInChildren<DragableItem>();
+                    if (iteminslot == null)
+                    {
+                        SetNewItem(item, slot);
+                        return;
+                    }
                 }
             }
-        }
-        else if (MapItem.thisType == "Map")
-        {
-            for (int i = 0; i < inventorySlotsForMap.Length; i++)
+            else
             {
-                InventorySlot slot = inventorySlotsForMap[i];
-                DragableItem iteminslot = slot.GetComponentInChildren<DragableItem>();
-                if (iteminslot == null)
+                Debug.Log("WrongType");
+                return;
+            }
+        }
+        else if (MapItem != null)
+        {
+            if (MapItem.thisType == "Map")
+            {
+                for (int i = 0; i < inventorySlotsForMap.Length; i++)
                 {
-                    SetNewItemMap(item, slot);
-                    return;
+                    InventorySlot slot = inventorySlotsForMap[i];
+                    DragableItemSave iteminslot = slot.GetComponentInChildren<DragableItemSave>();
+                    if (iteminslot == null)
+                    {
+                        SetNewItemMap(item, slot);
+                        return;
+                    }
                 }
+            }
+            else
+            {
+                Debug.Log("WrongType");
+                return;
             }
         }
         else

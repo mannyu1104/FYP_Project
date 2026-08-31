@@ -45,8 +45,41 @@ public class MapUnlock : MonoBehaviour
                     Map1.Unlocking();
                     item.thisUsed = true;
                     item.DeleteOther();
+                    Destroy(item.gameObject);
                 }
-
+                else if (item.thisID == 1)
+                {
+                    Map2.Unlocking();
+                    item.thisUsed = true;
+                    item.DeleteOther();
+                    Destroy(item.gameObject);
+                }
+                else if (item.thisID == 2)
+                {
+                    Map3.Unlocking();
+                    item.thisUsed = true;
+                    item.DeleteOther();
+                    Destroy(item.gameObject);
+                }
+                else if (item.thisID == 3)
+                {
+                    Map4.Unlocking();
+                    item.thisUsed = true;
+                    item.DeleteOther();
+                    Destroy(item.gameObject);
+                }
+                else if (item.thisID == 4)
+                {
+                    Map5.Unlocking();
+                    item.thisUsed = true;
+                    item.DeleteOther();
+                    Destroy(item.gameObject);
+                }
+                else
+                {
+                    Debug.Log("InvalidItem");
+                    return;
+                }
 
                 //DragableItem dragableItem = currentTarget.GetComponent<DragableItem>();
                 //if (dragableItem.thisID == CorrectID)

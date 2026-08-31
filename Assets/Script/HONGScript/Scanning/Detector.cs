@@ -10,6 +10,7 @@ public class Detector : MonoBehaviour, IPointerClickHandler
     public RectTransform canvasRect;
     public bool buttonspawned;
     private Unlocking ItemTransfer;
+    public InventoryManager inventoryTrans3;
 
     private void Start()
     {
@@ -50,6 +51,8 @@ public class Detector : MonoBehaviour, IPointerClickHandler
 
             ItemTransfer.UnlockingTarget = DetectedTarget;
 
+            ItemTransfer.inventory = inventoryTrans3;
+
             buttonspawned = true;
         }
     }
@@ -64,6 +67,10 @@ public class Detector : MonoBehaviour, IPointerClickHandler
             {
                 Debug.Log("Unlocking");
                 DetectedTarget = collision.gameObject;
+            }
+            else
+            {
+                return;
             }
         }
     }

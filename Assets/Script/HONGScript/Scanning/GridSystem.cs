@@ -7,11 +7,13 @@ public class GridSystem : MonoBehaviour
     [SerializeField] private int width, height;
     [SerializeField] private GameObject GridPrefab;
     [SerializeField] private RectTransform canvaRect;
+    [SerializeField] private InventoryManager inventoryTrans;
 
     public float cellSizeofx;
     public float cellSizeofy;
     public int DetectorCount;
     private bool GridOpen;
+    private SpawnScanner SpawnTrans;
 
     private void Start()
     {
@@ -65,6 +67,10 @@ public class GridSystem : MonoBehaviour
                 );
 
                 spawnTile.name = $"Grid {x} {y}";
+
+                SpawnTrans = spawnTile.GetComponent<SpawnScanner>();
+
+                SpawnTrans.inventoryTrans2 = inventoryTrans;
             }
         }
 

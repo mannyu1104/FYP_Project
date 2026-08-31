@@ -43,5 +43,6 @@ public class MapIcon : MonoBehaviour
         thisUnlocked = true;
         image.sprite = Mapdetials.ImageUnlocked;
         imageName.sprite = UnlockedFrame;
+        SumShowText.text = Mapdetials.PlaceName;
     }
 }
