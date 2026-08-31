@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45c5a772734ff534ead78dbde7f49b97, type: 3}
+  m_Name: Pseudo-Locale(pseudo)
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Pseudo.PseudoLocale
+  m_Identifier:
+    m_Code: zh-CN
+  m_Metadata:
+    m_Items: []
+  m_LocaleName: Pseudo-Locale(pseudo)
+  m_CustomFormatCultureCode: 
+  m_UseCustomFormatter: 0
+  m_SortOrder: 10000
+  m_Methods:
+  - rid: 1944176950501703707
+  - rid: 1944176950501703709
+  references:
+    version: 2
+    RefIds:
+    - rid: 1944176950501703707
+      type: {class: Expander, ns: UnityEngine.Localization.Pseudo, asm: Unity.Localization}
+      data:
+        m_ExpansionRules:
+        - m_MinCharacters: 0
+          m_MaxCharacters: 10
+          m_ExpansionAmount: 2
+        - m_MinCharacters: 10
+          m_MaxCharacters: 20
+          m_ExpansionAmount: 1
+        - m_MinCharacters: 20
+          m_MaxCharacters: 30
+          m_ExpansionAmount: 0.8
+        - m_MinCharacters: 30
+          m_MaxCharacters: 50
+          m_ExpansionAmount: 0.6
+        - m_MinCharacters: 50
+          m_MaxCharacters: 70
+          m_ExpansionAmount: 0.7
+        - m_MinCharacters: 70
+          m_MaxCharacters: 2147483647
+          m_ExpansionAmount: 0.3
+        m_Location: 2
+        m_MinimumStringLength: 1
+        m_PaddingCharacters: 2100220023002400250026002700280029002a002b002c002d002e002f0030003100320033003400350036003700380039003a003b003c003d003e003f0040004100420043004400450046004700480049004a004b004c004d004e004f0050005100520053005400550056005700580059005a005b005c005d005e005f0060006100620063006400650066006700680069006a006b006c006d006e006f0070007100720073007400750076007700780079007a007b007c007d00
+    - rid: 1944176950501703709
+      type: {class: Encapsulator, ns: UnityEngine.Localization.Pseudo, asm: Unity.Localization}
+      data:
+        m_Start: '['
+        m_End: ']'
