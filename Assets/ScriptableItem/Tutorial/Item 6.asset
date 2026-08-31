@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a21d962b510db3d438eb871d0ebb9541, type: 3}
-  m_Name: Notes (TEST)
+  m_Name: Item 6
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  mystring: NAH
-  Image: {fileID: -1108316977, guid: 1fdb3a68d41c2544b8e328de7124fc1d, type: 3}
-  Unlocked: 0
+  ItemShowName: 
+  Description: 
   Get: 0
   Used: 0
-  ItemID: 1
+  Show: 0
+  ItemID: 0

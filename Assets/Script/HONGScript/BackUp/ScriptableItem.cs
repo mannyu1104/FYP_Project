@@ -1,7 +1,7 @@
 //using UnityEngine;
 
-//[CreateAssetMenu(fileName = "Item", menuName = "ScriptableObject/Item")]
-//public class Item : ScriptableObject
+//[CreateAssetMenu(fileName = "MapItem", menuName = "ScriptableObject/MapItem")]
+//public class MapItem : ScriptableObject
 //{
 //    public Sprite Image;
 //    public bool Unlocked;

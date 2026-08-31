@@ -1,10 +1,7 @@
 using UnityEngine;
 
-public class UsingEvent : MonoBehaviour
+public class MapEvent : MonoBehaviour
 {
-    public InventoryManagerINFO inventoryUsing;
-    [SerializeField] int CorrectID;
-
     public GameObject currentTarget;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -34,9 +31,9 @@ public class UsingEvent : MonoBehaviour
             if (currentTarget != null)
             {
                 DragableItem dragableItem = currentTarget.GetComponent<DragableItem>();
-                if (dragableItem.thisID == CorrectID)
+                //if (dragableItem.thisID == CorrectID)
                 {
-                    inventoryUsing.AddItem(currentTarget);
+                    //inventoryUsing.AddItem(currentTarget);
                     gameObject.SetActive(false);
                 }
             }

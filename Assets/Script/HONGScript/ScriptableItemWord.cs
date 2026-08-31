@@ -7,6 +7,6 @@ public class Item : ScriptableObject
     public string Description;
     public bool Get;
     public bool Used;
-    public bool Show;
+    //public bool Show;
     public int ItemID;
 }

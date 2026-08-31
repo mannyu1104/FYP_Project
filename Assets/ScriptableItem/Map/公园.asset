@@ -9,12 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a21d962b510db3d438eb871d0ebb9541, type: 3}
-  m_Name: Scissors
-  m_EditorClassIdentifier: Assembly-CSharp::Item
-  Image: {fileID: 407990200, guid: 5f7dad24f86e86c4daa88ad40137aaf0, type: 3}
+  m_Script: {fileID: 11500000, guid: 88fb6a157882896419d23c92565b0adf, type: 3}
+  m_Name: "\u516C\u56ED"
+  m_EditorClassIdentifier: Assembly-CSharp::Map
+  ImageLocked: {fileID: 0}
+  ImageUnlocked: {fileID: 0}
+  MapID: 1
   Unlocked: 0
-  Get: 0
-  Used: 0
-  Show: 1
-  ItemID: 2

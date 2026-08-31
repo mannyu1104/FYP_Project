@@ -2,17 +2,19 @@ using UnityEditor.Profiling;
 using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.EventSystems;
-//using UnityEngine.UI;
 using TMPro;
+using UnityEngine.UI;
 
 public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {
     public Item item;
+    public Image image;
     [HideInInspector] public Transform parentAfterDrag;
     [SerializeField] private TMP_Text SumShowText;
+
     public string thisName;
     public string thisDescription;
-    public bool thisShow;
+    //public bool thisShow;
     public bool thisGet;
     public bool thisUsed;
     public int thisID;
@@ -24,14 +26,16 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     public void Start()
     {
         InitialiseItem(item);
+
+        SumShowText.text = thisName;
     }
 
     void Update()
     {
-        if (thisShow == true)
-        {
-            //image.sprite = item.Image;
-        }
+        //if (thisShow == true)
+        //{
+        //    image.sprite = item.Image;
+        //}
     }
 
     public void InitialiseItem(Item newItem)
@@ -40,8 +44,11 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         thisGet = newItem.Get;
         thisUsed = newItem.Used;
         thisID = newItem.ItemID;
-        thisShow = newItem.Show;
-        isdragging = false; 
+        //thisShow = newItem.Show;
+        thisDescription = newItem.Description;
+        thisName = newItem.ItemShowName;
+        isdragging = false;
+        
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -52,7 +59,8 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             parentAfterDrag = transform.parent;
             transform.SetParent(transform.root);
             transform.SetAsLastSibling();
-            //image.raycastTarget = false;
+            image.raycastTarget = false;
+            SumShowText.raycastTarget = false;
         }
     }
 
@@ -73,7 +81,9 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             Debug.Log("EndDrag");
             isdragging = false;
             transform.SetParent(parentAfterDrag);
-            //image.raycastTarget = true;
+            transform.position = transform.parent.position;
+            image.raycastTarget = true;
+            SumShowText.raycastTarget = true;
         }
         //else if (!thisUsed && thisGet == true)
         //{
@@ -85,7 +95,7 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (thisGet && !thisUsed)
+        if (thisGet && isdragging == false)
         {
             DesUI.SetActive(true);
             Description.text = thisDescription;

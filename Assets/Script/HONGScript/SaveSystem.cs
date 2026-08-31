@@ -47,7 +47,7 @@ public class SaveSystem: MonoBehaviour
             ItemBooleanData dataItem = new ItemBooleanData();
 
             dataItem.ItemID = item.thisID;
-            dataItem.Show = item.thisShow;
+            //dataItem.Show = item.thisShow;
             dataItem.Get = item.thisGet;
             dataItem.Used = item.thisUsed;
             dataItem.Description = item.thisDescription;
@@ -78,7 +78,7 @@ public class SaveSystem: MonoBehaviour
             {
                 if (item.thisID == dataItem.ItemID)
                 {
-                    item.thisShow = dataItem.Show;
+                    //item.thisShow = dataItem.Show;
                     item.thisGet = dataItem.Get;
                     item.thisUsed = dataItem.Used;
 
