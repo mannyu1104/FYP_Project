@@ -2,19 +2,24 @@ using UnityEditor.Profiling;
 using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using TMPro;
 using UnityEngine.UI;
 
 public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {
     public Item item;
-    [HideInInspector] public Transform parentAfterDrag;
     public Image image;
-    public bool thisShow;
-    public bool thisUnlocked;
+    [HideInInspector] public Transform parentAfterDrag;
+    [SerializeField] private TMP_Text SumShowText;
+
+    public string thisType;
+    public string thisName;
+    public string thisDescription;
+    //public bool thisShow;
     public bool thisGet;
     public bool thisUsed;
     public int thisID;
-    [SerializeField] GameObject Description;
+    [SerializeField] private TMP_Text Description;
     public GameObject DesUI;
     public GameObject InvenUI;
     public bool isdragging;
@@ -22,42 +27,48 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     public void Start()
     {
         InitialiseItem(item);
+
+        SumShowText.text = thisName;
     }
 
     void Update()
     {
-        if (thisShow == true)
-        {
-            image.sprite = item.Image;
-        }
+        //if (thisShow == true)
+        //{
+        //    image.sprite = item.Image;
+        //}
     }
 
     public void InitialiseItem(Item newItem)
     {
         item = newItem;
-        thisUnlocked = newItem.Unlocked;
         thisGet = newItem.Get;
         thisUsed = newItem.Used;
         thisID = newItem.ItemID;
-        thisShow = newItem.Show;
-        isdragging = false; 
+        //thisShow = newItem.Show;
+        thisDescription = newItem.Description;
+        thisName = newItem.ItemShowName;
+        thisType = newItem.TypeofItem;
+        isdragging = false;
+        
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (!thisUsed && thisUnlocked == true)
+        if (thisGet == true)
         {
             Debug.Log("StartDrag");
             parentAfterDrag = transform.parent;
             transform.SetParent(transform.root);
             transform.SetAsLastSibling();
             image.raycastTarget = false;
+            SumShowText.raycastTarget = false;
         }
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (!thisUsed && thisUnlocked == true)
+        if (thisGet == true)
         {
             Debug.Log("Dragging");
             transform.position = Input.mousePosition;
@@ -67,12 +78,14 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (!thisUsed && thisUnlocked == true)
+        if (thisGet == true)
         {
             Debug.Log("EndDrag");
             isdragging = false;
             transform.SetParent(parentAfterDrag);
+            transform.position = transform.parent.position;
             image.raycastTarget = true;
+            SumShowText.raycastTarget = true;
         }
         //else if (!thisUsed && thisGet == true)
         //{
@@ -84,10 +97,10 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (thisUsed)
+        if (thisGet && isdragging == false)
         {
             DesUI.SetActive(true);
-            Description.SetActive(true);
+            Description.text = thisDescription;
             InvenUI.SetActive(false);
         }
     }
