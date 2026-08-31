@@ -6,19 +6,39 @@ using UnityEngine;
 /// </summary>
 public class MainMenuController : MonoBehaviour
 {
+    [System.Serializable]
+    private class VisibleLocationPanel
+    {
+        public string label;
+        public GameObject panel;
+    }
+
     [Header("Menu Panels")]
     [SerializeField] private GameObject mainMenuPanel;
     [SerializeField] private GameObject settingsPanel;
+    [Tooltip("Button shown only when settings are opened during gameplay.")]
+    [SerializeField] private GameObject returnToMainMenuButton;
 
     [Header("Game Panels")]
     [Tooltip("The main gameplay root that should become visible after pressing Start Game.")]
     [SerializeField] private GameObject gameRootPanel;
-    [Tooltip("Optional panels that should be hidden while the main menu is open.")]
-    [SerializeField] private List<GameObject> panelsToHideOnMenu = new List<GameObject>();
+
+    [Header("Game Settings Button Visibility")]
+    [Tooltip("The settings button used during gameplay.")]
+    [SerializeField] private GameObject gameSettingsButton;
+    [Tooltip("The gameplay location panels where the settings button should be visible.")]
+    [SerializeField] private List<VisibleLocationPanel> visibleLocationPanels = new List<VisibleLocationPanel>();
 
     [Header("Startup")]
     [SerializeField] private bool showMainMenuOnStart = true;
     [SerializeField] private bool pauseLookOnMenu = true;
+
+    private bool settingsOpenedFromGame;
+
+    private void Awake()
+    {
+        ResolveReferences();
+    }
 
     private void Start()
     {
@@ -28,36 +48,143 @@ public class MainMenuController : MonoBehaviour
         }
     }
 
+    private void LateUpdate()
+    {
+        RefreshGameSettingsButtonVisibility();
+    }
+
     public void StartGame()
     {
+        ResolveReferences();
+
         SetGameObject(mainMenuPanel, false);
         SetGameObject(settingsPanel, false);
+        SetGameObject(returnToMainMenuButton, false);
         SetGameObject(gameRootPanel, true);
+        settingsOpenedFromGame = false;
         SetLookPaused(false);
+        RefreshGameSettingsButtonVisibility();
     }
 
     public void OpenSettings()
     {
+        ResolveReferences();
+
+        settingsOpenedFromGame = false;
         SetGameObject(settingsPanel, true);
+        SetGameObject(returnToMainMenuButton, false);
+        RefreshGameSettingsButtonVisibility();
+    }
+
+    public void OpenSettingsFromGame()
+    {
+        ResolveReferences();
+
+        settingsOpenedFromGame = true;
+        SetGameObject(settingsPanel, true);
+        SetGameObject(returnToMainMenuButton, true);
+        SetLookPaused(true);
+        RefreshGameSettingsButtonVisibility();
     }
 
     public void CloseSettings()
     {
+        ResolveReferences();
+
         SetGameObject(settingsPanel, false);
+        SetGameObject(returnToMainMenuButton, false);
+
+        if (settingsOpenedFromGame)
+        {
+            settingsOpenedFromGame = false;
+            SetLookPaused(false);
+        }
+
+        RefreshGameSettingsButtonVisibility();
+    }
+
+    public void ReturnToMainMenu()
+    {
+        settingsOpenedFromGame = false;
+        ShowMainMenu();
     }
 
     public void ShowMainMenu()
     {
+        ResolveReferences();
+
         SetGameObject(mainMenuPanel, true);
         SetGameObject(settingsPanel, false);
+        SetGameObject(returnToMainMenuButton, false);
         SetGameObject(gameRootPanel, false);
 
-        for (int i = 0; i < panelsToHideOnMenu.Count; i++)
+        SetLookPaused(pauseLookOnMenu);
+        RefreshGameSettingsButtonVisibility();
+    }
+
+    private void RefreshGameSettingsButtonVisibility()
+    {
+        if (gameSettingsButton == null)
         {
-            SetGameObject(panelsToHideOnMenu[i], false);
+            return;
         }
 
-        SetLookPaused(pauseLookOnMenu);
+        bool shouldShow = gameRootPanel != null &&
+            gameRootPanel.activeInHierarchy &&
+            (settingsPanel == null || !settingsPanel.activeInHierarchy) &&
+            IsAnyVisibleLocationPanelActive();
+
+        SetGameObject(gameSettingsButton, shouldShow);
+    }
+
+    private bool IsAnyVisibleLocationPanelActive()
+    {
+        for (int i = 0; i < visibleLocationPanels.Count; i++)
+        {
+            GameObject panel = visibleLocationPanels[i].panel;
+            if (panel != null && panel.activeInHierarchy)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private void ResolveReferences()
+    {
+        if (returnToMainMenuButton == null && settingsPanel != null)
+        {
+            Transform button = FindChildByName(settingsPanel.transform, "ReturnToMainMenuButton");
+            if (button != null)
+            {
+                returnToMainMenuButton = button.gameObject;
+            }
+        }
+    }
+
+    private Transform FindChildByName(Transform parent, string childName)
+    {
+        if (parent == null)
+        {
+            return null;
+        }
+
+        if (parent.name == childName)
+        {
+            return parent;
+        }
+
+        for (int i = 0; i < parent.childCount; i++)
+        {
+            Transform result = FindChildByName(parent.GetChild(i), childName);
+            if (result != null)
+            {
+                return result;
+            }
+        }
+
+        return null;
     }
 
     public void QuitGame()
