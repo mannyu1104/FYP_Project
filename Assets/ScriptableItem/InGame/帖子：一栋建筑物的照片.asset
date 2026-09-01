@@ -9,12 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a2333c3541a600419ddfb14ccd3fba8, type: 3}
-  m_Name: UnlockHouse
-  m_EditorClassIdentifier: Assembly-CSharp::MapItem
-  NameShow: House
-  ObjType: Map
-  Get: 1
-  Used: 1
-  Show: 1
-  ItemID: 0
+  m_Script: {fileID: 11500000, guid: a21d962b510db3d438eb871d0ebb9541, type: 3}
+  m_Name: "\u5E16\u5B50\uFF1A\u4E00\u680B\u5EFA\u7B51\u7269\u7684\u7167\u7247"
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  TypeofItem: Ingame
+  Get: 0
+  Used: 0
+  ItemID: 31

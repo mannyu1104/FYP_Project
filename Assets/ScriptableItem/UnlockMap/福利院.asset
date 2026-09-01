@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MapItem
   NameShow: "\u798F\u5229\u9662"
   ObjType: Map
-  Get: 0
+  Get: 1
   Used: 0
   Show: 0
   ItemID: 4
