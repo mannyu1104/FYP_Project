@@ -19,7 +19,7 @@ public class CountingPoint : MonoBehaviour
     public void CountingPoints()
     {
         DragableItem[] items = FindObjectsByType<DragableItem>();
-        
+        Score = 0;
 
         foreach (DragableItem item in items)
         {
@@ -27,24 +27,25 @@ public class CountingPoint : MonoBehaviour
             {
                 if (item.thisUsed == true)
                 {
-                    Score += 100 / (CorrectIDList.Count + WrongIDList.Count);
+                    Score += 100f / (CorrectIDList.Count + WrongIDList.Count);
                 }
                 else if (item.thisUsed == false) 
                 {
-                    Score -= 100 / ((CorrectIDList.Count + WrongIDList.Count)* 2f);
+                    Score -= 100f / ((CorrectIDList.Count + WrongIDList.Count)* 2f);
                 }
             }
             else if (WrongIDList.Contains(item.thisID))
             {
                 if (item.thisUsed == false)
                 {
-                    Score += 100 / (CorrectIDList.Count + WrongIDList.Count);
+                    Score += 100f / (CorrectIDList.Count + WrongIDList.Count);
                 }
                 else if (item.thisUsed == true)
                 {
-                    Score -= 100 / ((CorrectIDList.Count + WrongIDList.Count) * 2f);
+                    Score -= 100f / ((CorrectIDList.Count + WrongIDList.Count) * 2f);
                 }
             }
+            Debug.Log(Score);
         }
 
         ScoreShowin = (int)Score;

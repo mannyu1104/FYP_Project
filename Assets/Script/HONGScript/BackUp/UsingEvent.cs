@@ -12,7 +12,7 @@ public class UsingEvent : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Item"))
         {
             DragableItem item = collision.gameObject.GetComponent<DragableItem>();
-            if (item.thisGet == true && item.thisType == "Tutorial")
+            if (item.thisGet == true && item.thisType == "Tutorial" && item.thisUsed == false)
             {
                 currentTarget = collision.gameObject;
             }
