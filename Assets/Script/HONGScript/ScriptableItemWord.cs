@@ -3,6 +3,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Item", menuName = "ScriptableObject/Item")]
 public class Item : ScriptableObject
 {
+    public TutorialClueData TutorialClueDataTest;
+    
     public string ItemShowName;
     public string Description;
     public string TypeofItem;

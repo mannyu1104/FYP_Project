@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {
+    public ClueSourceData dragSourceData;
     public Item item;
     public Image image;
     [HideInInspector] public Transform parentAfterDrag;
@@ -46,8 +47,8 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         thisUsed = newItem.Used;
         thisID = newItem.ItemID;
         //thisShow = newItem.Show;
-        thisDescription = newItem.Description;
-        thisName = newItem.ItemShowName;
+        thisDescription = item.TutorialClueDataTest.ClueSummary.GetLocalizedString();
+        thisName = item.TutorialClueDataTest.TutorialClueName.GetLocalizedString();
         thisType = newItem.TypeofItem;
         isdragging = false;
         

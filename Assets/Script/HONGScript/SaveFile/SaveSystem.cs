@@ -74,7 +74,6 @@ public class SaveSystem: MonoBehaviour
         path = Application.persistentDataPath + "/inventory.json";
         pathmap = Application.persistentDataPath + "/map.json";
         pathitemlock = Application.persistentDataPath + "/inventorylock.json";
-
     }
 
     public void SaveInventory()
