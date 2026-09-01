@@ -13046,6 +13046,14 @@ MonoBehaviour:
   - 60
   - 120
   activeSpeedPreset: 1
+  useInlineContinueIndicator: 1
+  inlineContinueIndicator: "\u25BC"
+  inlineContinueIndicatorColor: '#FFFFFF'
+  inlineContinueIndicatorBounceHeight: 6
+  inlineContinueIndicatorBounceSpeed: 5
+  continueIndicator: {fileID: 0}
+  continueIndicatorBounceHeight: 12
+  continueIndicatorBounceSpeed: 4
   itemInspectRoot: {fileID: 0}
   itemInspectImage: {fileID: 205169174}
   itemInspectTitleText: {fileID: 0}
