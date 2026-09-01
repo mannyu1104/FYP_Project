@@ -20,8 +20,17 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private GameObject returnToMainMenuButton;
 
     [Header("Game Panels")]
-    [Tooltip("The main gameplay root that should become visible after pressing Start Game.")]
+    [Tooltip("The main gameplay root that should become visible after starting or loading the game.")]
     [SerializeField] private GameObject gameRootPanel;
+
+    [Header("Save / Load")]
+    [Tooltip("Optional save system used by the Load Game button.")]
+    [SerializeField] private SaveSystem saveSystem;
+    [SerializeField] private bool loadInventoryOnLoadGame = true;
+    [SerializeField] private bool loadMapItemsOnLoadGame = true;
+    [SerializeField] private bool loadUnlockedMapsOnLoadGame = true;
+    [SerializeField] private bool resetDialogueProgressOnNewGame = true;
+    [SerializeField] private bool loadDialogueProgressOnLoadGame = true;
 
     [Header("Transition")]
     [SerializeField] private ScreenTransitionController screenTransitionController;
@@ -60,21 +69,55 @@ public class MainMenuController : MonoBehaviour
 
     public void StartGame()
     {
+        NewGame();
+    }
+
+    public void NewGame()
+    {
         ResolveReferences();
 
         if (useTransitionOnStartGame && screenTransitionController != null)
         {
-            screenTransitionController.PlayTransition(StartGameImmediately);
+            screenTransitionController.PlayTransition(NewGameImmediately);
             return;
         }
 
-        StartGameImmediately();
+        NewGameImmediately();
     }
 
-    private void StartGameImmediately()
+    public void LoadGame()
     {
         ResolveReferences();
 
+        if (useTransitionOnStartGame && screenTransitionController != null)
+        {
+            screenTransitionController.PlayTransition(LoadGameImmediately);
+            return;
+        }
+
+        LoadGameImmediately();
+    }
+
+    private void NewGameImmediately()
+    {
+        StartGameplayImmediately();
+
+        if (resetDialogueProgressOnNewGame && dialogueController != null)
+        {
+            dialogueController.ClearHistory();
+            dialogueController.ResetAllNPCProgress();
+        }
+    }
+
+    private void LoadGameImmediately()
+    {
+        StartGameplayImmediately();
+        LoadSavedProgress();
+    }
+
+    private void StartGameplayImmediately()
+    {
+        ResolveReferences();
         SetGameObject(mainMenuPanel, false);
         SetGameObject(settingsPanel, false);
         SetGameObject(returnToMainMenuButton, false);
@@ -82,6 +125,38 @@ public class MainMenuController : MonoBehaviour
         settingsOpenedFromGame = false;
         SetLookPaused(false);
         RefreshGameSettingsButtonVisibility();
+    }
+
+    private void LoadSavedProgress()
+    {
+        ResolveReferences();
+
+        if (saveSystem != null)
+        {
+            if (loadInventoryOnLoadGame)
+            {
+                saveSystem.LoadGame();
+            }
+
+            if (loadMapItemsOnLoadGame)
+            {
+                saveSystem.LoadGameItemLock();
+            }
+
+            if (loadUnlockedMapsOnLoadGame)
+            {
+                saveSystem.LoadGameMap();
+            }
+        }
+        else
+        {
+            Debug.LogWarning("MainMenuController: SaveSystem is not assigned, so Load Game only opened gameplay.", this);
+        }
+
+        if (loadDialogueProgressOnLoadGame && dialogueController != null)
+        {
+            dialogueController.LoadDialogueHistory();
+        }
     }
 
     public void OpenSettings()
@@ -181,6 +256,11 @@ public class MainMenuController : MonoBehaviour
         if (dialogueController == null)
         {
             dialogueController = FindAnyObjectByType<DialogueController>();
+        }
+
+        if (saveSystem == null)
+        {
+            saveSystem = FindAnyObjectByType<SaveSystem>();
         }
 
         if (screenTransitionController == null)
