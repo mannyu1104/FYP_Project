@@ -9,12 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a2333c3541a600419ddfb14ccd3fba8, type: 3}
-  m_Name: "\u516C\u56ED"
-  m_EditorClassIdentifier: Assembly-CSharp::MapItem
-  NameShow: "\u516C\u56ED"
-  ObjType: Map
-  Get: 1
+  m_Script: {fileID: 11500000, guid: a21d962b510db3d438eb871d0ebb9541, type: 3}
+  m_Name: "OAD_\u5173\u4E8E\u5E0C\u671B\u5B64\u513F\u9662\u6301\u7EED\u8425\u8FD0\u8BF4\u660E"
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  TypeofItem: Ingame
+  Get: 0
   Used: 0
-  Show: 0
-  ItemID: 1
+  ItemID: 22

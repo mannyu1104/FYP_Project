@@ -10,6 +10,7 @@ public class DragableItemSave : MonoBehaviour, IBeginDragHandler, IDragHandler, 
     public MapItem item;
     [HideInInspector] public Transform parentAfterDrag;
     [SerializeField] private TMP_Text ShowText;
+    public InventoryManager inventory;
     public Image image;
     public bool thisShow;
     //public bool thisUnlocked;
@@ -25,16 +26,20 @@ public class DragableItemSave : MonoBehaviour, IBeginDragHandler, IDragHandler, 
 
     public void Start()
     {
+        thisShow = false;
         InitialiseItem(item);
 
-        if (thisGet == true)
-        {
-            DeleteOther();
-        }
         if (thisUsed == true)
         {
             DeleteOther();
             Destroy(gameObject);
+        }
+
+        if (thisGet == true)
+        {
+            DeleteOther();
+            inventory.AddItem(gameObject);
+            thisShow = true;
         }
     }
 
