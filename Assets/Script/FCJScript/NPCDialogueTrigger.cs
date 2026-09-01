@@ -50,7 +50,7 @@ public class NPCDialogueTrigger : MonoBehaviour, IPointerClickHandler
 
         if (dialogueController == null)
         {
-            dialogueController = FindFirstObjectByType<DialogueController>();
+            dialogueController = FindAnyObjectByType<DialogueController>();
         }
 
         List<DialogueController.DialogueLine> lines = GetNextConversationLines();

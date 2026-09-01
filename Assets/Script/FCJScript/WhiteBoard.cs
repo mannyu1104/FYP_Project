@@ -100,7 +100,7 @@ public class WhiteBoard : MonoBehaviour, IPointerClickHandler
 
         if (pauseLookWhenOpen)
         {
-            LookController lookController = FindFirstObjectByType<LookController>();
+            LookController lookController = FindAnyObjectByType<LookController>();
             if (lookController != null)
             {
                 lookController.SetPaused(visible);

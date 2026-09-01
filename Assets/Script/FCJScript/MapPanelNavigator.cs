@@ -20,6 +20,8 @@ public class MapPanelNavigator : MonoBehaviour
     [SerializeField] private GameObject mapPanel;
     [SerializeField] private bool closeMapAfterSelection = true;
     [SerializeField] private bool unpauseLookAfterSelection = true;
+    [Tooltip("Optional navigator used to reset the orphanage to its main area when selected from the map.")]
+    [SerializeField] private LocationNavigator orphanageNavigator;
 
     [Header("Transition")]
     [SerializeField] private ScreenTransitionController screenTransitionController;
@@ -56,6 +58,11 @@ public class MapPanelNavigator : MonoBehaviour
         for (int i = 0; i < locationPanels.Count; i++)
         {
             SetGameObject(locationPanels[i], i == clampedIndex);
+        }
+
+        if (clampedIndex == OrphanageIndex && orphanageNavigator != null)
+        {
+            orphanageNavigator.ShowOrphanageMainFromMap();
         }
 
         CloseMapIfNeeded();
@@ -98,7 +105,7 @@ public class MapPanelNavigator : MonoBehaviour
             return;
         }
 
-        LookController lookController = FindFirstObjectByType<LookController>();
+        LookController lookController = FindAnyObjectByType<LookController>();
         if (lookController != null)
         {
             lookController.SetPaused(false);
@@ -109,7 +116,12 @@ public class MapPanelNavigator : MonoBehaviour
     {
         if (screenTransitionController == null)
         {
-            screenTransitionController = FindFirstObjectByType<ScreenTransitionController>();
+            screenTransitionController = FindAnyObjectByType<ScreenTransitionController>();
+        }
+
+        if (orphanageNavigator == null)
+        {
+            orphanageNavigator = FindAnyObjectByType<LocationNavigator>();
         }
     }
 

@@ -6,6 +6,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Tables;
 
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
@@ -31,9 +33,11 @@ public class DialogueController : MonoBehaviour
     [System.Serializable]
     public class DialogueLine
     {
-        public string speakerName;
-        [TextArea(2, 6)]
-        public string dialogueText;
+        // Legacy string field kept as a reminder of the previous non-localized format.
+        // public string speakerName;
+        public LocalizedString speakerName;
+        // public string dialogueText;
+        public LocalizedString dialogueText;
     }
 
     [Header("Core References")]
@@ -121,10 +125,10 @@ public class DialogueController : MonoBehaviour
 
         if (lookController == null)
         {
-            lookController = FindFirstObjectByType<LookController>();
+            lookController = FindAnyObjectByType<LookController>();
         }
 
-        hoverEffects = FindObjectsByType<HoverEffect>(FindObjectsSortMode.None);
+        hoverEffects = FindObjectsByType<HoverEffect>(FindObjectsInactive.Exclude);
 
         historyButton = historyButton != null ? historyButton : FindButton("HistoryButton");
         autoButton = autoButton != null ? autoButton : FindButton("AutoButton");
@@ -291,15 +295,18 @@ public class DialogueController : MonoBehaviour
         StopTypingRoutine();
 
         DialogueLine line = currentLines[currentLineIndex];
-        currentDialogueText = line.dialogueText;
+        string speakerNameValue = GetLocalizedString(line.speakerName);
+        string dialogueTextValue = GetLocalizedString(line.dialogueText);
+        currentDialogueText = dialogueTextValue;
+
         if (speakerText != null)
         {
-            speakerText.text = line.speakerName;
+            speakerText.text = speakerNameValue;
         }
 
         if (tmpSpeakerText != null)
         {
-            tmpSpeakerText.text = line.speakerName;
+            tmpSpeakerText.text = speakerNameValue;
         }
 
         if (dialogueText != null)
@@ -330,16 +337,16 @@ public class DialogueController : MonoBehaviour
 
         if (enableTypewriterEffect)
         {
-            typingRoutine = StartCoroutine(TypeDialogue(line.dialogueText));
+            typingRoutine = StartCoroutine(TypeDialogue(dialogueTextValue));
         }
         else
         {
-            SetDialogueText(line.dialogueText);
+            SetDialogueText(dialogueTextValue);
         }
 
-        historyEntries.Add(string.IsNullOrEmpty(line.speakerName)
-            ? line.dialogueText
-            : line.speakerName + ": " + line.dialogueText);
+        historyEntries.Add(string.IsNullOrEmpty(speakerNameValue)
+            ? dialogueTextValue
+            : speakerNameValue + ": " + dialogueTextValue);
         UpdateHistoryText();
         SaveDialogueHistoryIfEnabled();
 
@@ -446,9 +453,11 @@ public class DialogueController : MonoBehaviour
         for (int i = currentLineIndex + 1; i < currentLines.Count; i++)
         {
             DialogueLine line = currentLines[i];
-            string entry = string.IsNullOrEmpty(line.speakerName)
-                ? line.dialogueText
-                : line.speakerName + ": " + line.dialogueText;
+            string speakerNameValue = GetLocalizedString(line.speakerName);
+            string dialogueTextValue = GetLocalizedString(line.dialogueText);
+            string entry = string.IsNullOrEmpty(speakerNameValue)
+                ? dialogueTextValue
+                : speakerNameValue + ": " + dialogueTextValue;
 
             historyEntries.Add(entry);
         }
@@ -640,24 +649,23 @@ public class DialogueController : MonoBehaviour
             return;
         }
 
-        ShowItemInspect(target.itemName, target.itemDescription, target.itemSprite, target.showInspectImage);
+        ShowItemInspect(target.itemName, target.itemDescriptionLines, target.itemSprite, target.showInspectImage);
     }
 
-    public void ShowItemInspect(string title, string description, Sprite sprite, bool showCenterImage = true)
+    public void ShowItemInspect(LocalizedString title, IReadOnlyList<LocalizedString> descriptionLines, Sprite sprite, bool showCenterImage = true)
     {
-        if (string.IsNullOrWhiteSpace(title) && string.IsNullOrWhiteSpace(description) && sprite == null)
+        bool hasTitle = HasLocalizedReference(title);
+        bool hasDescription = descriptionLines != null && descriptionLines.Count > 0;
+        if (!hasTitle && !hasDescription && sprite == null)
         {
             return;
         }
 
-        string safeTitle = string.IsNullOrWhiteSpace(title) ? "Item" : title;
-        string safeDescription = string.IsNullOrWhiteSpace(description)
-            ? "This item has no description yet."
-            : description;
+        string titleText = hasTitle ? GetLocalizedString(title) : string.Empty;
 
         if (itemInspectTitleText != null)
         {
-            itemInspectTitleText.text = safeTitle;
+            itemInspectTitleText.text = titleText;
         }
 
         if (itemInspectImage != null)
@@ -671,14 +679,39 @@ public class DialogueController : MonoBehaviour
             itemInspectRoot.SetActive(showCenterImage && sprite != null || !showCenterImage);
         }
 
-        List<DialogueLine> itemLines = new List<DialogueLine>
+        List<DialogueLine> itemLines = new List<DialogueLine>();
+
+        if (descriptionLines != null)
         {
-            new DialogueLine
+            for (int i = 0; i < descriptionLines.Count; i++)
             {
-                speakerName = safeTitle,
-                dialogueText = safeDescription
+                if (!HasLocalizedReference(descriptionLines[i]))
+                {
+                    continue;
+                }
+
+                itemLines.Add(new DialogueLine
+                {
+                    speakerName = title,
+                    dialogueText = descriptionLines[i]
+                });
             }
-        };
+        }
+
+        if (itemLines.Count == 0 && hasTitle)
+        {
+            itemLines.Add(new DialogueLine
+            {
+                speakerName = title,
+                dialogueText = title
+            });
+        }
+
+        if (itemLines.Count == 0)
+        {
+            HideItemInspect();
+            return;
+        }
 
         StartConversation(itemLines, null);
     }
@@ -757,7 +790,7 @@ public class DialogueController : MonoBehaviour
             return;
         }
 
-        NPCDialogueTrigger[] npcs = FindObjectsByType<NPCDialogueTrigger>(FindObjectsSortMode.None);
+        NPCDialogueTrigger[] npcs = FindObjectsByType<NPCDialogueTrigger>(FindObjectsInactive.Exclude);
 
         for (int i = 0; i < npcs.Length; i++)
         {
@@ -769,7 +802,7 @@ public class DialogueController : MonoBehaviour
 
     private List<NPCSaveData> CreateNPCSaveData()
     {
-        NPCDialogueTrigger[] npcs = FindObjectsByType<NPCDialogueTrigger>(FindObjectsSortMode.None);
+        NPCDialogueTrigger[] npcs = FindObjectsByType<NPCDialogueTrigger>(FindObjectsInactive.Exclude);
         List<NPCSaveData> data = new List<NPCSaveData>();
 
         for (int i = 0; i < npcs.Length; i++)
@@ -792,7 +825,7 @@ public class DialogueController : MonoBehaviour
             return;
         }
 
-        NPCDialogueTrigger[] npcs = FindObjectsByType<NPCDialogueTrigger>(FindObjectsSortMode.None);
+        NPCDialogueTrigger[] npcs = FindObjectsByType<NPCDialogueTrigger>(FindObjectsInactive.Exclude);
 
         for (int i = 0; i < npcs.Length; i++)
         {
@@ -941,7 +974,7 @@ public class DialogueController : MonoBehaviour
     {
         if (hoverEffects == null)
         {
-            hoverEffects = FindObjectsByType<HoverEffect>(FindObjectsSortMode.None);
+            hoverEffects = FindObjectsByType<HoverEffect>(FindObjectsInactive.Exclude);
         }
 
         for (int i = 0; i < hoverEffects.Length; i++)
@@ -969,5 +1002,22 @@ public class DialogueController : MonoBehaviour
 #else
         return Input.GetKeyDown(KeyCode.Escape);
 #endif
+    }
+
+    private static bool HasLocalizedReference(LocalizedString localizedString)
+    {
+        return localizedString != null &&
+            localizedString.TableReference.ReferenceType != TableReference.Type.Empty &&
+            localizedString.TableEntryReference.ReferenceType != TableEntryReference.Type.Empty;
+    }
+
+    private static string GetLocalizedString(LocalizedString localizedString)
+    {
+        if (!HasLocalizedReference(localizedString))
+        {
+            return string.Empty;
+        }
+
+        return localizedString.GetLocalizedString();
     }
 }

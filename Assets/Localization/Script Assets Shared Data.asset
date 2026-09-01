@@ -1824,6 +1824,30 @@ MonoBehaviour:
       Discovery Panel/News Panel/News List View/Text (TMP)
     m_Metadata:
       m_Items: []
+  - m_Id: 358793172426756
+    m_Key: Item_077
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426757
+    m_Key: Item_078
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426758
+    m_Key: UI_001
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426759
+    m_Key: UI_002
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426760
+    m_Key: UI_003
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426761
+    m_Key: UI_004
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

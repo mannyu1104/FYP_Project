@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Handles navigation between Home and the orphanage areas.
@@ -45,8 +46,12 @@ public class LocationNavigator : MonoBehaviour
     [SerializeField] private int orphanageMainImageIndex = 1;
 
     [Header("Main Area Buttons")]
-    [Tooltip("Buttons shown on the orphanage main area, such as entrance and staff room buttons.")]
+    [Tooltip("Buttons shown on the orphanage main area, such as the entrance button.")]
     [SerializeField] private GameObject[] mainAreaButtons = new GameObject[0];
+
+    [Header("Entrance Area Buttons")]
+    [Tooltip("Buttons shown only after entering the orphanage entrance area.")]
+    [SerializeField] private GameObject[] entranceAreaButtons = new GameObject[0];
 
     [Header("Back Buttons")]
     [Tooltip("Back buttons. Element 0 is for entrance, element 1 is for staff room.")]
@@ -54,24 +59,52 @@ public class LocationNavigator : MonoBehaviour
 
     private void Reset()
     {
-        TryFindLookController();
+        TryFindSceneReferences();
+        ResolveButtonGroups();
     }
 
     private void Awake()
     {
-        TryFindLookController();
+        TryFindSceneReferences();
+        ResolveButtonGroups();
     }
 
-    private void TryFindLookController()
+    private void TryFindSceneReferences()
     {
         if (lookController == null)
         {
-            lookController = FindFirstObjectByType<LookController>();
+            lookController = FindAnyObjectByType<LookController>();
         }
 
         if (screenTransitionController == null)
         {
-            screenTransitionController = FindFirstObjectByType<ScreenTransitionController>();
+            screenTransitionController = FindAnyObjectByType<ScreenTransitionController>();
+        }
+    }
+
+    private void ResolveButtonGroups()
+    {
+        if (!HasAnyAssigned(mainAreaButtons))
+        {
+            GameObject entranceButton = FindButtonByMethod(mainImage, nameof(GoToEntrance));
+            mainAreaButtons = entranceButton != null
+                ? new[] { entranceButton }
+                : new GameObject[0];
+        }
+
+        if (!HasAnyAssigned(entranceAreaButtons))
+        {
+            GameObject staffRoomButton = FindButtonByMethod(entranceImage, nameof(GoToStaffRoom));
+            entranceAreaButtons = staffRoomButton != null
+                ? new[] { staffRoomButton }
+                : new GameObject[0];
+        }
+
+        if (!HasAssignedAt(backButtons, EntranceBackButtonIndex) || !HasAssignedAt(backButtons, StaffRoomBackButtonIndex))
+        {
+            GameObject backToOrphanageButton = FindButtonByMethod(entranceImage, nameof(GoToOrphanage));
+            GameObject backToEntranceButton = FindButtonByMethod(staffRoomImage, nameof(GoToEntrance));
+            backButtons = new[] { backToOrphanageButton, backToEntranceButton };
         }
     }
 
@@ -93,6 +126,12 @@ public class LocationNavigator : MonoBehaviour
         PlayWithTransition(BackToOrphanageImmediately);
     }
 
+    public void ShowOrphanageMainFromMap()
+    {
+        EnsureOrphanageShown();
+        ShowOrphanageMainArea();
+    }
+
     private void BackToOrphanageImmediately()
     {
         EnsureOrphanageShown();
@@ -106,6 +145,7 @@ public class LocationNavigator : MonoBehaviour
 
     private void GoToEntranceImmediately()
     {
+        ResolveButtonGroups();
         EnsureOrphanageShown();
 
         SetGameObject(mainImage, false);
@@ -117,6 +157,7 @@ public class LocationNavigator : MonoBehaviour
         SetGameObject(npcContainer, true);
 
         SetButtonGroup(mainAreaButtons, false);
+        SetButtonGroup(entranceAreaButtons, true);
         SetAreaBackButton(EntranceBackButtonIndex);
 
         SetLookTo(entranceImage);
@@ -129,6 +170,7 @@ public class LocationNavigator : MonoBehaviour
 
     private void GoToStaffRoomImmediately()
     {
+        ResolveButtonGroups();
         EnsureOrphanageShown();
 
         SetGameObject(mainImage, false);
@@ -140,6 +182,7 @@ public class LocationNavigator : MonoBehaviour
         SetGameObject(npcContainer, false);
 
         SetButtonGroup(mainAreaButtons, false);
+        SetButtonGroup(entranceAreaButtons, false);
         SetAreaBackButton(StaffRoomBackButtonIndex);
 
         SetLookTo(staffRoomImage);
@@ -163,7 +206,7 @@ public class LocationNavigator : MonoBehaviour
 
     private void PlayWithTransition(System.Action action)
     {
-        TryFindLookController();
+        TryFindSceneReferences();
 
         if (useTransition && screenTransitionController != null)
         {
@@ -182,6 +225,8 @@ public class LocationNavigator : MonoBehaviour
 
     private void ShowOrphanageMainArea()
     {
+        ResolveButtonGroups();
+
         SetGameObject(mainImage, true);
         SetGameObject(entranceImage, false);
         SetGameObject(staffRoomImage, false);
@@ -191,6 +236,7 @@ public class LocationNavigator : MonoBehaviour
         SetGameObject(npcContainer, true);
 
         SetButtonGroup(mainAreaButtons, true);
+        SetButtonGroup(entranceAreaButtons, false);
         SetButtonGroup(backButtons, false);
 
         if (lookController != null)
@@ -206,15 +252,20 @@ public class LocationNavigator : MonoBehaviour
             return;
         }
 
-        RectTransform rt = areaImage.transform as RectTransform;
-        if (rt != null)
+        RectTransform rectTransform = areaImage.transform as RectTransform;
+        if (rectTransform != null)
         {
-            lookController.ShowSceneImage(rt);
+            lookController.ShowSceneImage(rectTransform);
         }
     }
 
     private void SetAreaBackButton(int visibleIndex)
     {
+        if (backButtons == null)
+        {
+            return;
+        }
+
         for (int i = 0; i < backButtons.Length; i++)
         {
             SetGameObject(backButtons[i], i == visibleIndex);
@@ -242,5 +293,52 @@ public class LocationNavigator : MonoBehaviour
         {
             SetGameObject(group[i], active);
         }
+    }
+
+    private static bool HasAnyAssigned(GameObject[] group)
+    {
+        if (group == null)
+        {
+            return false;
+        }
+
+        for (int i = 0; i < group.Length; i++)
+        {
+            if (group[i] != null)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private static bool HasAssignedAt(GameObject[] group, int index)
+    {
+        return group != null && index >= 0 && index < group.Length && group[index] != null;
+    }
+
+    private static GameObject FindButtonByMethod(GameObject parent, string methodName)
+    {
+        if (parent == null || string.IsNullOrWhiteSpace(methodName))
+        {
+            return null;
+        }
+
+        Button[] buttons = parent.GetComponentsInChildren<Button>(true);
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            Button button = buttons[i];
+            int eventCount = button.onClick.GetPersistentEventCount();
+            for (int eventIndex = 0; eventIndex < eventCount; eventIndex++)
+            {
+                if (button.onClick.GetPersistentMethodName(eventIndex) == methodName)
+                {
+                    return button.gameObject;
+                }
+            }
+        }
+
+        return null;
     }
 }

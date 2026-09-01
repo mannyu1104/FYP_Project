@@ -80,7 +80,7 @@ public class InteractionCursorController : MonoBehaviour
     {
         if (pauseDuringDialogue)
         {
-            DialogueController dialogueController = FindFirstObjectByType<DialogueController>();
+            DialogueController dialogueController = FindAnyObjectByType<DialogueController>();
             isPaused = dialogueController != null && dialogueController.IsDialogueActive;
         }
 

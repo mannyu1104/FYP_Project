@@ -136,7 +136,7 @@ public class MapButton : MonoBehaviour
         isAnyMapOpen = visible;
         isOpen = visible;
 
-        MapButton[] allButtons = FindObjectsByType<MapButton>(FindObjectsSortMode.None);
+        MapButton[] allButtons = FindObjectsByType<MapButton>(FindObjectsInactive.Exclude);
         for (int i = 0; i < allButtons.Length; i++)
         {
             allButtons[i].isOpen = visible;
@@ -147,7 +147,7 @@ public class MapButton : MonoBehaviour
 
         if (pauseLookWhenOpen)
         {
-            LookController lookController = FindFirstObjectByType<LookController>();
+            LookController lookController = FindAnyObjectByType<LookController>();
             if (lookController != null)
             {
                 lookController.SetPaused(visible);
@@ -159,7 +159,7 @@ public class MapButton : MonoBehaviour
     {
         isAnyMapOpen = visible;
 
-        MapButton[] allButtons = FindObjectsByType<MapButton>(FindObjectsSortMode.None);
+        MapButton[] allButtons = FindObjectsByType<MapButton>(FindObjectsInactive.Exclude);
         for (int i = 0; i < allButtons.Length; i++)
         {
             allButtons[i].isOpen = visible;

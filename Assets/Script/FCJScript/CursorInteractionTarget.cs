@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Localization;
 
 public class CursorInteractionTarget : MonoBehaviour, IPointerClickHandler
 {
@@ -10,9 +12,11 @@ public class CursorInteractionTarget : MonoBehaviour, IPointerClickHandler
     [Header("Item Inspect")]
     [Tooltip("Enable the item introduction dialogue when this object is clicked.")]
     public bool enableInspectDialogue = true;
-    public string itemName = "Item";
-    [TextArea(2, 6)]
-    public string itemDescription = "This is an item.";
+    // Legacy string field kept as a reminder of the previous non-localized format.
+    // public string itemName = "Item";
+    public LocalizedString itemName;
+    // public string itemDescription = "This is an item.";
+    public List<LocalizedString> itemDescriptionLines = new List<LocalizedString>();
     public Sprite itemSprite;
     public bool showInspectImage = true;
 
@@ -43,7 +47,7 @@ public class CursorInteractionTarget : MonoBehaviour, IPointerClickHandler
 
         if (dialogueController == null)
         {
-            dialogueController = FindFirstObjectByType<DialogueController>();
+            dialogueController = FindAnyObjectByType<DialogueController>();
         }
 
         if (dialogueController != null)

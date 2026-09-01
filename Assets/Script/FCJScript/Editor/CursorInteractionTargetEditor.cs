@@ -32,7 +32,7 @@ public class CursorInteractionTargetEditor : Editor
 
     private void DrawPresetSelector()
     {
-        InteractionCursorController controller = FindFirstObjectByType<InteractionCursorController>();
+        InteractionCursorController controller = FindAnyObjectByType<InteractionCursorController>();
 
         if (controller == null || controller.cursorPresets == null || controller.cursorPresets.Count == 0)
         {

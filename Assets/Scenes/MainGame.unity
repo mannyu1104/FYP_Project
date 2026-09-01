@@ -445,8 +445,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
   cursorPresetName: View
   enableInspectDialogue: 1
-  itemName: "\u6025\u6551\u7BB1"
-  itemDescription: "\u5728\u4E66\u67B6\u5E95\u5C42\u6709\u4E00\u4E2A\u5C0F\u578B\u7684\u6025\u6551\u7BB1\uFF0C\u4E0A\u9762\u6709\u4E2A\u84DD\u8272\u8774\u8776\u7684\u6807\u5FD7\u3002\n\n\u662F\u4F60\u5728\u5F00\u59CB\u72EC\u5C45\u540E\u4EE5\u9632\u4E07\u4E00\u4E70\u7684\uFF0C\u4E0D\u8FC7\u5E86\u5E78\u7684\u662F\u4F60\u7684\u8EAB\u4F53\u5F88\u5065\u5EB7\uFF0C\u5230\u73B0\u5728\u8FD8\u6CA1\u6709\u8FD9\u4E2A\u6025\u6551\u7BB1\u51FA\u5DEE\u7684\u673A\u4F1A\u3002"
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047910396027
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  itemDescriptionLines:
+  - m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047910396028
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   itemSprite: {fileID: 407990200, guid: 5f7dad24f86e86c4daa88ad40137aaf0, type: 3}
   showInspectImage: 1
   customCursorPresetName: View
@@ -455,6 +471,9 @@ MonoBehaviour:
   useCustomPreset: 0
   cursorPresetIndex: 0
   dialogueController: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &94063821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1418,8 +1437,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
   cursorPresetName: View
   enableInspectDialogue: 0
-  itemName: "\u7EBF\u7D22\u677F"
-  itemDescription: 
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047910395982
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  itemDescriptionLines:
+  - m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047910395984
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   itemSprite: {fileID: 0}
   showInspectImage: 1
   customCursorPresetName: View
@@ -1428,6 +1463,9 @@ MonoBehaviour:
   useCustomPreset: 0
   cursorPresetIndex: 0
   dialogueController: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &228703312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1852,8 +1890,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
   cursorPresetName: Back
   enableInspectDialogue: 1
-  itemName: Item
-  itemDescription: This is an item.
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  itemDescriptionLines: []
   itemSprite: {fileID: 0}
   showInspectImage: 1
   customCursorPresetName: 
@@ -1862,6 +1908,9 @@ MonoBehaviour:
   useCustomPreset: 0
   cursorPresetIndex: 0
   dialogueController: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &323097213
 GameObject:
   m_ObjectHideFlags: 0
@@ -2556,8 +2605,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
   cursorPresetName: View
   enableInspectDialogue: 1
-  itemName: "\u5E8A"
-  itemDescription: "\u8FD9\u662F\u5E8A\u3002"
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047910396023
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  itemDescriptionLines:
+  - m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047910396024
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   itemSprite: {fileID: 0}
   showInspectImage: 1
   customCursorPresetName: View
@@ -2566,6 +2631,9 @@ MonoBehaviour:
   useCustomPreset: 0
   cursorPresetIndex: 0
   dialogueController: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &403558038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2656,8 +2724,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
   cursorPresetName: View
   enableInspectDialogue: 1
-  itemName: "\u6025\u6551\u7BB1"
-  itemDescription: "\u5728\u4E66\u67B6\u5E95\u5C42\u6709\u4E00\u4E2A\u5C0F\u578B\u7684\u6025\u6551\u7BB1\uFF0C\u4E0A\u9762\u6709\u4E2A\u84DD\u8272\u8774\u8776\u7684\u6807\u5FD7\u3002\n\n\u662F\u4F60\u5728\u5F00\u59CB\u72EC\u5C45\u540E\u4EE5\u9632\u4E07\u4E00\u4E70\u7684\uFF0C\u4E0D\u8FC7\u5E86\u5E78\u7684\u662F\u4F60\u7684\u8EAB\u4F53\u5F88\u5065\u5EB7\uFF0C\u5230\u73B0\u5728\u8FD8\u6CA1\u6709\u8FD9\u4E2A\u6025\u6551\u7BB1\u51FA\u5DEE\u7684\u673A\u4F1A\u3002"
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047910396029
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  itemDescriptionLines:
+  - m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047910396030
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   itemSprite: {fileID: 407990200, guid: 5f7dad24f86e86c4daa88ad40137aaf0, type: 3}
   showInspectImage: 1
   customCursorPresetName: View
@@ -2666,6 +2750,9 @@ MonoBehaviour:
   useCustomPreset: 0
   cursorPresetIndex: 0
   dialogueController: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &408756426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2757,8 +2844,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
   cursorPresetName: View
   enableInspectDialogue: 1
-  itemName: Item
-  itemDescription: This is an item.
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  itemDescriptionLines: []
   itemSprite: {fileID: 0}
   showInspectImage: 1
   customCursorPresetName: 
@@ -2767,6 +2862,9 @@ MonoBehaviour:
   useCustomPreset: 0
   cursorPresetIndex: 0
   dialogueController: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &408816638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2782,44 +2880,33 @@ MonoBehaviour:
   saveId: 
   dialogueController: {fileID: 2090279257}
   conversations:
-  - conversationName: "\u7B2C\u4E00\u6B21\u5BF9\u8BDD"
+  - conversationName: Conversation
     dialogueLines:
-    - speakerName: "\u4E49\u5DE5A"
-      dialogueText: "\u6D4B\u8BD5\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A"
-    - speakerName: "\u4E49\u5DE5A"
-      dialogueText: "\u597D\u597D\u597D"
-    - speakerName: "\u4E49\u5DE5A"
-      dialogueText: "\u6700\u540E1"
-  - conversationName: "\u7B2C\u4E8C\u6B21\u5BF9\u8BDD"
-    dialogueLines:
-    - speakerName: npc
-      dialogueText: "\u6211\u53BB"
-    - speakerName: npc
-      dialogueText: "\u4F60\u600E\u4E48\u8FD8\u6765"
-    - speakerName: npc
-      dialogueText: "\u6700\u540E2"
-  - conversationName: "\u7B2C\u4E09\u6B21\u5BF9\u8BDD"
-    dialogueLines:
-    - speakerName: npc
-      dialogueText: "\u3002\u3002\u3002"
-    - speakerName: npc
-      dialogueText: "\u518D\u65E0\u8BDD\u8BF4"
-  dialogueLines:
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u6D4B\u8BD5\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u54C7\u585E\u5443\u5443\u5443\u5443\u5443\u5443\u5443\u5443\u5443\u5443"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u53EF\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u5165\u53E3\u5904\u9644\u8FD1\u7684\u89D2\u843D\u653E\u7740\u4E00\u4E9B\u8FD0\u52A8\u7528\u54C1\uFF0C\u6709\u547C\u5566\u5708\u3001\u513F\u7AE5\u6C99\u5305\u3001\u8DF3\u7EF3\u3001\u4E94\u989C\u516D\u8272\u7684\u5851\u6599\u7403\u7B49\uFF0C\u4F3C\u4E4E\u539F\u672C\u662F\u51C6\u5907\u5728\u4ECA\u5929\u7684\u8FD0\u52A8\u4F1A\u4E0A\u4F7F\u7528\u7684\u3002\u5F80\u804C\u5458\u5BA4\u8D70\u53BB\u7684\u8D70\u5ECA\u5899\u4E0A\u6709\u4E00\u4E2A\u5E03\u544A\u680F\uFF0C\u8D34\u7740\u5B69\u5B50\u4EEC\u7684\u4F5C\u54C1\u3001\u4E00\u4E9B\u65E5\u5E38\u901A\u77E5\u548C\u5E0C\u671B\u5B64\u513F\u9662\u7684\u804C\u5458\u7ED3\u6784\u56FE\u3002"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u804C\u5458\u5BA4\u662F\u4E00\u95F4\u5C0F\u578B\u7684\u529E\u516C\u5BA4\u3002\u9664\u4E86\u9662\u957F\uFF0C\u6BCF\u4E00\u4F4D\u804C\u5458\u90FD\u6709\u5C5E\u4E8E\u81EA\u5DF1\u7684\u529E\u516C\u7A7A\u95F4\uFF0C\u5404\u81EA\u7684\u684C\u4E0A\u4E5F\u90FD\u7C98\u7740\u8BE5\u804C\u5458\u7684\u540D\u5B57\u3002\u5F20\u6167\u73B2\u7684\u684C\u4E0A\u653E\u7740\u5173\u4E8E\u8FD9\u6B21\u8FD0\u52A8\u4F1A\u7684\u6D41\u7A0B\u8868\u3002\u738B\u79C0\u4E3D\u7684\u684C\u4E0A\u653E\u7740\u6279\u6539\u5230\u4E00\u534A\u7684\u5B69\u5B50\u4EEC\u7684\u4F5C\u4E1A\u3002\u674E\u79C0\u82B3\u7684\u7535\u8111\u8367\u5E55\u8FB9\u7F18\u7C98\u7740\u4E00\u5F20\u63D0\u9192\u81EA\u5DF1\u5BC6\u7801\u7684\u5C0F\u7EB8\u6761\u3002"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u505A\u5B8C\u7EC3\u4E60\u9898\u540E\uFF0C\u65F6\u5019\u4E5F\u4E0D\u65E9\u4E86\u3002\u5728\u7B80\u5355\u7684\u5403\u8FC7\u665A\u9910\u3001\u68B3\u6D17\u8FC7\u540E\uFF0C\u6211\u8EBA\u5230\u4E86\u5E8A\u4E0A\uFF0C\u8FDB\u5165\u68A6\u4E61\u3002"
+    - speakerName:
+        m_TableReference:
+          m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+        m_TableEntryReference:
+          m_KeyId: 8047910396055
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      dialogueText:
+        m_TableReference:
+          m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+        m_TableEntryReference:
+          m_KeyId: 8047906201628
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+  dialogueLines: []
   allowRepeatConversation: 1
   hasTalked: 0
   nextConversationIndex: 0
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &408816639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2911,8 +2998,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
   cursorPresetName: View
   enableInspectDialogue: 0
-  itemName: 
-  itemDescription: 
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  itemDescriptionLines: []
   itemSprite: {fileID: 0}
   showInspectImage: 1
   customCursorPresetName: 
@@ -2921,6 +3016,9 @@ MonoBehaviour:
   useCustomPreset: 0
   cursorPresetIndex: 0
   dialogueController: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &411055835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2936,44 +3034,69 @@ MonoBehaviour:
   saveId: 
   dialogueController: {fileID: 2090279257}
   conversations:
-  - conversationName: "\u7B2C\u4E00\u6B21\u5BF9\u8BDD"
+  - conversationName: Conversation
     dialogueLines:
-    - speakerName: "\u5F20\u6167\u73B2"
-      dialogueText: "\u6D4B\u8BD5\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A"
-    - speakerName: "\u5F20\u6167\u73B2"
-      dialogueText: "\u597D\u597D\u597D"
-    - speakerName: "\u5F20\u6167\u73B2"
-      dialogueText: "\u6700\u540E1"
-  - conversationName: "\u7B2C\u4E8C\u6B21\u5BF9\u8BDD"
-    dialogueLines:
-    - speakerName: npc
-      dialogueText: "\u6211\u53BB"
-    - speakerName: npc
-      dialogueText: "\u4F60\u600E\u4E48\u8FD8\u6765"
-    - speakerName: npc
-      dialogueText: "\u6700\u540E2"
-  - conversationName: "\u7B2C\u4E09\u6B21\u5BF9\u8BDD"
-    dialogueLines:
-    - speakerName: npc
-      dialogueText: "\u3002\u3002\u3002"
-    - speakerName: npc
-      dialogueText: "\u518D\u65E0\u8BDD\u8BF4"
-  dialogueLines:
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u6D4B\u8BD5\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u54C7\u585E\u5443\u5443\u5443\u5443\u5443\u5443\u5443\u5443\u5443\u5443"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u53EF\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u5165\u53E3\u5904\u9644\u8FD1\u7684\u89D2\u843D\u653E\u7740\u4E00\u4E9B\u8FD0\u52A8\u7528\u54C1\uFF0C\u6709\u547C\u5566\u5708\u3001\u513F\u7AE5\u6C99\u5305\u3001\u8DF3\u7EF3\u3001\u4E94\u989C\u516D\u8272\u7684\u5851\u6599\u7403\u7B49\uFF0C\u4F3C\u4E4E\u539F\u672C\u662F\u51C6\u5907\u5728\u4ECA\u5929\u7684\u8FD0\u52A8\u4F1A\u4E0A\u4F7F\u7528\u7684\u3002\u5F80\u804C\u5458\u5BA4\u8D70\u53BB\u7684\u8D70\u5ECA\u5899\u4E0A\u6709\u4E00\u4E2A\u5E03\u544A\u680F\uFF0C\u8D34\u7740\u5B69\u5B50\u4EEC\u7684\u4F5C\u54C1\u3001\u4E00\u4E9B\u65E5\u5E38\u901A\u77E5\u548C\u5E0C\u671B\u5B64\u513F\u9662\u7684\u804C\u5458\u7ED3\u6784\u56FE\u3002"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u804C\u5458\u5BA4\u662F\u4E00\u95F4\u5C0F\u578B\u7684\u529E\u516C\u5BA4\u3002\u9664\u4E86\u9662\u957F\uFF0C\u6BCF\u4E00\u4F4D\u804C\u5458\u90FD\u6709\u5C5E\u4E8E\u81EA\u5DF1\u7684\u529E\u516C\u7A7A\u95F4\uFF0C\u5404\u81EA\u7684\u684C\u4E0A\u4E5F\u90FD\u7C98\u7740\u8BE5\u804C\u5458\u7684\u540D\u5B57\u3002\u5F20\u6167\u73B2\u7684\u684C\u4E0A\u653E\u7740\u5173\u4E8E\u8FD9\u6B21\u8FD0\u52A8\u4F1A\u7684\u6D41\u7A0B\u8868\u3002\u738B\u79C0\u4E3D\u7684\u684C\u4E0A\u653E\u7740\u6279\u6539\u5230\u4E00\u534A\u7684\u5B69\u5B50\u4EEC\u7684\u4F5C\u4E1A\u3002\u674E\u79C0\u82B3\u7684\u7535\u8111\u8367\u5E55\u8FB9\u7F18\u7C98\u7740\u4E00\u5F20\u63D0\u9192\u81EA\u5DF1\u5BC6\u7801\u7684\u5C0F\u7EB8\u6761\u3002"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u505A\u5B8C\u7EC3\u4E60\u9898\u540E\uFF0C\u65F6\u5019\u4E5F\u4E0D\u65E9\u4E86\u3002\u5728\u7B80\u5355\u7684\u5403\u8FC7\u665A\u9910\u3001\u68B3\u6D17\u8FC7\u540E\uFF0C\u6211\u8EBA\u5230\u4E86\u5E8A\u4E0A\uFF0C\u8FDB\u5165\u68A6\u4E61\u3002"
+    - speakerName:
+        m_TableReference:
+          m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+        m_TableEntryReference:
+          m_KeyId: 8047910395943
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      dialogueText:
+        m_TableReference:
+          m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+        m_TableEntryReference:
+          m_KeyId: 8047897813004
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    - speakerName:
+        m_TableReference:
+          m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+        m_TableEntryReference:
+          m_KeyId: 8047910395943
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      dialogueText:
+        m_TableReference:
+          m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+        m_TableEntryReference:
+          m_KeyId: 8047897813005
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    - speakerName:
+        m_TableReference:
+          m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+        m_TableEntryReference:
+          m_KeyId: 8047910395943
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      dialogueText:
+        m_TableReference:
+          m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+        m_TableEntryReference:
+          m_KeyId: 8047897813006
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+  dialogueLines: []
   allowRepeatConversation: 1
   hasTalked: 0
   nextConversationIndex: 0
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &411055836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3757,7 +3880,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &669448268
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3875,8 +3998,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
   cursorPresetName: Map
   enableInspectDialogue: 1
-  itemName: Item
-  itemDescription: This is an item.
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  itemDescriptionLines: []
   itemSprite: {fileID: 0}
   showInspectImage: 1
   customCursorPresetName: 
@@ -3885,6 +4016,9 @@ MonoBehaviour:
   useCustomPreset: 0
   cursorPresetIndex: 0
   dialogueController: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &675932089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4181,8 +4315,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
   cursorPresetName: View
   enableInspectDialogue: 1
-  itemName: "\u6025\u6551\u7BB1"
-  itemDescription: "\u5728\u4E66\u67B6\u5E95\u5C42\u6709\u4E00\u4E2A\u5C0F\u578B\u7684\u6025\u6551\u7BB1\uFF0C\u4E0A\u9762\u6709\u4E2A\u84DD\u8272\u8774\u8776\u7684\u6807\u5FD7\u3002\n\n\u662F\u4F60\u5728\u5F00\u59CB\u72EC\u5C45\u540E\u4EE5\u9632\u4E07\u4E00\u4E70\u7684\uFF0C\u4E0D\u8FC7\u5E86\u5E78\u7684\u662F\u4F60\u7684\u8EAB\u4F53\u5F88\u5065\u5EB7\uFF0C\u5230\u73B0\u5728\u8FD8\u6CA1\u6709\u8FD9\u4E2A\u6025\u6551\u7BB1\u51FA\u5DEE\u7684\u673A\u4F1A\u3002"
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047910396033
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  itemDescriptionLines:
+  - m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047910396034
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047910396035
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   itemSprite: {fileID: 407990200, guid: 5f7dad24f86e86c4daa88ad40137aaf0, type: 3}
   showInspectImage: 1
   customCursorPresetName: View
@@ -4191,6 +4349,9 @@ MonoBehaviour:
   useCustomPreset: 0
   cursorPresetIndex: 0
   dialogueController: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &702765102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4472,7 +4633,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &723132414
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4562,6 +4723,7 @@ MonoBehaviour:
   mainAreaButtons:
   - {fileID: 2100000021}
   - {fileID: 2100000031}
+  entranceAreaButtons: []
   backButtons:
   - {fileID: 2100000041}
   - {fileID: 2100000051}
@@ -4751,8 +4913,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
   cursorPresetName: View
   enableInspectDialogue: 1
-  itemName: Item
-  itemDescription: This is an item.
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  itemDescriptionLines: []
   itemSprite: {fileID: 0}
   showInspectImage: 1
   customCursorPresetName: 
@@ -4761,6 +4931,9 @@ MonoBehaviour:
   useCustomPreset: 0
   cursorPresetIndex: 0
   dialogueController: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &749603929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4776,44 +4949,33 @@ MonoBehaviour:
   saveId: 
   dialogueController: {fileID: 2090279257}
   conversations:
-  - conversationName: "\u7B2C\u4E00\u6B21\u5BF9\u8BDD"
+  - conversationName: Conversation
     dialogueLines:
-    - speakerName: "\u5B69\u5B50A"
-      dialogueText: "\u6D4B\u8BD5\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A"
-    - speakerName: "\u5B69\u5B50A"
-      dialogueText: "\u597D\u597D\u597D"
-    - speakerName: "\u5B69\u5B50A"
-      dialogueText: "\u6700\u540E1"
-  - conversationName: "\u7B2C\u4E8C\u6B21\u5BF9\u8BDD"
-    dialogueLines:
-    - speakerName: "\u5B69\u5B50A"
-      dialogueText: "\u6211\u53BB"
-    - speakerName: "\u5B69\u5B50A"
-      dialogueText: "\u4F60\u600E\u4E48\u8FD8\u6765"
-    - speakerName: "\u5B69\u5B50A"
-      dialogueText: "\u6700\u540E2"
-  - conversationName: "\u7B2C\u4E09\u6B21\u5BF9\u8BDD"
-    dialogueLines:
-    - speakerName: "\u5B69\u5B50A"
-      dialogueText: "\u3002\u3002\u3002"
-    - speakerName: "\u5B69\u5B50A"
-      dialogueText: "\u518D\u65E0\u8BDD\u8BF4"
-  dialogueLines:
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u6D4B\u8BD5\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u54C7\u585E\u5443\u5443\u5443\u5443\u5443\u5443\u5443\u5443\u5443\u5443"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u53EF\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u5165\u53E3\u5904\u9644\u8FD1\u7684\u89D2\u843D\u653E\u7740\u4E00\u4E9B\u8FD0\u52A8\u7528\u54C1\uFF0C\u6709\u547C\u5566\u5708\u3001\u513F\u7AE5\u6C99\u5305\u3001\u8DF3\u7EF3\u3001\u4E94\u989C\u516D\u8272\u7684\u5851\u6599\u7403\u7B49\uFF0C\u4F3C\u4E4E\u539F\u672C\u662F\u51C6\u5907\u5728\u4ECA\u5929\u7684\u8FD0\u52A8\u4F1A\u4E0A\u4F7F\u7528\u7684\u3002\u5F80\u804C\u5458\u5BA4\u8D70\u53BB\u7684\u8D70\u5ECA\u5899\u4E0A\u6709\u4E00\u4E2A\u5E03\u544A\u680F\uFF0C\u8D34\u7740\u5B69\u5B50\u4EEC\u7684\u4F5C\u54C1\u3001\u4E00\u4E9B\u65E5\u5E38\u901A\u77E5\u548C\u5E0C\u671B\u5B64\u513F\u9662\u7684\u804C\u5458\u7ED3\u6784\u56FE\u3002"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u804C\u5458\u5BA4\u662F\u4E00\u95F4\u5C0F\u578B\u7684\u529E\u516C\u5BA4\u3002\u9664\u4E86\u9662\u957F\uFF0C\u6BCF\u4E00\u4F4D\u804C\u5458\u90FD\u6709\u5C5E\u4E8E\u81EA\u5DF1\u7684\u529E\u516C\u7A7A\u95F4\uFF0C\u5404\u81EA\u7684\u684C\u4E0A\u4E5F\u90FD\u7C98\u7740\u8BE5\u804C\u5458\u7684\u540D\u5B57\u3002\u5F20\u6167\u73B2\u7684\u684C\u4E0A\u653E\u7740\u5173\u4E8E\u8FD9\u6B21\u8FD0\u52A8\u4F1A\u7684\u6D41\u7A0B\u8868\u3002\u738B\u79C0\u4E3D\u7684\u684C\u4E0A\u653E\u7740\u6279\u6539\u5230\u4E00\u534A\u7684\u5B69\u5B50\u4EEC\u7684\u4F5C\u4E1A\u3002\u674E\u79C0\u82B3\u7684\u7535\u8111\u8367\u5E55\u8FB9\u7F18\u7C98\u7740\u4E00\u5F20\u63D0\u9192\u81EA\u5DF1\u5BC6\u7801\u7684\u5C0F\u7EB8\u6761\u3002"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u505A\u5B8C\u7EC3\u4E60\u9898\u540E\uFF0C\u65F6\u5019\u4E5F\u4E0D\u65E9\u4E86\u3002\u5728\u7B80\u5355\u7684\u5403\u8FC7\u665A\u9910\u3001\u68B3\u6D17\u8FC7\u540E\uFF0C\u6211\u8EBA\u5230\u4E86\u5E8A\u4E0A\uFF0C\u8FDB\u5165\u68A6\u4E61\u3002"
+    - speakerName:
+        m_TableReference:
+          m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+        m_TableEntryReference:
+          m_KeyId: 8047910396059
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      dialogueText:
+        m_TableReference:
+          m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+        m_TableEntryReference:
+          m_KeyId: 8047906201633
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+  dialogueLines: []
   allowRepeatConversation: 1
   hasTalked: 0
   nextConversationIndex: 0
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &749603930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5188,8 +5350,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
   cursorPresetName: View
   enableInspectDialogue: 1
-  itemName: "\u5E8A"
-  itemDescription: "\u8FD9\u662F\u5E8A\u3002"
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047910396036
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  itemDescriptionLines:
+  - m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047910396037
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047910396038
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047910396039
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   itemSprite: {fileID: 0}
   showInspectImage: 1
   customCursorPresetName: View
@@ -5198,6 +5392,9 @@ MonoBehaviour:
   useCustomPreset: 0
   cursorPresetIndex: 0
   dialogueController: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &893799921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5770,8 +5967,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
   cursorPresetName: Map
   enableInspectDialogue: 1
-  itemName: Item
-  itemDescription: This is an item.
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  itemDescriptionLines: []
   itemSprite: {fileID: 0}
   showInspectImage: 1
   customCursorPresetName: 
@@ -5780,6 +5985,9 @@ MonoBehaviour:
   useCustomPreset: 0
   cursorPresetIndex: 0
   dialogueController: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &1027046158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6061,8 +6269,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
   cursorPresetName: View
   enableInspectDialogue: 1
-  itemName: Item
-  itemDescription: This is an item.
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  itemDescriptionLines: []
   itemSprite: {fileID: 0}
   showInspectImage: 1
   customCursorPresetName: 
@@ -6071,6 +6287,9 @@ MonoBehaviour:
   useCustomPreset: 0
   cursorPresetIndex: 0
   dialogueController: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &1069598155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6086,44 +6305,105 @@ MonoBehaviour:
   saveId: 
   dialogueController: {fileID: 2090279257}
   conversations:
-  - conversationName: "\u7B2C\u4E00\u6B21\u5BF9\u8BDD"
+  - conversationName: Conversation
     dialogueLines:
-    - speakerName: npc
-      dialogueText: "\u6D4B\u8BD5\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A"
-    - speakerName: npc
-      dialogueText: "\u597D\u597D\u597D"
-    - speakerName: npc
-      dialogueText: "\u6700\u540E1"
-  - conversationName: "\u7B2C\u4E8C\u6B21\u5BF9\u8BDD"
-    dialogueLines:
-    - speakerName: npc
-      dialogueText: "\u6211\u53BB"
-    - speakerName: npc
-      dialogueText: "\u4F60\u600E\u4E48\u8FD8\u6765"
-    - speakerName: npc
-      dialogueText: "\u6700\u540E2"
-  - conversationName: "\u7B2C\u4E09\u6B21\u5BF9\u8BDD"
-    dialogueLines:
-    - speakerName: npc
-      dialogueText: "\u3002\u3002\u3002"
-    - speakerName: npc
-      dialogueText: "\u518D\u65E0\u8BDD\u8BF4"
-  dialogueLines:
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u6D4B\u8BD5\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u54C7\u585E\u5443\u5443\u5443\u5443\u5443\u5443\u5443\u5443\u5443\u5443"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u53EF\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u5165\u53E3\u5904\u9644\u8FD1\u7684\u89D2\u843D\u653E\u7740\u4E00\u4E9B\u8FD0\u52A8\u7528\u54C1\uFF0C\u6709\u547C\u5566\u5708\u3001\u513F\u7AE5\u6C99\u5305\u3001\u8DF3\u7EF3\u3001\u4E94\u989C\u516D\u8272\u7684\u5851\u6599\u7403\u7B49\uFF0C\u4F3C\u4E4E\u539F\u672C\u662F\u51C6\u5907\u5728\u4ECA\u5929\u7684\u8FD0\u52A8\u4F1A\u4E0A\u4F7F\u7528\u7684\u3002\u5F80\u804C\u5458\u5BA4\u8D70\u53BB\u7684\u8D70\u5ECA\u5899\u4E0A\u6709\u4E00\u4E2A\u5E03\u544A\u680F\uFF0C\u8D34\u7740\u5B69\u5B50\u4EEC\u7684\u4F5C\u54C1\u3001\u4E00\u4E9B\u65E5\u5E38\u901A\u77E5\u548C\u5E0C\u671B\u5B64\u513F\u9662\u7684\u804C\u5458\u7ED3\u6784\u56FE\u3002"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u804C\u5458\u5BA4\u662F\u4E00\u95F4\u5C0F\u578B\u7684\u529E\u516C\u5BA4\u3002\u9664\u4E86\u9662\u957F\uFF0C\u6BCF\u4E00\u4F4D\u804C\u5458\u90FD\u6709\u5C5E\u4E8E\u81EA\u5DF1\u7684\u529E\u516C\u7A7A\u95F4\uFF0C\u5404\u81EA\u7684\u684C\u4E0A\u4E5F\u90FD\u7C98\u7740\u8BE5\u804C\u5458\u7684\u540D\u5B57\u3002\u5F20\u6167\u73B2\u7684\u684C\u4E0A\u653E\u7740\u5173\u4E8E\u8FD9\u6B21\u8FD0\u52A8\u4F1A\u7684\u6D41\u7A0B\u8868\u3002\u738B\u79C0\u4E3D\u7684\u684C\u4E0A\u653E\u7740\u6279\u6539\u5230\u4E00\u534A\u7684\u5B69\u5B50\u4EEC\u7684\u4F5C\u4E1A\u3002\u674E\u79C0\u82B3\u7684\u7535\u8111\u8367\u5E55\u8FB9\u7F18\u7C98\u7740\u4E00\u5F20\u63D0\u9192\u81EA\u5DF1\u5BC6\u7801\u7684\u5C0F\u7EB8\u6761\u3002"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u505A\u5B8C\u7EC3\u4E60\u9898\u540E\uFF0C\u65F6\u5019\u4E5F\u4E0D\u65E9\u4E86\u3002\u5728\u7B80\u5355\u7684\u5403\u8FC7\u665A\u9910\u3001\u68B3\u6D17\u8FC7\u540E\uFF0C\u6211\u8EBA\u5230\u4E86\u5E8A\u4E0A\uFF0C\u8FDB\u5165\u68A6\u4E61\u3002"
+    - speakerName:
+        m_TableReference:
+          m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+        m_TableEntryReference:
+          m_KeyId: 8047910396040
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      dialogueText:
+        m_TableReference:
+          m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+        m_TableEntryReference:
+          m_KeyId: 8047906201619
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    - speakerName:
+        m_TableReference:
+          m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+        m_TableEntryReference:
+          m_KeyId: 8047910396040
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      dialogueText:
+        m_TableReference:
+          m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+        m_TableEntryReference:
+          m_KeyId: 8047906201620
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    - speakerName:
+        m_TableReference:
+          m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+        m_TableEntryReference:
+          m_KeyId: 8047910396040
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      dialogueText:
+        m_TableReference:
+          m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+        m_TableEntryReference:
+          m_KeyId: 8047906201621
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    - speakerName:
+        m_TableReference:
+          m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+        m_TableEntryReference:
+          m_KeyId: 8047910396040
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      dialogueText:
+        m_TableReference:
+          m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+        m_TableEntryReference:
+          m_KeyId: 8047906201622
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    - speakerName:
+        m_TableReference:
+          m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+        m_TableEntryReference:
+          m_KeyId: 8047910396040
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      dialogueText:
+        m_TableReference:
+          m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+        m_TableEntryReference:
+          m_KeyId: 8047906201623
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+  dialogueLines: []
   allowRepeatConversation: 1
   hasTalked: 0
   nextConversationIndex: 0
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &1069598156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6324,8 +6604,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
   cursorPresetName: View
   enableInspectDialogue: 1
-  itemName: "\u6025\u6551\u7BB1"
-  itemDescription: "\u5728\u4E66\u67B6\u5E95\u5C42\u6709\u4E00\u4E2A\u5C0F\u578B\u7684\u6025\u6551\u7BB1\uFF0C\u4E0A\u9762\u6709\u4E2A\u84DD\u8272\u8774\u8776\u7684\u6807\u5FD7\u3002\n\n\u662F\u4F60\u5728\u5F00\u59CB\u72EC\u5C45\u540E\u4EE5\u9632\u4E07\u4E00\u4E70\u7684\uFF0C\u4E0D\u8FC7\u5E86\u5E78\u7684\u662F\u4F60\u7684\u8EAB\u4F53\u5F88\u5065\u5EB7\uFF0C\u5230\u73B0\u5728\u8FD8\u6CA1\u6709\u8FD9\u4E2A\u6025\u6551\u7BB1\u51FA\u5DEE\u7684\u673A\u4F1A\u3002"
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047910396031
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  itemDescriptionLines:
+  - m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047910396032
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   itemSprite: {fileID: 407990200, guid: 5f7dad24f86e86c4daa88ad40137aaf0, type: 3}
   showInspectImage: 1
   customCursorPresetName: View
@@ -6334,6 +6630,9 @@ MonoBehaviour:
   useCustomPreset: 0
   cursorPresetIndex: 0
   dialogueController: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &1145915559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6833,6 +7132,7 @@ MonoBehaviour:
   mapPanel: {fileID: 1029216207}
   closeMapAfterSelection: 1
   unpauseLookAfterSelection: 1
+  orphanageNavigator: {fileID: 0}
   screenTransitionController: {fileID: 0}
   useTransition: 1
 --- !u!4 &1309688711
@@ -6904,8 +7204,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
   cursorPresetName: Map
   enableInspectDialogue: 1
-  itemName: Item
-  itemDescription: This is an item.
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  itemDescriptionLines: []
   itemSprite: {fileID: 0}
   showInspectImage: 1
   customCursorPresetName: 
@@ -6914,6 +7222,9 @@ MonoBehaviour:
   useCustomPreset: 0
   cursorPresetIndex: 0
   dialogueController: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &1310731464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7215,8 +7526,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
   cursorPresetName: View
   enableInspectDialogue: 1
-  itemName: Item
-  itemDescription: This is an item.
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  itemDescriptionLines: []
   itemSprite: {fileID: 0}
   showInspectImage: 1
   customCursorPresetName: 
@@ -7225,6 +7544,9 @@ MonoBehaviour:
   useCustomPreset: 0
   cursorPresetIndex: 0
   dialogueController: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &1320451816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7240,44 +7562,33 @@ MonoBehaviour:
   saveId: 
   dialogueController: {fileID: 2090279257}
   conversations:
-  - conversationName: "\u7B2C\u4E00\u6B21\u5BF9\u8BDD"
+  - conversationName: Conversation
     dialogueLines:
-    - speakerName: "\u5B69\u5B50B"
-      dialogueText: "\u6D4B\u8BD5\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A"
-    - speakerName: "\u5B69\u5B50B"
-      dialogueText: "\u597D\u597D\u597D"
-    - speakerName: "\u5B69\u5B50B"
-      dialogueText: "\u6700\u540E1"
-  - conversationName: "\u7B2C\u4E8C\u6B21\u5BF9\u8BDD"
-    dialogueLines:
-    - speakerName: npc
-      dialogueText: "\u6211\u53BB"
-    - speakerName: npc
-      dialogueText: "\u4F60\u600E\u4E48\u8FD8\u6765"
-    - speakerName: npc
-      dialogueText: "\u6700\u540E2"
-  - conversationName: "\u7B2C\u4E09\u6B21\u5BF9\u8BDD"
-    dialogueLines:
-    - speakerName: "\u5B69\u5B50A"
-      dialogueText: "\u3002\u3002\u3002"
-    - speakerName: npc
-      dialogueText: "\u518D\u65E0\u8BDD\u8BF4"
-  dialogueLines:
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u6D4B\u8BD5\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u54C7\u585E\u5443\u5443\u5443\u5443\u5443\u5443\u5443\u5443\u5443\u5443"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u53EF\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u5165\u53E3\u5904\u9644\u8FD1\u7684\u89D2\u843D\u653E\u7740\u4E00\u4E9B\u8FD0\u52A8\u7528\u54C1\uFF0C\u6709\u547C\u5566\u5708\u3001\u513F\u7AE5\u6C99\u5305\u3001\u8DF3\u7EF3\u3001\u4E94\u989C\u516D\u8272\u7684\u5851\u6599\u7403\u7B49\uFF0C\u4F3C\u4E4E\u539F\u672C\u662F\u51C6\u5907\u5728\u4ECA\u5929\u7684\u8FD0\u52A8\u4F1A\u4E0A\u4F7F\u7528\u7684\u3002\u5F80\u804C\u5458\u5BA4\u8D70\u53BB\u7684\u8D70\u5ECA\u5899\u4E0A\u6709\u4E00\u4E2A\u5E03\u544A\u680F\uFF0C\u8D34\u7740\u5B69\u5B50\u4EEC\u7684\u4F5C\u54C1\u3001\u4E00\u4E9B\u65E5\u5E38\u901A\u77E5\u548C\u5E0C\u671B\u5B64\u513F\u9662\u7684\u804C\u5458\u7ED3\u6784\u56FE\u3002"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u804C\u5458\u5BA4\u662F\u4E00\u95F4\u5C0F\u578B\u7684\u529E\u516C\u5BA4\u3002\u9664\u4E86\u9662\u957F\uFF0C\u6BCF\u4E00\u4F4D\u804C\u5458\u90FD\u6709\u5C5E\u4E8E\u81EA\u5DF1\u7684\u529E\u516C\u7A7A\u95F4\uFF0C\u5404\u81EA\u7684\u684C\u4E0A\u4E5F\u90FD\u7C98\u7740\u8BE5\u804C\u5458\u7684\u540D\u5B57\u3002\u5F20\u6167\u73B2\u7684\u684C\u4E0A\u653E\u7740\u5173\u4E8E\u8FD9\u6B21\u8FD0\u52A8\u4F1A\u7684\u6D41\u7A0B\u8868\u3002\u738B\u79C0\u4E3D\u7684\u684C\u4E0A\u653E\u7740\u6279\u6539\u5230\u4E00\u534A\u7684\u5B69\u5B50\u4EEC\u7684\u4F5C\u4E1A\u3002\u674E\u79C0\u82B3\u7684\u7535\u8111\u8367\u5E55\u8FB9\u7F18\u7C98\u7740\u4E00\u5F20\u63D0\u9192\u81EA\u5DF1\u5BC6\u7801\u7684\u5C0F\u7EB8\u6761\u3002"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u505A\u5B8C\u7EC3\u4E60\u9898\u540E\uFF0C\u65F6\u5019\u4E5F\u4E0D\u65E9\u4E86\u3002\u5728\u7B80\u5355\u7684\u5403\u8FC7\u665A\u9910\u3001\u68B3\u6D17\u8FC7\u540E\uFF0C\u6211\u8EBA\u5230\u4E86\u5E8A\u4E0A\uFF0C\u8FDB\u5165\u68A6\u4E61\u3002"
+    - speakerName:
+        m_TableReference:
+          m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+        m_TableEntryReference:
+          m_KeyId: 8047918784513
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      dialogueText:
+        m_TableReference:
+          m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+        m_TableEntryReference:
+          m_KeyId: 8047906201634
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+  dialogueLines: []
   allowRepeatConversation: 1
   hasTalked: 0
   nextConversationIndex: 0
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &1320451817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7674,8 +7985,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
   cursorPresetName: View
   enableInspectDialogue: 0
-  itemName: "\u7535\u8111"
-  itemDescription: 
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047910395979
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  itemDescriptionLines:
+  - m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047910395981
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   itemSprite: {fileID: 0}
   showInspectImage: 1
   customCursorPresetName: View
@@ -7684,6 +8011,9 @@ MonoBehaviour:
   useCustomPreset: 0
   cursorPresetIndex: 0
   dialogueController: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &1373294945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7870,8 +8200,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
   cursorPresetName: View
   enableInspectDialogue: 1
-  itemName: "\u4E66\u67B6"
-  itemDescription: "\u4E66\u67B6\u4E0A\u6574\u9F50\u7684\u6446\u7740\u5404\u5F0F\u5404\u6837\u7684\u4E66\u7C4D\u3002\n\n\u300A\u4FA6\u63A2\u7684\u81EA\u6211\u4FEE\u517B\u300B\u3001\u300A\u903B\u8F91\u5047\u60F3\u8BAD\u7EC3\u300B\u3001\u300A\u8BB0\u5FC6\u5BAB\u6BBF\u6CD5\u300B\u7B49\u7B49\u6709\u52A9\u4E0E\u672C\u804C\u7684\u4E66\u7C4D\u3002\n\n\u9664\u6B64\u4E4B\u5916\u8FD8\u6709\u4E00\u4E9B\u5174\u8DA3\u4F7F\u7136\u800C\u6536\u96C6\u7684\u5C0F\u8BF4\u3001\u6F2B\u753B\u4E0E\u6742\u5FD7\u7B49\u3002"
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047910396025
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  itemDescriptionLines:
+  - m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047910396026
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   itemSprite: {fileID: 407990200, guid: 5f7dad24f86e86c4daa88ad40137aaf0, type: 3}
   showInspectImage: 1
   customCursorPresetName: View
@@ -7880,6 +8226,9 @@ MonoBehaviour:
   useCustomPreset: 0
   cursorPresetIndex: 0
   dialogueController: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &1397097292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8229,8 +8578,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
   cursorPresetName: View
   enableInspectDialogue: 1
-  itemName: Item
-  itemDescription: This is an item.
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  itemDescriptionLines: []
   itemSprite: {fileID: 0}
   showInspectImage: 1
   customCursorPresetName: 
@@ -8239,6 +8596,9 @@ MonoBehaviour:
   useCustomPreset: 0
   cursorPresetIndex: 0
   dialogueController: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &1497825771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8254,44 +8614,87 @@ MonoBehaviour:
   saveId: 
   dialogueController: {fileID: 2090279257}
   conversations:
-  - conversationName: "\u7B2C\u4E00\u6B21\u5BF9\u8BDD"
+  - conversationName: Conversation
     dialogueLines:
-    - speakerName: "\u8001\u7237\u7237"
-      dialogueText: "\u6D4B\u8BD5\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A"
-    - speakerName: "\u8001\u7237\u7237"
-      dialogueText: "\u597D\u597D\u597D"
-    - speakerName: "\u8001\u7237\u7237"
-      dialogueText: "\u6700\u540E1"
-  - conversationName: "\u7B2C\u4E8C\u6B21\u5BF9\u8BDD"
-    dialogueLines:
-    - speakerName: "\u8001\u7237\u7237"
-      dialogueText: "\u6211\u53BB"
-    - speakerName: "\u8001\u7237\u7237"
-      dialogueText: "\u4F60\u600E\u4E48\u8FD8\u6765"
-    - speakerName: "\u8001\u7237\u7237"
-      dialogueText: "\u6700\u540E2"
-  - conversationName: "\u7B2C\u4E09\u6B21\u5BF9\u8BDD"
-    dialogueLines:
-    - speakerName: "\u8001\u7237\u7237"
-      dialogueText: "\u3002\u3002\u3002"
-    - speakerName: "\u8001\u7237\u7237"
-      dialogueText: "\u518D\u65E0\u8BDD\u8BF4"
-  dialogueLines:
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u6D4B\u8BD5\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u54C7\u585E\u5443\u5443\u5443\u5443\u5443\u5443\u5443\u5443\u5443\u5443"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u53EF\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u5165\u53E3\u5904\u9644\u8FD1\u7684\u89D2\u843D\u653E\u7740\u4E00\u4E9B\u8FD0\u52A8\u7528\u54C1\uFF0C\u6709\u547C\u5566\u5708\u3001\u513F\u7AE5\u6C99\u5305\u3001\u8DF3\u7EF3\u3001\u4E94\u989C\u516D\u8272\u7684\u5851\u6599\u7403\u7B49\uFF0C\u4F3C\u4E4E\u539F\u672C\u662F\u51C6\u5907\u5728\u4ECA\u5929\u7684\u8FD0\u52A8\u4F1A\u4E0A\u4F7F\u7528\u7684\u3002\u5F80\u804C\u5458\u5BA4\u8D70\u53BB\u7684\u8D70\u5ECA\u5899\u4E0A\u6709\u4E00\u4E2A\u5E03\u544A\u680F\uFF0C\u8D34\u7740\u5B69\u5B50\u4EEC\u7684\u4F5C\u54C1\u3001\u4E00\u4E9B\u65E5\u5E38\u901A\u77E5\u548C\u5E0C\u671B\u5B64\u513F\u9662\u7684\u804C\u5458\u7ED3\u6784\u56FE\u3002"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u804C\u5458\u5BA4\u662F\u4E00\u95F4\u5C0F\u578B\u7684\u529E\u516C\u5BA4\u3002\u9664\u4E86\u9662\u957F\uFF0C\u6BCF\u4E00\u4F4D\u804C\u5458\u90FD\u6709\u5C5E\u4E8E\u81EA\u5DF1\u7684\u529E\u516C\u7A7A\u95F4\uFF0C\u5404\u81EA\u7684\u684C\u4E0A\u4E5F\u90FD\u7C98\u7740\u8BE5\u804C\u5458\u7684\u540D\u5B57\u3002\u5F20\u6167\u73B2\u7684\u684C\u4E0A\u653E\u7740\u5173\u4E8E\u8FD9\u6B21\u8FD0\u52A8\u4F1A\u7684\u6D41\u7A0B\u8868\u3002\u738B\u79C0\u4E3D\u7684\u684C\u4E0A\u653E\u7740\u6279\u6539\u5230\u4E00\u534A\u7684\u5B69\u5B50\u4EEC\u7684\u4F5C\u4E1A\u3002\u674E\u79C0\u82B3\u7684\u7535\u8111\u8367\u5E55\u8FB9\u7F18\u7C98\u7740\u4E00\u5F20\u63D0\u9192\u81EA\u5DF1\u5BC6\u7801\u7684\u5C0F\u7EB8\u6761\u3002"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u505A\u5B8C\u7EC3\u4E60\u9898\u540E\uFF0C\u65F6\u5019\u4E5F\u4E0D\u65E9\u4E86\u3002\u5728\u7B80\u5355\u7684\u5403\u8FC7\u665A\u9910\u3001\u68B3\u6D17\u8FC7\u540E\uFF0C\u6211\u8EBA\u5230\u4E86\u5E8A\u4E0A\uFF0C\u8FDB\u5165\u68A6\u4E61\u3002"
+    - speakerName:
+        m_TableReference:
+          m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+        m_TableEntryReference:
+          m_KeyId: 8047910396051
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      dialogueText:
+        m_TableReference:
+          m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+        m_TableEntryReference:
+          m_KeyId: 8047906201673
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    - speakerName:
+        m_TableReference:
+          m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+        m_TableEntryReference:
+          m_KeyId: 8047910396051
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      dialogueText:
+        m_TableReference:
+          m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+        m_TableEntryReference:
+          m_KeyId: 8047906201674
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    - speakerName:
+        m_TableReference:
+          m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+        m_TableEntryReference:
+          m_KeyId: 8047910396051
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      dialogueText:
+        m_TableReference:
+          m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+        m_TableEntryReference:
+          m_KeyId: 8047906201675
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+    - speakerName:
+        m_TableReference:
+          m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+        m_TableEntryReference:
+          m_KeyId: 8047910396051
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      dialogueText:
+        m_TableReference:
+          m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+        m_TableEntryReference:
+          m_KeyId: 8047906201676
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+  dialogueLines: []
   allowRepeatConversation: 1
   hasTalked: 0
   nextConversationIndex: 0
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &1497825772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8382,8 +8785,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
   cursorPresetName: View
   enableInspectDialogue: 1
-  itemName: "\u4E66\u67B6"
-  itemDescription: "\u4E66\u67B6\u4E0A\u6574\u9F50\u7684\u6446\u7740\u5404\u5F0F\u5404\u6837\u7684\u4E66\u7C4D\u3002\n\n\u300A\u4FA6\u63A2\u7684\u81EA\u6211\u4FEE\u517B\u300B\u3001\u300A\u903B\u8F91\u5047\u60F3\u8BAD\u7EC3\u300B\u3001\u300A\u8BB0\u5FC6\u5BAB\u6BBF\u6CD5\u300B\u7B49\u7B49\u6709\u52A9\u4E0E\u672C\u804C\u7684\u4E66\u7C4D\u3002\n\n\u9664\u6B64\u4E4B\u5916\u8FD8\u6709\u4E00\u4E9B\u5174\u8DA3\u4F7F\u7136\u800C\u6536\u96C6\u7684\u5C0F\u8BF4\u3001\u6F2B\u753B\u4E0E\u6742\u5FD7\u7B49\u3002"
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047910395974
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  itemDescriptionLines:
+  - m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047910395976
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047910395977
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047910395978
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   itemSprite: {fileID: 407990200, guid: 5f7dad24f86e86c4daa88ad40137aaf0, type: 3}
   showInspectImage: 1
   customCursorPresetName: View
@@ -8392,6 +8827,9 @@ MonoBehaviour:
   useCustomPreset: 0
   cursorPresetIndex: 0
   dialogueController: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &1499908519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8909,8 +9347,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
   cursorPresetName: View
   enableInspectDialogue: 1
-  itemName: Item
-  itemDescription: This is an item.
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  itemDescriptionLines: []
   itemSprite: {fileID: 0}
   showInspectImage: 1
   customCursorPresetName: 
@@ -8919,6 +9365,9 @@ MonoBehaviour:
   useCustomPreset: 0
   cursorPresetIndex: 0
   dialogueController: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &1599312801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8934,44 +9383,33 @@ MonoBehaviour:
   saveId: 
   dialogueController: {fileID: 2090279257}
   conversations:
-  - conversationName: "\u7B2C\u4E00\u6B21\u5BF9\u8BDD"
+  - conversationName: Conversation
     dialogueLines:
-    - speakerName: "\u5B69\u5B50C"
-      dialogueText: "\u6D4B\u8BD5\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A"
-    - speakerName: "\u5B69\u5B50C"
-      dialogueText: "\u597D\u597D\u597D"
-    - speakerName: "\u5B69\u5B50C"
-      dialogueText: "\u6700\u540E1"
-  - conversationName: "\u7B2C\u4E8C\u6B21\u5BF9\u8BDD"
-    dialogueLines:
-    - speakerName: "\u5B69\u5B50C"
-      dialogueText: "\u6211\u53BB"
-    - speakerName: "\u5B69\u5B50C"
-      dialogueText: "\u4F60\u600E\u4E48\u8FD8\u6765"
-    - speakerName: "\u5B69\u5B50C"
-      dialogueText: "\u6700\u540E2"
-  - conversationName: "\u7B2C\u4E09\u6B21\u5BF9\u8BDD"
-    dialogueLines:
-    - speakerName: "\u5B69\u5B50C"
-      dialogueText: "\u3002\u3002\u3002"
-    - speakerName: "\u5B69\u5B50C"
-      dialogueText: "\u518D\u65E0\u8BDD\u8BF4"
-  dialogueLines:
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u6D4B\u8BD5\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u54C7\u585E\u5443\u5443\u5443\u5443\u5443\u5443\u5443\u5443\u5443\u5443"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u53EF\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u5165\u53E3\u5904\u9644\u8FD1\u7684\u89D2\u843D\u653E\u7740\u4E00\u4E9B\u8FD0\u52A8\u7528\u54C1\uFF0C\u6709\u547C\u5566\u5708\u3001\u513F\u7AE5\u6C99\u5305\u3001\u8DF3\u7EF3\u3001\u4E94\u989C\u516D\u8272\u7684\u5851\u6599\u7403\u7B49\uFF0C\u4F3C\u4E4E\u539F\u672C\u662F\u51C6\u5907\u5728\u4ECA\u5929\u7684\u8FD0\u52A8\u4F1A\u4E0A\u4F7F\u7528\u7684\u3002\u5F80\u804C\u5458\u5BA4\u8D70\u53BB\u7684\u8D70\u5ECA\u5899\u4E0A\u6709\u4E00\u4E2A\u5E03\u544A\u680F\uFF0C\u8D34\u7740\u5B69\u5B50\u4EEC\u7684\u4F5C\u54C1\u3001\u4E00\u4E9B\u65E5\u5E38\u901A\u77E5\u548C\u5E0C\u671B\u5B64\u513F\u9662\u7684\u804C\u5458\u7ED3\u6784\u56FE\u3002"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u804C\u5458\u5BA4\u662F\u4E00\u95F4\u5C0F\u578B\u7684\u529E\u516C\u5BA4\u3002\u9664\u4E86\u9662\u957F\uFF0C\u6BCF\u4E00\u4F4D\u804C\u5458\u90FD\u6709\u5C5E\u4E8E\u81EA\u5DF1\u7684\u529E\u516C\u7A7A\u95F4\uFF0C\u5404\u81EA\u7684\u684C\u4E0A\u4E5F\u90FD\u7C98\u7740\u8BE5\u804C\u5458\u7684\u540D\u5B57\u3002\u5F20\u6167\u73B2\u7684\u684C\u4E0A\u653E\u7740\u5173\u4E8E\u8FD9\u6B21\u8FD0\u52A8\u4F1A\u7684\u6D41\u7A0B\u8868\u3002\u738B\u79C0\u4E3D\u7684\u684C\u4E0A\u653E\u7740\u6279\u6539\u5230\u4E00\u534A\u7684\u5B69\u5B50\u4EEC\u7684\u4F5C\u4E1A\u3002\u674E\u79C0\u82B3\u7684\u7535\u8111\u8367\u5E55\u8FB9\u7F18\u7C98\u7740\u4E00\u5F20\u63D0\u9192\u81EA\u5DF1\u5BC6\u7801\u7684\u5C0F\u7EB8\u6761\u3002"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u505A\u5B8C\u7EC3\u4E60\u9898\u540E\uFF0C\u65F6\u5019\u4E5F\u4E0D\u65E9\u4E86\u3002\u5728\u7B80\u5355\u7684\u5403\u8FC7\u665A\u9910\u3001\u68B3\u6D17\u8FC7\u540E\uFF0C\u6211\u8EBA\u5230\u4E86\u5E8A\u4E0A\uFF0C\u8FDB\u5165\u68A6\u4E61\u3002"
+    - speakerName:
+        m_TableReference:
+          m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+        m_TableEntryReference:
+          m_KeyId: 8047918784515
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      dialogueText:
+        m_TableReference:
+          m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+        m_TableEntryReference:
+          m_KeyId: 8047906201635
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+  dialogueLines: []
   allowRepeatConversation: 1
   hasTalked: 0
   nextConversationIndex: 0
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &1599312802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9301,7 +9739,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1635136696
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9395,8 +9833,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
   cursorPresetName: other
   enableInspectDialogue: 1
-  itemName: "\u6025\u6551\u7BB1"
-  itemDescription: "\u5728\u4E66\u67B6\u5E95\u5C42\u6709\u4E00\u4E2A\u5C0F\u578B\u7684\u6025\u6551\u7BB1\uFF0C\u4E0A\u9762\u6709\u4E2A\u84DD\u8272\u8774\u8776\u7684\u6807\u5FD7\u3002\n\n\u662F\u4F60\u5728\u5F00\u59CB\u72EC\u5C45\u540E\u4EE5\u9632\u4E07\u4E00\u4E70\u7684\uFF0C\u4E0D\u8FC7\u5E86\u5E78\u7684\u662F\u4F60\u7684\u8EAB\u4F53\u5F88\u5065\u5EB7\uFF0C\u5230\u73B0\u5728\u8FD8\u6CA1\u6709\u8FD9\u4E2A\u6025\u6551\u7BB1\u51FA\u5DEE\u7684\u673A\u4F1A\u3002"
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047910395985
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  itemDescriptionLines:
+  - m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047910395987
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  - m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047910395988
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   itemSprite: {fileID: 407990200, guid: 5f7dad24f86e86c4daa88ad40137aaf0, type: 3}
   showInspectImage: 1
   customCursorPresetName: View
@@ -9405,6 +9867,9 @@ MonoBehaviour:
   useCustomPreset: 0
   cursorPresetIndex: 0
   dialogueController: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &1641826449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10095,8 +10560,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
   cursorPresetName: View
   enableInspectDialogue: 1
-  itemName: Item
-  itemDescription: This is an item.
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  itemDescriptionLines: []
   itemSprite: {fileID: 0}
   showInspectImage: 1
   customCursorPresetName: 
@@ -10105,6 +10578,9 @@ MonoBehaviour:
   useCustomPreset: 0
   cursorPresetIndex: 0
   dialogueController: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &1794107790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10120,44 +10596,33 @@ MonoBehaviour:
   saveId: 
   dialogueController: {fileID: 2090279257}
   conversations:
-  - conversationName: "\u7B2C\u4E00\u6B21\u5BF9\u8BDD"
+  - conversationName: Conversation
     dialogueLines:
-    - speakerName: "\u4E49\u5DE5B"
-      dialogueText: "\u6D4B\u8BD5\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A"
-    - speakerName: "\u4E49\u5DE5B"
-      dialogueText: "\u597D\u597D\u597D"
-    - speakerName: "\u4E49\u5DE5B"
-      dialogueText: "\u6700\u540E1"
-  - conversationName: "\u7B2C\u4E8C\u6B21\u5BF9\u8BDD"
-    dialogueLines:
-    - speakerName: npc
-      dialogueText: "\u6211\u53BB"
-    - speakerName: npc
-      dialogueText: "\u4F60\u600E\u4E48\u8FD8\u6765"
-    - speakerName: npc
-      dialogueText: "\u6700\u540E2"
-  - conversationName: "\u7B2C\u4E09\u6B21\u5BF9\u8BDD"
-    dialogueLines:
-    - speakerName: npc
-      dialogueText: "\u3002\u3002\u3002"
-    - speakerName: npc
-      dialogueText: "\u518D\u65E0\u8BDD\u8BF4"
-  dialogueLines:
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u6D4B\u8BD5\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A\u554A"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u54C7\u585E\u5443\u5443\u5443\u5443\u5443\u5443\u5443\u5443\u5443\u5443"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u53EF\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7\u54C7"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u5165\u53E3\u5904\u9644\u8FD1\u7684\u89D2\u843D\u653E\u7740\u4E00\u4E9B\u8FD0\u52A8\u7528\u54C1\uFF0C\u6709\u547C\u5566\u5708\u3001\u513F\u7AE5\u6C99\u5305\u3001\u8DF3\u7EF3\u3001\u4E94\u989C\u516D\u8272\u7684\u5851\u6599\u7403\u7B49\uFF0C\u4F3C\u4E4E\u539F\u672C\u662F\u51C6\u5907\u5728\u4ECA\u5929\u7684\u8FD0\u52A8\u4F1A\u4E0A\u4F7F\u7528\u7684\u3002\u5F80\u804C\u5458\u5BA4\u8D70\u53BB\u7684\u8D70\u5ECA\u5899\u4E0A\u6709\u4E00\u4E2A\u5E03\u544A\u680F\uFF0C\u8D34\u7740\u5B69\u5B50\u4EEC\u7684\u4F5C\u54C1\u3001\u4E00\u4E9B\u65E5\u5E38\u901A\u77E5\u548C\u5E0C\u671B\u5B64\u513F\u9662\u7684\u804C\u5458\u7ED3\u6784\u56FE\u3002"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u804C\u5458\u5BA4\u662F\u4E00\u95F4\u5C0F\u578B\u7684\u529E\u516C\u5BA4\u3002\u9664\u4E86\u9662\u957F\uFF0C\u6BCF\u4E00\u4F4D\u804C\u5458\u90FD\u6709\u5C5E\u4E8E\u81EA\u5DF1\u7684\u529E\u516C\u7A7A\u95F4\uFF0C\u5404\u81EA\u7684\u684C\u4E0A\u4E5F\u90FD\u7C98\u7740\u8BE5\u804C\u5458\u7684\u540D\u5B57\u3002\u5F20\u6167\u73B2\u7684\u684C\u4E0A\u653E\u7740\u5173\u4E8E\u8FD9\u6B21\u8FD0\u52A8\u4F1A\u7684\u6D41\u7A0B\u8868\u3002\u738B\u79C0\u4E3D\u7684\u684C\u4E0A\u653E\u7740\u6279\u6539\u5230\u4E00\u534A\u7684\u5B69\u5B50\u4EEC\u7684\u4F5C\u4E1A\u3002\u674E\u79C0\u82B3\u7684\u7535\u8111\u8367\u5E55\u8FB9\u7F18\u7C98\u7740\u4E00\u5F20\u63D0\u9192\u81EA\u5DF1\u5BC6\u7801\u7684\u5C0F\u7EB8\u6761\u3002"
-  - speakerName: "\u73A9\u5BB6"
-    dialogueText: "\u505A\u5B8C\u7EC3\u4E60\u9898\u540E\uFF0C\u65F6\u5019\u4E5F\u4E0D\u65E9\u4E86\u3002\u5728\u7B80\u5355\u7684\u5403\u8FC7\u665A\u9910\u3001\u68B3\u6D17\u8FC7\u540E\uFF0C\u6211\u8EBA\u5230\u4E86\u5E8A\u4E0A\uFF0C\u8FDB\u5165\u68A6\u4E61\u3002"
+    - speakerName:
+        m_TableReference:
+          m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+        m_TableEntryReference:
+          m_KeyId: 8047910396057
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      dialogueText:
+        m_TableReference:
+          m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+        m_TableEntryReference:
+          m_KeyId: 8047906201629
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+  dialogueLines: []
   allowRepeatConversation: 1
   hasTalked: 0
   nextConversationIndex: 0
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &1794107791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10232,6 +10697,7 @@ MonoBehaviour:
   screenTransitionController: {fileID: 2056682094}
   useTransitionOnStartGame: 1
   gameSettingsButton: {fileID: 333899234}
+  dialogueController: {fileID: 0}
   visibleLocationPanels:
   - label: Home
     panel: {fileID: 669448267}
@@ -10443,8 +10909,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
   cursorPresetName: View
   enableInspectDialogue: 1
-  itemName: "\u5E8A"
-  itemDescription: "\u8FD9\u662F\u5E8A\u3002"
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 358793172426756
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  itemDescriptionLines:
+  - m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 358793172426757
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   itemSprite: {fileID: 0}
   showInspectImage: 1
   customCursorPresetName: View
@@ -10453,6 +10935,9 @@ MonoBehaviour:
   useCustomPreset: 0
   cursorPresetIndex: 0
   dialogueController: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &1822657337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10581,8 +11066,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
   cursorPresetName: Back
   enableInspectDialogue: 1
-  itemName: Item
-  itemDescription: This is an item.
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  itemDescriptionLines: []
   itemSprite: {fileID: 0}
   showInspectImage: 1
   customCursorPresetName: 
@@ -10591,6 +11084,9 @@ MonoBehaviour:
   useCustomPreset: 0
   cursorPresetIndex: 0
   dialogueController: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!114 &1894124718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10945,8 +11441,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
   cursorPresetName: Map
   enableInspectDialogue: 1
-  itemName: Item
-  itemDescription: This is an item.
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  itemDescriptionLines: []
   itemSprite: {fileID: 0}
   showInspectImage: 1
   customCursorPresetName: 
@@ -10955,6 +11459,9 @@ MonoBehaviour:
   useCustomPreset: 0
   cursorPresetIndex: 0
   dialogueController: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &2003555752
 GameObject:
   m_ObjectHideFlags: 0
@@ -11632,6 +12139,7 @@ MonoBehaviour:
   mainAreaButtons:
   - {fileID: 2100000021}
   - {fileID: 2100000031}
+  entranceAreaButtons: []
   backButtons:
   - {fileID: 2100000041}
   - {fileID: 2100000051}
@@ -11934,6 +12442,7 @@ MonoBehaviour:
   mainAreaButtons:
   - {fileID: 2100000021}
   - {fileID: 2100000031}
+  entranceAreaButtons: []
   backButtons:
   - {fileID: 2100000041}
   - {fileID: 2100000051}
@@ -12236,6 +12745,7 @@ MonoBehaviour:
   mainAreaButtons:
   - {fileID: 2100000021}
   - {fileID: 2100000031}
+  entranceAreaButtons: []
   backButtons:
   - {fileID: 2100000041}
   - {fileID: 2100000051}
@@ -12538,6 +13048,7 @@ MonoBehaviour:
   mainAreaButtons:
   - {fileID: 2100000021}
   - {fileID: 2100000031}
+  entranceAreaButtons: []
   backButtons:
   - {fileID: 2100000041}
   - {fileID: 2100000051}

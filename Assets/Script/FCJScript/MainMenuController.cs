@@ -30,6 +30,7 @@ public class MainMenuController : MonoBehaviour
     [Header("Game Settings Button Visibility")]
     [Tooltip("The settings button used during gameplay.")]
     [SerializeField] private GameObject gameSettingsButton;
+    [SerializeField] private DialogueController dialogueController;
     [Tooltip("The gameplay location panels where the settings button should be visible.")]
     [SerializeField] private List<VisibleLocationPanel> visibleLocationPanels = new List<VisibleLocationPanel>();
 
@@ -149,6 +150,8 @@ public class MainMenuController : MonoBehaviour
         bool shouldShow = gameRootPanel != null &&
             gameRootPanel.activeInHierarchy &&
             (settingsPanel == null || !settingsPanel.activeInHierarchy) &&
+            !IsDialogueActive() &&
+            !MapButton.IsAnyMapOpen &&
             IsAnyVisibleLocationPanelActive();
 
         SetGameObject(gameSettingsButton, shouldShow);
@@ -172,7 +175,12 @@ public class MainMenuController : MonoBehaviour
     {
         if (screenTransitionController == null)
         {
-            screenTransitionController = FindFirstObjectByType<ScreenTransitionController>();
+            screenTransitionController = FindAnyObjectByType<ScreenTransitionController>();
+        }
+
+        if (dialogueController == null)
+        {
+            dialogueController = FindAnyObjectByType<DialogueController>();
         }
 
         if (screenTransitionController == null)
@@ -206,6 +214,16 @@ public class MainMenuController : MonoBehaviour
                 returnToMainMenuButton = button.gameObject;
             }
         }
+    }
+
+    private bool IsDialogueActive()
+    {
+        if (dialogueController == null)
+        {
+            dialogueController = FindAnyObjectByType<DialogueController>();
+        }
+
+        return dialogueController != null && dialogueController.IsDialogueActive;
     }
 
     private Transform FindChildByName(Transform parent, string childName)
@@ -259,7 +277,7 @@ public class MainMenuController : MonoBehaviour
 
     private void SetLookPaused(bool paused)
     {
-        LookController lookController = FindFirstObjectByType<LookController>();
+        LookController lookController = FindAnyObjectByType<LookController>();
         if (lookController != null)
         {
             lookController.SetPaused(paused);

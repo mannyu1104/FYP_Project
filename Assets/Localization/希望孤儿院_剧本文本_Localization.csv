@@ -608,3 +608,9 @@ ClueBoard_002,线索板,线索板,提交的线索,Clue Submitted
 ClueBoard_003,线索板,线索板,提交,Submit
 ClueBoard_004,线索板,线索板,你的分数是：,Your score is:
 ClueBoard_005,线索板,线索板,关闭,Close
+Item_077,物品/线索 Item,床,床,Bed
+Item_078,物品/线索 Item,床,这是床。,This is the bed.
+UI_001,界面 UI,孤儿院按钮,进入入口处,Enter Entrance
+UI_002,界面 UI,孤儿院按钮,去职员室,Go to Staff Room
+UI_003,界面 UI,孤儿院按钮,回孤儿院,Back to Orphanage
+UI_004,界面 UI,孤儿院按钮,回入口处,Back to Entrance
