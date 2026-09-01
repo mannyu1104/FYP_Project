@@ -13,6 +13,18 @@ MonoBehaviour:
   m_Name: SosialMediaWebPageData
   m_EditorClassIdentifier: Assembly-CSharp::WebPageDataScriptableObject
   pageId: 2
-  tabTitle: "\u63A8\u4E66"
+  tabTitle:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 173856490201091
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   tabIcon: {fileID: -2124362347, guid: ea16c94e3829d08439204d01c286052a, type: 3}
+  tabText: 
   layoutType: 1
+  references:
+    version: 2
+    RefIds: []

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Localization;
 
 public enum ClueCredibility
 {
@@ -12,13 +13,13 @@ public enum ClueCredibility
 public abstract class ClueSourceData : ScriptableObject
 {
     [Header("Clue Details")]
-    [SerializeField] private string clueTitle;
-    [SerializeField][TextArea(6, 10)] private string clueSummary;
+    [SerializeField] private LocalizedString clueTitle;
+    [SerializeField] private LocalizedString clueSummary;
     [SerializeField] private ClueCredibility clueCredibility = ClueCredibility.Neutral; // Default to Neutral if not specified
     [SerializeField] private CaseDefinition caseDefinition;
 
-    public string ClueTitle => clueTitle;
-    public string ClueSummary => clueSummary;
+    public LocalizedString ClueTitle => clueTitle;
+    public LocalizedString ClueSummary => clueSummary;
     public ClueCredibility Credibility => clueCredibility;
     public CaseDefinition Case => caseDefinition;
 }

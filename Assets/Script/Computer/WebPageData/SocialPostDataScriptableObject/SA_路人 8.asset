@@ -12,6 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ea5ecae014f11d4bb517071feea9c14, type: 3}
   m_Name: "SA_\u8DEF\u4EBA 8"
   m_EditorClassIdentifier: Assembly-CSharp::SocialAccountData
-  accountName: "\u8DEF\u4EBA8"
+  accountName:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047910396047
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   avatar: {fileID: 456587062, guid: 63964432fecded048bfe5cf9ba8910ba, type: 3}
-  bio: 
+  bio:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []

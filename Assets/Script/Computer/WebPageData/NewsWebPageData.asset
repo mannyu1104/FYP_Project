@@ -13,6 +13,18 @@ MonoBehaviour:
   m_Name: NewsWebPageData
   m_EditorClassIdentifier: Assembly-CSharp::WebPageDataScriptableObject
   pageId: 1
-  tabTitle: "\u6BCF\u65E5\u65B0\u95FB"
+  tabTitle:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 173856490201090
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   tabIcon: {fileID: 21300000, guid: 74ad17e89766b402d8248f9ba611a97e, type: 3}
+  tabText: 
   layoutType: 0
+  references:
+    version: 2
+    RefIds: []

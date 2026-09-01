@@ -26,6 +26,8 @@ public class SocialMediaPageController : MonoBehaviour
     [SerializeField] private Transform profilePostsContainer; // parent with a Vertical Layout Group
     [SerializeField] private CustomButtonUi profileBackButton;
 
+    private SocialAccountData accountData;
+
     private void Awake()
     {
         profileBackButton.onLeftClick.AddListener(ShowFeed);
@@ -44,6 +46,11 @@ public class SocialMediaPageController : MonoBehaviour
         Hide(profileCanvasGroup, profileLayoutElement);
     }
 
+    private void OnDestroy()
+    {
+        UnsubscribeFromCurrentProfile();
+    }
+
     public void ShowFeed()
     {
         LayoutRebuilder.ForceRebuildLayoutImmediate(feedContainer.GetComponent<RectTransform>());
@@ -56,9 +63,11 @@ public class SocialMediaPageController : MonoBehaviour
     {
         LayoutRebuilder.ForceRebuildLayoutImmediate(profilePostsContainer.GetComponent<RectTransform>());
 
+        UnsubscribeFromCurrentProfile();
+        accountData = poster;
+        SubscribeToCurrentProfile();
+
         profileAvatarImage.sprite = poster.Avatar;
-        profileNameText.text = poster.AccountName;
-        profileBioText.text = poster.Bio;
 
         Hide(feedCanvasGroup, feedLayoutElement);
         Show(profileCanvasGroup, profileLayoutElement);
@@ -98,5 +107,29 @@ public class SocialMediaPageController : MonoBehaviour
             SocialPostItemUI item = Instantiate(postPrefab, profilePostsContainer);
             item.Bind(post, this);
         }
+    }
+
+    private void SubscribeToCurrentProfile()
+    {
+        if (accountData == null) return;
+        accountData.AccountName.StringChanged += UpdateProfileNameText;
+        accountData.Bio.StringChanged += UpdateProfileBioText;
+    }
+
+    private void UnsubscribeFromCurrentProfile()
+    {
+        if (accountData == null) return;
+        accountData.AccountName.StringChanged -= UpdateProfileNameText;
+        accountData.Bio.StringChanged -= UpdateProfileBioText;
+    }
+
+    private void UpdateProfileNameText(string value)
+    {
+        if (profileNameText != null) profileNameText.text = value;
+    }
+
+    private void UpdateProfileBioText(string value)
+    {
+        if (profileBioText != null) profileBioText.text = value;
     }
 }

@@ -9,6 +9,7 @@ public class NewsCommentItemUi : MonoBehaviour
     [SerializeField] private TMP_InputField commentText;
 
     private ScrollRect parentScrollRect;
+    private NewsCommentEntry commentEntry;
 
     private void Awake()
     {
@@ -47,7 +48,37 @@ public class NewsCommentItemUi : MonoBehaviour
 
     public void Bind(NewsCommentEntry comment, NewsPageController owner)
     {
-        commenterNameText.text = comment.name;
-        commentText.text = comment.commentText;
+        UnsubscribeFromLocalization();
+        commentEntry = comment;
+        SubscribeToLocalization();
+    }
+
+    private void SubscribeToLocalization()
+    {
+        if (commentEntry == null) return;
+        commentEntry.name.StringChanged += UpdateCommenterNameText;
+        commentEntry.commentText.StringChanged += UpdateCommentText;
+    }
+
+    private void UnsubscribeFromLocalization()
+    {
+        if (commentEntry == null) return;
+        commentEntry.name.StringChanged -= UpdateCommenterNameText;
+        commentEntry.commentText.StringChanged -= UpdateCommentText;
+    }
+
+    private void UpdateCommenterNameText(string value)
+    {
+        if (commenterNameText != null) commenterNameText.text = value;
+    }
+
+    private void UpdateCommentText(string value)
+    {
+        if (commentText != null) commentText.text = value;
+    }
+
+    private void OnDestroy()
+    {
+        UnsubscribeFromLocalization();
     }
 }

@@ -18,12 +18,14 @@ public class TutorialPageController : MonoBehaviour
     [SerializeField] private CanvasGroup detailCanvasGroup;
     [SerializeField] private Transform detailTextContainer;
     [SerializeField] private TMP_InputField detailNameText;
-    [SerializeField] private TMP_InputField detailContentText;
+    [SerializeField] private TMP_InputField detailDescriptionText;
     [SerializeField] private Image detailPhotoImage; // hidden automatically if the witness has no photo
     [SerializeField] private CustomButtonUi backButton;
 
     [Header("Clue")]
     [SerializeField] private ClueRecordButton clueRecordButton;
+
+    private TutorialClueData clueData;
 
     private void Awake()
     {
@@ -53,8 +55,10 @@ public class TutorialPageController : MonoBehaviour
 
     public void ShowTutorialClueDetail(TutorialClueData tutorialClue)
     {
-        detailNameText.text = tutorialClue.TutorialClueName;
-        detailContentText.text = tutorialClue.TutorialClueDescription;
+        UnsubscribeFromLocalization();
+        clueData = tutorialClue;
+
+        SubscribeToLocalization();
 
         bool hasPhoto = tutorialClue.ClueImage != null;
         detailPhotoImage.gameObject.SetActive(hasPhoto);
@@ -93,5 +97,34 @@ public class TutorialPageController : MonoBehaviour
         {
             item.Bind(this);
         }
+    }
+
+    private void SubscribeToLocalization()
+    {
+        if (clueData == null) return;
+        clueData.TutorialClueName.StringChanged += UpdateNameText;
+        clueData.TutorialClueDescription.StringChanged += UpdateDescriptionText;
+    }
+
+    private void UnsubscribeFromLocalization()
+    {
+        if (clueData == null) return;
+        clueData.TutorialClueName.StringChanged -= UpdateNameText;
+        clueData.TutorialClueDescription.StringChanged -= UpdateDescriptionText;
+    }
+
+    private void UpdateNameText(string value)
+    {
+        if (detailNameText != null) detailNameText.text = value;
+    }
+
+    private void UpdateDescriptionText(string value)
+    {
+        if (detailDescriptionText != null) detailDescriptionText.text = value;
+    }
+
+    private void OnDestroy()
+    {
+        UnsubscribeFromLocalization();
     }
 }

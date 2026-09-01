@@ -1,16 +1,18 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization;
 
 [CreateAssetMenu(fileName = "NewNewsArticle", menuName = "ScriptableObject/News Article")]
 public class NewsArticleData : ClueSourceData
 {
-    [SerializeField] private string headline;
-    [SerializeField] private string date;
-    [SerializeField][TextArea(5, 20)] private string content;
+    [Header("News Article Details")]
+    [SerializeField] private LocalizedString headline;
+    [SerializeField] private LocalizedString date;
+    [SerializeField] private LocalizedString content;
     [SerializeField] private List<NewsCommentEntry> comments;
 
-    public string Headline => headline;
-    public string Date => date;
-    public string Content => content;
+    public LocalizedString Headline => headline;
+    public LocalizedString Date => date;
+    public LocalizedString Content => content;
     public IReadOnlyList<NewsCommentEntry> Comments => comments;
 }

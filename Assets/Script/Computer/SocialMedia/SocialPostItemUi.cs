@@ -26,6 +26,7 @@ public class SocialPostItemUI : MonoBehaviour
     private readonly List<GameObject> spawnedComments = new List<GameObject>();
     private SocialMediaPageController owner;
     private ScrollRect parentScrollRect;
+    private SocialPostData postData;
 
     private void Awake()
     {
@@ -66,9 +67,12 @@ public class SocialPostItemUI : MonoBehaviour
     {
         this.owner = owner;
 
+        UnsubscribeFromLocalization();
+
+        postData = post;
         posterAvatarImage.sprite = post.Account.Avatar;
-        posterNameText.text = post.Account.AccountName;
-        contentText.text = post.Content;
+
+        SubscribeToLocalization();
 
         bool hasImage = post.PostImage != null;
         imageContainer.SetActive(hasImage);
@@ -94,5 +98,34 @@ public class SocialPostItemUI : MonoBehaviour
             item.Bind(comment, owner);
             spawnedComments.Add(item.gameObject);
         }
+    }
+
+    private void SubscribeToLocalization()
+    {
+        if (postData == null) return;
+        postData.Account.AccountName.StringChanged += UpdatePosterNameText;
+        postData.Content.StringChanged += UpdateContentText;
+    }
+
+    private void UnsubscribeFromLocalization()
+    {
+        if (postData == null) return;
+        postData.Account.AccountName.StringChanged -= UpdatePosterNameText;
+        postData.Content.StringChanged -= UpdateContentText;
+    }
+
+    private void UpdatePosterNameText(string value)
+    {
+        if (posterNameText != null) posterNameText.text = value;
+    }
+
+    private void UpdateContentText(string value)
+    {
+        if (contentText != null) contentText.text = value;
+    }
+
+    private void OnDestroy()
+    {
+        UnsubscribeFromLocalization();
     }
 }

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88fb6a157882896419d23c92565b0adf, type: 3}
   m_Name: "\u798F\u5229\u9662"
   m_EditorClassIdentifier: Assembly-CSharp::Map
-  ImageLocked: {fileID: 0}
-  ImageUnlocked: {fileID: 0}
+  ImageLocked: {fileID: -861851940, guid: dce46b1c240f92d43af7d6773b9724a0, type: 3}
+  ImageUnlocked: {fileID: 1182808639, guid: e94fa286d2cfd96499a1542a068e8eab, type: 3}
   PlaceName: "\u597D\u5FC3\u798F\u5229\u9662"
   MapID: 4
   Unlocked: 0

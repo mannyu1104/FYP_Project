@@ -4,11 +4,20 @@ public class Unlocking : MonoBehaviour
 {
     private DragableItemSave ItemState;
     public GameObject UnlockingTarget;
+    public InventoryManager inventory;
 
     public void Unlocked()
     {
-        ItemState = UnlockingTarget.GetComponent<DragableItemSave>();
-        ItemState.thisShow = true;
-        ItemState.thisShow = true;
+        if (UnlockingTarget != null)
+        {
+            ItemState = UnlockingTarget.GetComponent<DragableItemSave>();
+            ItemState.thisShow = true;
+            inventory.AddItem(UnlockingTarget);
+        }
+        else
+        {
+            Debug.Log("NotFound");
+            return;
+        }
     }
 }

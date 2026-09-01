@@ -20,15 +20,39 @@ Dialogue_002,对话 Dialogue,导入,「请问你看了今早孤儿院的新闻�
 Dialogue_003,对话 Dialogue,导入,「虽然他这个时间点失踪确实很可疑，所以我希望你能调查这件事情，来证明院长是不是清白的。」,"""It is suspicious that he disappeared at a time like this, though. That's why I want you to investigate and find out whether the director is innocent."""
 Story_013,故事/旁白 Story,导入,听完他的话，我决定接下这个委托，将藏在暗面的真相调查清楚。,"After hearing her out, I decided to accept the case and uncover the truth hidden beneath the surface."
 Story_014,故事/旁白 Story,导入,OvO,OvO
-Announcement_001,公告 Announcement,公告：关于希望孤儿院持续营运说明,公告：关于希望孤儿院持续营运说明,Notice: Regarding the Continued Operation of Hope Orphanage
+Announcement_001,公告 Announcement,公告：关于希望孤儿院持续营运说明,公告：关于希望孤儿院持续营运说明,Announcement: Regarding the Continued Operation of Hope Orphanage
 Announcement_002,公告 Announcement,公告：关于希望孤儿院持续营运说明,发布日期：2009年5月2日,"Publication Date: May 2, 2009"
-Announcement_003,公告 Announcement,公告：关于希望孤儿院持续营运说明,感谢各位于日前给予希望孤儿院的关心与鼓励。,Thank you for the concern and encouragement you have recently shown Hope Orphanage.
+Announcement_003,公告 Announcement,公告：关于希望孤儿院持续营运说明,"感谢各位于日前给予希望孤儿院的关心与鼓励。
+
+本院很高兴向大家宣布，在各界的关心与支持下，本院目前的营运问题以获得改善并将继续营运，原先预计的停运安排也将取消。
+
+未来，本院将持续致力于提供孩子们安全、稳定且温暖的成长环境，并妥善运用每一份善心资源，为孩子们创造更好的学习与生活条件。
+
+希望孤儿院 敬启","Thank you for the concern and encouragement you have recently shown Hope Orphanage.
+
+We are pleased to announce that, with the care and support of the community, our current operational difficulties have improved and the orphanage will continue operating. The previously planned closure has therefore been cancelled.
+
+Moving forward, we will remain committed to providing the children with a safe, stable, and warm environment in which to grow. We will also make responsible use of every generous contribution to create better learning and living conditions for them.
+
+Sincerely, Hope Orphanage"
 Announcement_004,公告 Announcement,公告：关于希望孤儿院持续营运说明,本院很高兴向大家宣布，在各界的关心与支持下，本院目前的营运问题以获得改善并将继续营运，原先预计的停运安排也将取消。,"We are pleased to announce that, with the care and support of the community, our current operational difficulties have improved and the orphanage will continue operating. The previously planned closure has therefore been cancelled."
 Announcement_005,公告 Announcement,公告：关于希望孤儿院持续营运说明,未来，本院将持续致力于提供孩子们安全、稳定且温暖的成长环境，并妥善运用每一份善心资源，为孩子们创造更好的学习与生活条件。,"Moving forward, we will remain committed to providing the children with a safe, stable, and warm environment in which to grow. We will also make responsible use of every generous contribution to create better learning and living conditions for them."
 Announcement_006,公告 Announcement,公告：关于希望孤儿院持续营运说明,希望孤儿院 敬启,"Sincerely, Hope Orphanage"
-Announcement_007,公告 Announcement,公告：关于希望孤儿院停运说明,公告：关于希望孤儿院停运说明,Notice: Regarding the Closure of Hope Orphanage
+Announcement_007,公告 Announcement,公告：关于希望孤儿院停运说明,公告：关于希望孤儿院停运说明,Announcement: Regarding the Closure of Hope Orphanage
 Announcement_008,公告 Announcement,公告：关于希望孤儿院停运说明,发布日期：2009年4月18日,"Publication Date: April 18, 2009"
-Announcement_009,公告 Announcement,公告：关于希望孤儿院停运说明,感谢各位长期以来对希望孤儿院的关心与支持。,Thank you for your long-standing care and support for Hope Orphanage.
+Announcement_009,公告 Announcement,公告：关于希望孤儿院停运说明,"感谢各位长期以来对希望孤儿院的关心与支持。
+
+由于近年来营运经费持续短缺，加上院舍维护及儿童照护支出不断增加，本院目前已面临严重的财政困难。经多方评估后，希望孤儿院预计将于近期停止营运。
+
+目前，本院正积极与相关政府单位及儿童福利机构联系，妥善安排院内孩子们后续的生活与安置事宜，希望尽可能降低此次事件对孩子们造成的影响。
+
+希望孤儿院 敬启","Thank you for your long-standing care and support for Hope Orphanage.
+
+Due to persistent shortages in operating funds in recent years, along with increasing building maintenance and childcare expenses, the orphanage is currently facing serious financial difficulties. After extensive evaluation, Hope Orphanage is expected to cease operations in the near future.
+
+We are currently working closely with relevant government departments and child welfare organizations to properly arrange the children's future care and placement, in hopes of minimizing the impact this situation may have on them.
+
+Sincerely, Hope Orphanage"
 Announcement_010,公告 Announcement,公告：关于希望孤儿院停运说明,由于近年来营运经费持续短缺，加上院舍维护及儿童照护支出不断增加，本院目前已面临严重的财政困难。经多方评估后，希望孤儿院预计将于近期停止营运。,"Due to persistent shortages in operating funds in recent years, along with increasing building maintenance and childcare expenses, the orphanage is currently facing serious financial difficulties. After extensive evaluation, Hope Orphanage is expected to cease operations in the near future."
 Announcement_011,公告 Announcement,公告：关于希望孤儿院停运说明,目前，本院正积极与相关政府单位及儿童福利机构联系，妥善安排院内孩子们后续的生活与安置事宜，希望尽可能降低此次事件对孩子们造成的影响。,"We are currently working closely with relevant government departments and child welfare organizations to properly arrange the children's future care and placement, in hopes of minimizing the impact this situation may have on them."
 Announcement_012,公告 Announcement,公告：关于希望孤儿院停运说明,希望孤儿院 敬启,"Sincerely, Hope Orphanage"
@@ -47,22 +71,32 @@ Item_011,物品/线索 Item,急救箱,是你在开始独居后以防万一买的
 Scene_006,场景 Scene,社交平台,社交平台,Social Media
 Post_001,社交媒体帖子 Post,社交平台,在失火后找不到人？感觉院长有点黑啊,Can't find him after the fire? The director seems kinda shady.
 Post_002,社交媒体帖子 Post,评论区,评论区,Comments
-Comment_001,网络留言 Comment,评论区,留言1：「果然是跑路了吗」,"Comment 1: ""So he really did run away, huh?"""
-Comment_002,网络留言 Comment,评论区,留言2：「真的，不可能这么刚好吧」,"Comment 2: ""Seriously, there's no way the timing is that perfect."""
-Comment_003,网络留言 Comment,评论区,留言3：「新闻目前也只说失踪，这么快下结论不好吧」,"Comment 3: ""The news only says he's missing for now. Isn't it a bit early to jump to conclusions?"""
+Comment_001,网络留言 Comment,评论区,果然是跑路了吗,"So he really did run away, huh?"
+Comment_002,网络留言 Comment,评论区,真的，不可能这么刚好吧,"Seriously, there's no way the timing is that perfect."
+Comment_003,网络留言 Comment,评论区,新闻目前也只说失踪，这么快下结论不好吧,The news only says he's missing for now. Isn't it a bit early to jump to conclusions?
 Post_003,社交媒体帖子 Post,评论区,大半夜的怎么会突然意外着火呢？真的幸好有人起床发现了。,How does a fire suddenly start by accident in the middle of the night? Thank goodness someone woke up and noticed it.
 Post_004,社交媒体帖子 Post,评论区,评论区,Comments
-Comment_004,网络留言 Comment,评论区,留言1：「真的是意外吗？」,"Comment 1: ""Was it really an accident?"""
-Comment_005,网络留言 Comment,评论区,留言2：「可能是建筑比较老了，哪里的电路有问题吧」,"Comment 2: ""Maybe the building is old and there was a problem with the wiring somewhere."""
-Comment_006,网络留言 Comment,评论区,留言3：「可那孤儿院很像维护的很好啊，似乎还拿过什么美化奖」,"Comment 3: ""But that orphanage looks really well maintained. Didn't it even win some kind of beautification award?"""
-Comment_007,网络留言 Comment,评论区,留言4：「不管怎样，幸好孩子都没事」,"Comment 4: ""Either way, thank goodness the kids are safe."""
+Comment_004,网络留言 Comment,评论区,真的是意外吗？,Was it really an accident?
+Comment_005,网络留言 Comment,评论区,可能是建筑比较老了，哪里的电路有问题吧,Maybe the building is old and there was a problem with the wiring somewhere.
+Comment_006,网络留言 Comment,评论区,可那孤儿院很像维护的很好啊，似乎还拿过什么美化奖,But that orphanage looks really well maintained. Didn't it even win some kind of beautification award?
+Comment_007,网络留言 Comment,评论区,不管怎样，幸好孩子都没事,"Either way, thank goodness the kids are safe."
 Post_005,社交媒体帖子 Post,评论区,就只有我在担心那些孩子没之后怎么办吗？,Am I the only one worried about what will happen to those kids now?
 Post_006,社交媒体帖子 Post,评论区,评论区,Comments
-Comment_008,网络留言 Comment,评论区,留言1：「应该会被送去哪个临时安置中心吧」,"Comment 1: ""They'll probably be sent to some temporary shelter or placement center."""
-Comment_009,网络留言 Comment,评论区,留言2：「我们协会刚刚收到消息，应该就是那边了」,"Comment 2: ""Our association just received word. I think that's where they're going."""
-Comment_010,网络留言 Comment,评论区,留言3：「希望孩子们不要吓到就好」,"Comment 3: ""I just hope the kids aren't too frightened."""
-Comment_011,网络留言 Comment,评论区,留言4：「员工们应该会一起过去陪他们吧」,"Comment 4: ""The staff will probably go with them and stay by their side."""
-Post_007,社交媒体帖子 Post,评论区,XX消防局提醒您，遇到火灾时请：,"XX Fire Department reminds you: In the event of a fire, please:"
+Comment_008,网络留言 Comment,评论区,应该会被送去哪个临时安置中心吧,They'll probably be sent to some temporary shelter or placement center.
+Comment_009,网络留言 Comment,评论区,我们协会刚刚收到消息，应该就是那边了,Our association just received word. I think that's where they're going.
+Comment_010,网络留言 Comment,评论区,希望孩子们不要吓到就好,I just hope the kids aren't too frightened.
+Comment_011,网络留言 Comment,评论区,员工们应该会一起过去陪他们吧,The staff will probably go with them and stay by their side.
+Post_007,社交媒体帖子 Post,评论区,"消防局提醒您，遇到火灾时请：
+
+1. 若情况允许，请大声呼喊，通知附近的其他人
+2. 将毛巾弄湿，盖住口鼻并底下身子前进
+3. 请立刻离开火灾现场，切勿贪恋财物
+4. 切勿搭乘电梯，而以楼梯逃生","Fire Department reminds you: In the event of a fire, please:
+
+1. If conditions allow, shout loudly to alert others nearby.
+2. Wet a towel, cover your nose and mouth, and stay low while moving.
+3. Leave the fire scene immediately. Do not risk your safety for belongings.
+4. Do not use elevators. Use the stairs to evacuate."
 Post_008,社交媒体帖子 Post,评论区,"1. 若情况允许，请大声呼喊，通知附近的其他人
 2. 将毛巾弄湿，盖住口鼻并底下身子前进
 3. 请立刻离开火灾现场，切勿贪恋财物
@@ -71,29 +105,31 @@ Post_008,社交媒体帖子 Post,评论区,"1. 若情况允许，请大声呼喊
 3. Leave the fire scene immediately. Do not risk your safety for belongings.
 4. Do not use elevators. Use the stairs to evacuate."
 Post_009,社交媒体帖子 Post,评论区,评论区,Comments
-Comment_012,网络留言 Comment,评论区,留言1：「感谢提醒，已转发」,"Comment 1: ""Thanks for the reminder. Shared."""
-Comment_013,网络留言 Comment,评论区,留言2：「希望大家一辈子都不会用上这些知识」,"Comment 2: ""Hope none of us ever have to use this knowledge."""
-Comment_014,网络留言 Comment,评论区,留言3：「是不是要在家里自备灭火器比较好啊」,"Comment 3: ""Would it be better to keep a fire extinguisher at home?"""
+Comment_012,网络留言 Comment,评论区,感谢提醒，已转发,Thanks for the reminder. Shared.
+Comment_013,网络留言 Comment,评论区,希望大家一辈子都不会用上这些知识,Hope none of us ever have to use this knowledge.
+Comment_014,网络留言 Comment,评论区,是不是要在家里自备灭火器比较好啊,Would it be better to keep a fire extinguisher at home?
 Post_010,社交媒体帖子 Post,评论区,昨天深夜看到一辆超黑的车，连车玻璃都和我家那只黑猫一样黑。,Saw an insanely black car late last night. Even the windows were as black as my black cat.
 Post_011,社交媒体帖子 Post,评论区,评论区,Comments
-Comment_015,网络留言 Comment,评论区,留言1：「大半夜的不是看什么都是黑的吗？」,"Comment 1: ""Isn't everything black in the middle of the night?"""
-Comment_016,网络留言 Comment,评论区,留言2：「没拍下来吗，这种违法交通的可以拿去举报了」,"Comment 2: ""Didn't you get a photo? If it was violating traffic laws, you could report it."""
+Comment_015,网络留言 Comment,评论区,大半夜的不是看什么都是黑的吗？,Isn't everything black in the middle of the night?
+Comment_016,网络留言 Comment,评论区,没拍下来吗，这种违法交通的可以拿去举报了,"Didn't you get a photo? If it was violating traffic laws, you could report it."
 Post_012,社交媒体帖子 Post,评论区,我记得我在哪看到说那间孤儿院本来就预计要停业了，那院长一定是不想处理后续，所以直接放火烧了吧。,"I remember reading somewhere that the orphanage was already planning to close down. The director must not have wanted to deal with the aftermath, so he just set the place on fire, right?"
 Post_013,社交媒体帖子 Post,评论区,评论区,Comments
-Comment_017,网络留言 Comment,评论区,留言1：「不是说很赚钱吗，怎么会停业？」,"Comment 1: ""Wasn't it supposed to be making a lot of money? Why would it close?"""
-Comment_018,网络留言 Comment,评论区,留言2：「是吗？跟我听说的好像有点不一样」,"Comment 2: ""Really? That sounds a little different from what I heard."""
-Comment_019,网络留言 Comment,评论区,留言3：「不管怎样，感觉越来越可疑了啊」,"Comment 3: ""Either way, this is getting more and more suspicious."""
+Comment_017,网络留言 Comment,评论区,不是说很赚钱吗，怎么会停业？,Wasn't it supposed to be making a lot of money? Why would it close?
+Comment_018,网络留言 Comment,评论区,是吗？跟我听说的好像有点不一样,Really? That sounds a little different from what I heard.
+Comment_019,网络留言 Comment,评论区,不管怎样，感觉越来越可疑了啊,"Either way, this is getting more and more suspicious."
 Post_014,社交媒体帖子 Post,评论区,想着去那间出事的孤儿院凑凑热闹，结果相机放大拍到了这张图。还真有人会将密码设计为生日日期啊哈哈哈哈。,"I went over to that orphanage where the incident happened just to see what was going on, and when I zoomed in with my camera, I got this shot. People really do use their birthdays as passwords, huh? Hahahaha."
 Post_015,社交媒体帖子 Post,评论区,【透过窗口拍到孤儿院职员室的其中一台电脑，荧幕边缘帖着笔记写着密码是生日】,[A photo taken through the window shows one of the computers in the orphanage staff room. A note stuck to the edge of the monitor says the password is a birthday.]
 Post_016,社交媒体帖子 Post,评论区,评论区,Comments
-Comment_020,网络留言 Comment,评论区,留言1：「我也会这样，密码就真的很难记啊」,"Comment 1: ""I do that too. Passwords are seriously hard to remember."""
-Comment_021,网络留言 Comment,评论区,留言2：「安全意识有待提高啊」,"Comment 2: ""Someone needs better security awareness."""
+Comment_020,网络留言 Comment,评论区,我也会这样，密码就真的很难记啊,I do that too. Passwords are seriously hard to remember.
+Comment_021,网络留言 Comment,评论区,安全意识有待提高啊,Someone needs better security awareness.
 Post_017,社交媒体帖子 Post,评论区,喵喵：3,Meow Meow: 3
 Post_018,社交媒体帖子 Post,评论区,简介,Bio
-Post_019,社交媒体帖子 Post,评论区,一位义工,A volunteer
-Post_020,社交媒体帖子 Post,评论区,一些帖子,Some posts
+Post_019,社交媒体帖子 Post,评论区,"一位义工
+猫猫爱好者","A volunteer
+Cat Lover"
+Post_020,社交媒体帖子 Post,评论区,我家猫今天心情不好都不理我呜呜…,My cat’s in a bad mood today and won’t even give me any attention…
 Post_021,社交媒体帖子 Post,评论区,好心福利院的照片,Photos of Kindness Welfare Home
-Post_022,社交媒体帖子 Post,评论区,一些帖子,Some posts
+Post_022,社交媒体帖子 Post,评论区,为什么能有猫猫这么可爱的生物啊？！❤,How can something this cute even exist?! ❤
 Instruction_001,玩法说明 Instruction,评论区,（如果跑位了，crtl + 0 回中央）,"(If the board gets shifted, press Ctrl + 0 to return to the center.)"
 Scene_007,场景 Scene,希望孤儿院官方网站,希望孤儿院官方网站,Hope Orphanage Official Website
 Keyword_001,搜索关键词 Keyword,希望孤儿院官方网站,"""希望孤儿院"" ""希望孤儿院官网""","""Hope Orphanage"" ""Hope Orphanage official website"""
@@ -101,14 +137,38 @@ Announcement_013,公告 Announcement,公告：关于暂停受理儿童领养申�
 Announcement_014,公告 Announcement,活动：希望孤儿院小型运动会,活动：希望孤儿院小型运动会,Event: Hope Orphanage Mini Sports Day
 Announcement_015,公告 Announcement,公告：关于希望孤儿院持续营运说明,公告：关于希望孤儿院持续营运说明,Notice: Regarding the Continued Operation of Hope Orphanage
 Announcement_016,公告 Announcement,公告：关于希望孤儿院停运说明,公告：关于希望孤儿院停运说明,Notice: Regarding the Closure of Hope Orphanage
-Announcement_017,公告 Announcement,公告：关于暂停受理儿童领养申请的公告,公告：关于暂停受理儿童领养申请的公告,Notice: Temporary Suspension of Child Adoption Applications
+Announcement_017,公告 Announcement,公告：关于暂停受理儿童领养申请的公告,公告：关于暂停受理儿童领养申请的公告,Announcement: Temporary Suspension of Child Adoption Applications
 Announcement_018,公告 Announcement,公告：关于暂停受理儿童领养申请的公告,发布日期：2012年7月19日,"Publication Date: July 19, 2012"
-Announcement_019,公告 Announcement,公告：关于暂停受理儿童领养申请的公告,为了进一步完善本院儿童照护制度，并配合院内近期进行的领养流程检视及相关资料整理工作，自即日起，本院将暂停受理新的儿童领养申请。恢复受理时间将视院内作业进度另行公告，造成您的不便，敬请见谅。,"To further improve our childcare system and accommodate the orphanage's recent review of adoption procedures and related records, we will temporarily stop accepting new child adoption applications effective immediately. The date applications resume will be announced separately depending on our internal progress. We apologize for any inconvenience caused."
+Announcement_019,公告 Announcement,公告：关于暂停受理儿童领养申请的公告,"为了进一步完善本院儿童照护制度，并配合院内近期进行的领养流程检视及相关资料整理工作，自即日起，本院将暂停受理新的儿童领养申请。恢复受理时间将视院内作业进度另行公告，造成您的不便，敬请见谅。
+
+感谢大家一直以来给予孩子们的关怀与支持，也希望大家能够继续陪伴孩子们健康成长。
+
+希望孤儿院 敬启","To further improve our childcare system and accommodate the orphanage's recent review of adoption procedures and related records, we will temporarily stop accepting new child adoption applications effective immediately. The date applications resume will be announced separately depending on our internal progress. We apologize for any inconvenience caused.
+
+Thank you for the care and support you have always shown the children. We hope you will continue to accompany and support them as they grow up healthy and happy.
+
+Sincerely, Hope Orphanage"
 Announcement_020,公告 Announcement,公告：关于暂停受理儿童领养申请的公告,感谢大家一直以来给予孩子们的关怀与支持，也希望大家能够继续陪伴孩子们健康成长。,Thank you for the care and support you have always shown the children. We hope you will continue to accompany and support them as they grow up healthy and happy.
 Announcement_021,公告 Announcement,公告：关于暂停受理儿童领养申请的公告,希望孤儿院 敬启,"Sincerely, Hope Orphanage"
 Announcement_022,公告 Announcement,活动：希望孤儿院小型运动会,活动：希望孤儿院小型运动会,Event: Hope Orphanage Mini Sports Day
 Announcement_023,公告 Announcement,活动：希望孤儿院小型运动会,发布日期：2012年7月13日,"Publication Date: July 13, 2012"
-Announcement_024,公告 Announcement,活动：希望孤儿院小型运动会,本孤儿院将与即将到来的8月1日举办一年一度的一个小型运动会。,Our orphanage will hold its annual mini sports day on the upcoming August 1.
+Announcement_024,公告 Announcement,活动：希望孤儿院小型运动会,"本孤儿院将与即将到来的8月1日举办一年一度的一个小型运动会。
+
+届时，孩子们将会参与各式各样趣味十足的竞赛项目，在欢笑与挑战中赢取奖品与留下美好的回忆。
+
+活动当天，本院将开放参观，诚挚邀请各位蒞临现场，为孩子们加油打气，与他们一同度过一个热闹且欢乐的时间。
+
+活动日期：2012年8月1日
+活动时间：9：00 a.m. - 1：00 p.m.
+活动地点：希望孤儿院","Our orphanage will hold its annual mini sports day on the upcoming August 1.
+
+The children will take part in all kinds of fun competitions, winning prizes and making wonderful memories through laughter and challenges.
+
+On the day of the event, the orphanage will be open to visitors. We sincerely invite everyone to come cheer the children on and spend a lively, joyful time with them.
+
+Event Date: August 1, 2012
+Event Time: 9:00 a.m. - 1:00 p.m.
+Event Location: Hope Orphanage"
 Announcement_025,公告 Announcement,活动：希望孤儿院小型运动会,届时，孩子们将会参与各式各样趣味十足的竞赛项目，在欢笑与挑战中赢取奖品与留下美好的回忆。,"The children will take part in all kinds of fun competitions, winning prizes and making wonderful memories through laughter and challenges."
 Announcement_026,公告 Announcement,活动：希望孤儿院小型运动会,活动当天，本院将开放参观，诚挚邀请各位蒞临现场，为孩子们加油打气，与他们一同度过一个热闹且欢乐的时间。,"On the day of the event, the orphanage will be open to visitors. We sincerely invite everyone to come cheer the children on and spend a lively, joyful time with them."
 Announcement_027,公告 Announcement,活动：希望孤儿院小型运动会,活动日期：2012年8月1日,"Event Date: August 1, 2012"
@@ -152,33 +212,51 @@ Dialogue_012,对话 Dialogue,向孩子们打听情报,孩子A「院长老师去�
 Dialogue_013,对话 Dialogue,向孩子们打听情报,孩子B「之前和院长老师越好了要一起去公园挖宝藏的」,"Child B: ""I promised Director Chen that we would go dig for treasure in the park together."""
 Dialogue_014,对话 Dialogue,向孩子们打听情报,孩子C「嗯？我在画蝴蝶呀~之前看到刘老师拿着的一张卡片上有一个很漂亮的蓝色蝴蝶，我想把它画出来！」,"Child C: ""Hmm? I'm drawing a butterfly~ I saw a really pretty blue butterfly on a card Mr. Liu was holding before, and I want to draw it!"""
 Scene_031,场景 Scene,新闻平台,新闻平台,News Platform
-News_001,新闻 News,新闻：BB-04，打破医学界难题，根治绝症！,新闻：BB-04，打破医学界难题，根治绝症！,News: BB-04 Breaks a Medical Barrier—A Cure for Terminal Illnesses!
+News_001,新闻 News,新闻：BB-04，打破医学界难题，根治绝症！,BB-04，打破医学界难题，根治绝症！,BB-04 Breaks a Medical Barrier—A Cure for Terminal Illnesses!
 News_002,新闻 News,新闻：BB-04，打破医学界难题，根治绝症！,发布日期：2012年6月29日,"Publication Date: June 29, 2012"
-News_003,新闻 News,新闻：BB-04，打破医学界难题，根治绝症！,蓝蝶制药公司于今日发布了他们最新的研发成果“BB-04”。该药物将有望根治困扰了医学界的许久的癌症、艾滋病等绝症。,"Blue Morpho Pharmaceutical Company announced its latest research achievement, ""BB-04,"" today. The drug is expected to potentially cure terminal illnesses that have long troubled the medical community, including cancer and AIDS."
-News_004,新闻 News,新闻：BB-04，打破医学界难题，根治绝症！,据该项目负责人所说，该药物目前还处于实验阶段，但相信在不久的将来BB-04将正式成为医学界的奇迹。,"According to the project's lead researcher, the drug is still in the experimental stage, but they believe BB-04 will become a medical miracle in the near future."
+News_003,新闻 News,新闻：BB-04，打破医学界难题，根治绝症！,"蓝蝶制药公司于今日发布了他们最新的研发成果“BB-04”。该药物将有望根治困扰了医学界的许久的癌症、艾滋病等绝症。
+
+据该项目负责人所说，该药物目前还处于实验阶段，但相信在不久的将来BB-04将正式成为医学界的奇迹。","Blue Morpho Pharmaceutical Company announced its latest research achievement, ""BB-04,"" today. The drug is expected to potentially cure terminal illnesses that have long troubled the medical community, including cancer and AIDS.
+
+According to the project's lead researcher, the drug is still in the experimental stage, but they believe BB-04 will become a medical miracle in the near future."
+News_004,新闻 News,当天新闻日期,发布日期：2012年8月1日,"Publication Date: August 1, 2012"
 News_005,新闻 News,新闻：BB-04，打破医学界难题，根治绝症！,【附上项目负责人于发表会演讲时的照片】,[Photo of the project lead giving a speech at the presentation]
 News_006,新闻 News,新闻：BB-04，打破医学界难题，根治绝症！,仔细对比后就会发现在台上演讲的负责人就是希望孤儿院的其中一位职员刘志明,"A careful comparison reveals that the person speaking on stage is Liu Zhiming, one of the staff members at Hope Orphanage."
-News_007,新闻 News,新闻：希望孤儿院火灾，院长下落不明！,新闻：希望孤儿院火灾，院长下落不明！,News: Hope Orphanage Fire; Director Missing!
-News_008,新闻 News,新闻：希望孤儿院火灾，院长下落不明！,今日（8月1日）接近清晨时分，位于郊外的希望孤儿院突发火灾。所幸事发当时以有几名孤儿院里的职员起身，他们第一时间发现事故向消防局报了案，并合理疏散在孤儿院里的孤儿们。消防员也随后赶到将火灾范围限制并扑灭由于职员们迅速的判断，本起火灾并无造成任何人员的伤亡。,"In the early hours of today (August 1), a fire suddenly broke out at Hope Orphanage, located on the outskirts of town. Fortunately, several staff members were already awake when the incident occurred. They immediately reported the fire to the fire department and evacuated the children in an orderly manner. Firefighters soon arrived, contained the blaze, and extinguished it. Thanks to the staff's quick response, there were no casualties."
+News_007,新闻 News,新闻：希望孤儿院火灾，院长下落不明！,希望孤儿院火灾，院长下落不明！,Hope Orphanage Fire; Director Missing!
+News_008,新闻 News,新闻：希望孤儿院火灾，院长下落不明！,"今日（8月1日）接近清晨时分，位于郊外的希望孤儿院突发火灾。所幸事发当时以有几名孤儿院里的职员起身，他们第一时间发现事故向消防局报了案，并合理疏散在孤儿院里的孤儿们。消防员也随后赶到将火灾范围限制并扑灭由于职员们迅速的判断，本起火灾并无造成任何人员的伤亡。
+
+正当一切看似有惊无险的结束时，却传出了孤儿院院长（陈志宏）失踪的消息。据几位职员所说，他们在就寝之前还有见过院长，但在火灾发生后的现在却不见他人，也无法与他取得联络。消防人士也没有在火灾现场找到疑似院长的人影。此情况已上报警方，并被判断为失踪。","In the early hours of today (August 1), a fire suddenly broke out at Hope Orphanage, located on the outskirts of town. Fortunately, several staff members were already awake when the incident occurred. They immediately reported the fire to the fire department and evacuated the children in an orderly manner. Firefighters soon arrived, contained the blaze, and extinguished it. Thanks to the staff's quick response, there were no casualties.
+
+Just when it seemed the incident had ended without serious harm, news emerged that the orphanage director, Chen Zhihong, had gone missing. According to several staff members, they had seen the director before going to bed, but after the fire he was nowhere to be found and could not be contacted. Firefighters also found no sign of anyone matching the director at the scene. The matter has been reported to the police and is being treated as a missing-person case."
 News_009,新闻 News,新闻：希望孤儿院火灾，院长下落不明！,正当一切看似有惊无险的结束时，却传出了孤儿院院长（陈志宏）失踪的消息。据几位职员所说，他们在就寝之前还有见过院长，但在火灾发生后的现在却不见他人，也无法与他取得联络。消防人士也没有在火灾现场找到疑似院长的人影。此情况已上报警方，并被判断为失踪。,"Just when it seemed the incident had ended without serious harm, news emerged that the orphanage director, Chen Zhihong, had gone missing. According to several staff members, they had seen the director before going to bed, but after the fire he was nowhere to be found and could not be contacted. Firefighters also found no sign of anyone matching the director at the scene. The matter has been reported to the police and is being treated as a missing-person case."
 News_010,新闻 News,评论区,评论区,Comments
-Comment_022,网络留言 Comment,评论区,留言1：「幸好及时发现……」,"Comment 1: ""Thank goodness they noticed it in time..."""
-Comment_023,网络留言 Comment,评论区,留言2：「没说什么原因发生的火灾吗？」,"Comment 2: ""Did they say what caused the fire?"""
-Comment_024,网络留言 Comment,评论区,留言3：「院长卷款跑路了吧」,"Comment 3: ""The director probably took the money and ran."""
-Comment_025,网络留言 Comment,评论区,留言4：「真的假的？！那这火不会也是院长放的吧」,"Comment 4: ""Seriously?! Then did the director start the fire too?"""
-Comment_026,网络留言 Comment,评论区,留言5：「那这群孤儿之后住哪啊？」,"Comment 5: ""Where are all those orphans going to stay now?"""
-Comment_027,网络留言 Comment,评论区,留言6：「一个小小的孤儿院却能够经营这么久，八成是有在背后干些不干净的勾当吧。」,"Comment 6: ""A tiny orphanage managed to operate for this long. They were probably doing something shady behind the scenes."""
-News_011,新闻 News,新闻：希望孤儿院火灾与院长失踪。事发前似乎有可疑迹象？,新闻：希望孤儿院火灾与院长失踪。事发前似乎有可疑迹象？,News: Hope Orphanage Fire and Director's Disappearance—Were There Suspicious Signs Before the Incident?
-News_012,新闻 News,新闻：希望孤儿院火灾与院长失踪。事发前似乎有可疑迹象？,希望孤儿院今日凌晨发生火灾，消防局接获报案后迅速赶往现场，成功控制火势，所幸院内儿童及职员均已及时疏散，并未造成人员伤亡。本报记者第一时间走访附近居民并得到了一下几点说法。,"A fire broke out at Hope Orphanage early this morning. After receiving the emergency call, the fire department quickly arrived at the scene and successfully brought the blaze under control. Fortunately, all children and staff members were evacuated in time, and there were no casualties. Our reporter immediately interviewed nearby residents and gathered the following accounts."
+Comment_022,网络留言 Comment,评论区,幸好及时发现……,Thank goodness they noticed it in time…
+Comment_023,网络留言 Comment,评论区,没说什么原因发生的火灾吗？,Did they say what caused the fire?
+Comment_024,网络留言 Comment,评论区,院长卷款跑路了吧,The director probably took the money and ran.
+Comment_025,网络留言 Comment,评论区,真的假的？！那这火不会也是院长放的吧,Seriously?! Then did the director start the fire too?
+Comment_026,网络留言 Comment,评论区,那这群孤儿之后住哪啊？,Where are all those orphans going to stay now?
+Comment_027,网络留言 Comment,评论区,一个小小的孤儿院却能够经营这么久，八成是有在背后干些不干净的勾当吧。,A tiny orphanage managed to operate for this long. They were probably doing something shady behind the scenes.
+News_011,新闻 News,新闻：希望孤儿院火灾与院长失踪。事发前似乎有可疑迹象？,希望孤儿院火灾与院长失踪。事发前似乎有可疑迹象？,Hope Orphanage Fire and Director's Disappearance—Were There Suspicious Signs Before the Incident?
+News_012,新闻 News,新闻：希望孤儿院火灾与院长失踪。事发前似乎有可疑迹象？,"希望孤儿院今日凌晨发生火灾，消防局接获报案后迅速赶往现场，成功控制火势，所幸院内儿童及职员均已及时疏散，并未造成人员伤亡。本报记者第一时间走访附近居民并得到了一下几点说法。
+
+有居民表示，孤儿院的设备似乎一直都有在检点翻新，应该不太可能发生意外。也有居民表示，这一个月来陈志宏院长似乎每天都早出晚归，不太像他以前的作风。另一位居民则表示，当晚曾看到一辆黑色轿车停靠在孤儿院附近。
+
+
+评论区已关闭","A fire broke out at Hope Orphanage early this morning. After receiving the emergency call, the fire department quickly arrived at the scene and successfully brought the blaze under control. Fortunately, all children and staff members were evacuated in time, and there were no casualties. Our reporter immediately interviewed nearby residents and gathered the following accounts.
+
+One resident said the orphanage's facilities appeared to be regularly inspected and renovated, so an accidental fire seemed unlikely. Another said that for the past month, Director Chen Zhihong had been leaving early and returning late every day, which was unlike his usual behavior. A third resident reported seeing a black sedan parked near the orphanage that night.
+
+
+Comments are closed."
 News_013,新闻 News,新闻：希望孤儿院火灾与院长失踪。事发前似乎有可疑迹象？,有居民表示，孤儿院的设备似乎一直都有在检点翻新，应该不太可能发生意外。也有居民表示，这一个月来陈志宏院长似乎每天都早出晚归，不太像他以前的作风。另一位居民则表示，当晚曾看到一辆黑色轿车停靠在孤儿院附近。,"One resident said the orphanage's facilities appeared to be regularly inspected and renovated, so an accidental fire seemed unlikely. Another said that for the past month, Director Chen Zhihong had been leaving early and returning late every day, which was unlike his usual behavior. A third resident reported seeing a black sedan parked near the orphanage that night."
 News_014,新闻 News,评论区,评论区,Comments
 Comment_028,网络留言 Comment,评论区,评论区已关闭,Comments are closed.
-News_015,新闻 News,新闻：希望孤儿院前身尽是？！这场大火恐怕早已注定……,新闻：希望孤儿院前身尽是？！这场大火恐怕早已注定……,News: Hope Orphanage Was Once WHAT?! Was This Fire Destined to Happen...?
+News_015,新闻 News,新闻：希望孤儿院前身尽是？！这场大火恐怕早已注定……,希望孤儿院前身尽是？！这场大火恐怕早已注定……,Hope Orphanage Was Once WHAT?! Was This Fire Destined to Happen...?
 News_016,新闻 News,新闻：希望孤儿院前身尽是？！这场大火恐怕早已注定……,希望孤儿院所在的位置，在数十年前疑似曾是一处墓园。本报记者相继采访了几位专业风水师，他们都纷纷表示火灾的发生都是当地阴气聚集所导致，甚至连院长失踪一事也可能与此原因有关……,"The site where Hope Orphanage now stands is suspected to have once been a cemetery several decades ago. Our reporter interviewed several professional feng shui masters, all of whom claimed that the fire was caused by an accumulation of negative energy in the area. Some even suggested that the director's disappearance may be connected to it..."
 News_017,新闻 News,评论区,评论区,Comments
-Comment_029,网络留言 Comment,评论区,留言1：「风水都来了……」,"Comment 1: ""Now they're bringing feng shui into this..."""
-Comment_030,网络留言 Comment,评论区,留言2：「有些东西不能不信」,"Comment 2: ""There are some things you just can't dismiss."""
-Comment_031,网络留言 Comment,评论区,留言3：「专家是谁？连名字都没有」,"Comment 3: ""Who are these experts? They didn't even give any names."""
+Comment_029,网络留言 Comment,评论区,风水都来了……,Now they're bringing feng shui into this…
+Comment_030,网络留言 Comment,评论区,有些东西不能不信,There are some things you just can't dismiss.
+Comment_031,网络留言 Comment,评论区,专家是谁？连名字都没有,Who are these experts? They didn't even give any names.
 Scene_032,场景 Scene,蓝蝶制药公司官方网站,蓝蝶制药公司官方网站,Blue Morpho Pharmaceutical Company Official Website
 Keyword_004,搜索关键词 Keyword,蓝蝶制药公司官方网站,"""蓝色蝴蝶"" ""蓝色 蝴蝶""","""blue butterfly"" ""blue butterfly"""
 Scene_033,场景 Scene,蓝蝶制药公司官方网站,--探究科学的境界，愿将奇迹的蓝色蝴蝶带到每个人身边--,"-- Exploring the Frontiers of Science, Bringing the Miracle of the Blue Morpho to Everyone --"
@@ -193,18 +271,36 @@ Dialogue_016,对话 Dialogue,向老爷爷打听情报,「他们上一次来时�
 Dialogue_017,对话 Dialogue,向老爷爷打听情报,「话说有一次我偶然遇到陈院长，他什么也没说就让我帮忙保管一把钥匙，现在他出了这种事我该拿这钥匙怎么办呢？」,"""Come to think of it, I once ran into Director Chen by chance. Without explaining anything, he asked me to keep a key for him. Now that this has happened to him, I don't know what I should do with it."""
 Dialogue_018,对话 Dialogue,向老爷爷打听情报,「要不这钥匙先给你吧，比起放在我这，你比较有可能从用这把钥匙调查出些什么。」,"""Why don't you take the key for now? Compared with leaving it with me, you're more likely to uncover something with it during your investigation."""
 Scene_039,场景 Scene,向老爷爷打听情报,侦探资格测试练习题《失踪的猫》,"Detective Qualification Practice Test: ""The Missing Cat"""
-Character_001,人物 Character,证人C : 赵先生,证人C : 赵先生,Witness C: Mr. Zhao
-Dialogue_019,对话 Dialogue,证人C : 赵先生,「大约下午3：30，我和我女儿刚好路过公园看到了小橘。因为它左边耳朵的缺口所以我很确定是小橘没错。我还用我手机拍了张我女儿和小橘的照片，这就是那时候的照片。」,"""At around 3:30 p.m., my daughter and I happened to pass by the park and saw Little Orange. I'm certain it was Little Orange because of the notch in its left ear. I even took a photo of my daughter with Little Orange on my phone. This is the photo from then."""
+Character_001,人物 Character,证人C : 赵先生,赵先生,Mr. Zhao
+Dialogue_019,对话 Dialogue,证人C : 赵先生,"「大约下午3：30，我和我女儿刚好路过公园看到了小橘。因为它左边耳朵的缺口所以我很确定是小橘没错。我还用我手机拍了张我女儿和小橘的照片，这就是那时候的照片。」
+
+赵先生女儿与小橘的照片
+照片里能看到一名小女孩似乎蹑手蹑脚的要靠近一只爬着的橘猫。照片里可以很明显的看到猫的左耳上有个小缺口。","""At around 3:30 p.m., my daughter and I happened to pass by the park and saw Little Orange. I'm certain it was Little Orange because of the notch in its left ear. I even took a photo of my daughter with Little Orange on my phone. This is the photo from then.""
+
+Photo of Mr. Zhao's Daughter and Little Orange
+The photo shows a young girl apparently trying to sneak up on an orange cat lying on the ground. A small notch can clearly be seen on the cat's left ear."
 Character_002,人物 Character,证人C : 赵先生,赵先生女儿与小橘的照片,Photo of Mr. Zhao's Daughter and Little Orange
 Character_003,人物 Character,证人C : 赵先生,照片里能看到一名小女孩似乎蹑手蹑脚的要靠近一只爬着的橘猫。照片里可以很明显的看到猫的左耳上有个小缺口。,The photo shows a young girl apparently trying to sneak up on an orange cat lying on the ground. A small notch can clearly be seen on the cat's left ear.
-Character_004,人物 Character,证人D : 陈先生,证人D : 陈先生,Witness D: Mr. Chen
+Character_004,人物 Character,证人D : 陈先生, 陈先生,Mr. Chen
 Dialogue_020,对话 Dialogue,证人D : 陈先生,「我今天下午一直都待在家。我确实有听到院子附近有狗叫声，之后还听见附近传来像猫叫的声音。」,"""I stayed home all afternoon today. I did hear a dog barking near the yard, and afterward I heard what sounded like a cat meowing nearby."""
-Character_005,人物 Character,证人E : 周先生,证人E : 周先生,Witness E: Mr. Zhou
+Character_005,人物 Character,证人E : 周先生,周先生,Mr. Zhou
 Dialogue_021,对话 Dialogue,证人E : 周先生,「差不多在下午3：55左右，我刚好需要用到一些工具就到了村里的公用仓库，我当时就在那附近看到了小橘。它那时候正悠闲地躺在仓库门口晒太阳。」,"""At around 3:55 p.m., I needed some tools, so I went to the village's communal storage shed. I saw Little Orange nearby. It was lying leisurely in the sun by the storage shed entrance."""
 Photo_002,照片/图片 Photo,村里的地图,村里的地图,Village Map
 Photo_003,照片/图片 Photo,村里的地图,![](flowam:img-1787584472766-7q5cir),![](flowam:img-1787584472766-7q5cir)
 Case_001,案件资料 Case,委托内容,委托内容,Case Request
-Case_002,案件资料 Case,委托内容,委托人：张女士,Client: Ms. Zhang
+Case_002,案件资料 Case,委托内容,"委托人：张女士
+我的猫「小橘」今天下午不见了。
+小橘平时虽然会在附近活动，但通常不会离家太远。
+今天下午，我发现它没有像往常一样回来。我寻找了一段时间后，仍然没有找到它。
+幸运的是，有五名附近居民表示曾经见到小橘。
+但他们提供的情报似乎并不完全一致。
+请根据以下资料，判断哪些证人的证词可信。","Client: Ms. Zhang
+My cat, ""Little Orange,"" went missing this afternoon.
+Although Little Orange usually wanders around nearby, it normally doesn't go far from home.
+This afternoon, I noticed it hadn't come back as usual. I searched for a while but still couldn't find it.
+Fortunately, five nearby residents said they had seen Little Orange.
+However, the information they provided does not seem entirely consistent.
+Based on the information below, determine which witnesses' statements are reliable."
 Dialogue_022,对话 Dialogue,委托内容,我的猫「小橘」今天下午不见了。,"My cat, ""Little Orange,"" went missing this afternoon."
 Case_003,案件资料 Case,委托内容,小橘平时虽然会在附近活动，但通常不会离家太远。,"Although Little Orange usually wanders around nearby, it normally doesn't go far from home."
 Case_004,案件资料 Case,委托内容,今天下午，我发现它没有像往常一样回来。我寻找了一段时间后，仍然没有找到它。,"This afternoon, I noticed it hadn't come back as usual. I searched for a while but still couldn't find it."
@@ -215,12 +311,20 @@ Case_008,案件资料 Case,关于小橘,关于小橘,About Little Orange
 Dialogue_023,对话 Dialogue,关于小橘,委托人「张女士」养的猫。于今天下午失踪。,"A cat owned by the client, Ms. Zhang. It went missing this afternoon."
 Case_009,案件资料 Case,关于小橘,关于小橘，张女士如此说到：,Ms. Zhang says the following about Little Orange:
 Dialogue_024,对话 Dialogue,关于小橘,「小橘是我4年前养的猫，是一只全身橘色毛发的猫。它非常怕狗因为它小时候被一只野狗咬伤了耳朵，所以左耳尖附近有一个明显的小缺口。下午三点我在打扫客厅的时候还有看到小橘。」,"""I adopted Little Orange four years ago. It has orange fur all over. It's extremely afraid of dogs because a stray dog bit its ear when it was young, leaving a noticeable notch near the tip of its left ear. I still saw Little Orange at 3:00 p.m. while I was cleaning the living room."""
-Character_006,人物 Character,证人A : 王先生,证人A : 王先生,Witness A: Mr. Wang
-Dialogue_025,对话 Dialogue,证人A : 王先生,「我是名便利店员工，那段时间刚好是我的值班时间。在大约下午3：15时，我看到便利店的门口走过去一只橘猫。或许我可以调一下店外的监控看看是不是小橘。」,"""I work at a convenience store, and I happened to be on shift at the time. At around 3:15 p.m., I saw an orange cat walk past the store entrance. Maybe I can check the outdoor security footage to see whether it was Little Orange."""
+Character_006,人物 Character,证人A : 王先生,王先生,Mr. Wang
+Dialogue_025,对话 Dialogue,证人A : 王先生,"「我是名便利店员工，那段时间刚好是我的值班时间。在大约下午3：15时，我看到便利店的门口走过去一只橘猫。或许我可以调一下店外的监控看看是不是小橘。」
+「有了，这是那时候拍到的照片。我记得它当时往公园的方向跑去了。」
+
+便利店监控截图
+画面中有一只全身橘色的猫。猫的左耳上有个小缺口。","""I work at a convenience store, and I happened to be on shift at the time. At around 3:15 p.m., I saw an orange cat walk past the store entrance. Maybe I can check the outdoor security footage to see whether it was Little Orange.""
+""Found it. This is the image captured at the time. I remember it running toward the park.""
+
+Convenience Store Security Footage
+The image shows an orange cat. There is a small notch on its left ear."
 Dialogue_026,对话 Dialogue,证人A : 王先生,「有了，这是那时候拍到的照片。我记得它当时往公园的方向跑去了。」,"""Found it. This is the image captured at the time. I remember it running toward the park."""
 Character_007,人物 Character,证人A : 王先生,便利店监控截图,Convenience Store Security Footage
 Character_008,人物 Character,证人A : 王先生,画面中有一只全身橘色的猫。猫的左耳上有个小缺口。,The image shows an orange cat. There is a small notch on its left ear.
-Character_009,人物 Character,证人B : 李女士,证人B : 李女士,Witness B: Ms. Li
+Character_009,人物 Character,证人B : 李女士,李女士,Ms. Li
 Dialogue_027,对话 Dialogue,证人B : 李女士,「下午4：00左右我刚好要出门，那时候我就看到小橘被一只狗追着往陈先生家的方向跑去了。」,"""At around 4:00 p.m., I was just about to head out when I saw Little Orange being chased by a dog toward Mr. Chen's house."""
 Instruction_002,玩法说明 Instruction,玩法,玩法,How to Play
 Instruction_003,玩法说明 Instruction,玩法,"1. 不要移动盘面
@@ -244,6 +348,7 @@ Instruction_008,玩法说明 Instruction,玩法,实体物品/线索,Physical Ite
 Instruction_009,玩法说明 Instruction,玩法,人物,Characters
 Instruction_010,玩法说明 Instruction,玩法,照片/图片类,Photos / Images
 Instruction_011,玩法说明 Instruction,玩法,搜寻关键字…,Enter Keyword…
+Instruction_012,玩法说明 Instruction,玩法,记录为重要线索,Record as Important Clue
 Character_010,人物 Character,玩家 / 侦探,玩家 / 侦探,Player / Detective
 Character_011,人物 Character,陈志宏,陈志宏,Chen Zhihong
 Character_012,人物 Character,陈志宏,希望孤儿院院长,Director of Hope Orphanage
@@ -278,6 +383,17 @@ Character_040,人物 Character,孩子B,从孤儿院转移来的孩子,Child tran
 Character_041,人物 Character,孩子C,孩子C,Child C
 Character_042,人物 Character,孩子C,从孤儿院转移来的孩子,Child transferred from the orphanage
 Character_043,人物 Character,孩子C,提到刘老师拿着一张印有蓝色蝴蝶的卡,Mentions that Mr. Liu had a card printed with a blue butterfly
+Character_044,人物 Character,NPC 1,NPC 1,NPC 1
+Character_045,人物 Character,NPC 2,NPC 2,NPC 2
+Character_046,人物 Character,NPC 3,NPC 3,NPC 3
+Character_047,人物 Character,NPC 4,NPC 4,NPC 4
+Character_048,人物 Character,NPC 5,NPC 5,NPC 5
+Character_049,人物 Character,NPC 6,NPC 6,NPC 6
+Character_050,人物 Character,NPC 7,NPC 7,NPC 7
+Character_051,人物 Character,NPC 8,NPC 8,NPC 8
+Character_052,人物 Character,NPC 9,NPC 9,NPC 9
+Character_053,人物 Character,NPC 10,NPC 10,NPC 10
+Character_054,人物 Character,喵喵：3,喵喵：3,MeowMeow：3
 Item_012,物品/线索 Item,书架,书架,Bookshelf
 Item_013,物品/线索 Item,书架,位置：家,Location: Home
 Item_014,物品/线索 Item,书架,书架上整齐的摆着各式各样的书籍。,Various books are neatly arranged on the bookshelf.
@@ -344,39 +460,39 @@ Item_073,物品/线索 Item,钥匙,钥匙,Key
 Item_074,物品/线索 Item,钥匙,院长托老爷爷保管的钥匙。,A key the director asked the elderly man to keep for him.
 Item_075,物品/线索 Item,钥匙,老爷爷转交给侦探。,The elderly man passes it on to the detective.
 Item_076,物品/线索 Item,钥匙,用途不明。,Its purpose is unknown.
-Character_044,人物 Character,公园老爷爷,公园老爷爷,Elderly Man at the Park
-Character_045,人物 Character,公园老爷爷,经常来公园,Frequently visits the park
-Character_046,人物 Character,公园老爷爷,帮院长保管钥匙,Keeps a key for the director
-Character_047,人物 Character,公园老爷爷,将钥匙交给侦探,Hands the key to the detective
-Character_048,人物 Character,义工A,义工A,Volunteer A
-Character_049,人物 Character,义工A,好心福利院义工,Volunteer at Kindness Welfare Home
-Character_050,人物 Character,义工B,义工B,Volunteer B
-Character_051,人物 Character,义工B,好心福利院义工,Volunteer at Kindness Welfare Home
-Character_052,人物 Character,孩子A,孩子A,Child A
-Character_053,人物 Character,孩子A,从孤儿院转移来的孩子,Child transferred from the orphanage
-Character_054,人物 Character,孩子B,孩子B,Child B
-Character_055,人物 Character,孩子B,从孤儿院转移来的孩子,Child transferred from the orphanage
-Character_056,人物 Character,孩子C,孩子C,Child C
-Character_057,人物 Character,孩子C,从孤儿院转移来的孩子,Child transferred from the orphanage
-Character_058,人物 Character,孩子C,提到刘老师拿着一张印有蓝色蝴蝶的卡,Mentions that Mr. Liu had a card printed with a blue butterfly
-Character_059,人物 Character,孩子C,希望孤儿院职员照片,Hope Orphanage Staff Photos
-Character_060,人物 Character,孩子C,出现：希望孤儿院的职员结构图,Appears in: Hope Orphanage Staff Organization Chart
-Character_061,人物 Character,孩子C,希望孤儿院7位职员的照片,Photos of the seven staff members at Hope Orphanage
-Character_062,人物 Character,孩子C,*刘志明的脸跟”BB-04“的负责人一样,"*Liu Zhiming's face should match the ""BB-04"" project lead"
-Character_063,人物 Character,孩子C,村里的地图,Village Map
-Character_064,人物 Character,孩子C,出现：侦探资格测试练习题《失踪的猫》,"Appears in: Detective Qualification Practice Test — ""The Missing Cat"""
+Character_055,人物 Character,公园老爷爷,公园老爷爷,Elderly Man at the Park
+Character_056,人物 Character,公园老爷爷,经常来公园,Frequently visits the park
+Character_057,人物 Character,公园老爷爷,帮院长保管钥匙,Keeps a key for the director
+Character_058,人物 Character,公园老爷爷,将钥匙交给侦探,Hands the key to the detective
+Character_059,人物 Character,义工A,义工A,Volunteer A
+Character_060,人物 Character,义工A,好心福利院义工,Volunteer at Kindness Welfare Home
+Character_061,人物 Character,义工B,义工B,Volunteer B
+Character_062,人物 Character,义工B,好心福利院义工,Volunteer at Kindness Welfare Home
+Character_063,人物 Character,孩子A,孩子A,Child A
+Character_064,人物 Character,孩子A,从孤儿院转移来的孩子,Child transferred from the orphanage
+Character_065,人物 Character,孩子B,孩子B,Child B
+Character_066,人物 Character,孩子B,从孤儿院转移来的孩子,Child transferred from the orphanage
+Character_067,人物 Character,孩子C,孩子C,Child C
+Character_068,人物 Character,孩子C,从孤儿院转移来的孩子,Child transferred from the orphanage
+Character_069,人物 Character,孩子C,提到刘老师拿着一张印有蓝色蝴蝶的卡,Mentions that Mr. Liu had a card printed with a blue butterfly
+Character_070,人物 Character,孩子C,希望孤儿院职员照片,Hope Orphanage Staff Photos
+Character_071,人物 Character,孩子C,出现：希望孤儿院的职员结构图,Appears in: Hope Orphanage Staff Organization Chart
+Character_072,人物 Character,孩子C,希望孤儿院7位职员的照片,Photos of the seven staff members at Hope Orphanage
+Character_073,人物 Character,孩子C,*刘志明的脸跟”BB-04“的负责人一样,"*Liu Zhiming's face should match the ""BB-04"" project lead"
+Character_074,人物 Character,孩子C,村里的地图,Village Map
+Character_075,人物 Character,孩子C,出现：侦探资格测试练习题《失踪的猫》,"Appears in: Detective Qualification Practice Test — ""The Missing Cat"""
 Photo_005,照片/图片 Photo,孩子C,![](flowam:img-1787584472766-7q5cir),![](flowam:img-1787584472766-7q5cir)
-Character_065,人物 Character,孩子C,"""BB-04""项目负责人照片","Photo of the ""BB-04"" Project Lead"
-Character_066,人物 Character,孩子C,出现：BB-04，打破医学界难题，根治绝症！,Appears in: BB-04 Breaks a Medical Barrier—A Cure for Terminal Illnesses!
-Character_067,人物 Character,孩子C,负责人在演讲时被拍到的照片。,A photo of the project lead taken while he is giving a speech.
-Character_068,人物 Character,孩子C,*跟刘志明是同一个人，脸要一样,"*He is the same person as Liu Zhiming, so the face should be identical."
-Character_069,人物 Character,孩子C,拍摄孤儿院职员室的照片,Photo of the Hope Orphanage Staff Room
-Character_070,人物 Character,孩子C,出现：某个社交媒体,Appears in: A Social Media Platform
-Character_071,人物 Character,孩子C,拍到李秀芳桌位的照片，可以那个密码的小纸条。,"A photo of Li Xiufang's desk, with the small password note visible."
-Character_072,人物 Character,孩子C,随机的猫照,Random Cat Photo
-Character_073,人物 Character,孩子C,出现：某人的个人主页,Appears in: Someone's Profile Page
-Character_074,人物 Character,孩子C,没什么太大情报，就猫猫啊哈。,Nothing particularly important—just cats lol.
-Name_001,专有名词 Proper Noun,浏览器,Internet Discovery,Internet Discorvery
+Character_076,人物 Character,孩子C,"""BB-04""项目负责人照片","Photo of the ""BB-04"" Project Lead"
+Character_077,人物 Character,孩子C,出现：BB-04，打破医学界难题，根治绝症！,Appears in: BB-04 Breaks a Medical Barrier—A Cure for Terminal Illnesses!
+Character_078,人物 Character,孩子C,负责人在演讲时被拍到的照片。,A photo of the project lead taken while he is giving a speech.
+Character_079,人物 Character,孩子C,*跟刘志明是同一个人，脸要一样,"*He is the same person as Liu Zhiming, so the face should be identical."
+Character_080,人物 Character,孩子C,拍摄孤儿院职员室的照片,Photo of the Hope Orphanage Staff Room
+Character_081,人物 Character,孩子C,出现：某个社交媒体,Appears in: A Social Media Platform
+Character_082,人物 Character,孩子C,拍到李秀芳桌位的照片，可以那个密码的小纸条。,"A photo of Li Xiufang's desk, with the small password note visible."
+Character_083,人物 Character,孩子C,随机的猫照,Random Cat Photo
+Character_084,人物 Character,孩子C,出现：某人的个人主页,Appears in: Someone's Profile Page
+Character_085,人物 Character,孩子C,没什么太大情报，就猫猫啊哈。,Nothing particularly important—just cats lol.
+Name_001,专有名词 Proper Noun,浏览器,Internet Discovery,Internet Discovery
 Name_002,专有名词 Proper Noun,教学程序,资格练习题,Test Tutorial
 Name_003,专有名词 Proper Noun,新闻网站,每日新闻,Everyday News
 Name_004,专有名词 Proper Noun,社交媒体,推书,Bookers
@@ -393,3 +509,102 @@ SM_007,SM_HP Text,社交媒体,#希望孤儿院,#Hope Orphanage
 SM_008,SM_HP Text,社交媒体,#火灾,#Fire
 SM_009,SM_HP Text,社交媒体,#跑路,#Ran
 SM_010,SM_HP Text,社交媒体,#失踪,#Missing
+Search_001,Search,Search Result,新闻：,News: 
+Search_002,Search,Search Result,探索：{0},Search: {0}
+Search_003,Search,Search Result,关键字：{0},Keyword: {0}
+Search_004,Search,Search Result,没有更多结果了…,No more search result…
+Search_005,Search,Search Result,新闻：,News: 
+Search_006,Search,Search Result,新闻：,News: 
+Summary_001,重要线索,标题,委托内容,Case Request
+Summary_002,重要线索,内容,"- 委托人张女士，猫「小橘」今天下午失踪
+- 五名居民各自表示曾目击，但情报不完全一致
+- 任务：判断哪些证词可信","- Client: Ms. Zhang. Her cat, ""Little Orange,"" went missing this afternoon.
+- Five residents each claim to have seen it, but their accounts do not fully match.
+- Task: Determine which witness statements are reliable."
+Summary_003,重要线索,标题,关于小橘,About Little Orange
+Summary_004,重要线索,内容,"- 张女士养的橘猫，怕狗
+- 左耳尖有明显缺口
+- 张女士本人下午3点在家还见过它","- An orange cat owned by Ms. Zhang; it is afraid of dogs.
+- There is a noticeable notch at the tip of its left ear.
+- Ms. Zhang herself last saw it at home at 3:00 p.m."
+Summary_005,重要线索,标题,证人A：王先生,Witness A: Mr. Wang
+Summary_006,重要线索,内容,"- 便利店员工
+- 下午3:15时看到一只橘猫经过店门口
+- 调出监控截图，猫左耳有缺口，往公园方向跑","- Convenience store employee.
+- Saw an orange cat pass by the store at 3:15 p.m.
+- Security footage shows a notch on the cat's left ear, and it was running toward the park."
+Summary_007,重要线索,标题,证人B：李女士,Witness B: Ms. Li
+Summary_008,重要线索,内容,- 下午4:00出门时看到小橘被狗追，往陈先生家方向跑,"- At 4:00 p.m., she saw Little Orange being chased by a dog toward Mr. Chen's house as she was heading out."
+Summary_009,重要线索,标题,证人C：赵先生,Witness C: Mr. Zhao
+Summary_010,重要线索,内容,"- 下午3:30带女儿经过公园看到小橘
+- 猫左耳有缺口","- Saw Little Orange while passing through the park with his daughter at 3:30 p.m.
+- The cat had a notch on its left ear."
+Summary_011,重要线索,标题,证人D：陈先生,Witness D: Mr. Chen
+Summary_012,重要线索,内容,- 下午一直在家，听到院子附近狗叫声，随后听到猫叫声,"- Was home all afternoon. He heard a dog barking near the yard, followed by the sound of a cat meowing."
+Summary_013,重要线索,标题,证人E：周先生,Witness E: Mr. Zhou
+Summary_014,重要线索,内容,- 下午3:55在村里公用仓库附近看到小橘在躺着晒太阳,"- At 3:55 p.m., he saw Little Orange lying in the sun near the village's communal storage shed."
+Summary_015,重要线索,标题,村里的地图,Village Map
+Summary_016,重要线索,内容,- 村里的地图，中间有条宽敞的河流,"- A map of the village, with a wide river running through the middle."
+Summary_017,重要线索,标题,新闻：希望孤儿院火灾，院长下落不明！,News: Hope Orphanage Fire; Director Missing!
+Summary_018,重要线索,内容,"- 希望孤儿院于凌晨发生火灾
+- 院长失踪
+- 几位职员说他们睡前还看过院长 ","- A fire broke out at Hope Orphanage in the early hours of the morning.
+- The director is missing.
+- Several staff members said they had seen the director before going to bed."
+Summary_019,重要线索,标题,新闻：希望孤儿院前身尽是？！这场大火恐怕早已注定……,News: Hope Orphanage Was Once WHAT?! Was This Fire Destined to Happen...?
+Summary_020,重要线索,内容,"- 希望孤儿院所在地在以前是一处墓园
+- 风水师表示火灾与院长的失踪都跟当地阴气有关","- The site where Hope Orphanage now stands used to be a cemetery.
+- Feng shui masters claim that both the fire and the director's disappearance are connected to the area's negative energy."
+Summary_021,重要线索,标题,新闻：希望孤儿院火灾与院长失踪。事发前似乎有可疑迹象？,News: Hope Orphanage Fire and Director's Disappearance—Were There Suspicious Signs Before the Incident?
+Summary_022,重要线索,内容,"- 今日凌晨希望孤儿院发生火灾但没有伤亡
+- 火灾原因不太可能是意外
+- 院长最近都早出晚归
+- 有人目击一辆黑色轿车停在孤儿院附近","- A fire broke out at Hope Orphanage early this morning, but there were no casualties.
+- The fire was unlikely to have been an accident.
+- The director had recently been leaving early and returning late.
+- Someone saw a black sedan parked near the orphanage."
+Summary_023,重要线索,标题,新闻：BB-04，打破医学界难题，根治绝症！,News: BB-04 Breaks a Medical Barrier—A Cure for Terminal Illnesses!
+Summary_024,重要线索,内容,- 仔细对比后就会发现在台上演讲的负责人就是希望孤儿院的其中一位职员刘志明,"- A careful comparison reveals that the person speaking on stage is Liu Zhiming, one of the staff members at Hope Orphanage."
+Summary_025,重要线索,标题,帖子：消防局的提醒,Post: Fire Department Reminder
+Summary_026,重要线索,内容,- 一些关于遇到火灾时的措施,- Some safety measures to follow in the event of a fire.
+Summary_027,重要线索,标题,帖子：喵喵：3 1,Post: Meow Meow: 3 1
+Summary_028,重要线索,内容,- 一位爱猫人士的帖子,- A post by a cat lover.
+Summary_029,重要线索,标题,帖子：喵喵：3 2,Post: Meow Meow: 3 2
+Summary_030,重要线索,内容,- 一位爱猫人士的帖子,- A post by a cat lover.
+Summary_031,重要线索,标题,帖子：怀疑院长的帖子,Post: Suspicions About the Director
+Summary_032,重要线索,内容,- 有人认为院长消失的时机很可疑,- Someone thinks the timing of the director's disappearance is suspicious.
+Summary_033,重要线索,标题,帖子：庆幸意外时有人及时发现的帖子,Post: Thankful Someone Noticed the Fire in Time
+Summary_034,重要线索,内容,"- 有人庆幸在火灾发生时刚好有人起床
+- 有人怀疑火灾可能不是意外","- Someone is thankful that a person happened to wake up when the fire broke out.
+- Someone suspects the fire may not have been an accident."
+Summary_035,重要线索,标题,帖子：一栋建筑物的照片,Post: Photo of a Building
+Summary_036,重要线索,内容,- 可以看到招牌上写着「好心福利院」,"- The sign in the photo reads ""Kindness Welfare Home."""
+Summary_037,重要线索,标题,帖子：孩子们的后续情况,Post: What Will Happen to the Children?
+Summary_038,重要线索,内容,"- 关系孤儿们后续的帖子
+- 评论区似乎可以找到一点相关情报","- A post expressing concern about what will happen to the orphans.
+- The comments section may contain some relevant information."
+Summary_039,重要线索,标题,帖子：在意外后到孤儿院拍的照片,Post: Photo Taken at the Orphanage After the Incident
+Summary_040,重要线索,内容,"- 有人透过窗口拍了孤儿院职员室
+- 职员室的一台电脑荧幕边贴着一张笔记
+- 笔记写着“密码是生日” ","- Someone took a photo of the orphanage staff room through a window.
+- A note is stuck to the edge of one computer monitor.
+- The note says, ""The password is my birthday."""
+Summary_041,重要线索,标题,帖子：猜测火灾发生的原因,Post: Speculation About the Cause of the Fire
+Summary_042,重要线索,内容,- 有人认为院长不像处理孤儿院停业的后续而直接放火,- Someone believes the director did not want to deal with the aftermath of the orphanage's closure and simply set the building on fire.
+Summary_043,重要线索,标题,帖子：关于一辆黑车的情报,Post: Information About a Black Car
+Summary_044,重要线索,内容,- 有人在昨天深夜看到一辆全黑的车,- Someone saw an all-black car late last night.
+Summary_045,重要线索,标题,公告：关于暂停受理儿童领养申请的公告,Announcement: Temporary Suspension of Child Adoption Applications
+Summary_046,重要线索,内容,"- 一篇关于希望孤儿院暂停受理新的儿童领养申请的公告
+- 给的理由是完善制度与检视流程","- An announcement stating that Hope Orphanage will temporarily suspend new child adoption applications.
+- The reason given is to improve its procedures and review its processes."
+Summary_047,重要线索,标题,活动：希望孤儿院小型运动会,Event: Hope Orphanage Mini Sports Day
+Summary_048,重要线索,内容,- 原定于今天早上举办的小型运动会,- A small sports day originally scheduled to be held this morning.
+Summary_049,重要线索,标题,公告：关于希望孤儿院持续营运说明,Announcement: Regarding the Continued Operation of Hope Orphanage
+Summary_050,重要线索,内容,- 在停运公告不到一个月，希望孤儿院宣布持续运营,"- Less than a month after announcing its closure, Hope Orphanage announced that it would remain in operation."
+Summary_051,重要线索,标题,公告：关于希望孤儿院停运说明,Announcement: Regarding the Closure of Hope Orphanage
+Summary_052,重要线索,内容,- 希望孤儿院宣布因缺乏资金而将停运,- Hope Orphanage announced that it would cease operations due to a lack of funding.
+ClueBoard_001,线索板,线索板,记录的线索,Clue Recorded
+ClueBoard_002,线索板,线索板,提交的线索,Clue Submitted
+ClueBoard_003,线索板,线索板,提交,Submit
+ClueBoard_004,线索板,线索板,你的分数是：,Your score is:
+ClueBoard_005,线索板,线索板,关闭,Close

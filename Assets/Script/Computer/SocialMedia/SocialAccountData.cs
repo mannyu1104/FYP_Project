@@ -1,14 +1,18 @@
+using System;
 using UnityEngine;
+using UnityEngine.Localization;
 
 // Social media account, just icon, name and profile
 [CreateAssetMenu(fileName = "NewSocialAccount", menuName = "ScriptableObject/Social Account")]
 public class SocialAccountData : ScriptableObject
 {
-    [SerializeField] private string accountName;
+    [Header("Account Details")]
+    [SerializeField] private LocalizedString accountName;
     [SerializeField] private Sprite avatar;
-    [SerializeField][TextArea(2, 5)] private string bio;
+    //[SerializeField][TextArea(2, 5)] private string bio;
+    [SerializeField] private LocalizedString bio;
 
-    public string AccountName => accountName;
+    public LocalizedString AccountName => accountName;
     public Sprite Avatar => avatar;
-    public string Bio => bio;
+    public LocalizedString Bio => bio;
 }

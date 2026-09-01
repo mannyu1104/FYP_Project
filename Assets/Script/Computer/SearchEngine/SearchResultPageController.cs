@@ -3,6 +3,7 @@ using TMPro;
 using Unity.Pipeline.Editor.Commands.Navigation;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Localization;
 
 // Displays the results list for one search-results tab.
 public class SearchResultsPageController : MonoBehaviour
@@ -16,6 +17,9 @@ public class SearchResultsPageController : MonoBehaviour
 
     [Header("Query Display")]
     [SerializeField] private TMP_Text queryLabel;
+    [SerializeField] private LocalizedString queryLabelFormat;
+
+    private LocalizedString currentQueryLabelFormat;
 
     private readonly List<SearchResultItemUI> spawnedItems = new List<SearchResultItemUI>();
 
@@ -24,10 +28,21 @@ public class SearchResultsPageController : MonoBehaviour
     /// </summary>
     public void DisplayResults(string query, List<SearchResultEntryData> results)
     {
-        if (queryLabel != null)
+        UnsubscribeFromLocalization();
+
+        if (queryLabelFormat != null)
         {
-            queryLabel.text = $"搜索结果：\"{query}\"";
+            currentQueryLabelFormat = new LocalizedString(queryLabelFormat.TableReference, queryLabelFormat.TableEntryReference)
+            {
+                Arguments = new object[] { query }
+            };
         }
+        else
+        {
+            Debug.LogWarning("[SearchResultsPageController] queryLabelFormat is not assigned in the Inspector.", this);
+        }
+
+        SubscribeToLocalization();
 
         ClearSpawnedItems();
 
@@ -87,5 +102,27 @@ public class SearchResultsPageController : MonoBehaviour
         {
             Debug.LogError($"[SearchResultsPageController] '{entry.resultTitle}' has no destination assigned.");
         }
+    }
+
+    private void SubscribeToLocalization()
+    {
+        if (currentQueryLabelFormat == null) return;
+        currentQueryLabelFormat.StringChanged += UpdateQueryLabelText;
+    }
+
+    private void UnsubscribeFromLocalization()
+    {
+        if (currentQueryLabelFormat == null) return;
+        currentQueryLabelFormat.StringChanged -= UpdateQueryLabelText;
+    }
+
+    private void UpdateQueryLabelText(string value)
+    {
+        if (queryLabel != null) queryLabel.text = value;
+    }
+
+    private void OnDestroy()
+    {
+        UnsubscribeFromLocalization();
     }
 }

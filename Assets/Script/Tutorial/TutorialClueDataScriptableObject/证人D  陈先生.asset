@@ -12,10 +12,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d94b3ccad967d74cab0c89f98139685, type: 3}
   m_Name: "\u8BC1\u4EBAD  \u9648\u5148\u751F"
   m_EditorClassIdentifier: Assembly-CSharp::TutorialClueData
-  clueTitle: "\u8BC1\u4EBAD : \u9648\u5148\u751F"
-  clueSummary: 
+  clueTitle:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 310111563620363
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  clueSummary:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 310111563620364
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   clueCredibility: 0
   caseDefinition: {fileID: 11400000, guid: 27b7da3b7c866514694db554e6b7c3a1, type: 2}
-  tutorialClueName: "\u8BC1\u4EBAD : \u9648\u5148\u751F"
-  tutorialClueDescription: "\u300C\u6211\u4ECA\u5929\u4E0B\u5348\u4E00\u76F4\u90FD\u5F85\u5728\u5BB6\u3002\u6211\u786E\u5B9E\u6709\u542C\u5230\u9662\u5B50\u9644\u8FD1\u6709\u72D7\u53EB\u58F0\uFF0C\u4E4B\u540E\u8FD8\u542C\u89C1\u9644\u8FD1\u4F20\u6765\u50CF\u732B\u53EB\u7684\u58F0\u97F3\u3002\u300D"
+  tutorialClueName:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047910395906
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  tutorialClueDescription:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047910395907
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   clueImage: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []

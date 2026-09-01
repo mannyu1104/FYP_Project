@@ -12,10 +12,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d94b3ccad967d74cab0c89f98139685, type: 3}
   m_Name: "\u5173\u4E8E\u5C0F\u6A58"
   m_EditorClassIdentifier: Assembly-CSharp::TutorialClueData
-  clueTitle: "\u5173\u4E8E\u5C0F\u6A58"
-  clueSummary: 
+  clueTitle:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 310111563620355
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  clueSummary:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 310111563620356
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   clueCredibility: 0
   caseDefinition: {fileID: 11400000, guid: 27b7da3b7c866514694db554e6b7c3a1, type: 2}
-  tutorialClueName: "\u5173\u4E8E\u5C0F\u6A58"
-  tutorialClueDescription: "\u59D4\u6258\u4EBA\u300C\u5F20\u5973\u58EB\u300D\u517B\u7684\u732B\u3002\u4E8E\u4ECA\u5929\u4E0B\u5348\u5931\u8E2A\u3002\n\n\u5173\u4E8E\u5C0F\u6A58\uFF0C\u5F20\u5973\u58EB\u5982\u6B64\u8BF4\u5230\uFF1A\n\n\u300C\u5C0F\u6A58\u662F\u62114\u5E74\u524D\u517B\u7684\u732B\uFF0C\u662F\u4E00\u53EA\u5168\u8EAB\u6A58\u8272\u6BDB\u53D1\u7684\u732B\u3002\u5B83\u975E\u5E38\u6015\u72D7\u56E0\u4E3A\u5B83\u5C0F\u65F6\u5019\u88AB\u4E00\u53EA\u91CE\u72D7\u54AC\u4F24\u4E86\u8033\u6735\uFF0C\u6240\u4EE5\u5DE6\u8033\u5C16\u9644\u8FD1\u6709\u4E00\u4E2A\u660E\u663E\u7684\u5C0F\u7F3A\u53E3\u3002\u4E0B\u5348\u4E09\u70B9\u6211\u5728\u6253\u626B\u5BA2\u5385\u7684\u65F6\u5019\u8FD8\u6709\u770B\u5230\u5C0F\u6A58\u3002\u300D"
+  tutorialClueName:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047910395920
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  tutorialClueDescription:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047910395923
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   clueImage: {fileID: 21300000, guid: f7ad02182be8d475da20f6fb932ae36d, type: 3}
+  references:
+    version: 2
+    RefIds: []

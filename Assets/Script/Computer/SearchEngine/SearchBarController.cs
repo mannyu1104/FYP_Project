@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.UI;
 
 public class SearchBarController : MonoBehaviour
@@ -11,6 +12,7 @@ public class SearchBarController : MonoBehaviour
     [Header("Tab Display")]
     [Tooltip("Icon shown on the tab for search-results tabs.")]
     [SerializeField] private Sprite searchTabIcon;
+    [SerializeField] private LocalizedString tabTitleFormat;
 
     private void Awake()
     {
@@ -35,7 +37,7 @@ public class SearchBarController : MonoBehaviour
 
         var results = SearchManager.Instance.PerformSearch(query);
 
-        SearchResultsTabPage searchPage = new SearchResultsTabPage(query, results, searchTabIcon);
+        SearchResultsTabPage searchPage = new SearchResultsTabPage(query, results, searchTabIcon, tabTitleFormat);
         BrowserTabManager.Instance.OpenPage(searchPage);
 
         searchInputField.text = string.Empty;

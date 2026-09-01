@@ -10,7 +10,7 @@ public class ClueBoardUI : MonoBehaviour
     [SerializeField] private Transform unsortedContent; // 未整理线索区's content container
 
     private readonly List<ClueBoardEntryUI> entries = new List<ClueBoardEntryUI>();
-    private readonly HashSet<string> spawnedClueKeys = new HashSet<string>();
+    private readonly HashSet<ClueManager.RecordedClue> spawnedClues = new HashSet<ClueManager.RecordedClue>();
 
     // Read by ClueSubmission when the player hits Submit.
     public IReadOnlyList<ClueBoardEntryUI> Entries => entries;
@@ -37,7 +37,7 @@ public class ClueBoardUI : MonoBehaviour
     {
         foreach (ClueManager.RecordedClue clue in ClueManager.Instance.RecordedClues)
         {
-            if (spawnedClueKeys.Contains(clue.title))
+            if (spawnedClues.Contains(clue))
             {
                 continue;
             }
@@ -57,7 +57,7 @@ public class ClueBoardUI : MonoBehaviour
             return;
         }
 
-        spawnedClueKeys.Add(clue.title);
+        spawnedClues.Add(clue);
         ClueBoardEntryUI entry = Instantiate(entryPrefab, unsortedContent);
         entry.Set(clue);
         entries.Add(entry);

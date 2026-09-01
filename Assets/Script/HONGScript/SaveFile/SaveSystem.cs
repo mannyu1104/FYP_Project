@@ -21,6 +21,42 @@ public class ItemBooleanData
     public string TypeofItem;
 }
 
+//[System.Serializable]
+//public class MapSaveData
+//{
+//    public List<MapBooleanData> MapBool = new List<MapBooleanData>();
+//}
+
+//[System.Serializable]
+//public class MapBooleanData
+//{
+//    public int ItemID;
+//    public bool Show;
+//    public bool Get;
+//    public bool Used;
+//    public string ItemShowName;
+//    public string Description;
+//    public string TypeofItem;
+//}
+
+//[System.Serializable]
+//public class ItemLockSaveData
+//{
+//    public List<ItemLockBooleanData> MapBool = new List<ItemLockBooleanData>();
+//}
+
+//[System.Serializable]
+//public class ItemLockBooleanData
+//{
+//    public int ItemID;
+//    public bool Show;
+//    public bool Get;
+//    public bool Used;
+//    public string ItemShowName;
+//    public string Description;
+//    public string TypeofItem;
+//}
+
 public class SaveSystem: MonoBehaviour
 {
     public static SaveSystem instance;
@@ -28,12 +64,16 @@ public class SaveSystem: MonoBehaviour
     public InventoryManagerINFO inventoryUsing;
 
     private string path;
+    private string pathmap;
+    private string pathitemlock;
 
     private void Awake()
     {
         instance = this;
 
         path = Application.persistentDataPath + "/inventory.json";
+        pathmap = Application.persistentDataPath + "/map.json";
+        pathitemlock = Application.persistentDataPath + "/inventorylock.json";
 
     }
 

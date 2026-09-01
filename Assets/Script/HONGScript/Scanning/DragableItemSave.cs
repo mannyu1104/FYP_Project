@@ -3,30 +3,33 @@ using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using TMPro;
 
 public class DragableItemSave : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler //IPointerClickHandler
 {
     public MapItem item;
     [HideInInspector] public Transform parentAfterDrag;
+    [SerializeField] private TMP_Text ShowText;
     public Image image;
     public bool thisShow;
     //public bool thisUnlocked;
     public string thisType;
+    public string thisName;
     public bool thisGet;
     public bool thisUsed;
     public int thisID;
     //[SerializeField] GameObject Description;
-    public GameObject DesUI;
-    public GameObject InvenUI;
+    //public GameObject DesUI;
+    //public GameObject InvenUI;
     public bool isdragging;
 
     public void Start()
     {
         InitialiseItem(item);
 
-        if (thisShow == true)
+        if (thisGet == true)
         {
-            image.sprite = item.Image;
+            DeleteOther();
         }
         if (thisUsed == true)
         {
@@ -35,10 +38,14 @@ public class DragableItemSave : MonoBehaviour, IBeginDragHandler, IDragHandler, 
         }
     }
 
-    //void Update()
-    //{
-
-    //}
+    void Update()
+    {
+        if (thisShow == true)
+        {
+            //image.sprite = item.Image;
+            ShowText.text = thisName;
+        }
+    }
 
     public void InitialiseItem(MapItem newItem)
     {
@@ -48,6 +55,8 @@ public class DragableItemSave : MonoBehaviour, IBeginDragHandler, IDragHandler, 
         thisUsed = newItem.Used;
         thisID = newItem.ItemID;
         thisShow = newItem.Show;
+        thisName = newItem.NameShow;
+        thisType = newItem.ObjType;
         isdragging = false;
     }
 
@@ -60,6 +69,7 @@ public class DragableItemSave : MonoBehaviour, IBeginDragHandler, IDragHandler, 
             transform.SetParent(transform.root);
             transform.SetAsLastSibling();
             image.raycastTarget = false;
+            ShowText.raycastTarget = false;
         }
     }
 
@@ -81,6 +91,7 @@ public class DragableItemSave : MonoBehaviour, IBeginDragHandler, IDragHandler, 
             isdragging = false;
             transform.SetParent(parentAfterDrag);
             image.raycastTarget = true;
+            ShowText.raycastTarget = true;
         }
         //else if (!thisUsed && thisGet == true)
         //{
@@ -118,7 +129,7 @@ public class DragableItemSave : MonoBehaviour, IBeginDragHandler, IDragHandler, 
 
         foreach (DragableItemSave duplicate in duplicatecheck)
         {
-            if (duplicate.thisID == thisID)
+            if (duplicate.thisID == thisID && duplicate != this)
             {
                 Destroy(duplicate.gameObject);
             }

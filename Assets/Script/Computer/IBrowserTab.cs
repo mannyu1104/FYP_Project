@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Localization;
 
 public interface IBrowserPage
 {
@@ -6,7 +7,7 @@ public interface IBrowserPage
     string PageId { get; }
 
     /// Text shown on the tab.
-    string TabTitle { get; }
+    LocalizedString TabTitle { get; }
 
     /// Icon shown on the tab.
     Sprite TabIcon { get; }

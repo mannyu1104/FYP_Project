@@ -14,11 +14,15 @@ public class OrphanageHPPageController : ListDetailPageController<OrphanageAnnou
 
     public void ShowAnnouncementDetail(OrphanageAnnouncementData announcement) => ShowDetail(announcement);
 
+    private OrphanageAnnouncementData announcementData;
+
     protected override void PopulateDetail(OrphanageAnnouncementData announcement)
     {
-        detailTitleText.text = announcement.Title;
-        detailDateText.text = announcement.Date;
-        detailContentText.text = announcement.Content;
+        UnsubscribeFromLocalization();
+        announcementData = announcement;
+
+        SubscribeToLocalization();
+
         detailContentText.verticalScrollbar.value = 0f; // Scroll to top
     }
 
@@ -30,5 +34,41 @@ public class OrphanageHPPageController : ListDetailPageController<OrphanageAnnou
     protected override void BindListItem(OrphanageAnnouncementListItemUi listItemUI, OrphanageAnnouncementData announcement)
     {
         listItemUI.Bind(announcement, this);
+    }
+
+    private void SubscribeToLocalization()
+    {
+        if (announcementData == null) return;
+        announcementData.Title.StringChanged += UpdateTitleText;
+        announcementData.Date.StringChanged += UpdateDateText;
+        announcementData.Content.StringChanged += UpdateContentText;
+    }
+
+    private void UnsubscribeFromLocalization()
+    {
+        if (announcementData == null) return;
+        announcementData.Title.StringChanged -= UpdateTitleText;
+        announcementData.Date.StringChanged -= UpdateDateText;
+        announcementData.Content.StringChanged -= UpdateContentText;
+    }
+
+    private void UpdateTitleText(string value)
+    {
+        if (detailTitleText != null) detailTitleText.text = value;
+    }
+
+    private void UpdateDateText(string value)
+    {
+        if (detailDateText != null) detailDateText.text = value;
+    }
+
+    private void UpdateContentText(string value)
+    {
+        if (detailContentText != null) detailContentText.text = value;
+    }
+
+    private void OnDestroy()
+    {
+        UnsubscribeFromLocalization();
     }
 }

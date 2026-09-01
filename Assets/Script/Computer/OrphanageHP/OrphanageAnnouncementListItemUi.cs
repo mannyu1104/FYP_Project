@@ -8,6 +8,8 @@ public class OrphanageAnnouncementListItemUi : MonoBehaviour
     [SerializeField] private CustomButtonUi clickable;
     [SerializeField] private TMP_Text announcementTitleText;
 
+    private OrphanageAnnouncementData announcementData;
+
     private void Reset()
     {
         clickable = GetComponent<CustomButtonUi>();
@@ -16,9 +18,34 @@ public class OrphanageAnnouncementListItemUi : MonoBehaviour
     // Bind this list item to a specific article, and set up the click callback to show that article's detail view.
     public void Bind(OrphanageAnnouncementData announcement, OrphanageHPPageController owner)
     {
-        announcementTitleText.text = announcement.Title;
+        UnsubscribeFromLocalization();
+        announcementData = announcement;
+
+        SubscribeToLocalization();
 
         clickable.onLeftClick.RemoveAllListeners();
         clickable.onLeftClick.AddListener(() => owner.ShowAnnouncementDetail(announcement));
+    }
+
+    private void SubscribeToLocalization()
+    {
+        if (announcementData == null) return;
+        announcementData.Title.StringChanged += UpdateTitleText;
+    }
+
+    private void UnsubscribeFromLocalization()
+    {
+        if (announcementData == null) return;
+        announcementData.Title.StringChanged -= UpdateTitleText;
+    }
+
+    private void UpdateTitleText(string value)
+    {
+        if (announcementTitleText != null) announcementTitleText.text = value;
+    }
+
+    private void OnDestroy()
+    {
+        UnsubscribeFromLocalization();
     }
 }

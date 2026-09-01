@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a21d962b510db3d438eb871d0ebb9541, type: 3}
-  m_Name: Item 5
-  m_EditorClassIdentifier: Assembly-CSharp::Item
-  ItemShowName: 
-  Description: 
+  m_Script: {fileID: 11500000, guid: 6a2333c3541a600419ddfb14ccd3fba8, type: 3}
+  m_Name: "\u5B64\u513F\u9662"
+  m_EditorClassIdentifier: Assembly-CSharp::MapItem
+  NameShow: "\u5B64\u513F\u9662"
+  ObjType: Map
   Get: 0
   Used: 0
   Show: 0
-  ItemID: 0
+  ItemID: 3

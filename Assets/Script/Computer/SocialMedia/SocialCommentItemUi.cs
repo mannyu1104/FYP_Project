@@ -17,6 +17,7 @@ public class SocialCommentItemUI : MonoBehaviour
     [SerializeField] private Color hasProfileNameColor;
 
     private ScrollRect parentScrollRect;
+    private SocialCommentEntry commentEntry;
 
     private void Awake()
     {
@@ -55,9 +56,12 @@ public class SocialCommentItemUI : MonoBehaviour
 
     public void Bind(SocialCommentEntry comment, SocialMediaPageController owner)
     {
+        UnsubscribeFromLocalization();
+        commentEntry = comment;
+
         commenterAvatarImage.sprite = comment.account.Avatar;
-        commenterNameText.text = comment.account.AccountName;
-        commentText.text = comment.commentText;
+
+        SubscribeToLocalization();
 
         commenterAvatarButton.interactable = comment.hasProfilePage;
         if (comment.hasProfilePage)
@@ -73,5 +77,34 @@ public class SocialCommentItemUI : MonoBehaviour
         {
             commenterNameText.color = normalNameColor;
         }
+    }
+
+    private void SubscribeToLocalization()
+    {
+        if (commentEntry == null) return;
+        commentEntry.account.AccountName.StringChanged += UpdateCommenterNameText;
+        commentEntry.commentText.StringChanged += UpdateCommentText;
+    }
+
+    private void UnsubscribeFromLocalization()
+    {
+        if (commentEntry == null) return;
+        commentEntry.account.AccountName.StringChanged -= UpdateCommenterNameText;
+        commentEntry.commentText.StringChanged -= UpdateCommentText;
+    }
+
+    private void UpdateCommenterNameText(string value)
+    {
+        if (commenterNameText != null) commenterNameText.text = value;
+    }
+
+    private void UpdateCommentText(string value)
+    {
+        if (commentText != null) commentText.text = value;
+    }
+
+    private void OnDestroy()
+    {
+        UnsubscribeFromLocalization();
     }
 }

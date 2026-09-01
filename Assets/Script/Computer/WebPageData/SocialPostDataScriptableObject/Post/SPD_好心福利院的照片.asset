@@ -12,7 +12,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d613c920529365743a062cf772b5632e, type: 3}
   m_Name: "SPD_\u597D\u5FC3\u798F\u5229\u9662\u7684\u7167\u7247"
   m_EditorClassIdentifier: Assembly-CSharp::SocialPostData
+  clueTitle:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 310111563620387
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  clueSummary:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 310111563620388
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  clueCredibility: 0
+  caseDefinition: {fileID: 11400000, guid: 4ac043355916a064280fd6ecf7cc4eca, type: 2}
   account: {fileID: 11400000, guid: e0029cd83e0e41e4aa4e9aa7e493ef70, type: 2}
-  content: "\u597D\u5FC3\u798F\u5229\u9662\u7167\u7247"
+  content:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   postImage: {fileID: 1018284193, guid: c46d29f4891cb6949ab2470a9d38d7bc, type: 3}
   comments: []
+  references:
+    version: 2
+    RefIds: []

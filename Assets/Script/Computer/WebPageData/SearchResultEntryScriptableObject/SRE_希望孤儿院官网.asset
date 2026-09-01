@@ -14,7 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SearchResultEntryData
   keywords:
   - "\u5E0C\u671B\u5B64\u513F\u9662"
-  resultTitle: "\u5E0C\u671B\u5B64\u513F\u9662\u5B98\u7F51"
+  - Hope Orphanage
+  resultTitle:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 173856490201092
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   pageData: {fileID: 11400000, guid: 3ba42dcfd1508da4ca20e82e39ce4602, type: 2}
   newsArticleRef: {fileID: 0}
   socialProfileRef: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []

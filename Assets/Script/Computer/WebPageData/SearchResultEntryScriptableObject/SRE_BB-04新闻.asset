@@ -16,7 +16,23 @@ MonoBehaviour:
   - "\u84DD\u8776"
   - "\u84DD\u8272\u8774\u8776"
   - "\u84DD\u8272 \u8774\u8776"
-  resultTitle: "\u65B0\u95FB\uFF1ABB-04\uFF0C\u6253\u7834\u533B\u5B66\u754C\u96BE\u9898\uFF0C\u6839\u6CBB\u7EDD\u75C7\uFF01"
+  - Blue Butterfly
+  - Blue Morpho
+  - BlueButterfly
+  - BlueMorpho
+  - BB-04
+  resultTitle:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 310111563620375
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   pageData: {fileID: 0}
   newsArticleRef: {fileID: 11400000, guid: 0cd8844afb953b64ebe3aaf5d7ae82a8, type: 2}
   socialProfileRef: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []

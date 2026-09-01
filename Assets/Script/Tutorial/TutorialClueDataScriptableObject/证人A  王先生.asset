@@ -12,10 +12,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d94b3ccad967d74cab0c89f98139685, type: 3}
   m_Name: "\u8BC1\u4EBAA  \u738B\u5148\u751F"
   m_EditorClassIdentifier: Assembly-CSharp::TutorialClueData
-  clueTitle: "\u8BC1\u4EBAA : \u738B\u5148\u751F"
-  clueSummary: 
+  clueTitle:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 310111563620357
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  clueSummary:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 310111563620358
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   clueCredibility: 0
   caseDefinition: {fileID: 11400000, guid: 27b7da3b7c866514694db554e6b7c3a1, type: 2}
-  tutorialClueName: "\u8BC1\u4EBAA : \u738B\u5148\u751F"
-  tutorialClueDescription: "\u300C\u6211\u662F\u540D\u4FBF\u5229\u5E97\u5458\u5DE5\uFF0C\u90A3\u6BB5\u65F6\u95F4\u521A\u597D\u662F\u6211\u7684\u503C\u73ED\u65F6\u95F4\u3002\u5728\u5927\u7EA6\u4E0B\u53483\uFF1A15\u65F6\uFF0C\u6211\u770B\u5230\u4FBF\u5229\u5E97\u7684\u95E8\u53E3\u8D70\u8FC7\u53BB\u4E00\u53EA\u6A58\u732B\u3002\u6216\u8BB8\u6211\u53EF\u4EE5\u8C03\u4E00\u4E0B\u5E97\u5916\u7684\u76D1\u63A7\u770B\u770B\u662F\u4E0D\u662F\u5C0F\u6A58\u3002\u300D\n\n\u300C\u6709\u4E86\uFF0C\u8FD9\u662F\u90A3\u65F6\u5019\u62CD\u5230\u7684\u7167\u7247\u3002\u6211\u8BB0\u5F97\u5B83\u5F53\u65F6\u5F80\u516C\u56ED\u7684\u65B9\u5411\u8DD1\u53BB\u4E86\u3002\u300D\n\n\n\n\u4FBF\u5229\u5E97\u76D1\u63A7\u622A\u56FE\n\n\u753B\u9762\u4E2D\u6709\u4E00\u53EA\u5168\u8EAB\u6A58\u8272\u7684\u732B\u3002\u732B\u7684\u5DE6\u8033\u4E0A\u6709\u4E2A\u5C0F\u7F3A\u53E3\u3002"
+  tutorialClueName:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047910395924
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  tutorialClueDescription:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8047910395925
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   clueImage: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []

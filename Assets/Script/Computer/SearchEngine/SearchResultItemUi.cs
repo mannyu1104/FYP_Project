@@ -1,4 +1,5 @@
 using System;
+using System.Xml;
 using TMPro;
 using UnityEngine;
 
@@ -9,13 +10,13 @@ public class SearchResultItemUI : MonoBehaviour
     [Header("UI References")]
     [SerializeField] private TMP_Text titleText;
 
-    private CustomButtonUi clickable;
+    private CustomButtonUi customButton;
     private SearchResultEntryData entryData;
     private Action<SearchResultEntryData> onClickCallback;
 
     private void Awake()
     {
-        clickable = GetComponent<CustomButtonUi>();
+        if (customButton == null) customButton = GetComponent<CustomButtonUi>();
     }
 
     /// <summary>
@@ -23,18 +24,43 @@ public class SearchResultItemUI : MonoBehaviour
     /// </summary>
     public void Setup(SearchResultEntryData entry, Action<SearchResultEntryData> onClicked)
     {
+        UnsubscribeFromLocalization();
+
         entryData = entry;
         onClickCallback = onClicked;
 
-        if (titleText != null) titleText.text = entry.resultTitle;
 
-        if (clickable == null) clickable = GetComponent<CustomButtonUi>();
-        clickable.onLeftClick.RemoveAllListeners();
-        clickable.onLeftClick.AddListener(HandleClick);
+        SubscribeToLocalization();
+
+        customButton.onLeftClick.RemoveAllListeners();
+        customButton.onLeftClick.AddListener(HandleClick);
     }
 
     private void HandleClick()
     {
         onClickCallback?.Invoke(entryData);
+    }
+
+    private void SubscribeToLocalization()
+    {
+        if (entryData == null) return;
+        // Subscribing to the StringChanged event to update the title text when the localized string changes.
+        entryData.resultTitle.StringChanged += UpdateTitleText;
+    }
+
+    private void UnsubscribeFromLocalization()
+    {
+        if (entryData == null) return;
+        entryData.resultTitle.StringChanged -= UpdateTitleText;
+    }
+
+    private void UpdateTitleText(string value)
+    {
+        if (titleText != null) titleText.text = value;
+    }
+
+    private void OnDestroy()
+    {
+        UnsubscribeFromLocalization();
     }
 }
