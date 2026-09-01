@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a21d962b510db3d438eb871d0ebb9541, type: 3}
   m_Name: "\u6751\u91CC\u7684\u5730\u56FE"
   m_EditorClassIdentifier: Assembly-CSharp::Item
+  TutorialClueDataTest: {fileID: 11400000, guid: 2ea2e31ca837e3f43805858e65459772, type: 2}
   ItemShowName: "\u6751\u91CC\u7684\u5730\u56FE"
   Description: 
   TypeofItem: Tutorial

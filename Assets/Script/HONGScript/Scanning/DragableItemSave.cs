@@ -45,6 +45,7 @@ public class DragableItemSave : MonoBehaviour, IBeginDragHandler, IDragHandler, 
             //image.sprite = item.Image;
             ShowText.text = thisName;
         }
+
     }
 
     public void InitialiseItem(MapItem newItem)

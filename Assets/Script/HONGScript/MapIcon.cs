@@ -12,6 +12,7 @@ public class MapIcon : MonoBehaviour
     [SerializeField] private Sprite UnlockedFrame;
     public Image image;
     public Image imageName;
+    public int thisID;
     public bool thisUnlocked;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -35,6 +36,7 @@ public class MapIcon : MonoBehaviour
     public void InitialiseItem(Map newmap)
     {
         Mapdetials = newmap;
+        thisID = newmap.MapID;
         thisUnlocked = newmap.Unlocked;
     }
 
@@ -44,5 +46,13 @@ public class MapIcon : MonoBehaviour
         image.sprite = Mapdetials.ImageUnlocked;
         imageName.sprite = UnlockedFrame;
         SumShowText.text = Mapdetials.PlaceName;
+    }
+
+    public void NotUnlock()
+    {
+        thisUnlocked = false;
+        image.sprite = Mapdetials.ImageLocked;
+        imageName.sprite = LockedFrame;
+        SumShowText.text = "Unknown";
     }
 }

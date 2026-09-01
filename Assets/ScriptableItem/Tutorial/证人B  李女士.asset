@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a21d962b510db3d438eb871d0ebb9541, type: 3}
   m_Name: "\u8BC1\u4EBAB  \u674E\u5973\u58EB"
   m_EditorClassIdentifier: Assembly-CSharp::Item
+  TutorialClueDataTest: {fileID: 11400000, guid: d1ae3d7959dda6f4b9e9b6ac15d1d6c8, type: 2}
   ItemShowName: "\u8BC1\u4EBAB : \u674E\u5973\u58EB"
   Description: "\u300C\u4E0B\u53484\uFF1A00\u5DE6\u53F3\u6211\u521A\u597D\u8981\u51FA\u95E8\uFF0C\u90A3\u65F6\u5019\u6211\u5C31\u770B\u5230\u5C0F\u6A58\u88AB\u4E00\u53EA\u72D7\u8FFD\u7740\u5F80\u9648\u5148\u751F\u5BB6\u7684\u65B9\u5411\u8DD1\u53BB\u4E86\u3002\u300D"
   TypeofItem: Tutorial

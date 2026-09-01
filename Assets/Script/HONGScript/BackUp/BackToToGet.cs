@@ -12,10 +12,20 @@ public class BackToToGet : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Item"))
         {
             DragableItem item = collision.gameObject.GetComponent<DragableItem>();
-            if (item.thisGet == true && item.thisType == "Tutorial")
+
+            if (item.thisUsed == true && item.thisType == "Tutorial")
             {
                 currentTarget = collision.gameObject;
             }
+            else
+            {
+                return;
+            }
+        }
+        else
+        {
+            Debug.Log("NotEqual");
+            return;
         }
     }
 

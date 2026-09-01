@@ -17,9 +17,16 @@ public class MapUnlock : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Item"))
         {
             DragableItemSave item = collision.gameObject.GetComponent<DragableItemSave>();
-            if (item.thisGet == true)
+            if (item != null)
             {
-                currentTarget = collision.gameObject;
+                if (item.thisGet == true)
+                {
+                    currentTarget = collision.gameObject;
+                }
+            }
+            else
+            {
+                return;
             }
         }
     }
