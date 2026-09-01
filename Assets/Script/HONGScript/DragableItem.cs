@@ -47,8 +47,9 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         thisUsed = newItem.Used;
         thisID = newItem.ItemID;
         //thisShow = newItem.Show;
-        thisDescription = item.TutorialClueDataTest.ClueSummary.GetLocalizedString();
-        thisName = item.TutorialClueDataTest.TutorialClueName.GetLocalizedString();
+        thisDescription = dragSourceData.ClueSummary.GetLocalizedString();
+        thisName = dragSourceData.ClueTitle.GetLocalizedString();
+        //thisName = item.TutorialClueDataTest.TutorialClueName.GetLocalizedString();
         thisType = newItem.TypeofItem;
         isdragging = false;
         
