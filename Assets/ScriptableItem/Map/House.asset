@@ -16,4 +16,4 @@ MonoBehaviour:
   ImageUnlocked: {fileID: 485175610, guid: 59f75c9eee414eb45a6ad3544ccc4567, type: 3}
   PlaceName: House
   MapID: 0
-  Unlocked: 0
+  Unlocked: 1
