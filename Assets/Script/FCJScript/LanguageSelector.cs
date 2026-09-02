@@ -12,6 +12,9 @@ using UnityEngine.UI;
 [ExecuteAlways]
 public class LanguageSelector : MonoBehaviour
 {
+    private const string DefaultPlayerPrefsKey = "SelectedLocaleCode";
+    private const string DefaultLocaleCode = "en-US";
+
     private enum LocaleDisplayMode
     {
         FriendlyName,
@@ -29,7 +32,8 @@ public class LanguageSelector : MonoBehaviour
 
     [Header("Options")]
     [SerializeField] private bool saveSelection = true;
-    [SerializeField] private string playerPrefsKey = "SelectedLocaleCode";
+    [SerializeField] private string playerPrefsKey = DefaultPlayerPrefsKey;
+    [SerializeField] private string defaultLocaleCode = DefaultLocaleCode;
     [SerializeField] private bool includePseudoLocales;
     [SerializeField] private LocaleDisplayMode displayMode = LocaleDisplayMode.FriendlyName;
 
@@ -54,6 +58,19 @@ public class LanguageSelector : MonoBehaviour
     private Coroutine initializeCoroutine;
     private bool isChangingDropdownValue;
     private bool isInitialized;
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+    private static void ApplyStartupLocale()
+    {
+        var initializationOperation = LocalizationSettings.InitializationOperation;
+        if (initializationOperation.IsDone)
+        {
+            ApplyPreferredLocale(DefaultPlayerPrefsKey, DefaultLocaleCode);
+            return;
+        }
+
+        initializationOperation.Completed += _ => ApplyPreferredLocale(DefaultPlayerPrefsKey, DefaultLocaleCode);
+    }
 
     private void Awake()
     {
@@ -127,7 +144,7 @@ public class LanguageSelector : MonoBehaviour
 
         ResolveReferences();
         RefreshLocaleOptions();
-        ApplySavedLocale();
+        ApplyPreferredLocale();
         RefreshDropdownValue();
     }
 
@@ -261,18 +278,41 @@ public class LanguageSelector : MonoBehaviour
         isChangingDropdownValue = false;
     }
 
-    private void ApplySavedLocale()
+    private void ApplyPreferredLocale()
     {
-        if (!saveSelection || !PlayerPrefs.HasKey(playerPrefsKey))
+        string localeCode = defaultLocaleCode;
+        if (saveSelection && PlayerPrefs.HasKey(playerPrefsKey))
         {
-            return;
+            localeCode = PlayerPrefs.GetString(playerPrefsKey);
         }
 
-        string savedLocaleCode = PlayerPrefs.GetString(playerPrefsKey);
-        Locale savedLocale = FindLocaleByCode(savedLocaleCode);
-        if (savedLocale != null)
+        Locale preferredLocale = FindLocaleByCode(localeCode);
+        if (preferredLocale == null && localeCode != DefaultLocaleCode)
         {
-            LocalizationSettings.SelectedLocale = savedLocale;
+            preferredLocale = FindLocaleByCode(DefaultLocaleCode);
+        }
+
+        if (preferredLocale != null)
+        {
+            LocalizationSettings.SelectedLocale = preferredLocale;
+        }
+    }
+
+    private static void ApplyPreferredLocale(string prefsKey, string fallbackLocaleCode)
+    {
+        string localeCode = PlayerPrefs.HasKey(prefsKey)
+            ? PlayerPrefs.GetString(prefsKey)
+            : fallbackLocaleCode;
+
+        Locale preferredLocale = FindLocaleByCode(localeCode, LocalizationSettings.AvailableLocales.Locales);
+        if (preferredLocale == null && localeCode != fallbackLocaleCode)
+        {
+            preferredLocale = FindLocaleByCode(fallbackLocaleCode, LocalizationSettings.AvailableLocales.Locales);
+        }
+
+        if (preferredLocale != null)
+        {
+            LocalizationSettings.SelectedLocale = preferredLocale;
         }
     }
 
@@ -327,6 +367,25 @@ public class LanguageSelector : MonoBehaviour
         for (int i = 0; i < availableLocales.Count; i++)
         {
             Locale locale = availableLocales[i];
+            if (locale != null && locale.Identifier.Code == localeCode)
+            {
+                return locale;
+            }
+        }
+
+        return null;
+    }
+
+    private static Locale FindLocaleByCode(string localeCode, IList<Locale> locales)
+    {
+        if (string.IsNullOrWhiteSpace(localeCode) || locales == null)
+        {
+            return null;
+        }
+
+        for (int i = 0; i < locales.Count; i++)
+        {
+            Locale locale = locales[i];
             if (locale != null && locale.Identifier.Code == localeCode)
             {
                 return locale;

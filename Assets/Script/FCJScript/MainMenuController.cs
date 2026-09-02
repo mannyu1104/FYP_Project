@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,8 @@ using UnityEngine.UI;
 /// </summary>
 public class MainMenuController : MonoBehaviour
 {
+    private const string DeleteSaveTestButtonName = "DeleteSaveTestButton";
+
     [System.Serializable]
     private class VisibleLocationPanel
     {
@@ -38,6 +41,11 @@ public class MainMenuController : MonoBehaviour
     [Tooltip("Buttons that create a loadable save record after they are clicked.")]
     [SerializeField] private List<GameObject> saveRecordButtons = new List<GameObject>();
     [SerializeField] private string saveRecordMarkerFileName = "fcj_save_record_marker.json";
+    [SerializeField] private bool requireSaveDataFileForLoadButton = true;
+    [Header("Testing")]
+    [Tooltip("Creates a temporary main menu button for deleting save data while testing Load Game visibility.")]
+    [SerializeField] private bool showDeleteSaveTestButton = true;
+    [SerializeField] private GameObject deleteSaveTestButton;
 
     [Header("Transition")]
     [SerializeField] private ScreenTransitionController screenTransitionController;
@@ -76,6 +84,7 @@ public class MainMenuController : MonoBehaviour
     private void Awake()
     {
         ResolveReferences();
+        EnsureDeleteSaveTestButton();
         BindSaveRecordButtons();
         RefreshLoadGameButtonVisibility();
     }
@@ -90,6 +99,7 @@ public class MainMenuController : MonoBehaviour
 
     private void LateUpdate()
     {
+        EnsureDeleteSaveTestButton();
         BindSaveRecordButtons();
         RefreshGameOverlayButtonVisibility();
         RefreshLoadGameButtonVisibility();
@@ -205,6 +215,7 @@ public class MainMenuController : MonoBehaviour
         ResolveReferences();
         HideDialogueFloatingUi();
 
+        EnsurePanelBlocksRaycasts(settingsPanel);
         settingsOpenedFromGame = false;
         SetGameObject(settingsPanel, true);
         SetGameObject(returnToMainMenuButton, false);
@@ -216,6 +227,7 @@ public class MainMenuController : MonoBehaviour
         ResolveReferences();
         HideDialogueFloatingUi();
 
+        EnsurePanelBlocksRaycasts(settingsPanel);
         settingsOpenedFromGame = true;
         SetGameObject(settingsPanel, true);
         SetGameObject(returnToMainMenuButton, true);
@@ -248,6 +260,7 @@ public class MainMenuController : MonoBehaviour
     public void ShowMainMenu()
     {
         ResolveReferences();
+        EnsureDeleteSaveTestButton();
         HideDialogueFloatingUi();
 
         SetGameObject(mainMenuPanel, true);
@@ -350,6 +363,11 @@ public class MainMenuController : MonoBehaviour
             loadGameButton = button;
         }
 
+        if (deleteSaveTestButton == null)
+        {
+            deleteSaveTestButton = FindSceneObjectByName(DeleteSaveTestButtonName);
+        }
+
         if (gameSettingsButton == null)
         {
             GameObject button = GameObject.Find("SettingButton(From InGame)");
@@ -395,14 +413,214 @@ public class MainMenuController : MonoBehaviour
         RefreshLoadGameButtonVisibility();
     }
 
+    public void DeleteSaveRecordForTest()
+    {
+        DeleteSaveFileIfExists(GetSaveRecordMarkerPath());
+
+        string[] saveDataPaths = GetSaveDataPaths();
+        for (int i = 0; i < saveDataPaths.Length; i++)
+        {
+            DeleteSaveFileIfExists(saveDataPaths[i]);
+        }
+
+        RefreshLoadGameButtonVisibility();
+        Debug.Log("MainMenuController: Test save files deleted. Load Game visibility refreshed.", this);
+    }
+
+    private void EnsureDeleteSaveTestButton()
+    {
+        if (!showDeleteSaveTestButton)
+        {
+            SetGameObject(deleteSaveTestButton, false);
+            return;
+        }
+
+        if (mainMenuPanel == null)
+        {
+            return;
+        }
+
+        if (deleteSaveTestButton == null)
+        {
+            Transform existing = FindChildByName(mainMenuPanel.transform, DeleteSaveTestButtonName);
+            if (existing != null)
+            {
+                deleteSaveTestButton = existing.gameObject;
+            }
+        }
+
+        if (deleteSaveTestButton == null)
+        {
+            deleteSaveTestButton = CreateDeleteSaveTestButton();
+        }
+
+        if (deleteSaveTestButton == null)
+        {
+            return;
+        }
+
+        SetGameObject(deleteSaveTestButton, true);
+
+        Button button = deleteSaveTestButton.GetComponent<Button>();
+        if (button != null)
+        {
+            SetDeleteSaveButtonClick(button);
+        }
+
+        TMP_Text text = deleteSaveTestButton.GetComponentInChildren<TMP_Text>(true);
+        if (text != null && string.IsNullOrWhiteSpace(text.text))
+        {
+            text.text = "Delete Save";
+        }
+    }
+
+    private GameObject CreateDeleteSaveTestButton()
+    {
+        GameObject template = FindSceneObjectByName("QuitGameButton");
+        GameObject buttonObject;
+
+        if (template != null)
+        {
+            buttonObject = Instantiate(template, mainMenuPanel.transform);
+            buttonObject.name = DeleteSaveTestButtonName;
+            PositionDeleteSaveButton(buttonObject.transform as RectTransform, template.transform as RectTransform);
+        }
+        else
+        {
+            buttonObject = new GameObject(DeleteSaveTestButtonName, typeof(RectTransform), typeof(Image), typeof(Button));
+            buttonObject.transform.SetParent(mainMenuPanel.transform, false);
+
+            RectTransform rectTransform = buttonObject.transform as RectTransform;
+            if (rectTransform != null)
+            {
+                rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
+                rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
+                rectTransform.pivot = new Vector2(0.5f, 0.5f);
+                rectTransform.sizeDelta = new Vector2(260f, 58f);
+                rectTransform.anchoredPosition = new Vector2(0f, -180f);
+            }
+
+            Image image = buttonObject.GetComponent<Image>();
+            if (image != null)
+            {
+                image.color = Color.white;
+            }
+
+            GameObject textObject = new GameObject("Text (TMP)", typeof(RectTransform), typeof(TextMeshProUGUI));
+            textObject.transform.SetParent(buttonObject.transform, false);
+
+            RectTransform textRect = textObject.transform as RectTransform;
+            if (textRect != null)
+            {
+                textRect.anchorMin = Vector2.zero;
+                textRect.anchorMax = Vector2.one;
+                textRect.offsetMin = Vector2.zero;
+                textRect.offsetMax = Vector2.zero;
+            }
+        }
+
+        TMP_Text text = buttonObject.GetComponentInChildren<TMP_Text>(true);
+        if (text != null)
+        {
+            text.text = "Delete Save";
+            text.alignment = TextAlignmentOptions.Center;
+            text.fontSize = 28f;
+            text.enableAutoSizing = false;
+        }
+
+        Button button = buttonObject.GetComponent<Button>();
+        if (button != null)
+        {
+            SetDeleteSaveButtonClick(button);
+        }
+
+        buttonObject.SetActive(true);
+        return buttonObject;
+    }
+
+    private void SetDeleteSaveButtonClick(Button button)
+    {
+        button.onClick = new Button.ButtonClickedEvent();
+        button.onClick.AddListener(DeleteSaveRecordForTest);
+    }
+
+    private void PositionDeleteSaveButton(RectTransform buttonRect, RectTransform templateRect)
+    {
+        if (buttonRect == null || templateRect == null)
+        {
+            return;
+        }
+
+        buttonRect.anchorMin = templateRect.anchorMin;
+        buttonRect.anchorMax = templateRect.anchorMax;
+        buttonRect.pivot = templateRect.pivot;
+        buttonRect.sizeDelta = templateRect.sizeDelta;
+        buttonRect.anchoredPosition = templateRect.anchoredPosition + new Vector2(0f, -70f);
+        buttonRect.localScale = templateRect.localScale;
+    }
+
+    private void DeleteSaveFileIfExists(string path)
+    {
+        try
+        {
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+        }
+        catch (System.Exception exception)
+        {
+            Debug.LogWarning($"MainMenuController: Failed to delete save file '{path}'. {exception.Message}", this);
+        }
+    }
+
     private bool CanLoadGame()
     {
-        return File.Exists(GetSaveRecordMarkerPath());
+        bool markerExists = File.Exists(GetSaveRecordMarkerPath());
+        bool saveDataExists = HasAnySaveDataFile();
+
+        if (markerExists && requireSaveDataFileForLoadButton && !saveDataExists)
+        {
+            DeleteSaveFileIfExists(GetSaveRecordMarkerPath());
+            markerExists = false;
+        }
+
+        if (requireSaveDataFileForLoadButton)
+        {
+            return markerExists && saveDataExists;
+        }
+
+        return markerExists;
     }
 
     private string GetSaveRecordMarkerPath()
     {
         return Path.Combine(Application.persistentDataPath, saveRecordMarkerFileName);
+    }
+
+    private bool HasAnySaveDataFile()
+    {
+        string[] saveDataPaths = GetSaveDataPaths();
+        for (int i = 0; i < saveDataPaths.Length; i++)
+        {
+            if (File.Exists(saveDataPaths[i]))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private string[] GetSaveDataPaths()
+    {
+        return new[]
+        {
+            Path.Combine(Application.persistentDataPath, "inventory.json"),
+            Path.Combine(Application.persistentDataPath, "inventorylock.json"),
+            Path.Combine(Application.persistentDataPath, "map.json"),
+            Path.Combine(Application.persistentDataPath, "dialogue_history.json")
+        };
     }
 
     private void BindSaveRecordButtons()
@@ -643,5 +861,22 @@ public class MainMenuController : MonoBehaviour
         {
             target.SetActive(active);
         }
+    }
+
+    private static void EnsurePanelBlocksRaycasts(GameObject panel)
+    {
+        if (panel == null)
+        {
+            return;
+        }
+
+        CanvasGroup canvasGroup = panel.GetComponent<CanvasGroup>();
+        if (canvasGroup == null)
+        {
+            canvasGroup = panel.AddComponent<CanvasGroup>();
+        }
+
+        canvasGroup.blocksRaycasts = true;
+        canvasGroup.interactable = true;
     }
 }
