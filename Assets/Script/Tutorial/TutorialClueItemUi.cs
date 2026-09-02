@@ -1,6 +1,7 @@
+using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 // Tutorial clue item prefab
 [RequireComponent(typeof(CustomButtonUi))]
@@ -8,7 +9,7 @@ public class TutorialClueItemUi : MonoBehaviour
 {
     [SerializeField] private CustomButtonUi customButton;
     [SerializeField] private TMP_Text nameText;
-    [SerializeField] private Image clueImage;
+    [SerializeField] private Image clueAvatar;
 
     [SerializeField] private TutorialClueData clueData;
     public TutorialClueData ClueData => clueData;
@@ -31,9 +32,9 @@ public class TutorialClueItemUi : MonoBehaviour
 
         SubscribeToLocalization();
 
-        if (clueImage != null)
+        if (clueAvatar != null)
         {
-            clueImage.sprite = clueData.ClueImage;
+            clueAvatar.sprite = clueData.ClueAvatar;
         }
 
         customButton.onLeftClick.RemoveAllListeners();

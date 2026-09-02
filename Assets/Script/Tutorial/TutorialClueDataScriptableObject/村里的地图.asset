@@ -43,14 +43,15 @@ MonoBehaviour:
     m_LocalVariables: []
   tutorialClueDescription:
     m_TableReference:
-      m_TableCollectionName: 
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
     m_TableEntryReference:
-      m_KeyId: 0
+      m_KeyId: 310111563620367
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  clueImage: {fileID: 0}
+  clueImage: {fileID: 21300000, guid: 7ce88fd77a6df98419d4c129ea13a80d, type: 3}
+  clueAvatar: {fileID: 1951155472, guid: bcdfc9274cace5442aacf80af471b50c, type: 3}
   references:
     version: 2
     RefIds: []

@@ -51,6 +51,7 @@ MonoBehaviour:
     m_WaitForCompletion: 0
     m_LocalVariables: []
   clueImage: {fileID: 0}
+  clueAvatar: {fileID: 21300000, guid: a62317e1dcb454cc3bfd794a918c5634, type: 3}
   references:
     version: 2
     RefIds: []

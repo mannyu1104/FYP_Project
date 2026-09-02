@@ -50,7 +50,8 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  clueImage: {fileID: 21300000, guid: f7ad02182be8d475da20f6fb932ae36d, type: 3}
+  clueImage: {fileID: 0}
+  clueAvatar: {fileID: 21300000, guid: f7ad02182be8d475da20f6fb932ae36d, type: 3}
   references:
     version: 2
     RefIds: []
