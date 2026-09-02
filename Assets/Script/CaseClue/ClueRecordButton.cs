@@ -1,7 +1,6 @@
 using UnityEngine;
 
 // "Record as Important Clue" button.
-[RequireComponent(typeof(CustomButtonUi))]
 public class ClueRecordButton : MonoBehaviour
 {
     [SerializeField] private CustomButtonUi customButton;

@@ -366,7 +366,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TutorialClueItemUi
   customButton: {fileID: 5349879821063169400}
   nameText: {fileID: 4891984818989096262}
-  clueImage: {fileID: 474884105655674187}
+  imageContainer: {fileID: 0}
+  clueAvatar: {fileID: 474884105655674187}
   clueData: {fileID: 0}
 --- !u!1 &6795190680610277567
 GameObject:

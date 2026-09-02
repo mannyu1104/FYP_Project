@@ -19,7 +19,9 @@ public class TutorialPageController : MonoBehaviour
     [SerializeField] private Transform detailTextContainer;
     [SerializeField] private TMP_InputField detailNameText;
     [SerializeField] private TMP_InputField detailDescriptionText;
-    [SerializeField] private Image detailPhotoImage; // hidden automatically if the witness has no photo
+    [SerializeField] private Image detailAvatarImage;
+    [SerializeField] private GameObject detailImageContainer;
+    [SerializeField] private Image detailImage;
     [SerializeField] private CustomButtonUi backButton;
 
     [Header("Clue")]
@@ -60,11 +62,18 @@ public class TutorialPageController : MonoBehaviour
 
         SubscribeToLocalization();
 
-        bool hasPhoto = tutorialClue.ClueImage != null;
-        detailPhotoImage.gameObject.SetActive(hasPhoto);
+        bool hasPhoto = tutorialClue.ClueAvatar != null;
+        detailAvatarImage.gameObject.SetActive(hasPhoto);
         if (hasPhoto)
         {
-            detailPhotoImage.sprite = tutorialClue.ClueImage;
+            detailAvatarImage.sprite = tutorialClue.ClueAvatar;
+        }
+
+        bool hasImage = tutorialClue.ClueImage != null;
+        detailImageContainer.SetActive(hasImage);
+        if (hasImage)
+        {
+            detailImage.sprite = tutorialClue.ClueImage;
         }
 
         LayoutRebuilder.ForceRebuildLayoutImmediate(detailTextContainer.GetComponent<RectTransform>());
