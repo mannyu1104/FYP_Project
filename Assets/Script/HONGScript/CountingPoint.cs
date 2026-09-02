@@ -1,9 +1,13 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 using TMPro;
 
 public class CountingPoint : MonoBehaviour
 {
+    public static event Action ScoreShown;
+    public static bool HasScoreBeenShown { get; private set; }
+
     [SerializeField] public List<int> CorrectIDList = new List<int>();
     [SerializeField] public List<int> WrongIDList = new List<int>();
     [SerializeField] private TMP_Text ScoreShow;
@@ -14,6 +18,11 @@ public class CountingPoint : MonoBehaviour
     private void Start()
     {
         Score = 0;
+    }
+
+    public static void ResetTutorialCompletion()
+    {
+        HasScoreBeenShown = false;
     }
 
     public void CountingPoints()
@@ -56,5 +65,7 @@ public class CountingPoint : MonoBehaviour
         }
 
         ScoreShow.text = "Score: " + ScoreShowin;
+        HasScoreBeenShown = true;
+        ScoreShown?.Invoke();
     }
 }
