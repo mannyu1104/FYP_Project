@@ -1089,6 +1089,7 @@ MonoBehaviour:
   selectedLanguageLabel: {fileID: 0}
   saveSelection: 1
   playerPrefsKey: SelectedLocaleCode
+  defaultLocaleCode: en-US
   includePseudoLocales: 0
   displayMode: 0
   applyReadableStyle: 1
@@ -1683,6 +1684,11 @@ MonoBehaviour:
     cursorMode: 0
   worldCamera: {fileID: 0}
   pauseDuringDialogue: 1
+  blockingUiPanels: []
+  blockingUiPanelNames:
+  - SettingsPanel
+  - MainMenuPanel
+  - HistoryPanel
   viewPresetName: View
   dialoguePresetName: talk
   viewPresetIndex: 0
@@ -15013,6 +15019,9 @@ MonoBehaviour:
   loadDialogueProgressOnLoadGame: 1
   saveRecordButtons: []
   saveRecordMarkerFileName: fcj_save_record_marker.json
+  requireSaveDataFileForLoadButton: 1
+  showDeleteSaveTestButton: 1
+  deleteSaveTestButton: {fileID: 0}
   screenTransitionController: {fileID: 2056682094}
   useTransitionOnStartGame: 1
   gameSettingsButton: {fileID: 333899234}
