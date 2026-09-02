@@ -421,7 +421,7 @@ public class LanguageSelector : MonoBehaviour
         text.color = color;
         text.alignment = TextAlignmentOptions.MidlineLeft;
         text.margin = new Vector4(12f, 0f, 12f, 0f);
-        text.enableWordWrapping = false;
+        text.textWrappingMode = TextWrappingModes.NoWrap;
         text.overflowMode = TextOverflowModes.Ellipsis;
     }
 

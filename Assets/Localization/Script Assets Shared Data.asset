@@ -1848,6 +1848,94 @@ MonoBehaviour:
     m_Key: UI_004
     m_Metadata:
       m_Items: []
+  - m_Id: 358793172426762
+    m_Key: UI_MainMenu_NewGame
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426763
+    m_Key: UI_MainMenu_LoadGame
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426764
+    m_Key: UI_MainMenu_QuitGame
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426765
+    m_Key: UI_Common_Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426766
+    m_Key: UI_Common_Close
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426767
+    m_Key: UI_Common_CloseShort
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426768
+    m_Key: UI_Settings_ReturnToMainMenu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426769
+    m_Key: UI_Settings_LanguageTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426770
+    m_Key: UI_Settings_SoundTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426771
+    m_Key: UI_Settings_SaveLoadTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426772
+    m_Key: UI_Settings_MasterVolume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426773
+    m_Key: UI_Settings_BgmVolume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426774
+    m_Key: UI_Settings_SfxVolume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426775
+    m_Key: UI_Settings_Save
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426776
+    m_Key: UI_Settings_Load
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426777
+    m_Key: UI_Game_History
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426778
+    m_Key: UI_Dialogue_Auto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426779
+    m_Key: UI_Dialogue_Skip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426780
+    m_Key: UI_Map_Home
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426781
+    m_Key: UI_Map_Orphanage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426782
+    m_Key: UI_Map_WelfareCenter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426783
+    m_Key: UI_Map_Park
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

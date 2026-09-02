@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Text;
 using UnityEngine;
@@ -59,6 +58,8 @@ public class DialogueController : MonoBehaviour
     public TMP_Text tmpHistoryText;
     public ScrollRect historyScrollRect;
     public Button historyButton;
+    [Tooltip("Allows the history panel to be opened from normal gameplay, even when no dialogue is active.")]
+    public bool allowHistoryOutsideDialogue = true;
 
     [Header("Dialogue Buttons")]
     public Button autoButton;
@@ -93,6 +94,14 @@ public class DialogueController : MonoBehaviour
     [Min(0)]
     public int activeSpeedPreset = 1;
 
+    [Header("Typewriter Sound")]
+    [SerializeField] private bool playTypingSound = true;
+    [SerializeField] private AudioClip typingSfx;
+    [Min(1)]
+    [SerializeField] private int charactersPerTypingSound = 2;
+    [Min(0f)]
+    [SerializeField] private float minimumTypingSoundInterval = 0.03f;
+
     [Header("Continue Indicator")]
     [Tooltip("Shows the continue marker at the end of the current dialogue text.")]
     public bool useInlineContinueIndicator = true;
@@ -100,6 +109,10 @@ public class DialogueController : MonoBehaviour
     public string inlineContinueIndicator = "\u25BC";
     [Tooltip("TMP color string used by the inline continue marker.")]
     public string inlineContinueIndicatorColor = "#FFFFFF";
+    [Tooltip("Horizontal distance from the end of the last visible character.")]
+    public float inlineContinueIndicatorXOffset = 14f;
+    [Tooltip("Vertical offset from the last text line baseline.")]
+    public float inlineContinueIndicatorYOffset = 0f;
     [Min(0f)]
     public float inlineContinueIndicatorBounceHeight = 6f;
     [Min(0f)]
@@ -129,6 +142,7 @@ public class DialogueController : MonoBehaviour
     private bool isDialogueActive;
     private bool suppressAdvance;
     private bool lookWasPaused;
+    private bool historyOutsideDialogueLookWasPaused;
     private HoverEffect[] hoverEffects;
     private string dialogueSavePath;
     private Coroutine typingRoutine;
@@ -138,9 +152,11 @@ public class DialogueController : MonoBehaviour
     private bool isContinueIndicatorVisible;
     private Vector2 continueIndicatorBasePosition;
     private bool hasContinueIndicatorBasePosition;
+    private TMP_Text inlineContinueIndicatorText;
 
     public bool IsDialogueActive => isDialogueActive;
     public bool IsAutoMode => isAutoMode;
+    public bool IsHistoryOpen => IsHistoryPanelOpen();
 
     void Awake()
     {
@@ -204,10 +220,13 @@ public class DialogueController : MonoBehaviour
     {
         charactersPerSecond = Mathf.Max(1f, charactersPerSecond);
         activeSpeedPreset = Mathf.Max(0, activeSpeedPreset);
+        inlineContinueIndicatorXOffset = Mathf.Max(0f, inlineContinueIndicatorXOffset);
         inlineContinueIndicatorBounceHeight = Mathf.Max(0f, inlineContinueIndicatorBounceHeight);
         inlineContinueIndicatorBounceSpeed = Mathf.Max(0f, inlineContinueIndicatorBounceSpeed);
         continueIndicatorBounceHeight = Mathf.Max(0f, continueIndicatorBounceHeight);
         continueIndicatorBounceSpeed = Mathf.Max(0f, continueIndicatorBounceSpeed);
+        charactersPerTypingSound = Mathf.Max(1, charactersPerTypingSound);
+        minimumTypingSoundInterval = Mathf.Max(0f, minimumTypingSoundInterval);
 
         if (typingSpeedPresets == null)
         {
@@ -227,7 +246,7 @@ public class DialogueController : MonoBehaviour
             return;
         }
 
-        if (!IsHistoryOpen())
+        if (!IsHistoryPanelOpen())
         {
             AnimateContinueIndicator();
         }
@@ -238,7 +257,7 @@ public class DialogueController : MonoBehaviour
             return;
         }
 
-        if (IsHistoryOpen())
+        if (IsHistoryPanelOpen())
         {
             SetContinueIndicatorVisible(false);
 
@@ -397,17 +416,23 @@ public class DialogueController : MonoBehaviour
 
     public void ToggleHistory()
     {
-        if (!isDialogueActive || historyPanel == null)
+        if ((!isDialogueActive && !allowHistoryOutsideDialogue) || historyPanel == null)
         {
             return;
         }
 
         bool openingHistory = !historyPanel.gameObject.activeSelf;
+        bool togglingOutsideDialogue = !isDialogueActive;
 
         if (openingHistory && isAutoMode && autoRoutine != null)
         {
             StopCoroutine(autoRoutine);
             autoRoutine = null;
+        }
+
+        if (openingHistory && togglingOutsideDialogue)
+        {
+            OpenHistoryOutsideDialogue();
         }
 
         if (historyController != null)
@@ -418,6 +443,12 @@ public class DialogueController : MonoBehaviour
         {
             SetPanelVisible(historyPanel, !historyPanel.gameObject.activeSelf);
         }
+
+        if (!openingHistory && togglingOutsideDialogue)
+        {
+            CloseHistoryOutsideDialogue();
+        }
+
         suppressAdvance = true;
 
         if (historyPanel.gameObject.activeSelf && historyScrollRect != null && historyController == null)
@@ -433,22 +464,97 @@ public class DialogueController : MonoBehaviour
 
         if (openingHistory && historyButton != null)
         {
-            Transform buttonParent = historyButton.transform.parent;
-
-            if (buttonParent != historyPanel.parent)
-            {
-                historyButton.transform.SetParent(historyPanel.parent, true);
-            }
-
             historyButton.transform.SetAsLastSibling();
         }
 
         RefreshContinueIndicator();
     }
 
-    private bool IsHistoryOpen()
+    public void SetHistoryShortcutVisible(bool visible)
+    {
+        if (historyButton == null || isDialogueActive)
+        {
+            return;
+        }
+
+        bool historyOpen = IsHistoryPanelOpen();
+
+        if (!historyOpen)
+        {
+            SetButtonVisible(autoButton, false);
+            SetButtonVisible(skipButton, false);
+        }
+
+        SetButtonVisible(historyButton, visible || historyOpen);
+
+        if (visible || historyOpen)
+        {
+            historyButton.transform.SetAsLastSibling();
+        }
+    }
+
+    public void HideNonDialogueUi()
+    {
+        if (isDialogueActive)
+        {
+            return;
+        }
+
+        HideItemInspect();
+        SetPanelVisible(dialoguePanel, false);
+        SetPanelVisible(historyPanel, false);
+
+        if (!IsHistoryButtonInsideDialogueRoot())
+        {
+            SetPanelVisible(dialogueUIRoot, false);
+        }
+    }
+
+    private bool IsHistoryPanelOpen()
     {
         return historyPanel != null && historyPanel.gameObject.activeSelf;
+    }
+
+    private bool IsHistoryButtonInsideDialogueRoot()
+    {
+        return historyButton != null &&
+            dialogueUIRoot != null &&
+            historyButton.transform.IsChildOf(dialogueUIRoot);
+    }
+
+    private void OpenHistoryOutsideDialogue()
+    {
+        HideItemInspect();
+        SetPanelVisible(dialogueUIRoot, true);
+        SetPanelVisible(dialoguePanel, false);
+        SetButtonVisible(autoButton, false);
+        SetButtonVisible(skipButton, false);
+
+        if (lookController != null)
+        {
+            historyOutsideDialogueLookWasPaused = lookController.IsPaused;
+            lookController.SetPaused(true);
+        }
+
+        SetHoverEffectsPaused(true);
+    }
+
+    private void CloseHistoryOutsideDialogue()
+    {
+        HideItemInspect();
+        SetPanelVisible(historyPanel, false);
+
+        if (!IsHistoryButtonInsideDialogueRoot())
+        {
+            SetPanelVisible(dialogueUIRoot, false);
+        }
+
+        if (lookController != null)
+        {
+            lookController.SetPaused(historyOutsideDialogueLookWasPaused);
+        }
+
+        SetHoverEffectsPaused(false);
     }
 
     public void ToggleAutoMode()
@@ -607,6 +713,7 @@ public class DialogueController : MonoBehaviour
         float speed = GetActiveTypingSpeed();
         float characterTimer = 0f;
         int visibleCharacterCount = 0;
+        float lastTypingSoundTime = -999f;
 
         while (visibleCharacterCount < text.Length)
         {
@@ -615,8 +722,10 @@ public class DialogueController : MonoBehaviour
 
             if (targetCharacterCount > visibleCharacterCount)
             {
+                int previousVisibleCharacterCount = visibleCharacterCount;
                 visibleCharacterCount = targetCharacterCount;
                 SetDialogueText(text.Substring(0, visibleCharacterCount));
+                PlayTypingSoundIfNeeded(text, previousVisibleCharacterCount, visibleCharacterCount, ref lastTypingSoundTime);
             }
 
             yield return null;
@@ -634,6 +743,36 @@ public class DialogueController : MonoBehaviour
         ApplyDialogueText(text);
     }
 
+    private void PlayTypingSoundIfNeeded(string text, int previousVisibleCount, int currentVisibleCount, ref float lastSoundTime)
+    {
+        if (!playTypingSound || typingSfx == null || GameAudioManager.Instance == null)
+        {
+            return;
+        }
+
+        if (Time.unscaledTime - lastSoundTime < minimumTypingSoundInterval)
+        {
+            return;
+        }
+
+        for (int i = previousVisibleCount; i < currentVisibleCount; i++)
+        {
+            if (i < 0 || i >= text.Length || char.IsWhiteSpace(text[i]))
+            {
+                continue;
+            }
+
+            if ((i + 1) % charactersPerTypingSound != 0)
+            {
+                continue;
+            }
+
+            GameAudioManager.Instance.PlaySfx(typingSfx);
+            lastSoundTime = Time.unscaledTime;
+            return;
+        }
+    }
+
     private void ApplyDialogueText(string text)
     {
         if (dialogueText != null)
@@ -644,25 +783,102 @@ public class DialogueController : MonoBehaviour
         if (tmpDialogueText != null)
         {
             tmpDialogueText.richText = true;
-            tmpDialogueText.text = BuildTmpDialogueTextWithIndicator(text);
+            tmpDialogueText.text = text;
+            UpdateInlineContinueIndicator();
         }
     }
 
-    private string BuildTmpDialogueTextWithIndicator(string text)
+    private void UpdateInlineContinueIndicator()
     {
-        if (!useInlineContinueIndicator || !isContinueIndicatorVisible || string.IsNullOrEmpty(inlineContinueIndicator))
+        if (tmpDialogueText == null)
         {
-            return text;
+            return;
         }
 
+        if (!useInlineContinueIndicator || !isContinueIndicatorVisible || string.IsNullOrEmpty(inlineContinueIndicator))
+        {
+            SetInlineContinueIndicatorVisible(false);
+            return;
+        }
+
+        EnsureInlineContinueIndicatorText();
+
+        if (inlineContinueIndicatorText == null)
+        {
+            return;
+        }
+
+        tmpDialogueText.ForceMeshUpdate();
+        TMP_TextInfo textInfo = tmpDialogueText.textInfo;
+        int lastCharacterIndex = GetLastVisibleCharacterIndex(textInfo);
+
+        if (lastCharacterIndex < 0)
+        {
+            SetInlineContinueIndicatorVisible(false);
+            return;
+        }
+
+        TMP_CharacterInfo characterInfo = textInfo.characterInfo[lastCharacterIndex];
         float bounceOffset = Mathf.Abs(Mathf.Sin(Time.unscaledTime * inlineContinueIndicatorBounceSpeed)) *
             inlineContinueIndicatorBounceHeight;
-        string bounceValue = bounceOffset.ToString("0.##", CultureInfo.InvariantCulture);
+        Vector3 localPosition = new Vector3(
+            characterInfo.xAdvance + inlineContinueIndicatorXOffset,
+            characterInfo.baseLine + inlineContinueIndicatorYOffset + bounceOffset,
+            0f);
 
-        return text +
-            " <voffset=" + bounceValue + "px><color=" + inlineContinueIndicatorColor + ">" +
-            inlineContinueIndicator +
-            "</color></voffset>";
+        inlineContinueIndicatorText.text = inlineContinueIndicator;
+        inlineContinueIndicatorText.font = tmpDialogueText.font;
+        inlineContinueIndicatorText.fontSize = tmpDialogueText.fontSize * 0.75f;
+        inlineContinueIndicatorText.color = ParseColor(inlineContinueIndicatorColor, Color.white);
+        inlineContinueIndicatorText.rectTransform.localPosition = localPosition;
+        SetInlineContinueIndicatorVisible(true);
+    }
+
+    private void EnsureInlineContinueIndicatorText()
+    {
+        if (inlineContinueIndicatorText != null || tmpDialogueText == null)
+        {
+            return;
+        }
+
+        GameObject indicatorObject = new GameObject("InlineContinueIndicator");
+        indicatorObject.transform.SetParent(tmpDialogueText.transform, false);
+        inlineContinueIndicatorText = indicatorObject.AddComponent<TextMeshProUGUI>();
+        inlineContinueIndicatorText.raycastTarget = false;
+        inlineContinueIndicatorText.alignment = TextAlignmentOptions.Center;
+        inlineContinueIndicatorText.rectTransform.sizeDelta = new Vector2(48f, 48f);
+    }
+
+    private int GetLastVisibleCharacterIndex(TMP_TextInfo textInfo)
+    {
+        if (textInfo == null)
+        {
+            return -1;
+        }
+
+        for (int i = textInfo.characterCount - 1; i >= 0; i--)
+        {
+            TMP_CharacterInfo characterInfo = textInfo.characterInfo[i];
+            if (characterInfo.isVisible)
+            {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    private void SetInlineContinueIndicatorVisible(bool visible)
+    {
+        if (inlineContinueIndicatorText != null)
+        {
+            inlineContinueIndicatorText.gameObject.SetActive(visible);
+        }
+    }
+
+    private Color ParseColor(string colorText, Color fallback)
+    {
+        return ColorUtility.TryParseHtmlString(colorText, out Color color) ? color : fallback;
     }
 
     private string BuildLegacyDialogueTextWithIndicator(string text)
@@ -704,7 +920,7 @@ public class DialogueController : MonoBehaviour
             currentLines != null &&
             currentLineIndex >= 0 &&
             currentLineIndex < currentLines.Count - 1 &&
-            !IsHistoryOpen();
+            !IsHistoryPanelOpen();
 
         SetContinueIndicatorVisible(shouldShow);
     }
@@ -745,9 +961,12 @@ public class DialogueController : MonoBehaviour
                 continueIndicator.gameObject.SetActive(false);
             }
 
+            SetInlineContinueIndicatorVisible(visible);
             ApplyDialogueText(visibleDialogueText);
             return;
         }
+
+        SetInlineContinueIndicatorVisible(false);
 
         if (continueIndicator == null)
         {

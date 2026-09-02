@@ -29,45 +29,43 @@ public class LocalizedFontController : MonoBehaviour
     [Header("Scope")]
     [Tooltip("Includes inactive scene objects when applying fonts.")]
     [SerializeField] private bool includeInactiveSceneObjects = true;
-    [Tooltip("Applies the preview font while editing in the Unity Editor.")]
-    [SerializeField] private bool previewInEditMode = true;
 
-    [Header("Edit Mode Preview")]
-    [Tooltip("Font used in Edit Mode before the game has a selected locale.")]
-    [SerializeField] private bool previewChineseFont = true;
+#if UNITY_EDITOR
+    [Header("Editor Cleanup")]
+    [Tooltip("Uses the Chinese font as the primary font for scene texts that already contain CJK characters.")]
+    [SerializeField] private bool applyChineseFontToCjkTextInEditMode = true;
+    [Tooltip("Removes generated TMP submesh objects from the open scene while editing.")]
+    [SerializeField] private bool cleanGeneratedSubMeshesInEditMode = true;
+#endif
 
     private Coroutine initializeCoroutine;
 
     private void OnEnable()
     {
-        LocalizationSettings.SelectedLocaleChanged += HandleSelectedLocaleChanged;
-
         if (Application.isPlaying)
         {
+            LocalizationSettings.SelectedLocaleChanged += HandleSelectedLocaleChanged;
             StartInitializeRoutine();
         }
-        else
+#if UNITY_EDITOR
+        else if (applyChineseFontToCjkTextInEditMode || cleanGeneratedSubMeshesInEditMode)
         {
-            ApplyPreviewFont();
+            EditorApplication.delayCall += RepairEditModeTextMeshes;
         }
+#endif
     }
 
     private void OnDisable()
     {
-        LocalizationSettings.SelectedLocaleChanged -= HandleSelectedLocaleChanged;
-
         if (initializeCoroutine != null)
         {
             StopCoroutine(initializeCoroutine);
             initializeCoroutine = null;
         }
-    }
 
-    private void OnValidate()
-    {
-        if (!Application.isPlaying)
+        if (Application.isPlaying)
         {
-            ApplyPreviewFont();
+            LocalizationSettings.SelectedLocaleChanged -= HandleSelectedLocaleChanged;
         }
     }
 
@@ -85,6 +83,31 @@ public class LocalizedFontController : MonoBehaviour
         TMP_FontAsset targetFont = GetFontForCurrentLocale();
         ApplyFont(targetFont);
     }
+
+#if UNITY_EDITOR
+    [ContextMenu("Clean Generated TMP SubMeshes")]
+    public void CleanGeneratedSubMeshes()
+    {
+        TMP_SubMeshUI[] subMeshes = Resources.FindObjectsOfTypeAll<TMP_SubMeshUI>();
+        for (int i = subMeshes.Length - 1; i >= 0; i--)
+        {
+            TMP_SubMeshUI subMesh = subMeshes[i];
+            if (subMesh == null || ShouldSkipObject(subMesh.gameObject))
+            {
+                continue;
+            }
+
+            Undo.DestroyObjectImmediate(subMesh.gameObject);
+        }
+    }
+
+    [ContextMenu("Repair CJK Text Fonts And Clean SubMeshes")]
+    public void RepairCjkTextFontsAndCleanSubMeshes()
+    {
+        ApplyChineseFontToCjkTextsInEditMode();
+        CleanGeneratedSubMeshes();
+    }
+#endif
 
     private void StartInitializeRoutine()
     {
@@ -111,11 +134,6 @@ public class LocalizedFontController : MonoBehaviour
 
     private TMP_FontAsset GetFontForCurrentLocale()
     {
-        if (!Application.isPlaying)
-        {
-            return previewChineseFont ? chineseFontAsset : englishFontAsset;
-        }
-
         return GetFontForLocale(LocalizationSettings.SelectedLocale);
     }
 
@@ -127,16 +145,6 @@ public class LocalizedFontController : MonoBehaviour
         }
 
         return englishFontAsset != null ? englishFontAsset : chineseFontAsset;
-    }
-
-    private void ApplyPreviewFont()
-    {
-        if (!previewInEditMode)
-        {
-            return;
-        }
-
-        ApplyFont(GetFontForCurrentLocale());
     }
 
     private void ApplyFont(TMP_FontAsset targetFont)
@@ -158,7 +166,11 @@ public class LocalizedFontController : MonoBehaviour
             }
 
             text.font = targetFont;
-            text.ForceMeshUpdate();
+
+            if (Application.isPlaying)
+            {
+                text.ForceMeshUpdate();
+            }
 
 #if UNITY_EDITOR
             if (!Application.isPlaying)
@@ -182,7 +194,7 @@ public class LocalizedFontController : MonoBehaviour
     private bool ShouldSkipText(TMP_Text text)
     {
 #if UNITY_EDITOR
-        if (!text.gameObject.scene.IsValid() || EditorUtility.IsPersistent(text))
+        if (ShouldSkipObject(text.gameObject))
         {
             return true;
         }
@@ -190,6 +202,78 @@ public class LocalizedFontController : MonoBehaviour
 
         return false;
     }
+
+#if UNITY_EDITOR
+    private bool ShouldSkipObject(GameObject target)
+    {
+        return target == null || !target.scene.IsValid() || EditorUtility.IsPersistent(target);
+    }
+
+    private void RepairEditModeTextMeshes()
+    {
+        if (this == null || Application.isPlaying)
+        {
+            return;
+        }
+
+        if (applyChineseFontToCjkTextInEditMode)
+        {
+            ApplyChineseFontToCjkTextsInEditMode();
+        }
+
+        if (cleanGeneratedSubMeshesInEditMode)
+        {
+            CleanGeneratedSubMeshes();
+        }
+    }
+
+    private void ApplyChineseFontToCjkTextsInEditMode()
+    {
+        if (chineseFontAsset == null)
+        {
+            return;
+        }
+
+        TMP_Text[] texts = FindTextObjects();
+        for (int i = 0; i < texts.Length; i++)
+        {
+            TMP_Text text = texts[i];
+            if (text == null || ShouldSkipText(text) || !ContainsCjkCharacter(text.text))
+            {
+                continue;
+            }
+
+            if (text.font == chineseFontAsset)
+            {
+                continue;
+            }
+
+            Undo.RecordObject(text, "Apply CJK TMP Font");
+            text.font = chineseFontAsset;
+            EditorUtility.SetDirty(text);
+        }
+    }
+
+    private bool ContainsCjkCharacter(string value)
+    {
+        if (string.IsNullOrEmpty(value))
+        {
+            return false;
+        }
+
+        for (int i = 0; i < value.Length; i++)
+        {
+            char character = value[i];
+            if ((character >= '\u3400' && character <= '\u9FFF') ||
+                (character >= '\uF900' && character <= '\uFAFF'))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+#endif
 
     private void ConfigureFallbacks()
     {

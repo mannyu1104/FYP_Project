@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /// <summary>
-/// Keeps global BGM, SFX, and volume settings available across scenes.
+/// Keeps global BGM, SFX, and volume settings available across the main game.
 /// </summary>
 public class GameAudioManager : MonoBehaviour
 {
@@ -15,10 +14,10 @@ public class GameAudioManager : MonoBehaviour
     public static GameAudioManager Instance { get; private set; }
 
     [System.Serializable]
-    private class SceneBgm
+    private class PanelBgm
     {
-        [Tooltip("The exact Unity scene name.")]
-        public string sceneName;
+        [Tooltip("The gameplay panel that should trigger this BGM when it is active.")]
+        public GameObject panel;
         public AudioClip bgmClip;
     }
 
@@ -28,7 +27,13 @@ public class GameAudioManager : MonoBehaviour
 
     [Header("Default Clips")]
     [SerializeField] private AudioClip defaultButtonSfx;
-    [SerializeField] private List<SceneBgm> sceneBgms = new List<SceneBgm>();
+    [Tooltip("Optional BGM used when no panel BGM matches.")]
+    [SerializeField] private AudioClip defaultBgm;
+
+    [Header("Panel BGM")]
+    [Tooltip("First active panel in this list decides the current BGM.")]
+    [SerializeField] private List<PanelBgm> panelBgms = new List<PanelBgm>();
+    [SerializeField] private bool stopBgmWhenNoPanelMatches;
 
     [Header("Volume")]
     [Range(0f, 1f)]
@@ -44,6 +49,7 @@ public class GameAudioManager : MonoBehaviour
     [SerializeField] private Slider sfxVolumeSlider;
 
     private bool isRefreshingSliders;
+    private GameObject currentBgmPanel;
 
     public float MasterVolume => masterVolume;
     public float BgmVolume => bgmVolume;
@@ -66,19 +72,14 @@ public class GameAudioManager : MonoBehaviour
         ApplyVolumes();
     }
 
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += HandleSceneLoaded;
-    }
-
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= HandleSceneLoaded;
-    }
-
     private void Start()
     {
-        PlaySceneBgm(SceneManager.GetActiveScene().name);
+        RefreshPanelBgm(true);
+    }
+
+    private void Update()
+    {
+        RefreshPanelBgm(false);
     }
 
     private void OnValidate()
@@ -164,28 +165,49 @@ public class GameAudioManager : MonoBehaviour
         BindSliders();
     }
 
-    private void HandleSceneLoaded(Scene scene, LoadSceneMode mode)
+    public void RefreshPanelBgm()
     {
-        PlaySceneBgm(scene.name);
+        RefreshPanelBgm(true);
     }
 
-    private void PlaySceneBgm(string sceneName)
+    private void RefreshPanelBgm(bool forceRefresh)
     {
-        AudioClip clip = FindBgmForScene(sceneName);
-        if (clip != null)
+        PanelBgm activePanelBgm = FindActivePanelBgm();
+        GameObject activePanel = activePanelBgm != null ? activePanelBgm.panel : null;
+
+        if (!forceRefresh && activePanel == currentBgmPanel)
         {
-            PlayBgm(clip);
+            return;
+        }
+
+        currentBgmPanel = activePanel;
+
+        if (activePanelBgm != null)
+        {
+            PlayBgm(activePanelBgm.bgmClip);
+            return;
+        }
+
+        if (defaultBgm != null)
+        {
+            PlayBgm(defaultBgm);
+            return;
+        }
+
+        if (stopBgmWhenNoPanelMatches)
+        {
+            StopBgm();
         }
     }
 
-    private AudioClip FindBgmForScene(string sceneName)
+    private PanelBgm FindActivePanelBgm()
     {
-        for (int i = 0; i < sceneBgms.Count; i++)
+        for (int i = 0; i < panelBgms.Count; i++)
         {
-            SceneBgm sceneBgm = sceneBgms[i];
-            if (sceneBgm != null && sceneBgm.sceneName == sceneName)
+            PanelBgm panelBgm = panelBgms[i];
+            if (panelBgm != null && panelBgm.panel != null && panelBgm.panel.activeInHierarchy)
             {
-                return sceneBgm.bgmClip;
+                return panelBgm;
             }
         }
 

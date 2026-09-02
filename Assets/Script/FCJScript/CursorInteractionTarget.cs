@@ -35,6 +35,11 @@ public class CursorInteractionTarget : MonoBehaviour, IPointerClickHandler
 
     public void TriggerInspection()
     {
+        if (GetComponent<ComputerAccessPoint>() != null)
+        {
+            return;
+        }
+
         if (WhiteBoard.IsAnyWhiteBoardOpen)
         {
             return;
@@ -58,6 +63,11 @@ public class CursorInteractionTarget : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (eventData != null && eventData.used)
+        {
+            return;
+        }
+
         TriggerInspection();
     }
 }
