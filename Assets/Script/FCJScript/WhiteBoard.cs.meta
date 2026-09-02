@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 8c1a9d8e4f2b4d94aa4d7a0b3c6e9f21
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - whiteBoardPanel: {instanceID: 0}
+  - closeButton: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -45,8 +45,6 @@ public class DialogueHistoryPanel : MonoBehaviour
         }
 
         ConfigureScrollRect();
-
-        SetVisible(false);
     }
 
     public void SetEntries(IReadOnlyList<string> entries)

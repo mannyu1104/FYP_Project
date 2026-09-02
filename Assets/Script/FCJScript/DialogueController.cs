@@ -6,6 +6,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Tables;
+
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
@@ -16,18 +19,31 @@ public class DialogueController : MonoBehaviour
     private class DialogueSaveData
     {
         public List<string> historyEntries = new List<string>();
+        public List<NPCSaveData> npcProgress = new List<NPCSaveData>();
+    }
+
+    [System.Serializable]
+    private class NPCSaveData
+    {
+        public string saveId;
+        public int nextConversationIndex;
+        public bool hasTalked;
     }
 
     [System.Serializable]
     public class DialogueLine
     {
-        public string speakerName;
-        [TextArea(2, 6)]
-        public string dialogueText;
+        // Legacy string field kept as a reminder of the previous non-localized format.
+        // public string speakerName;
+        public LocalizedString speakerName;
+        // public string dialogueText;
+        public LocalizedString dialogueText;
     }
 
     [Header("Core References")]
     public LookController lookController;
+    [Tooltip("Optional parent of the whole dialogue UI. It stays hidden until a conversation starts.")]
+    public RectTransform dialogueUIRoot;
     public RectTransform dialoguePanel;
 
     [Header("Dialogue Text")]
@@ -42,6 +58,8 @@ public class DialogueController : MonoBehaviour
     public TMP_Text tmpHistoryText;
     public ScrollRect historyScrollRect;
     public Button historyButton;
+    [Tooltip("Allows the history panel to be opened from normal gameplay, even when no dialogue is active.")]
+    public bool allowHistoryOutsideDialogue = true;
 
     [Header("Dialogue Buttons")]
     public Button autoButton;
@@ -67,6 +85,50 @@ public class DialogueController : MonoBehaviour
     [Min(0.1f)]
     public float autoAdvanceSeconds = 3f;
 
+    [Header("Typewriter Settings")]
+    public bool enableTypewriterEffect = true;
+    [Min(1f)]
+    public float charactersPerSecond = 30f;
+    [Tooltip("Add or remove speed presets here. Values mean characters displayed per second.")]
+    public List<float> typingSpeedPresets = new List<float> { 15f, 30f, 60f, 120f };
+    [Min(0)]
+    public int activeSpeedPreset = 1;
+
+    [Header("Typewriter Sound")]
+    [SerializeField] private bool playTypingSound = true;
+    [SerializeField] private AudioClip typingSfx;
+    [Min(1)]
+    [SerializeField] private int charactersPerTypingSound = 2;
+    [Min(0f)]
+    [SerializeField] private float minimumTypingSoundInterval = 0.03f;
+
+    [Header("Continue Indicator")]
+    [Tooltip("Shows the continue marker at the end of the current dialogue text.")]
+    public bool useInlineContinueIndicator = true;
+    [Tooltip("Marker appended to dialogue text when another line is available.")]
+    public string inlineContinueIndicator = "\u25BC";
+    [Tooltip("TMP color string used by the inline continue marker.")]
+    public string inlineContinueIndicatorColor = "#FFFFFF";
+    [Tooltip("Horizontal distance from the end of the last visible character.")]
+    public float inlineContinueIndicatorXOffset = 14f;
+    [Tooltip("Vertical offset from the last text line baseline.")]
+    public float inlineContinueIndicatorYOffset = 0f;
+    [Min(0f)]
+    public float inlineContinueIndicatorBounceHeight = 6f;
+    [Min(0f)]
+    public float inlineContinueIndicatorBounceSpeed = 5f;
+    [Tooltip("Optional external arrow. Used only when inline mode is disabled.")]
+    public RectTransform continueIndicator;
+    [Min(0f)]
+    public float continueIndicatorBounceHeight = 12f;
+    [Min(0f)]
+    public float continueIndicatorBounceSpeed = 4f;
+
+    [Header("Item Inspect")]
+    public GameObject itemInspectRoot;
+    public Image itemInspectImage;
+    public TMP_Text itemInspectTitleText;
+
     [Header("Save")]
     public bool saveHistoryAutomatically = true;
     public bool loadHistoryAutomatically = true;
@@ -80,11 +142,21 @@ public class DialogueController : MonoBehaviour
     private bool isDialogueActive;
     private bool suppressAdvance;
     private bool lookWasPaused;
+    private bool historyOutsideDialogueLookWasPaused;
     private HoverEffect[] hoverEffects;
     private string dialogueSavePath;
+    private Coroutine typingRoutine;
+    private bool isTyping;
+    private string currentDialogueText = string.Empty;
+    private string visibleDialogueText = string.Empty;
+    private bool isContinueIndicatorVisible;
+    private Vector2 continueIndicatorBasePosition;
+    private bool hasContinueIndicatorBasePosition;
+    private TMP_Text inlineContinueIndicatorText;
 
     public bool IsDialogueActive => isDialogueActive;
     public bool IsAutoMode => isAutoMode;
+    public bool IsHistoryOpen => IsHistoryPanelOpen();
 
     void Awake()
     {
@@ -92,10 +164,10 @@ public class DialogueController : MonoBehaviour
 
         if (lookController == null)
         {
-            lookController = FindFirstObjectByType<LookController>();
+            lookController = FindAnyObjectByType<LookController>();
         }
 
-        hoverEffects = FindObjectsByType<HoverEffect>(FindObjectsSortMode.None);
+        hoverEffects = FindObjectsByType<HoverEffect>(FindObjectsInactive.Exclude);
 
         historyButton = historyButton != null ? historyButton : FindButton("HistoryButton");
         autoButton = autoButton != null ? autoButton : FindButton("AutoButton");
@@ -103,6 +175,14 @@ public class DialogueController : MonoBehaviour
 
         SetPanelVisible(dialoguePanel, false);
         SetPanelVisible(historyPanel, false);
+        SetContinueIndicatorVisible(false);
+
+        if (dialogueUIRoot == null && dialoguePanel != null)
+        {
+            dialogueUIRoot = dialoguePanel.parent as RectTransform;
+        }
+
+        SetPanelVisible(dialogueUIRoot, false);
 
         if (historyController == null && historyPanel != null)
         {
@@ -136,11 +216,39 @@ public class DialogueController : MonoBehaviour
         }
     }
 
+    void OnValidate()
+    {
+        charactersPerSecond = Mathf.Max(1f, charactersPerSecond);
+        activeSpeedPreset = Mathf.Max(0, activeSpeedPreset);
+        inlineContinueIndicatorXOffset = Mathf.Max(0f, inlineContinueIndicatorXOffset);
+        inlineContinueIndicatorBounceHeight = Mathf.Max(0f, inlineContinueIndicatorBounceHeight);
+        inlineContinueIndicatorBounceSpeed = Mathf.Max(0f, inlineContinueIndicatorBounceSpeed);
+        continueIndicatorBounceHeight = Mathf.Max(0f, continueIndicatorBounceHeight);
+        continueIndicatorBounceSpeed = Mathf.Max(0f, continueIndicatorBounceSpeed);
+        charactersPerTypingSound = Mathf.Max(1, charactersPerTypingSound);
+        minimumTypingSoundInterval = Mathf.Max(0f, minimumTypingSoundInterval);
+
+        if (typingSpeedPresets == null)
+        {
+            typingSpeedPresets = new List<float>();
+        }
+
+        for (int i = 0; i < typingSpeedPresets.Count; i++)
+        {
+            typingSpeedPresets[i] = Mathf.Max(1f, typingSpeedPresets[i]);
+        }
+    }
+
     void Update()
     {
         if (!isDialogueActive)
         {
             return;
+        }
+
+        if (!IsHistoryPanelOpen())
+        {
+            AnimateContinueIndicator();
         }
 
         if (WasHistoryTogglePressed())
@@ -149,8 +257,10 @@ public class DialogueController : MonoBehaviour
             return;
         }
 
-        if (IsHistoryOpen())
+        if (IsHistoryPanelOpen())
         {
+            SetContinueIndicatorVisible(false);
+
             if (WasHistoryClosePressed())
             {
                 ToggleHistory();
@@ -178,6 +288,11 @@ public class DialogueController : MonoBehaviour
             return;
         }
 
+        if (npc != null)
+        {
+            HideItemInspect();
+        }
+
         currentLines = lines;
         currentNpc = npc;
         currentLineIndex = -1;
@@ -191,8 +306,10 @@ public class DialogueController : MonoBehaviour
         }
 
         UpdateHistoryText();
+        SetPanelVisible(dialogueUIRoot, true);
         SetPanelVisible(historyPanel, false);
         SetPanelVisible(dialoguePanel, true);
+        SetContinueIndicatorVisible(false);
         SetButtonVisible(historyButton, true);
         SetButtonVisible(autoButton, true);
         SetButtonVisible(skipButton, true);
@@ -215,6 +332,14 @@ public class DialogueController : MonoBehaviour
             return;
         }
 
+        if (isTyping)
+        {
+            SetDialogueText(currentDialogueText);
+            StopTypingRoutine();
+            RefreshContinueIndicator();
+            return;
+        }
+
         currentLineIndex++;
 
         if (currentLineIndex >= currentLines.Count)
@@ -223,20 +348,26 @@ public class DialogueController : MonoBehaviour
             return;
         }
 
+        StopTypingRoutine();
+        SetContinueIndicatorVisible(false);
+
         DialogueLine line = currentLines[currentLineIndex];
+        string speakerNameValue = GetLocalizedString(line.speakerName);
+        string dialogueTextValue = GetLocalizedString(line.dialogueText);
+        currentDialogueText = dialogueTextValue;
+
         if (speakerText != null)
         {
-            speakerText.text = line.speakerName;
+            speakerText.text = speakerNameValue;
         }
 
         if (tmpSpeakerText != null)
         {
-            tmpSpeakerText.text = line.speakerName;
+            tmpSpeakerText.text = speakerNameValue;
         }
 
         if (dialogueText != null)
         {
-            dialogueText.text = line.dialogueText;
             dialogueText.fontSize = Mathf.RoundToInt(dialogueFontSize);
 
             if (autoFitText)
@@ -250,7 +381,6 @@ public class DialogueController : MonoBehaviour
 
         if (tmpDialogueText != null)
         {
-            tmpDialogueText.text = line.dialogueText;
             tmpDialogueText.fontSize = dialogueFontSize;
 
             if (autoFitText)
@@ -262,9 +392,19 @@ public class DialogueController : MonoBehaviour
             }
         }
 
-        historyEntries.Add(string.IsNullOrEmpty(line.speakerName)
-            ? line.dialogueText
-            : line.speakerName + ": " + line.dialogueText);
+        if (enableTypewriterEffect)
+        {
+            typingRoutine = StartCoroutine(TypeDialogue(dialogueTextValue));
+        }
+        else
+        {
+            SetDialogueText(dialogueTextValue);
+            RefreshContinueIndicator();
+        }
+
+        historyEntries.Add(string.IsNullOrEmpty(speakerNameValue)
+            ? dialogueTextValue
+            : speakerNameValue + ": " + dialogueTextValue);
         UpdateHistoryText();
         SaveDialogueHistoryIfEnabled();
 
@@ -276,17 +416,23 @@ public class DialogueController : MonoBehaviour
 
     public void ToggleHistory()
     {
-        if (!isDialogueActive || historyPanel == null)
+        if ((!isDialogueActive && !allowHistoryOutsideDialogue) || historyPanel == null)
         {
             return;
         }
 
         bool openingHistory = !historyPanel.gameObject.activeSelf;
+        bool togglingOutsideDialogue = !isDialogueActive;
 
         if (openingHistory && isAutoMode && autoRoutine != null)
         {
             StopCoroutine(autoRoutine);
             autoRoutine = null;
+        }
+
+        if (openingHistory && togglingOutsideDialogue)
+        {
+            OpenHistoryOutsideDialogue();
         }
 
         if (historyController != null)
@@ -297,6 +443,12 @@ public class DialogueController : MonoBehaviour
         {
             SetPanelVisible(historyPanel, !historyPanel.gameObject.activeSelf);
         }
+
+        if (!openingHistory && togglingOutsideDialogue)
+        {
+            CloseHistoryOutsideDialogue();
+        }
+
         suppressAdvance = true;
 
         if (historyPanel.gameObject.activeSelf && historyScrollRect != null && historyController == null)
@@ -312,20 +464,97 @@ public class DialogueController : MonoBehaviour
 
         if (openingHistory && historyButton != null)
         {
-            Transform buttonParent = historyButton.transform.parent;
+            historyButton.transform.SetAsLastSibling();
+        }
 
-            if (buttonParent != historyPanel.parent)
-            {
-                historyButton.transform.SetParent(historyPanel.parent, true);
-            }
+        RefreshContinueIndicator();
+    }
 
+    public void SetHistoryShortcutVisible(bool visible)
+    {
+        if (historyButton == null || isDialogueActive)
+        {
+            return;
+        }
+
+        bool historyOpen = IsHistoryPanelOpen();
+
+        if (!historyOpen)
+        {
+            SetButtonVisible(autoButton, false);
+            SetButtonVisible(skipButton, false);
+        }
+
+        SetButtonVisible(historyButton, visible || historyOpen);
+
+        if (visible || historyOpen)
+        {
             historyButton.transform.SetAsLastSibling();
         }
     }
 
-    private bool IsHistoryOpen()
+    public void HideNonDialogueUi()
+    {
+        if (isDialogueActive)
+        {
+            return;
+        }
+
+        HideItemInspect();
+        SetPanelVisible(dialoguePanel, false);
+        SetPanelVisible(historyPanel, false);
+
+        if (!IsHistoryButtonInsideDialogueRoot())
+        {
+            SetPanelVisible(dialogueUIRoot, false);
+        }
+    }
+
+    private bool IsHistoryPanelOpen()
     {
         return historyPanel != null && historyPanel.gameObject.activeSelf;
+    }
+
+    private bool IsHistoryButtonInsideDialogueRoot()
+    {
+        return historyButton != null &&
+            dialogueUIRoot != null &&
+            historyButton.transform.IsChildOf(dialogueUIRoot);
+    }
+
+    private void OpenHistoryOutsideDialogue()
+    {
+        HideItemInspect();
+        SetPanelVisible(dialogueUIRoot, true);
+        SetPanelVisible(dialoguePanel, false);
+        SetButtonVisible(autoButton, false);
+        SetButtonVisible(skipButton, false);
+
+        if (lookController != null)
+        {
+            historyOutsideDialogueLookWasPaused = lookController.IsPaused;
+            lookController.SetPaused(true);
+        }
+
+        SetHoverEffectsPaused(true);
+    }
+
+    private void CloseHistoryOutsideDialogue()
+    {
+        HideItemInspect();
+        SetPanelVisible(historyPanel, false);
+
+        if (!IsHistoryButtonInsideDialogueRoot())
+        {
+            SetPanelVisible(dialogueUIRoot, false);
+        }
+
+        if (lookController != null)
+        {
+            lookController.SetPaused(historyOutsideDialogueLookWasPaused);
+        }
+
+        SetHoverEffectsPaused(false);
     }
 
     public void ToggleAutoMode()
@@ -371,9 +600,11 @@ public class DialogueController : MonoBehaviour
         for (int i = currentLineIndex + 1; i < currentLines.Count; i++)
         {
             DialogueLine line = currentLines[i];
-            string entry = string.IsNullOrEmpty(line.speakerName)
-                ? line.dialogueText
-                : line.speakerName + ": " + line.dialogueText;
+            string speakerNameValue = GetLocalizedString(line.speakerName);
+            string dialogueTextValue = GetLocalizedString(line.dialogueText);
+            string entry = string.IsNullOrEmpty(speakerNameValue)
+                ? dialogueTextValue
+                : speakerNameValue + ": " + dialogueTextValue;
 
             historyEntries.Add(entry);
         }
@@ -384,6 +615,9 @@ public class DialogueController : MonoBehaviour
 
     private void FinishDialogue()
     {
+        StopTypingRoutine();
+        HideItemInspect();
+
         if (autoRoutine != null)
         {
             StopCoroutine(autoRoutine);
@@ -393,6 +627,7 @@ public class DialogueController : MonoBehaviour
         if (currentNpc != null)
         {
             currentNpc.MarkTalked();
+            SaveDialogueHistoryIfEnabled();
         }
 
         isDialogueActive = false;
@@ -401,6 +636,8 @@ public class DialogueController : MonoBehaviour
         currentNpc = null;
         SetPanelVisible(dialoguePanel, false);
         SetPanelVisible(historyPanel, false);
+        SetPanelVisible(dialogueUIRoot, false);
+        SetContinueIndicatorVisible(false);
         SetButtonVisible(historyButton, false);
         SetButtonVisible(autoButton, false);
         SetButtonVisible(skipButton, false);
@@ -425,7 +662,12 @@ public class DialogueController : MonoBehaviour
 
     private IEnumerator AutoAdvanceRoutine()
     {
-        yield return new WaitForSeconds(autoAdvanceSeconds);
+        while (isTyping)
+        {
+            yield return null;
+        }
+
+        yield return new WaitForSecondsRealtime(autoAdvanceSeconds);
 
         if (isDialogueActive && isAutoMode)
         {
@@ -463,6 +705,294 @@ public class DialogueController : MonoBehaviour
         }
     }
 
+    private IEnumerator TypeDialogue(string text)
+    {
+        isTyping = true;
+        SetDialogueText(string.Empty);
+
+        float speed = GetActiveTypingSpeed();
+        float characterTimer = 0f;
+        int visibleCharacterCount = 0;
+        float lastTypingSoundTime = -999f;
+
+        while (visibleCharacterCount < text.Length)
+        {
+            characterTimer += Time.unscaledDeltaTime * speed;
+            int targetCharacterCount = Mathf.Min(text.Length, Mathf.FloorToInt(characterTimer));
+
+            if (targetCharacterCount > visibleCharacterCount)
+            {
+                int previousVisibleCharacterCount = visibleCharacterCount;
+                visibleCharacterCount = targetCharacterCount;
+                SetDialogueText(text.Substring(0, visibleCharacterCount));
+                PlayTypingSoundIfNeeded(text, previousVisibleCharacterCount, visibleCharacterCount, ref lastTypingSoundTime);
+            }
+
+            yield return null;
+        }
+
+        SetDialogueText(text);
+        isTyping = false;
+        typingRoutine = null;
+        RefreshContinueIndicator();
+    }
+
+    private void SetDialogueText(string text)
+    {
+        visibleDialogueText = text;
+        ApplyDialogueText(text);
+    }
+
+    private void PlayTypingSoundIfNeeded(string text, int previousVisibleCount, int currentVisibleCount, ref float lastSoundTime)
+    {
+        if (!playTypingSound || typingSfx == null || GameAudioManager.Instance == null)
+        {
+            return;
+        }
+
+        if (Time.unscaledTime - lastSoundTime < minimumTypingSoundInterval)
+        {
+            return;
+        }
+
+        for (int i = previousVisibleCount; i < currentVisibleCount; i++)
+        {
+            if (i < 0 || i >= text.Length || char.IsWhiteSpace(text[i]))
+            {
+                continue;
+            }
+
+            if ((i + 1) % charactersPerTypingSound != 0)
+            {
+                continue;
+            }
+
+            GameAudioManager.Instance.PlaySfx(typingSfx);
+            lastSoundTime = Time.unscaledTime;
+            return;
+        }
+    }
+
+    private void ApplyDialogueText(string text)
+    {
+        if (dialogueText != null)
+        {
+            dialogueText.text = BuildLegacyDialogueTextWithIndicator(text);
+        }
+
+        if (tmpDialogueText != null)
+        {
+            tmpDialogueText.richText = true;
+            tmpDialogueText.text = text;
+            UpdateInlineContinueIndicator();
+        }
+    }
+
+    private void UpdateInlineContinueIndicator()
+    {
+        if (tmpDialogueText == null)
+        {
+            return;
+        }
+
+        if (!useInlineContinueIndicator || !isContinueIndicatorVisible || string.IsNullOrEmpty(inlineContinueIndicator))
+        {
+            SetInlineContinueIndicatorVisible(false);
+            return;
+        }
+
+        EnsureInlineContinueIndicatorText();
+
+        if (inlineContinueIndicatorText == null)
+        {
+            return;
+        }
+
+        tmpDialogueText.ForceMeshUpdate();
+        TMP_TextInfo textInfo = tmpDialogueText.textInfo;
+        int lastCharacterIndex = GetLastVisibleCharacterIndex(textInfo);
+
+        if (lastCharacterIndex < 0)
+        {
+            SetInlineContinueIndicatorVisible(false);
+            return;
+        }
+
+        TMP_CharacterInfo characterInfo = textInfo.characterInfo[lastCharacterIndex];
+        float bounceOffset = Mathf.Abs(Mathf.Sin(Time.unscaledTime * inlineContinueIndicatorBounceSpeed)) *
+            inlineContinueIndicatorBounceHeight;
+        Vector3 localPosition = new Vector3(
+            characterInfo.xAdvance + inlineContinueIndicatorXOffset,
+            characterInfo.baseLine + inlineContinueIndicatorYOffset + bounceOffset,
+            0f);
+
+        inlineContinueIndicatorText.text = inlineContinueIndicator;
+        inlineContinueIndicatorText.font = tmpDialogueText.font;
+        inlineContinueIndicatorText.fontSize = tmpDialogueText.fontSize * 0.75f;
+        inlineContinueIndicatorText.color = ParseColor(inlineContinueIndicatorColor, Color.white);
+        inlineContinueIndicatorText.rectTransform.localPosition = localPosition;
+        SetInlineContinueIndicatorVisible(true);
+    }
+
+    private void EnsureInlineContinueIndicatorText()
+    {
+        if (inlineContinueIndicatorText != null || tmpDialogueText == null)
+        {
+            return;
+        }
+
+        GameObject indicatorObject = new GameObject("InlineContinueIndicator");
+        indicatorObject.transform.SetParent(tmpDialogueText.transform, false);
+        inlineContinueIndicatorText = indicatorObject.AddComponent<TextMeshProUGUI>();
+        inlineContinueIndicatorText.raycastTarget = false;
+        inlineContinueIndicatorText.alignment = TextAlignmentOptions.Center;
+        inlineContinueIndicatorText.rectTransform.sizeDelta = new Vector2(48f, 48f);
+    }
+
+    private int GetLastVisibleCharacterIndex(TMP_TextInfo textInfo)
+    {
+        if (textInfo == null)
+        {
+            return -1;
+        }
+
+        for (int i = textInfo.characterCount - 1; i >= 0; i--)
+        {
+            TMP_CharacterInfo characterInfo = textInfo.characterInfo[i];
+            if (characterInfo.isVisible)
+            {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    private void SetInlineContinueIndicatorVisible(bool visible)
+    {
+        if (inlineContinueIndicatorText != null)
+        {
+            inlineContinueIndicatorText.gameObject.SetActive(visible);
+        }
+    }
+
+    private Color ParseColor(string colorText, Color fallback)
+    {
+        return ColorUtility.TryParseHtmlString(colorText, out Color color) ? color : fallback;
+    }
+
+    private string BuildLegacyDialogueTextWithIndicator(string text)
+    {
+        if (!useInlineContinueIndicator || !isContinueIndicatorVisible || string.IsNullOrEmpty(inlineContinueIndicator))
+        {
+            return text;
+        }
+
+        return text + " " + inlineContinueIndicator;
+    }
+
+    private float GetActiveTypingSpeed()
+    {
+        if (typingSpeedPresets != null && typingSpeedPresets.Count > 0)
+        {
+            int presetIndex = Mathf.Clamp(activeSpeedPreset, 0, typingSpeedPresets.Count - 1);
+            return Mathf.Max(1f, typingSpeedPresets[presetIndex]);
+        }
+
+        return Mathf.Max(1f, charactersPerSecond);
+    }
+
+    private void StopTypingRoutine()
+    {
+        if (typingRoutine != null)
+        {
+            StopCoroutine(typingRoutine);
+            typingRoutine = null;
+        }
+
+        isTyping = false;
+    }
+
+    private void RefreshContinueIndicator()
+    {
+        bool shouldShow = isDialogueActive &&
+            !isTyping &&
+            currentLines != null &&
+            currentLineIndex >= 0 &&
+            currentLineIndex < currentLines.Count - 1 &&
+            !IsHistoryPanelOpen();
+
+        SetContinueIndicatorVisible(shouldShow);
+    }
+
+    private void AnimateContinueIndicator()
+    {
+        if (!isContinueIndicatorVisible)
+        {
+            return;
+        }
+
+        if (useInlineContinueIndicator)
+        {
+            ApplyDialogueText(visibleDialogueText);
+            return;
+        }
+
+        if (continueIndicator == null || !continueIndicator.gameObject.activeSelf)
+        {
+            return;
+        }
+
+        CacheContinueIndicatorBasePosition();
+
+        float bounceOffset = Mathf.Sin(Time.unscaledTime * continueIndicatorBounceSpeed) *
+            continueIndicatorBounceHeight;
+        continueIndicator.anchoredPosition = continueIndicatorBasePosition + Vector2.down * bounceOffset;
+    }
+
+    private void SetContinueIndicatorVisible(bool visible)
+    {
+        isContinueIndicatorVisible = visible;
+
+        if (useInlineContinueIndicator)
+        {
+            if (continueIndicator != null)
+            {
+                continueIndicator.gameObject.SetActive(false);
+            }
+
+            SetInlineContinueIndicatorVisible(visible);
+            ApplyDialogueText(visibleDialogueText);
+            return;
+        }
+
+        SetInlineContinueIndicatorVisible(false);
+
+        if (continueIndicator == null)
+        {
+            return;
+        }
+
+        CacheContinueIndicatorBasePosition();
+        continueIndicator.gameObject.SetActive(visible);
+
+        if (!visible)
+        {
+            continueIndicator.anchoredPosition = continueIndicatorBasePosition;
+        }
+    }
+
+    private void CacheContinueIndicatorBasePosition()
+    {
+        if (continueIndicator == null || hasContinueIndicatorBasePosition)
+        {
+            return;
+        }
+
+        continueIndicatorBasePosition = continueIndicator.anchoredPosition;
+        hasContinueIndicatorBasePosition = true;
+    }
+
     private void SetPanelVisible(RectTransform panel, bool visible)
     {
         if (panel != null)
@@ -485,6 +1015,94 @@ public class DialogueController : MonoBehaviour
         return buttonObject != null ? buttonObject.GetComponent<Button>() : null;
     }
 
+    public void ShowItemInspect(CursorInteractionTarget target)
+    {
+        if (target == null)
+        {
+            return;
+        }
+
+        ShowItemInspect(target.itemName, target.itemDescriptionLines, target.itemSprite, target.showInspectImage);
+    }
+
+    public void ShowItemInspect(LocalizedString title, IReadOnlyList<LocalizedString> descriptionLines, Sprite sprite, bool showCenterImage = true)
+    {
+        bool hasTitle = HasLocalizedReference(title);
+        bool hasDescription = descriptionLines != null && descriptionLines.Count > 0;
+        if (!hasTitle && !hasDescription && sprite == null)
+        {
+            return;
+        }
+
+        string titleText = hasTitle ? GetLocalizedString(title) : string.Empty;
+
+        if (itemInspectTitleText != null)
+        {
+            itemInspectTitleText.text = titleText;
+        }
+
+        if (itemInspectImage != null)
+        {
+            itemInspectImage.sprite = sprite;
+            itemInspectImage.gameObject.SetActive(showCenterImage && sprite != null);
+        }
+
+        if (itemInspectRoot != null)
+        {
+            itemInspectRoot.SetActive(showCenterImage && sprite != null || !showCenterImage);
+        }
+
+        List<DialogueLine> itemLines = new List<DialogueLine>();
+
+        if (descriptionLines != null)
+        {
+            for (int i = 0; i < descriptionLines.Count; i++)
+            {
+                if (!HasLocalizedReference(descriptionLines[i]))
+                {
+                    continue;
+                }
+
+                itemLines.Add(new DialogueLine
+                {
+                    speakerName = title,
+                    dialogueText = descriptionLines[i]
+                });
+            }
+        }
+
+        if (itemLines.Count == 0 && hasTitle)
+        {
+            itemLines.Add(new DialogueLine
+            {
+                speakerName = title,
+                dialogueText = title
+            });
+        }
+
+        if (itemLines.Count == 0)
+        {
+            HideItemInspect();
+            return;
+        }
+
+        StartConversation(itemLines, null);
+    }
+
+    public void HideItemInspect()
+    {
+        if (itemInspectImage != null)
+        {
+            itemInspectImage.sprite = null;
+            itemInspectImage.gameObject.SetActive(false);
+        }
+
+        if (itemInspectRoot != null)
+        {
+            itemInspectRoot.SetActive(false);
+        }
+    }
+
     public void ClearHistory()
     {
         historyEntries.Clear();
@@ -501,7 +1119,8 @@ public class DialogueController : MonoBehaviour
 
         DialogueSaveData data = new DialogueSaveData
         {
-            historyEntries = new List<string>(historyEntries)
+            historyEntries = new List<string>(historyEntries),
+            npcProgress = CreateNPCSaveData()
         };
 
         File.WriteAllText(dialogueSavePath, JsonUtility.ToJson(data, true));
@@ -521,14 +1140,80 @@ public class DialogueController : MonoBehaviour
 
         DialogueSaveData data = JsonUtility.FromJson<DialogueSaveData>(File.ReadAllText(dialogueSavePath));
 
-        if (data == null || data.historyEntries == null)
+        if (data == null)
         {
             return;
         }
 
         historyEntries.Clear();
-        historyEntries.AddRange(data.historyEntries);
+
+        if (data.historyEntries != null)
+        {
+            historyEntries.AddRange(data.historyEntries);
+        }
+
+        RestoreNPCProgress(data.npcProgress);
         UpdateHistoryText();
+    }
+
+    public void ResetAllNPCProgress()
+    {
+        if (isDialogueActive)
+        {
+            return;
+        }
+
+        NPCDialogueTrigger[] npcs = FindObjectsByType<NPCDialogueTrigger>(FindObjectsInactive.Exclude);
+
+        for (int i = 0; i < npcs.Length; i++)
+        {
+            npcs[i].ResetProgress();
+        }
+
+        SaveDialogueHistory();
+    }
+
+    private List<NPCSaveData> CreateNPCSaveData()
+    {
+        NPCDialogueTrigger[] npcs = FindObjectsByType<NPCDialogueTrigger>(FindObjectsInactive.Exclude);
+        List<NPCSaveData> data = new List<NPCSaveData>();
+
+        for (int i = 0; i < npcs.Length; i++)
+        {
+            data.Add(new NPCSaveData
+            {
+                saveId = npcs[i].SaveId,
+                nextConversationIndex = npcs[i].NextConversationIndex,
+                hasTalked = npcs[i].HasTalked
+            });
+        }
+
+        return data;
+    }
+
+    private void RestoreNPCProgress(List<NPCSaveData> savedProgress)
+    {
+        if (savedProgress == null)
+        {
+            return;
+        }
+
+        NPCDialogueTrigger[] npcs = FindObjectsByType<NPCDialogueTrigger>(FindObjectsInactive.Exclude);
+
+        for (int i = 0; i < npcs.Length; i++)
+        {
+            for (int j = 0; j < savedProgress.Count; j++)
+            {
+                if (npcs[i].SaveId == savedProgress[j].saveId)
+                {
+                    npcs[i].RestoreProgress(
+                        savedProgress[j].nextConversationIndex,
+                        savedProgress[j].hasTalked
+                    );
+                    break;
+                }
+            }
+        }
     }
 
     private void SaveDialogueHistoryIfEnabled()
@@ -662,7 +1347,7 @@ public class DialogueController : MonoBehaviour
     {
         if (hoverEffects == null)
         {
-            hoverEffects = FindObjectsByType<HoverEffect>(FindObjectsSortMode.None);
+            hoverEffects = FindObjectsByType<HoverEffect>(FindObjectsInactive.Exclude);
         }
 
         for (int i = 0; i < hoverEffects.Length; i++)
@@ -690,5 +1375,22 @@ public class DialogueController : MonoBehaviour
 #else
         return Input.GetKeyDown(KeyCode.Escape);
 #endif
+    }
+
+    private static bool HasLocalizedReference(LocalizedString localizedString)
+    {
+        return localizedString != null &&
+            localizedString.TableReference.ReferenceType != TableReference.Type.Empty &&
+            localizedString.TableEntryReference.ReferenceType != TableEntryReference.Type.Empty;
+    }
+
+    private static string GetLocalizedString(LocalizedString localizedString)
+    {
+        if (!HasLocalizedReference(localizedString))
+        {
+            return string.Empty;
+        }
+
+        return localizedString.GetLocalizedString();
     }
 }

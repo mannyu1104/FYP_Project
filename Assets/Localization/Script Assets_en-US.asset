@@ -2244,6 +2244,120 @@ MonoBehaviour:
     m_Localized: Close
     m_Metadata:
       m_Items: []
+  - m_Id: 358793172426756
+    m_Localized: Bed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426757
+    m_Localized: This is the bed.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426758
+    m_Localized: Enter Entrance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426759
+    m_Localized: Go to Staff Room
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426760
+    m_Localized: Back to Orphanage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426761
+    m_Localized: Back to Entrance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426762
+    m_Localized: New Game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426763
+    m_Localized: Load Game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426764
+    m_Localized: Quit Game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426765
+    m_Localized: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426766
+    m_Localized: Close
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426767
+    m_Localized: X
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426768
+    m_Localized: Back to Main Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426769
+    m_Localized: "---Language---"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426770
+    m_Localized: "---Sound---"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426771
+    m_Localized: "---Save---"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426772
+    m_Localized: "Master Volume:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426773
+    m_Localized: "BGM Volume:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426774
+    m_Localized: "SFX Volume:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426775
+    m_Localized: Save
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426776
+    m_Localized: Load
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426777
+    m_Localized: History
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426778
+    m_Localized: Auto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426779
+    m_Localized: Skip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426780
+    m_Localized: Home
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426781
+    m_Localized: Orphanage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426782
+    m_Localized: Welfare Center
+    m_Metadata:
+      m_Items: []
+  - m_Id: 358793172426783
+    m_Localized: Park
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
   references:
     version: 2
     RefIds:

@@ -22,6 +22,14 @@ public class InteractionCursorController : MonoBehaviour
     [Header("Detection")]
     public Camera worldCamera;
     public bool pauseDuringDialogue = true;
+    [Tooltip("When any of these panels are active, the cursor will not react to gameplay objects behind the UI.")]
+    [SerializeField] private List<GameObject> blockingUiPanels = new List<GameObject>();
+    [SerializeField] private List<string> blockingUiPanelNames = new List<string>
+    {
+        "SettingsPanel",
+        "MainMenuPanel",
+        "HistoryPanel"
+    };
 
     private CursorPreset activePreset;
     private bool isPaused;
@@ -62,17 +70,17 @@ public class InteractionCursorController : MonoBehaviour
 
         if (cursorPresets.Count > 0 && cursorPresets[0] != null && string.IsNullOrEmpty(cursorPresets[0].presetName))
         {
-            cursorPresets[0].presetName = "查看";
+            cursorPresets[0].presetName = "View";
         }
 
         if (cursorPresets.Count > 1 && cursorPresets[1] != null && string.IsNullOrEmpty(cursorPresets[1].presetName))
         {
-            cursorPresets[1].presetName = "对话";
+            cursorPresets[1].presetName = "Talk";
         }
 
         if (cursorPresets.Count > 2 && cursorPresets[2] != null && string.IsNullOrEmpty(cursorPresets[2].presetName))
         {
-            cursorPresets[2].presetName = "自定义";
+            cursorPresets[2].presetName = "Custom";
         }
     }
 
@@ -80,8 +88,32 @@ public class InteractionCursorController : MonoBehaviour
     {
         if (pauseDuringDialogue)
         {
-            DialogueController dialogueController = FindFirstObjectByType<DialogueController>();
+            DialogueController dialogueController = FindAnyObjectByType<DialogueController>();
             isPaused = dialogueController != null && dialogueController.IsDialogueActive;
+        }
+
+        if (IsBlockingUiOpen())
+        {
+            ResetCursor();
+            return;
+        }
+
+        bool anyOverlayOpen = WhiteBoard.IsAnyWhiteBoardOpen || MapButton.IsAnyMapOpen;
+        if (anyOverlayOpen)
+        {
+            CursorInteractionTarget uiTarget = FindUiTargetUnderPointer();
+            if (uiTarget != null)
+            {
+                if (uiTarget.GetComponentInParent<Button>() != null || uiTarget.GetComponentInParent<Selectable>() != null)
+                {
+                    CursorPreset uiPreset = GetPresetForTarget(uiTarget);
+                    SetCursor(uiPreset);
+                    return;
+                }
+            }
+
+            ResetCursor();
+            return;
         }
 
         if (isPaused)
@@ -103,29 +135,10 @@ public class InteractionCursorController : MonoBehaviour
 
     private CursorInteractionTarget FindTargetUnderPointer()
     {
-        if (EventSystem.current != null)
+        CursorInteractionTarget uiTarget = FindUiTargetUnderPointer();
+        if (uiTarget != null)
         {
-            PointerEventData pointerData = new PointerEventData(EventSystem.current)
-            {
-                position = Input.mousePosition
-            };
-            List<RaycastResult> results = new List<RaycastResult>();
-            EventSystem.current.RaycastAll(pointerData, results);
-
-            for (int i = 0; i < results.Count; i++)
-            {
-                CursorInteractionTarget target = results[i].gameObject.GetComponentInParent<CursorInteractionTarget>();
-                if (target != null)
-                {
-                    return target;
-                }
-
-                NPCDialogueTrigger npc = results[i].gameObject.GetComponentInParent<NPCDialogueTrigger>();
-                if (npc != null)
-                {
-                    return npc.GetComponent<CursorInteractionTarget>();
-                }
-            }
+            return uiTarget;
         }
 
         if (worldCamera == null)
@@ -136,6 +149,89 @@ public class InteractionCursorController : MonoBehaviour
         Vector3 worldPosition = worldCamera.ScreenToWorldPoint(Input.mousePosition);
         Collider2D collider = Physics2D.OverlapPoint(worldPosition);
         return collider != null ? collider.GetComponentInParent<CursorInteractionTarget>() : null;
+    }
+
+    private CursorInteractionTarget FindUiTargetUnderPointer()
+    {
+        if (EventSystem.current == null)
+        {
+            return null;
+        }
+
+        PointerEventData pointerData = new PointerEventData(EventSystem.current)
+        {
+            position = Input.mousePosition
+        };
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointerData, results);
+
+        for (int i = 0; i < results.Count; i++)
+        {
+            CursorInteractionTarget target = results[i].gameObject.GetComponentInParent<CursorInteractionTarget>();
+            if (target != null)
+            {
+                return target;
+            }
+
+            NPCDialogueTrigger npc = results[i].gameObject.GetComponentInParent<NPCDialogueTrigger>();
+            if (npc != null)
+            {
+                return npc.GetComponent<CursorInteractionTarget>();
+            }
+        }
+
+        return null;
+    }
+
+    private bool IsBlockingUiOpen()
+    {
+        for (int i = 0; i < blockingUiPanels.Count; i++)
+        {
+            GameObject panel = blockingUiPanels[i];
+            if (panel != null && panel.activeInHierarchy)
+            {
+                return true;
+            }
+        }
+
+        for (int i = 0; i < blockingUiPanelNames.Count; i++)
+        {
+            GameObject panel = FindSceneObjectByName(blockingUiPanelNames[i]);
+            if (panel != null)
+            {
+                if (!blockingUiPanels.Contains(panel))
+                {
+                    blockingUiPanels.Add(panel);
+                }
+
+                if (panel.activeInHierarchy)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private static GameObject FindSceneObjectByName(string objectName)
+    {
+        if (string.IsNullOrWhiteSpace(objectName))
+        {
+            return null;
+        }
+
+        Transform[] transforms = Resources.FindObjectsOfTypeAll<Transform>();
+        for (int i = 0; i < transforms.Length; i++)
+        {
+            Transform target = transforms[i];
+            if (target != null && target.name == objectName && target.gameObject.scene.IsValid())
+            {
+                return target.gameObject;
+            }
+        }
+
+        return null;
     }
 
     private CursorPreset GetPresetForTarget(CursorInteractionTarget target)
