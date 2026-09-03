@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a21d962b510db3d438eb871d0ebb9541, type: 3}
   m_Name: "BB-04\uFF0C\u6253\u7834\u533B\u5B66\u754C\u96BE\u9898\uFF0C\u6839\u6CBB\u7EDD\u75C7\uFF01"
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  ItemShowName: "BB-04\uFF0C\u6253\u7834\u533B\u5B66\u754C\u96BE\u9898\uFF0C\u6839\u6CBB\u7EDD\u75C7\uFF01"
-  Description: "\u4ED4\u7EC6\u5BF9\u6BD4\u540E\u5C31\u4F1A\u53D1\u73B0\u5728\u53F0\u4E0A\u6F14\u8BB2\u7684\u8D1F\u8D23\u4EBA\u5C31\u662F\u5E0C\u671B\u5B64\u513F\u9662\u7684\u5176\u4E2D\u4E00\u4F4D\u804C\u5458\u5218\u5FD7\u660E "
   TypeofItem: Ingame
   Get: 0
   Used: 0
-  ItemID: 10
+  ItemID: 8
