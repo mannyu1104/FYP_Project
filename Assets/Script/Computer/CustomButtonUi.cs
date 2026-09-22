@@ -35,6 +35,7 @@ public class CustomButtonUi : Selectable, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (!IsActive() || !IsInteractable()) return;
         switch (eventData.button)
         {
             case PointerEventData.InputButton.Left:

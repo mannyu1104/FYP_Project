@@ -17049,7 +17049,7 @@ MonoBehaviour:
   settingsPanel: {fileID: 2135843693}
   returnToMainMenuButton: {fileID: 1575527451}
   gameRootPanel: {fileID: 547671120}
-  loadGameButton: {fileID: 1599009583}
+  loadGameButton: {fileID: 1730318063}
   saveSystem: {fileID: 0}
   loadInventoryOnLoadGame: 1
   loadMapItemsOnLoadGame: 1

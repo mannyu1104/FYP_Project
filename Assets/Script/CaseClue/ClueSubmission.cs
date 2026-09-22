@@ -6,6 +6,8 @@ using TMPro;
 // Board panel alongside a Text for the outcome.
 public class ClueSubmission : MonoBehaviour
 {
+    public static event System.Action<ClueSubmission> AssessmentClosed;
+    public static event System.Action<ClueSubmission> AssessmentScored;
     [SerializeField] private ClueBoardUI clueBoard;
     [SerializeField] private Transform judgmentContent; // 判定区's content container
     public Transform JudgmentContent => judgmentContent;
@@ -29,6 +31,17 @@ public class ClueSubmission : MonoBehaviour
     //   credible but still unsorted              -> missed-credible penalty
     // Only recorded clues participate in this assessment.
 
+    // Completion depends on the submitted assessment, not a collection or score threshold.
+    public bool HasScoredSubmission { get; private set; }
+
+    private bool HasRecordedClues()
+    {
+        if (clueBoard == null) return false;
+        foreach (var entry in clueBoard.Entries)
+            if (entry != null) return true;
+        return false;
+    }
+
     private void Awake()
     {
         if (submitButton != null)
@@ -39,6 +52,9 @@ public class ClueSubmission : MonoBehaviour
 
     public void Submit()
     {
+        HasScoredSubmission = false;
+        if (clueBoard != null) clueBoard.RefreshEntries();
+        if (!HasRecordedClues()) return;
         int score = 0;
         int maximumScore = 0;
         int correctlyPlaced = 0;
@@ -47,6 +63,7 @@ public class ClueSubmission : MonoBehaviour
 
         foreach (ClueBoardEntryUI entry in clueBoard.Entries)
         {
+            if (entry == null) continue;
             bool inJudgmentZone = entry.transform.parent == judgmentContent;
 
             switch (entry.Credibility)
@@ -84,8 +101,10 @@ public class ClueSubmission : MonoBehaviour
             : 0;
 
         resultText.text = $"{score} / 100";
+        HasScoredSubmission = true;
 
         ShowScorePanel(score);
+        AssessmentScored?.Invoke(this);
     }
 
     private void ShowScorePanel(int score)
@@ -103,5 +122,7 @@ public class ClueSubmission : MonoBehaviour
         scorePanelCanvasGroup.alpha = 0f;
         scorePanelCanvasGroup.interactable = false;
         scorePanelCanvasGroup.blocksRaycasts = false;
+        if (HasScoredSubmission) AssessmentClosed?.Invoke(this);
+        HasScoredSubmission = false;
     }
 }

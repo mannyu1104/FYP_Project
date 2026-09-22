@@ -65,6 +65,8 @@ public class ComputerCanvasController : MonoBehaviour
 
     public void OpenComputer()
     {
+        if (InvestigationFlowController.Instance != null && !InvestigationFlowController.Instance.CanOpenComputer) return;
+        if (isComputerOpen) return;
         ResolveReferences();
 
         if (computerCanvas == null || mainGameCanvas == null)
@@ -89,6 +91,7 @@ public class ComputerCanvasController : MonoBehaviour
         EnsureReturnButtonReady();
         BindReturnButton();
         RefreshReturnButtonVisibility();
+        InvestigationFlowController.Instance?.OnComputerOpened();
     }
 
     public void CloseComputer()
@@ -113,6 +116,7 @@ public class ComputerCanvasController : MonoBehaviour
         }
 
         isComputerOpen = false;
+        InvestigationFlowController.Instance?.OnComputerClosed();
     }
 
     public bool IsComputerOpen()
@@ -274,7 +278,8 @@ public class ComputerCanvasController : MonoBehaviour
             return;
         }
 
-        SetReturnButtonVisible(IsComputerDesktopVisible());
+        SetReturnButtonVisible(isComputerOpen && computerCanvas != null && computerCanvas.activeInHierarchy);
+        if (returnToGameButton.gameObject.activeSelf) returnToGameButton.transform.SetAsLastSibling();
     }
 
     private bool IsComputerDesktopVisible()

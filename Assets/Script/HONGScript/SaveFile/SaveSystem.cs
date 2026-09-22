@@ -100,6 +100,7 @@ public class SaveSystem: MonoBehaviour
         File.WriteAllText(path, json);
         ClueManager clues = FindAnyObjectByType<ClueManager>(FindObjectsInactive.Include);
         if (clues != null) clues.SaveClues();
+        InvestigationFlowController.Instance?.SaveProgress();
     }
 
     public void SaveInventoryMap()
