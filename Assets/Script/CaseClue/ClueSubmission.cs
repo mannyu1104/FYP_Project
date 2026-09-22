@@ -1,9 +1,8 @@
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
 
-// Wire the "Submit" button's OnClick() to Submit(). Put this on the Clue
-// Board panel alongside a Text for the outcome.
 public class ClueSubmission : MonoBehaviour
 {
     [SerializeField] private ClueBoardUI clueBoard;
@@ -20,11 +19,8 @@ public class ClueSubmission : MonoBehaviour
     [SerializeField] private int penaltyPerMissedCredible = 10;
     [SerializeField] private int penaltyPerWrongPlacement = 15;
 
-    // A clue counts as "the player marked it credible" if it currently sits
-    // inside the judgment zone, regardless of how it got dragged there.
-    //   in judgment zone + actually credible     -> +pointsPerCorrectSelection
-    //   in judgment zone + actually not credible -> -penaltyPerWrongSelection
-    //   still in the unsorted zone               -> not counted either way
+    [SerializeField] private CountingPoint countingPoint;
+
 
     private void Awake()
     {
@@ -32,56 +28,65 @@ public class ClueSubmission : MonoBehaviour
         {
             submitButton.onClick.AddListener(Submit);
         }
+
+    }
+
+    private void OnEnable()
+    {
+        CountingPoint.ScoreShown += Submit;
     }
 
     public void Submit()
     {
-        int score = 0;
-        int correctlyPlaced = 0;
-        int missedCredible = 0;
-        int wronglyPlaced = 0;
+        //int score = 0;
+        //int correctlyPlaced = 0;
+        //int missedCredible = 0;
+        //int wronglyPlaced = 0;
 
-        foreach (ClueBoardEntryUI entry in clueBoard.Entries)
-        {
-            bool inJudgmentZone = entry.transform.parent == judgmentContent;
+        //foreach (ClueBoardEntryUI entry in clueBoard.Entries)
+        //{
+        //    bool inJudgmentZone = entry.transform.parent == judgmentContent;
 
-            switch (entry.Credibility)
-            {
-                case ClueCredibility.Credible:
-                    if (inJudgmentZone)
-                    {
-                        score += pointsPerCorrectPlacement;
-                        correctlyPlaced++;
-                    }
-                    else
-                    {
-                        score -= penaltyPerMissedCredible;
-                        missedCredible++;
-                    }
-                    break;
+        //    switch (entry.Credibility)
+        //    {
+        //        case ClueCredibility.Credible:
+        //            if (inJudgmentZone)
+        //            {
+        //                score += pointsPerCorrectPlacement;
+        //                correctlyPlaced++;
+        //            }
+        //            else
+        //            {
+        //                score -= penaltyPerMissedCredible;
+        //                missedCredible++;
+        //            }
+        //            break;
 
-                case ClueCredibility.NotCredible:
-                    if (inJudgmentZone)
-                    {
-                        score -= penaltyPerWrongPlacement;
-                        wronglyPlaced++;
-                    }
-                    break;
+        //        case ClueCredibility.NotCredible:
+        //            if (inJudgmentZone)
+        //            {
+        //                score -= penaltyPerWrongPlacement;
+        //                wronglyPlaced++;
+        //            }
+        //            break;
 
-                case ClueCredibility.Neutral:
-                default:
-                    break; // never affects score, placed or not
-            }
-        }
+        //        case ClueCredibility.Neutral:
+        //        default:
+        //            break; // never affects score, placed or not
+        //    }
+        //}
 
-        score = Mathf.Max(score, 0);
+        //score = Mathf.Max(score, 0);
 
-        resultText.text = $"{score} / 100";
+        //resultText.text = $"{score} / 100";
 
-        ShowScorePanel(score);
+        countingPoint.CountingPoints();
+        //resultText.text = countingPoint.CountingPoints();
+
+        ShowScorePanel();
     }
 
-    private void ShowScorePanel(int score)
+    private void ShowScorePanel()
     {
         scorePanelCanvasGroup.alpha = 1f;
         scorePanelCanvasGroup.interactable = true;
