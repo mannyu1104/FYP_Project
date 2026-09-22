@@ -3,12 +3,18 @@ using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 /// <summary>
 /// Controls the main menu, settings panel, and game start flow.
 /// </summary>
 public class MainMenuController : MonoBehaviour
 {
+    public static bool IsStartingNewGame { get; private set; }
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetNewGameRequest() => IsStartingNewGame = false;
     private const string DeleteSaveTestButtonName = "DeleteSaveTestButton";
 
     [System.Serializable]
@@ -36,7 +42,6 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private bool loadInventoryOnLoadGame = true;
     [SerializeField] private bool loadMapItemsOnLoadGame = true;
     [SerializeField] private bool loadUnlockedMapsOnLoadGame = true;
-    [SerializeField] private bool resetDialogueProgressOnNewGame = true;
     [SerializeField] private bool loadDialogueProgressOnLoadGame = true;
     [Tooltip("Buttons that create a loadable save record after they are clicked.")]
     [SerializeField] private List<GameObject> saveRecordButtons = new List<GameObject>();
@@ -95,6 +100,22 @@ public class MainMenuController : MonoBehaviour
         {
             ShowMainMenu();
         }
+        if (IsStartingNewGame) StartCoroutine(CompleteNewGame());
+    }
+
+    private IEnumerator CompleteNewGame()
+    {
+        // Allow scene Start methods and the video flow to observe the main menu first.
+        yield return null;
+        IsStartingNewGame = false;
+        StartGameplayImmediately();
+        if (dialogueController != null)
+        {
+            dialogueController.ClearHistory();
+            dialogueController.ResetAllNPCProgress();
+        }
+        if (GameStateManager.Instance != null)
+            GameStateManager.Instance.ChangeState(GameState.Normal);
     }
 
     private void LateUpdate()
@@ -144,13 +165,30 @@ public class MainMenuController : MonoBehaviour
 
     private void NewGameImmediately()
     {
-        StartGameplayImmediately();
-
-        if (resetDialogueProgressOnNewGame && dialogueController != null)
+        Scene scene = gameObject.scene;
+        if (string.IsNullOrEmpty(scene.path))
         {
-            dialogueController.ClearHistory();
-            dialogueController.ResetAllNPCProgress();
+            Debug.LogError("Save the scene before starting a new game.", this);
+            return;
         }
+#if !UNITY_EDITOR
+        if (!Application.CanStreamedLevelBeLoaded(scene.path))
+        {
+            Debug.LogError("The gameplay scene must be included in the build scene list.", this);
+            return;
+        }
+#endif
+        IsStartingNewGame = true;
+        // A new run must not combine its dialogue with the previous run's inventory.
+        DeleteSaveFileIfExists(GetSaveRecordMarkerPath());
+        foreach (string path in GetSaveDataPaths()) DeleteSaveFileIfExists(path);
+        CountingPoint.ResetTutorialCompletion();
+#if UNITY_EDITOR
+        UnityEditor.SceneManagement.EditorSceneManager.LoadSceneInPlayMode(
+            scene.path, new LoadSceneParameters(LoadSceneMode.Single));
+#else
+        SceneManager.LoadScene(scene.path);
+#endif
     }
 
     private void LoadGameImmediately()
@@ -208,6 +246,8 @@ public class MainMenuController : MonoBehaviour
         {
             dialogueController.LoadDialogueHistory();
         }
+        ClueManager clues = FindAnyObjectByType<ClueManager>(FindObjectsInactive.Include);
+        if (clues != null) clues.LoadClues();
     }
 
     public void OpenSettings()
@@ -317,7 +357,14 @@ public class MainMenuController : MonoBehaviour
 
         if (saveSystem == null)
         {
-            saveSystem = FindAnyObjectByType<SaveSystem>();
+            foreach (SaveSystem candidate in FindObjectsByType<SaveSystem>(FindObjectsInactive.Include))
+            {
+                if (candidate.inventorymanager != null && candidate.inventoryUsing != null)
+                {
+                    saveSystem = candidate;
+                    break;
+                }
+            }
         }
 
         if (screenTransitionController == null)
@@ -401,6 +448,8 @@ public class MainMenuController : MonoBehaviour
 
     public void RegisterSaveRecord()
     {
+        ClueManager clues = FindAnyObjectByType<ClueManager>(FindObjectsInactive.Include);
+        if (clues != null) clues.SaveClues();
         try
         {
             File.WriteAllText(GetSaveRecordMarkerPath(), System.DateTime.Now.ToString("O"));
@@ -619,7 +668,8 @@ public class MainMenuController : MonoBehaviour
             Path.Combine(Application.persistentDataPath, "inventory.json"),
             Path.Combine(Application.persistentDataPath, "inventorylock.json"),
             Path.Combine(Application.persistentDataPath, "map.json"),
-            Path.Combine(Application.persistentDataPath, "dialogue_history.json")
+            Path.Combine(Application.persistentDataPath, "dialogue_history.json"),
+            Path.Combine(Application.persistentDataPath, "clues.json")
         };
     }
 

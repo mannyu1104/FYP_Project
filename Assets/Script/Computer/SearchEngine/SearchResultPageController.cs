@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using TMPro;
-using Unity.Pipeline.Editor.Commands.Navigation;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Localization;

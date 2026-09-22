@@ -3,7 +3,6 @@ using TMPro;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.CompilerServices;
-using UnityEditor.Search;
 
 [System.Serializable]
 public class NotesSaveData

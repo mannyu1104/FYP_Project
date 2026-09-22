@@ -1,5 +1,3 @@
-using UnityEditor.Profiling;
-using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
@@ -25,8 +23,14 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     public GameObject InvenUI;
     public bool isdragging;
 
-    public void Start()
+    private bool initialized;
+
+    void Start() => EnsureInitialized();
+
+    public void EnsureInitialized()
     {
+        if (initialized) return;
+        initialized = true;
         InitialiseItem(item);
 
         SumShowText.text = thisName;

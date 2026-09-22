@@ -1,5 +1,3 @@
-using UnityEditor.Profiling;
-using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -24,8 +22,14 @@ public class DragableItemSave : MonoBehaviour, IBeginDragHandler, IDragHandler, 
     //public GameObject InvenUI;
     public bool isdragging;
 
-    public void Start()
+    private bool initialized;
+
+    void Start() => EnsureInitialized();
+
+    public void EnsureInitialized()
     {
+        if (initialized) return;
+        initialized = true;
         thisShow = false;
         InitialiseItem(item);
 

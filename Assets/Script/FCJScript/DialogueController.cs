@@ -191,7 +191,7 @@ public class DialogueController : MonoBehaviour
 
         ApplyChineseFont();
 
-        if (loadHistoryAutomatically)
+        if (loadHistoryAutomatically && !MainMenuController.IsStartingNewGame)
         {
             LoadDialogueHistory();
         }
@@ -243,6 +243,11 @@ public class DialogueController : MonoBehaviour
     {
         if (!isDialogueActive)
         {
+            if (IsHistoryPanelOpen() && (WasHistoryClosePressed() || WasHistoryTogglePressed()))
+                ToggleHistory();
+            else if (WasHistoryTogglePressed() && allowHistoryOutsideDialogue &&
+                     lookController != null && !lookController.IsPaused)
+                ToggleHistory();
             return;
         }
 
@@ -1112,6 +1117,7 @@ public class DialogueController : MonoBehaviour
 
     public void SaveDialogueHistory()
     {
+        if (MainMenuController.IsStartingNewGame) return;
         if (string.IsNullOrEmpty(dialogueSavePath))
         {
             dialogueSavePath = Path.Combine(Application.persistentDataPath, "dialogue_history.json");
@@ -1163,7 +1169,7 @@ public class DialogueController : MonoBehaviour
             return;
         }
 
-        NPCDialogueTrigger[] npcs = FindObjectsByType<NPCDialogueTrigger>(FindObjectsInactive.Exclude);
+        NPCDialogueTrigger[] npcs = FindObjectsByType<NPCDialogueTrigger>(FindObjectsInactive.Include);
 
         for (int i = 0; i < npcs.Length; i++)
         {
@@ -1175,7 +1181,7 @@ public class DialogueController : MonoBehaviour
 
     private List<NPCSaveData> CreateNPCSaveData()
     {
-        NPCDialogueTrigger[] npcs = FindObjectsByType<NPCDialogueTrigger>(FindObjectsInactive.Exclude);
+        NPCDialogueTrigger[] npcs = FindObjectsByType<NPCDialogueTrigger>(FindObjectsInactive.Include);
         List<NPCSaveData> data = new List<NPCSaveData>();
 
         for (int i = 0; i < npcs.Length; i++)
@@ -1198,7 +1204,7 @@ public class DialogueController : MonoBehaviour
             return;
         }
 
-        NPCDialogueTrigger[] npcs = FindObjectsByType<NPCDialogueTrigger>(FindObjectsInactive.Exclude);
+        NPCDialogueTrigger[] npcs = FindObjectsByType<NPCDialogueTrigger>(FindObjectsInactive.Include);
 
         for (int i = 0; i < npcs.Length; i++)
         {

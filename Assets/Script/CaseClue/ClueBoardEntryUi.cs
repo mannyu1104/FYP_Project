@@ -15,6 +15,12 @@ public class ClueBoardEntryUI : MonoBehaviour
     public ClueCredibility Credibility { get; private set; }
 
     private ClueManager.RecordedClue clueData;
+    public ClueBoardUI Board { get; set; }
+
+    public void SetJudgmentPlacement(bool selected)
+    {
+        if (clueData != null) clueData.inJudgmentZone = selected;
+    }
 
     public void Set(ClueManager.RecordedClue clue)
     {

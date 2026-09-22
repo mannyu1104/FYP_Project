@@ -8,6 +8,8 @@ public class ClueSubmission : MonoBehaviour
 {
     [SerializeField] private ClueBoardUI clueBoard;
     [SerializeField] private Transform judgmentContent; // 判定区's content container
+    public Transform JudgmentContent => judgmentContent;
+    public ClueBoardUI Board => clueBoard;
     [SerializeField] private Button submitButton;
 
     [Header("Score Panel")]
@@ -24,7 +26,8 @@ public class ClueSubmission : MonoBehaviour
     // inside the judgment zone, regardless of how it got dragged there.
     //   in judgment zone + actually credible     -> +pointsPerCorrectSelection
     //   in judgment zone + actually not credible -> -penaltyPerWrongSelection
-    //   still in the unsorted zone               -> not counted either way
+    //   credible but still unsorted              -> missed-credible penalty
+    // Only recorded clues participate in this assessment.
 
     private void Awake()
     {
@@ -37,6 +40,7 @@ public class ClueSubmission : MonoBehaviour
     public void Submit()
     {
         int score = 0;
+        int maximumScore = 0;
         int correctlyPlaced = 0;
         int missedCredible = 0;
         int wronglyPlaced = 0;
@@ -48,6 +52,7 @@ public class ClueSubmission : MonoBehaviour
             switch (entry.Credibility)
             {
                 case ClueCredibility.Credible:
+                    maximumScore += pointsPerCorrectPlacement;
                     if (inJudgmentZone)
                     {
                         score += pointsPerCorrectPlacement;
@@ -74,7 +79,9 @@ public class ClueSubmission : MonoBehaviour
             }
         }
 
-        score = Mathf.Max(score, 0);
+        score = maximumScore > 0
+            ? Mathf.Clamp(Mathf.RoundToInt(100f * score / maximumScore), 0, 100)
+            : 0;
 
         resultText.text = $"{score} / 100";
 
