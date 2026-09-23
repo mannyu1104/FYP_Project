@@ -39,7 +39,7 @@ public class DragableItemSave : MonoBehaviour, IBeginDragHandler, IDragHandler, 
             Destroy(gameObject);
         }
 
-        if (thisGet == true)
+        if (thisGet == true && thisUsed == false)
         {
             DeleteOther();
             inventory.AddItem(gameObject);
@@ -100,6 +100,7 @@ public class DragableItemSave : MonoBehaviour, IBeginDragHandler, IDragHandler, 
             Debug.Log("EndDrag");
             isdragging = false;
             transform.SetParent(parentAfterDrag);
+            transform.position = transform.parent.position;
             image.raycastTarget = true;
             ShowText.raycastTarget = true;
         }
@@ -125,7 +126,9 @@ public class DragableItemSave : MonoBehaviour, IBeginDragHandler, IDragHandler, 
     {
         if (parentAfterDrag != null)
         {
+            Debug.Log("NotNull");
             transform.SetParent(parentAfterDrag);
+            transform.position = transform.parent.position;
         }
         else
         {
