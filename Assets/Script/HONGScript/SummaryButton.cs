@@ -37,6 +37,7 @@ public class SummaryButton : MonoBehaviour
     {
         DragableItem[] items = FindObjectsByType<DragableItem>();
 
+        Debug.Log(gameObject.name);
         foreach (DragableItem item in items)
         {
             if (string.Equals(NowTitle, item.thisName, System.StringComparison.OrdinalIgnoreCase))
