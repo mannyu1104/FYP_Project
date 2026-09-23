@@ -67,6 +67,8 @@ public class InvestigationFlowController : MonoBehaviour
         computer = FindAnyObjectByType<ComputerCanvasController>(FindObjectsInactive.Include);
         home = FindObject("Home\u5bb6Panel");
         tutorial = FindObject("Tutorial Panel");
+        if (tutorial != null)
+            foreach (var page in tutorial.GetComponentsInChildren<TutorialPageController>(true)) page.IntegrateSubmissionPanel();
         internet = FindObject("Internet  Discovery Panel");
         foreach (ForVideoSceneFlowController oldFlow in FindObjectsByType<ForVideoSceneFlowController>(FindObjectsInactive.Include))
             oldFlow.enabled = false;
@@ -91,7 +93,7 @@ public class InvestigationFlowController : MonoBehaviour
             Canvas shortcutCanvas = t.GetComponent<Canvas>();
             if (shortcutCanvas == null) shortcutCanvas = t.gameObject.AddComponent<Canvas>();
             shortcutCanvas.overrideSorting = true;
-            shortcutCanvas.sortingOrder = 2000;
+            shortcutCanvas.sortingOrder = 2002; // Notebook tabs sit above the page canvas (2001).
             if (t.GetComponent<GraphicRaycaster>() == null) t.gameObject.AddComponent<GraphicRaycaster>();
             RectTransform rect = t as RectTransform;
             if (rect != null)
@@ -365,9 +367,26 @@ public class InvestigationFlowController : MonoBehaviour
         bool modal = WelfareInteractionController.IsOpen || SaveSlotPanel.IsOpen || menu.IsMenuVisible || menu.IsSettingsVisible || dialogue.IsDialogueActive || dialogue.IsHistoryOpen ||
             (computer.IsComputerOpen() && CurrentStage != Stage.Tutorial) || MapButton.IsAnyMapOpen;
         foreach (GameObject popup in popupRoots) modal |= IsVisible(popup);
+        var inventoryPanels = FindObjectsByType<OpenCanvasButton>(FindObjectsInactive.Include);
+        foreach (var inventory in inventoryPanels) modal |= inventory.IsAnyOpen;
+        bool itemDetailsVisible = false;
+        foreach (var item in FindObjectsByType<DragableItem>(FindObjectsInactive.Include))
+            if (IsVisible(item.DesUI)) { itemDetailsVisible = true; break; }
         bool show = CurrentStage != Stage.Menu &&
             (menu.IsGameplayVisible || (computer.IsComputerOpen() && CurrentStage == Stage.Tutorial)) && !modal;
-        foreach (GameObject button in sideButtons) SetObject(button, show);
+        foreach (GameObject button in sideButtons)
+        {
+            bool visible = show;
+            foreach (var inventory in inventoryPanels)
+                if (inventory.OwnsShortcut(button))
+                {
+                    visible = inventory.IsNotebookOpen && !menu.IsMenuVisible && !menu.IsSettingsVisible &&
+                        !dialogue.IsDialogueActive && !dialogue.IsHistoryOpen && !SaveSlotPanel.IsOpen && !WelfareInteractionController.IsOpen;
+                    visible &= !itemDetailsVisible;
+                    break;
+                }
+            SetObject(button, visible);
+        }
         if (client != null && CurrentStage != Stage.ClientConversation) SetObject(client.gameObject, false);
         if (CurrentStage == Stage.ReadingNews && articleWasOpened && computer.IsComputerOpen() && !IsVisible(internet)) ArticleClosed();
 
@@ -376,6 +395,7 @@ public class InvestigationFlowController : MonoBehaviour
     public void StopForMenu()
     {
         StopSequence();
+        foreach (var inventory in FindObjectsByType<OpenCanvasButton>(FindObjectsInactive.Include)) inventory.CloseAll();
         WelfareInteractionController.Instance?.StopForMenu();
         dialogue.CancelConversation();
         CurrentStage = Stage.Menu;

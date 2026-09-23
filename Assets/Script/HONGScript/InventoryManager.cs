@@ -21,6 +21,7 @@ public class InventoryManager : MonoBehaviour
                 for (int i = 0; i < inventorySlotsForTutorial.Length; i++)
                 {
                     InventorySlot slot = inventorySlotsForTutorial[i];
+                    if (slot == null) continue;
                     DragableItem iteminslot = slot.GetComponentInChildren<DragableItem>(true);
                     if (iteminslot == null)
                     {
@@ -34,6 +35,7 @@ public class InventoryManager : MonoBehaviour
                 for (int i = 0; i < inventorySlotsForIngame.Length; i++)
                 {
                     InventorySlot slot = inventorySlotsForIngame[i];
+                    if (slot == null) continue;
                     DragableItem iteminslot = slot.GetComponentInChildren<DragableItem>(true);
                     if (iteminslot == null)
                     {
@@ -55,6 +57,7 @@ public class InventoryManager : MonoBehaviour
                 for (int i = 0; i < inventorySlotsForMap.Length; i++)
                 {
                     InventorySlot slot = inventorySlotsForMap[i];
+                    if (slot == null) continue;
                     DragableItemSave iteminslot = slot.GetComponentInChildren<DragableItemSave>(true);
                     if (iteminslot == null)
                     {

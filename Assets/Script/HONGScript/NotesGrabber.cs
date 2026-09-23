@@ -34,6 +34,7 @@ public class NotesGrabber : MonoBehaviour
 
     public void OpenNotes()
     {
+        foreach (var panels in FindObjectsByType<OpenCanvasButton>(FindObjectsInactive.Include)) panels.AvaliableNotebookCanva();
         maxpage = 1;
         LoadAllData();
         if (Notes.Count == 0)

@@ -10212,6 +10212,7 @@ MonoBehaviour:
   detailImage: {fileID: 8805463781251807993}
   backButton: {fileID: 6848671994881423538}
   clueRecordButton: {fileID: 6202125277179236421}
+  submissionPanel: {fileID: 5587266608430782594}
 --- !u!1 &3971906793905373819
 GameObject:
   m_ObjectHideFlags: 0

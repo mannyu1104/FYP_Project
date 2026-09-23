@@ -97,6 +97,7 @@ public class ComputerCanvasController : MonoBehaviour
     public void CloseComputer()
     {
         if (!isComputerOpen) return;
+        foreach (var panels in FindObjectsByType<OpenCanvasButton>(FindObjectsInactive.Include)) panels.CloseAll();
         ResolveReferences();
 
         if (computerCanvas != null)

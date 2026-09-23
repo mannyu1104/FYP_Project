@@ -9,6 +9,7 @@ public class InventoryManagerINFO : MonoBehaviour
         for (int i = 0; i < inventorySlots.Length; i++)
         {
             InventorySlot slot = inventorySlots[i];
+            if (slot == null) continue;
             DragableItem iteminslot = slot.GetComponentInChildren<DragableItem>(true);
             DragableItemSave mapItemInSlot = slot.GetComponentInChildren<DragableItemSave>(true);
             if (iteminslot == null && mapItemInSlot == null)
