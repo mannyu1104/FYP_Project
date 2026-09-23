@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a21d962b510db3d438eb871d0ebb9541, type: 3}
   m_Name: Notes (TEST)
   m_EditorClassIdentifier: Assembly-CSharp::Item
-  mystring: NAH
   Image: {fileID: -1108316977, guid: 1fdb3a68d41c2544b8e328de7124fc1d, type: 3}
-  Unlocked: 0
+  Unlocked: 1
   Get: 0
   Used: 0
+  Show: 1
   ItemID: 1
