@@ -35,8 +35,22 @@ public class SaveSlotPanel : MonoBehaviour
     private TMP_Text title, message;
     private readonly List<Button> cards = new List<Button>();
     private Button confirmButton, backButton;
-    private static bool Chinese => LocalizationSettings.SelectedLocale != null &&
-        LocalizationSettings.SelectedLocale.Identifier.Code.StartsWith("zh", StringComparison.OrdinalIgnoreCase);
+    private static bool Chinese
+    {
+        get
+        {
+            try
+            {
+                var locale = LocalizationSettings.SelectedLocale;
+                return locale != null && !string.IsNullOrEmpty(locale.Identifier.Code) &&
+                       locale.Identifier.Code.StartsWith("zh", StringComparison.OrdinalIgnoreCase);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+    }
     private static string L(string zh, string en) => Chinese ? zh : en;
     private static string SlotPath(int index) => Path.Combine(Application.persistentDataPath, "SaveSlots", "slot_" + (index + 1) + ".json");
 

@@ -5,6 +5,8 @@ using System.Collections;
 
 public class RopeSkipping : MonoBehaviour
 {
+    public event System.Action<bool> MatchFinished;
+    private bool finished;
     public int currentJump;
     public int successJump;
     private int maxJump = 20;
@@ -112,25 +114,14 @@ public class RopeSkipping : MonoBehaviour
             RopeSwingAnim();
         }
 
-        if (playSkip && currentJump >= maxJump)
+        if (playSkip && currentJump >= maxJump && !finished)
         {
-            if (successJump >= 10)
-            {
-                Camera.transform.SetParent(null);
-                Debug.Log("YouWin");
-                playSkip = false;
-                return;
-            }
-            else
-            {
-                Camera.transform.SetParent(null);
-                Debug.Log("YouLose");
-                playSkip = false;
-                return;
-            }
+            finished = true;
+            playSkip = false;
+            MatchFinished?.Invoke(successJump >= 10);
         }
-
     }
+
 
     void CheckSuccess()
     {
@@ -161,7 +152,7 @@ public class RopeSkipping : MonoBehaviour
 
     IEnumerator PlaySwingUp()
     {
-        float randomSwing = Random.Range(minSwing, maxSwing);
+        float randomSwing = Random.Range(maxSwing, minSwing);
 
         Anim.speed = 1.0f * randomSwing;
         Anim.Play("SwingUp", 0, 0f);
@@ -191,7 +182,7 @@ public class RopeSkipping : MonoBehaviour
 
         playSkip = true;
         ShowCount.SetActive(false);
-        Camera.transform.SetParent(Player.transform, false);
+        // Keep the authored camera framing; jumping must not move or detach the camera.
     }
 
     public void Touching()

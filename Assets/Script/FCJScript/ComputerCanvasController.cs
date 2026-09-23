@@ -136,6 +136,11 @@ public class ComputerCanvasController : MonoBehaviour
 
     private void ResolveReferences()
     {
+        if (returnToGameButton == null && computerCanvas != null)
+        {
+            Transform power = FindChildByName(computerCanvas.transform, "Power Button");
+            if (power != null) returnToGameButton = power.GetComponent<Button>();
+        }
         if (lookController == null)
         {
             lookController = FindAnyObjectByType<LookController>();
@@ -280,7 +285,11 @@ public class ComputerCanvasController : MonoBehaviour
             return;
         }
 
-        SetReturnButtonVisible(isComputerOpen && computerCanvas != null && computerCanvas.activeInHierarchy);
+        bool desktop = IsComputerDesktopVisible();
+        if (desktop)
+            foreach (var page in computerCanvas.GetComponentsInChildren<TutorialPageController>(true))
+                if (IsVisiblePanel(page.transform)) { desktop = false; break; }
+        SetReturnButtonVisible(desktop);
         if (returnToGameButton.gameObject.activeSelf) returnToGameButton.transform.SetAsLastSibling();
     }
 

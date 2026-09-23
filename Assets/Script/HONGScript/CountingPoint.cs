@@ -55,6 +55,7 @@ public class CountingPoint : MonoBehaviour
 
         foreach (DragableItem item in items)
         {
+            if (!CorrectIDList.Contains(item.thisID) && !WrongIDList.Contains(item.thisID)) continue;
             if (CorrectIDList.Contains(item.thisID))
             {
                 if (item.thisUsed == true)

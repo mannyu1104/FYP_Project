@@ -106,6 +106,12 @@ public class MainMenuController : MonoBehaviour
         // Allow scene Start methods and the video flow to observe the main menu first.
         yield return null;
         IsStartingNewGame = false;
+        foreach (var icon in FindObjectsByType<MapIcon>(FindObjectsInactive.Include))
+        {
+            icon.EnsureInitialized();
+            if (icon.thisID == 0) icon.Unlocking();
+            else icon.NotUnlock();
+        }
         StartGameplayImmediately();
         if (dialogueController != null)
         {

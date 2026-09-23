@@ -14,7 +14,10 @@ public class SummaryButton : MonoBehaviour
         // player already dragged some clues into the judgment zone and then
         // leaves to question another witness, coming back here must NOT reset
         // their sorting progress.
-        ClueManager.Instance.OnClueRecorded += GetTitle;
+        if (ClueManager.Instance != null)
+        {
+            ClueManager.Instance.OnClueRecorded += GetTitle;
+        }
     }
 
     private void OnDisable()
@@ -27,7 +30,27 @@ public class SummaryButton : MonoBehaviour
 
     public void GetTitle(ClueManager.RecordedClue clue)
     {
-        NowTitle = clue.title.GetLocalizedString();
+        if (clue == null || clue.title == null)
+        {
+            return;
+        }
+
+        try
+        {
+            var initHandle = UnityEngine.Localization.Settings.LocalizationSettings.InitializationOperation;
+            if (!initHandle.IsDone)
+            {
+                return;
+            }
+
+            NowTitle = clue.title.GetLocalizedString() ?? string.Empty;
+        }
+        catch
+        {
+            NowTitle = string.Empty;
+            return;
+        }
+
         Debug.Log(NowTitle);
         BecomeInvet();
     }
@@ -35,14 +58,37 @@ public class SummaryButton : MonoBehaviour
 
     public void BecomeInvet()
     {
+        if (inventory == null)
+        {
+            Debug.LogWarning("SummaryButton inventory reference is missing.", this);
+            return;
+        }
+
+        if (SaveIntObject == null || SaveIntObject.Length == 0)
+        {
+            Debug.LogWarning("SummaryButton SaveIntObject is missing.", this);
+            return;
+        }
+
         DragableItem[] items = FindObjectsByType<DragableItem>();
 
         Debug.Log(gameObject.name);
         foreach (DragableItem item in items)
         {
+            if (item == null)
+            {
+                continue;
+            }
+
             if (string.Equals(NowTitle, item.thisName, System.StringComparison.OrdinalIgnoreCase))
             {
                 int WhatID = item.thisID;
+                if (WhatID < 0 || WhatID >= SaveIntObject.Length || SaveIntObject[WhatID] == null)
+                {
+                    Debug.LogWarning($"SummaryButton cannot add clue item for ID {WhatID}.", this);
+                    return;
+                }
+
                 inventory.AddItem(SaveIntObject[WhatID]);
                 Debug.Log("RIGHTADDING");
                 return;
@@ -51,7 +97,7 @@ public class SummaryButton : MonoBehaviour
             else
             {
                 Debug.Log(item.thisName);
-            }   
+            }
         }
     }
 

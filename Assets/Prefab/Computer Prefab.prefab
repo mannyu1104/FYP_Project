@@ -19337,6 +19337,8 @@ GameObject:
   - component: {fileID: 791833555919913903}
   - component: {fileID: 1486827948848215638}
   - component: {fileID: 3955720499206061469}
+  - component: {fileID: 900000000000000010}
+  - component: {fileID: 900000000000000011}
   m_Layer: 5
   m_Name: Score Panel
   m_TagString: Untagged
@@ -26540,3 +26542,36 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 227351074399443839, guid: 6fdeb1985edefe24499bcba8db56e308, type: 3}
   m_PrefabInstance: {fileID: 9194665680648203785}
   m_PrefabAsset: {fileID: 0}
+--- !u!223 &900000000000000010
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8070709616824319803}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_OverrideSorting: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 2100
+  m_TargetDisplay: 0
+--- !u!114 &900000000000000011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8070709616824319803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295

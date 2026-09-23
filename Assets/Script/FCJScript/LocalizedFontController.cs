@@ -71,8 +71,22 @@ public class LocalizedFontController : MonoBehaviour
 
     public TMP_FontAsset CurrentFont => IsChinese || englishFontAsset == null ? ChineseFont : englishFontAsset;
     private TMP_FontAsset ChineseFont => chineseFontAsset;
-    private bool IsChinese => LocalizationSettings.SelectedLocale != null &&
-        LocalizationSettings.SelectedLocale.Identifier.Code.StartsWith("zh");
+    private bool IsChinese
+    {
+        get
+        {
+            try
+            {
+                var locale = LocalizationSettings.SelectedLocale;
+                return locale != null && !string.IsNullOrEmpty(locale.Identifier.Code) &&
+                       locale.Identifier.Code.StartsWith("zh", System.StringComparison.OrdinalIgnoreCase);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+    }
 
     public void ApplyTo(TMP_Text text)
     {
@@ -112,3 +126,16 @@ public class LocalizedFontController : MonoBehaviour
         return false;
     }
 }
+
+#if UNITY_EDITOR
+// Work around the installed Localization package's GameView toolbar initialization
+// exception. The game's own Settings language selector remains available.
+[UnityEditor.InitializeOnLoad]
+internal static class GameViewLocaleToolbarWorkaround
+{
+    static GameViewLocaleToolbarWorkaround()
+    {
+        UnityEditor.EditorPrefs.SetBool("Localization-ShowLocaleMenuInGameView", false);
+    }
+}
+#endif

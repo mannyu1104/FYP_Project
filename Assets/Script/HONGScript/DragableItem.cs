@@ -1,9 +1,8 @@
-using UnityEditor.Profiling;
-using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Localization;
 
 public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {
@@ -29,31 +28,77 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     public GameObject ButtonUI2;
     public bool isdragging;
 
-    public void Start()
-    {
-        InitialiseItem(item);
-        thisTuto = false;
+    private bool initialized;
+    private static DragableItem inspectedItem;
 
-        SumShowText.text = thisName;
+    // Runtime pickups have no ScriptableObject; their state must not be reset by Start.
+    public void ConfigureCandy(int id, TMP_Text label, Image icon)
+    {
+        initialized = true;
+        thisID = id;
+        thisType = "Ingame";
+        thisTuto = false;
+        SumShowText = label;
+        image = icon;
+    }
+
+    public void Start() => EnsureInitialized();
+
+    private static string SafeLocalizedText(LocalizedString localizedString)
+    {
+        if (localizedString == null)
+        {
+            return string.Empty;
+        }
+
+        try
+        {
+            var initHandle = UnityEngine.Localization.Settings.LocalizationSettings.InitializationOperation;
+            if (!initHandle.IsDone)
+            {
+                return string.Empty;
+            }
+
+            string value = localizedString.GetLocalizedString();
+            return value ?? string.Empty;
+        }
+        catch
+        {
+            return string.Empty;
+        }
+    }
+
+    public void EnsureInitialized()
+    {
+        if (initialized) return;
+        initialized = true;
+        if (item != null) InitialiseItem(item);
+        if (SumShowText != null) SumShowText.text = thisName;
     }
 
     void Update()
     {
+        if (dragSourceData == null) return;
+        if (dragSourceData.ClueTitle == null || dragSourceData.ClueSummary == null)
+        {
+            return;
+        }
+
         //if (thisShow == true)
         //{
         //    image.sprite = item.Image;
         //}
-        thisSave = dragSourceData.ClueTitle.GetLocalizedString();
-        thisSaveDes = dragSourceData.ClueSummary.GetLocalizedString();
+        thisSave = SafeLocalizedText(dragSourceData.ClueTitle);
+        thisSaveDes = SafeLocalizedText(dragSourceData.ClueSummary);
         if (thisName != thisSave)
         {
             thisName = thisSave;
-            SumShowText.text = thisName;
+            if (SumShowText != null) SumShowText.text = thisName;
         }
         if (thisSaveDes != thisDescription)
         {
             thisDescription = thisSaveDes;
-            Description.text = thisDescription;
+            if (Description != null && inspectedItem == this) Description.text = thisDescription;
         }
     }
 
@@ -64,7 +109,11 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         thisUsed = newItem.Used;
         thisID = newItem.ItemID;
         //thisShow = newItem.Show;
-        thisName = dragSourceData.ClueTitle.GetLocalizedString();
+        if (dragSourceData != null)
+        {
+            thisName = SafeLocalizedText(dragSourceData.ClueTitle);
+            thisDescription = SafeLocalizedText(dragSourceData.ClueSummary);
+        }
         //thisName = item.TutorialClueDataTest.TutorialClueName.GetLocalizedString();
         thisType = newItem.TypeofItem;
         isdragging = false;
@@ -99,8 +148,12 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         if (thisGet == true && thisTuto == false)
         {
             Debug.Log("EndDrag");
+            foreach (var receiver in FindObjectsByType<UsingEvent>())
+                if (receiver.TryDrop(this, eventData.position, eventData.pressEventCamera)) break;
             isdragging = false;
-            transform.SetParent(parentAfterDrag);
+            transform.SetParent(parentAfterDrag, false);
+            transform.localPosition = Vector3.zero;
+            transform.localScale = Vector3.one;
             transform.position = transform.parent.position;
             image.raycastTarget = true;
             SumShowText.raycastTarget = true;
@@ -115,12 +168,16 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (thisID == 9103) { WelfareInteractionController.Instance?.InspectParkKey(); return; }
+        if (thisID >= 9100 && thisID <= 9102)
+        { WelfareInteractionController.Instance?.InspectCandy(thisID - 9100); return; }
         if (thisGet && isdragging == false)
         {
-            DesUI.SetActive(true);
-            Description.text = thisDescription;
-            ButtonUI.SetActive(false);
-            ButtonUI2.SetActive(false);
+            inspectedItem = this;
+            if (DesUI != null) DesUI.SetActive(true);
+            if (Description != null && inspectedItem == this) Description.text = thisDescription;
+            if (ButtonUI != null) ButtonUI.SetActive(false);
+            if (ButtonUI2 != null) ButtonUI2.SetActive(false);
         }
     }
 
@@ -128,7 +185,9 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     {
         if (parentAfterDrag != null)
         {
-            transform.SetParent(parentAfterDrag);
+            transform.SetParent(parentAfterDrag, false);
+            transform.localPosition = Vector3.zero;
+            transform.localScale = Vector3.one;
         }
         else
         {

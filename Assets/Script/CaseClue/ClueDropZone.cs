@@ -12,21 +12,32 @@ public class ClueDropZone : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        GameObject dropped = eventData.pointerDrag;
-        if (dropped == null)
+        if (eventData == null || eventData.pointerDrag == null)
         {
             return;
         }
 
-        if (dropped.GetComponent<DraggableClueEntry>() == null)
+        GameObject dropped = eventData.pointerDrag;
+        DraggableClueEntry draggable = dropped.GetComponent<DraggableClueEntry>() ?? dropped.GetComponentInParent<DraggableClueEntry>();
+        if (draggable == null)
         {
             return; // something else was being dragged, ignore it
         }
 
-        ClueBoardEntryUI entry = dropped.GetComponent<ClueBoardEntryUI>();
+        ClueBoardEntryUI entry = dropped.GetComponent<ClueBoardEntryUI>() ?? dropped.GetComponentInParent<ClueBoardEntryUI>();
         ClueBoardUI board = entry != null ? entry.Board : null;
-        if (board == null || !board.AcceptsDestination(contentParent)) return;
-        dropped.transform.SetParent(contentParent);
+        if (board == null)
+        {
+            return;
+        }
+
+        Transform targetParent = contentParent != null ? contentParent : transform;
+        if (!board.AcceptsDestination(targetParent))
+        {
+            return;
+        }
+
+        dropped.transform.SetParent(targetParent, false);
         dropped.transform.SetAsLastSibling();
         board.RecordPlacement(entry);
     }

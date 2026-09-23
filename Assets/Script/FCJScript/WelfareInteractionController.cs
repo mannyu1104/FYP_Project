@@ -44,9 +44,67 @@ public class WelfareInteractionController : MonoBehaviour
     private CursorInteractionTarget parkKey;
     private DragableItem keyItem;
     private GameObject modal, match;
+    private readonly List<Behaviour> suspendedForRope = new List<Behaviour>();
+
+    private void RestoreRopeView()
+    {
+        foreach (var component in suspendedForRope)
+            if (component != null) component.enabled = true;
+        suspendedForRope.Clear();
+    }
+
+    private void StartRope(int index)
+    {
+        RopeSkipping template = null;
+        foreach (var candidate in FindObjectsByType<RopeSkipping>(FindObjectsInactive.Include))
+            if (!candidate.gameObject.activeInHierarchy && candidate.gameObject.scene == gameObject.scene)
+            { template = candidate; break; }
+        if (template == null) { StartCoroutine(PlayLater(index)); return; }
+        // The inactive scene prefab remains editable; each encounter gets a fresh match.
+        match = Instantiate(template.transform.root.gameObject);
+        match.name = "Child Rope Match";
+        match.transform.position += new Vector3(1000, 0, 0);
+        foreach (var events in match.GetComponentsInChildren<UnityEngine.EventSystems.EventSystem>(true))
+            events.gameObject.SetActive(false);
+        foreach (var camera in FindObjectsByType<Camera>())
+            if (camera.enabled) { suspendedForRope.Add(camera); camera.enabled = false; }
+        foreach (var listener in FindObjectsByType<AudioListener>())
+            if (listener.enabled) { suspendedForRope.Add(listener); listener.enabled = false; }
+        foreach (var canvas in FindObjectsByType<Canvas>())
+            if (canvas.enabled) { suspendedForRope.Add(canvas); canvas.enabled = false; }
+        var game = match.GetComponentInChildren<RopeSkipping>(true);
+        game.MatchFinished += won =>
+        {
+            if (this == null || match == null) return;
+            match.SetActive(false);
+            RestoreRopeView();
+            Finish(index, won);
+        };
+        match.SetActive(true);
+    }
     private bool allowDialogue, lookWasPaused;
     private bool lastChinese;
-    private static bool Chinese => LocalizationSettings.SelectedLocale != null && LocalizationSettings.SelectedLocale.Identifier.Code.StartsWith("zh");
+    private static bool Chinese
+    {
+        get
+        {
+            try
+            {
+                if (!LocalizationSettings.HasSettings) return false;
+                var initialization = LocalizationSettings.InitializationOperation;
+                if (!initialization.IsDone) return false;
+                var selected = LocalizationSettings.SelectedLocaleAsync;
+                if (!selected.IsDone) return false;
+                var locale = selected.Result;
+                return locale != null && !string.IsNullOrEmpty(locale.Identifier.Code) &&
+                       locale.Identifier.Code.StartsWith("zh", StringComparison.OrdinalIgnoreCase);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+    }
     private static string L(string zh, string en) => Chinese ? zh : en;
     private string PathName => Path.Combine(Application.persistentDataPath, "welfare_progress.json");
 
@@ -83,7 +141,12 @@ public class WelfareInteractionController : MonoBehaviour
         }
 
     }
-    private void OnDestroy() { if (Instance == this) Instance = null; }
+    private void OnDestroy()
+    {
+        if (match != null) { match.SetActive(false); Destroy(match); }
+        RestoreRopeView();
+        if (Instance == this) Instance = null;
+    }
     private void ResetProgress()
     {
         data = new Progress();
@@ -162,7 +225,7 @@ public class WelfareInteractionController : MonoBehaviour
         if (state.finished) return;
         if (state.rope)
         {
-            if (RopeLauncher == null) { StartCoroutine(PlayLater(index)); return; }
+            if (RopeLauncher == null) { StartRope(index); return; }
             ClearPanelContents();
             bool answered = false;
             RopeLauncher(won => { if (answered || this == null) return; answered = true; Finish(index, won); });
@@ -423,6 +486,8 @@ public class WelfareInteractionController : MonoBehaviour
     }
     private void ClosePanel()
     {
+        if (match != null) match.SetActive(false);
+        RestoreRopeView();
         Dialogue?.ClearInteractionChoices();
         interactionActive = false;
         data.interaction = InteractionPhase.None;

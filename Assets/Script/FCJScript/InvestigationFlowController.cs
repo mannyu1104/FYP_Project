@@ -41,6 +41,7 @@ public class InvestigationFlowController : MonoBehaviour
     private readonly Dictionary<GameObject, bool> worldObjects = new Dictionary<GameObject, bool>();
     private readonly Dictionary<GameObject, bool> computerObjects = new Dictionary<GameObject, bool>();
     private readonly List<GameObject> sideButtons = new List<GameObject>();
+    private readonly List<GameObject> notebookButtons = new List<GameObject>();
     private readonly List<GameObject> tutorialLaunchers = new List<GameObject>();
     private readonly List<GameObject> popupRoots = new List<GameObject>();
 
@@ -87,13 +88,18 @@ public class InvestigationFlowController : MonoBehaviour
         }
         foreach (Transform t in FindObjectsByType<Transform>(FindObjectsInactive.Include))
         {
-            if (t.name == "DeleteSaveTestButton" || t.name == "TestingPanel") t.gameObject.SetActive(false);
+            if (t.name == "DeleteSaveTestButton" || t.name == "TestingPanel" || t.name == "SettingIcon") t.gameObject.SetActive(false);
+            if (t.name == "NoteBookButton")
+            {
+                notebookButtons.Add(t.gameObject);
+                t.gameObject.SetActive(false);
+            }
             if (!t.name.StartsWith("NoteButton(")) continue;
             sideButtons.Add(t.gameObject);
             Canvas shortcutCanvas = t.GetComponent<Canvas>();
             if (shortcutCanvas == null) shortcutCanvas = t.gameObject.AddComponent<Canvas>();
             shortcutCanvas.overrideSorting = true;
-            shortcutCanvas.sortingOrder = 2002; // Notebook tabs sit above the page canvas (2001).
+            shortcutCanvas.sortingOrder = 2000; // The page covers the inner edge of each tab.
             if (t.GetComponent<GraphicRaycaster>() == null) t.gameObject.AddComponent<GraphicRaycaster>();
             RectTransform rect = t as RectTransform;
             if (rect != null)
@@ -135,6 +141,7 @@ public class InvestigationFlowController : MonoBehaviour
         GameObject legacyMap = FindObject("CanvasMap");
         if (legacyMap != null) popupRoots.Add(legacyMap);
         ClueSubmission.AssessmentScored += TutorialFinished;
+        foreach (var panels in FindObjectsByType<OpenCanvasButton>(FindObjectsInactive.Include)) panels.CloseAll();
         CountingPoint.ScoreShown += LegacyTutorialScored;
         ApplyWorldVisibility();
         if (GetComponent<WelfareInteractionController>() == null) gameObject.AddComponent<WelfareInteractionController>();
@@ -188,7 +195,7 @@ public class InvestigationFlowController : MonoBehaviour
 
     private IEnumerator RouteComputer()
     {
-        yield return null; // Let the browser's Awake/Start methods initialize its controllers.
+        if (CurrentStage == Stage.Tutorial) yield return null;
         if (CurrentStage == Stage.Tutorial)
         {
             // Enter the desktop first. The tutorial launcher opens the lesson on demand.
@@ -328,6 +335,7 @@ public class InvestigationFlowController : MonoBehaviour
     private void SetStage(Stage stage)
     {
         CurrentStage = stage;
+        if (stage == Stage.Sleeping || stage == Stage.AwaitNews) PreloadOpeningNews();
         ApplyWorldVisibility();
         if (stage == Stage.Investigation)
         {
@@ -336,6 +344,21 @@ public class InvestigationFlowController : MonoBehaviour
             SetObject(internet, false);
             foreach (GameObject app in tutorialLaunchers) SetObject(app, false);
         }
+    }
+
+    private void PreloadOpeningNews()
+    {
+        var news = FindAnyObjectByType<NewsPageController>(FindObjectsInactive.Include);
+        if (news == null) return;
+        foreach (var article in news.Articles)
+            if (article != null && article.name.Contains("\u706b\u707e\uff0c\u9662\u957f"))
+            {
+                openingArticle = article;
+                article.Headline.GetLocalizedStringAsync();
+                article.Date.GetLocalizedStringAsync();
+                article.Content.GetLocalizedStringAsync();
+                break;
+            }
     }
 
     private bool TargetsTutorial(UnityEngine.Events.UnityEvent action)
@@ -374,6 +397,7 @@ public class InvestigationFlowController : MonoBehaviour
             if (IsVisible(item.DesUI)) { itemDetailsVisible = true; break; }
         bool show = CurrentStage != Stage.Menu &&
             (menu.IsGameplayVisible || (computer.IsComputerOpen() && CurrentStage == Stage.Tutorial)) && !modal;
+        foreach (GameObject button in notebookButtons) SetObject(button, show);
         foreach (GameObject button in sideButtons)
         {
             bool visible = show;

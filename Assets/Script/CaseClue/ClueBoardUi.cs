@@ -98,7 +98,12 @@ public class ClueBoardUI : MonoBehaviour
 
     private void AddEntry(ClueManager.RecordedClue clue)
     {
-        if (clue.caseDefinition != caseDefinition)
+        if (clue == null)
+        {
+            return;
+        }
+
+        if (caseDefinition != null && clue.caseDefinition != caseDefinition)
         {
             return;
         }

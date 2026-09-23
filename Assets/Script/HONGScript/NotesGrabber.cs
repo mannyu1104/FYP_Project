@@ -34,14 +34,21 @@ public class NotesGrabber : MonoBehaviour
 
     public void OpenNotes()
     {
-        foreach (var panels in FindObjectsByType<OpenCanvasButton>(FindObjectsInactive.Include)) panels.AvaliableNotebookCanva();
+        foreach (var panels in FindObjectsByType<OpenCanvasButton>(FindObjectsInactive.Include))
+        {
+            panels.AvaliableNotebookCanva();
+            panels.DisablingInGameCanva();
+            panels.DisablingTutorialCanva();
+        }
         maxpage = 1;
         LoadAllData();
         if (Notes.Count == 0)
         {
             Notes.Add("");
         }
+
         pagenum = 1;
+        maxpage = Mathf.Max(1, Notes.Count);
         LoadNotes(0);
         NumPagesShowing.text = "Page:" + pagenum + "/" + maxpage;
         Debug.Log(Notes.Count);
@@ -53,20 +60,25 @@ public class NotesGrabber : MonoBehaviour
         {
             return;
         }
-        else
+
+        if (Notes.Count == 0)
         {
-            savenum = pagenum - 1;
-            pagenum += 1;
-            loadnum = pagenum - 1;
-            if (pagenum > Notes.Count)
-            {
-                Notes.Add("");
-                maxpage = Notes.Count;
-            }
-            SaveNotes(savenum);
-            LoadNotes(loadnum);
-            NumPagesShowing.text = "Page:" + pagenum + "/" + maxpage;
+            Notes.Add("");
         }
+
+        int currentIndex = Mathf.Clamp(pagenum - 1, 0, Notes.Count - 1);
+        SaveNotes(currentIndex);
+
+        pagenum += 1;
+        if (pagenum > Notes.Count)
+        {
+            Notes.Add("");
+        }
+
+        maxpage = Mathf.Max(maxpage, Notes.Count);
+        int nextIndex = Mathf.Clamp(pagenum - 1, 0, Notes.Count - 1);
+        LoadNotes(nextIndex);
+        NumPagesShowing.text = "Page:" + pagenum + "/" + maxpage;
     }
 
     public void PrevPage()
@@ -75,32 +87,60 @@ public class NotesGrabber : MonoBehaviour
         {
             return;
         }
-        else
+
+        if (Notes.Count == 0)
         {
-            savenum = pagenum - 1;
-            pagenum -= 1;
-            loadnum = pagenum - 1;
-            SaveNotes(savenum);
-            LoadNotes(loadnum);
-            NumPagesShowing.text = "Page:" + pagenum + "/" + maxpage;
+            Notes.Add("");
         }
+
+        int currentIndex = Mathf.Clamp(pagenum - 1, 0, Notes.Count - 1);
+        SaveNotes(currentIndex);
+
+        pagenum -= 1;
+        int prevIndex = Mathf.Clamp(pagenum - 1, 0, Notes.Count - 1);
+        LoadNotes(prevIndex);
+        NumPagesShowing.text = "Page:" + pagenum + "/" + maxpage;
     }
 
     public void SaveNotes(int num)
     {
+        if (num < 0)
+        {
+            num = 0;
+        }
+
+        while (Notes.Count <= num)
+        {
+            Notes.Add("");
+        }
+
         Notes[num] = noteInput.text;
     }
 
     public void LoadNotes(int num)
     {
+        if (num < 0)
+        {
+            num = 0;
+        }
+
+        while (Notes.Count <= num)
+        {
+            Notes.Add("");
+        }
+
         noteInput.text = Notes[num];
     }
 
     public void CloseNote()
     {
-        Notes[pagenum-1] = noteInput.text;
-        SaveAllData();
+        if (pagenum > 0 && pagenum <= Notes.Count)
+        {
+            Notes[pagenum-1] = noteInput.text;
+            SaveAllData();
+        }
         Notes.Clear();
+        foreach (var panels in FindObjectsByType<OpenCanvasButton>(FindObjectsInactive.Include)) panels.CloseAll();
     }
 
     public void FlushForSlot()

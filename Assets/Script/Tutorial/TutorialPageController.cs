@@ -44,53 +44,9 @@ public class TutorialPageController : MonoBehaviour
         Hide(detailCanvasGroup);
     }
 
-    private bool submissionIntegrated;
     public void IntegrateSubmissionPanel()
     {
-        if (submissionIntegrated || submissionPanel == null) return;
-        submissionIntegrated = true;
-        var destination = transform;
-        var candidates = new List<GameObject>();
-        var canonical = submissionPanel;
-        foreach (Transform candidate in FindObjectsByType<Transform>(FindObjectsInactive.Include))
-        {
-            if (candidate.name == "SubmissionPage" && candidate.gameObject.scene == gameObject.scene)
-                candidates.Add(candidate.gameObject);
-        }
-        // Use the explicitly assigned computer panel. Slot counts cannot identify it:
-        // the merged panels keep their inventory slots elsewhere.
-        canonical.transform.SetParent(destination, false);
-        var rect = (RectTransform)canonical.transform;
-        rect.anchorMin = new Vector2(1f, 0f);
-        rect.anchorMax = new Vector2(1f, 1f);
-        rect.pivot = new Vector2(1f, .5f);
-        rect.sizeDelta = new Vector2(650f, -130f);
-        rect.anchoredPosition = new Vector2(-50f, -15f);
-        rect.localScale = Vector3.one;
-        var layout = canonical.GetComponent<LayoutElement>();
-        if (layout != null) layout.ignoreLayout = true;
-        foreach (var candidate in candidates) if (candidate != canonical) candidate.SetActive(false);
-        submissionPanel = canonical;
-        submissionPanel.SetActive(true);
-        SetOverlayOrder(submissionPanel, 100);
-        submissionPanel.transform.SetAsLastSibling();
-        foreach (var button in canonical.GetComponentsInChildren<Button>(true))
-            for (int i = 0; i < button.onClick.GetPersistentEventCount(); i++)
-                if (button.onClick.GetPersistentTarget(i) is GameObject score && score.name == "ScoreBack")
-                {
-                    score.transform.SetParent(destination, false);
-                    SetOverlayOrder(score, 2100);
-                    score.SetActive(false);
-                }
-    }
-
-    private static void SetOverlayOrder(GameObject panel, int order)
-    {
-        var canvas = panel.GetComponent<Canvas>();
-        if (canvas == null) canvas = panel.AddComponent<Canvas>();
-        canvas.overrideSorting = true;
-        canvas.sortingOrder = order;
-        if (panel.GetComponent<GraphicRaycaster>() == null) panel.AddComponent<GraphicRaycaster>();
+        // Layout and hierarchy are authored in Computer Prefab.
     }
 
     private void OnEnable()

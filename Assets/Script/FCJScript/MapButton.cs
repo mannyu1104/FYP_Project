@@ -144,6 +144,13 @@ public class MapButton : MonoBehaviour
         }
 
         mapPanel.SetActive(visible);
+        var group = mapPanel.GetComponent<CanvasGroup>();
+        if (group != null)
+        {
+            group.alpha = visible ? 1f : 0f;
+            group.interactable = visible;
+            group.blocksRaycasts = visible;
+        }
 
         if (pauseLookWhenOpen)
         {

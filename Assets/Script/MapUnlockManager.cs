@@ -39,6 +39,16 @@ public class MapUnlockManager : MonoBehaviour
         unlockInputField.text = string.Empty;
     }
 
+    public void CloseMap()
+    {
+        foreach (var button in FindObjectsByType<MapButton>(FindObjectsInactive.Include))
+            if (button.mapPanel != null && transform.IsChildOf(button.mapPanel.transform))
+            {
+                button.CloseMap();
+                return;
+            }
+    }
+
     public bool TryUnlock(string input)
     {
         if (string.IsNullOrWhiteSpace(input))
@@ -65,7 +75,6 @@ public class MapUnlockManager : MonoBehaviour
             }
 
             icon.Unlocking();
-            icon.Mapdetials.Unlocked = true;
             ShowFeedback(successMessageLocalized.GetLocalizedString());
             return true;
         }

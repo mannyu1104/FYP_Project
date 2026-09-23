@@ -8,25 +8,36 @@ public class OpenCanvasButton : MonoBehaviour
     [SerializeField] CanvasGroup NotebookCanvas;
     [SerializeField] CanvasGroup ScoreShowing;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private static bool IsVisible(CanvasGroup panel)
+    {
+        if (panel == null || !panel.gameObject.activeInHierarchy) return false;
+        foreach (var group in panel.GetComponentsInParent<CanvasGroup>())
+            if (group.alpha <= .01f) return false;
+        return true;
+    }
+    public bool IsNotebookOpen => IsVisible(NotebookCanvas);
+    public bool IsAnyOpen => IsNotebookOpen || IsVisible(InGameInventoryCanvas) ||
+        IsVisible(TutorialInventoryCanvas) || IsVisible(ScoreShowing);
+    public bool OwnsShortcut(GameObject button) => NotebookCanvas != null && button != null &&
+        button.transform.IsChildOf(NotebookCanvas.transform);
+    public void CloseAll()
+    {
+        if (IsNotebookOpen) NotesGrabber.Instance?.FlushForSlot();
+        foreach (var panel in new[] { InGameInventoryCanvas, TutorialInventoryCanvas, NotebookCanvas, ScoreShowing })
+        {
+            if (panel == null) continue;
+            panel.alpha = 0f; panel.interactable = false; panel.blocksRaycasts = false;
+        }
+        foreach (var item in FindObjectsByType<DragableItem>(FindObjectsInactive.Include))
+            if (item.DesUI != null) item.DesUI.SetActive(false);
+    }
+
+    // Important: do not force the panel state here. The scene and explicit user actions should control
+    // visibility; changing alpha in Start overrides the intended scene setup and can make the UI appear
+    // or disappear unexpectedly at runtime.
     void Start()
     {
-        //MapOpen = false;
-        InGameInventoryCanvas.alpha = 0f;
-        InGameInventoryCanvas.interactable = false;
-        InGameInventoryCanvas.blocksRaycasts = false;
-
-        TutorialInventoryCanvas.alpha = 0f;
-        TutorialInventoryCanvas.interactable = false;
-        TutorialInventoryCanvas.blocksRaycasts = false;
-
-        NotebookCanvas.alpha = 0f;
-        NotebookCanvas.interactable = false;
-        NotebookCanvas.blocksRaycasts = false;
-
-        ScoreShowing.alpha = 0f;
-        ScoreShowing.interactable = false;
-        ScoreShowing.blocksRaycasts = false;
+        // Intentionally left empty.
     }
 
     // Update is called once per frame
@@ -60,6 +71,8 @@ public class OpenCanvasButton : MonoBehaviour
 
     public void AvaliableNotebookCanva()
     {
+        if (NotebookCanvas == null) return;
+        NotebookCanvas.gameObject.SetActive(true);
         NotebookCanvas.alpha = 1f;
         NotebookCanvas.interactable = true;
         NotebookCanvas.blocksRaycasts = true;
@@ -67,16 +80,22 @@ public class OpenCanvasButton : MonoBehaviour
 
     public void AvaliableInGameCanva()
     {
+        if (InGameInventoryCanvas == null) return;
+        InGameInventoryCanvas.gameObject.SetActive(true);
         InGameInventoryCanvas.alpha = 1f;
         InGameInventoryCanvas.interactable = true;
         InGameInventoryCanvas.blocksRaycasts = true;
+        DisablingTutorialCanva();
     }
 
     public void AvaliableTutorialCanva()
     {
+        if (TutorialInventoryCanvas == null) return;
+        TutorialInventoryCanvas.gameObject.SetActive(true);
         TutorialInventoryCanvas.alpha = 1f;
         TutorialInventoryCanvas.interactable = true;
         TutorialInventoryCanvas.blocksRaycasts = true;
+        DisablingInGameCanva();
     }
 
     public void DiablingScoreCanva()
@@ -95,6 +114,7 @@ public class OpenCanvasButton : MonoBehaviour
 
     public void DisablingInGameCanva()
     {
+        if (InGameInventoryCanvas == null) return;
         InGameInventoryCanvas.alpha = 0f;
         InGameInventoryCanvas.interactable = false;
         InGameInventoryCanvas.blocksRaycasts = false;
@@ -102,6 +122,7 @@ public class OpenCanvasButton : MonoBehaviour
 
     public void DisablingTutorialCanva()
     {
+        if (TutorialInventoryCanvas == null) return;
         TutorialInventoryCanvas.alpha = 0f;
         TutorialInventoryCanvas.interactable = false;
         TutorialInventoryCanvas.blocksRaycasts = false;
