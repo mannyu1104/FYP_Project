@@ -1,210 +1,64 @@
+﻿using System;
+using System.Collections;
 using UnityEngine;
-using System.Collections.Generic;
 using UnityEngine.UI;
-using Unity.VisualScripting;
-using TMPro;
 
 public class ScissorPaperStone : MonoBehaviour
 {
-    private int winningcount;
-    private int playingcount;
     public int playerselection;
-    private float animationtime = 2f;
-    private float playedtime;
-    public bool playing;
-    private int ChildSelection;
-    private bool started;
-    public bool UIback;
-
-    [SerializeField] public Image OpponentSelection;
-    [SerializeField] public Sprite ScissorUI;
-    [SerializeField] public Sprite PaperUI;
-    [SerializeField] public Sprite StoneUI;
-
-    [SerializeField] public Sprite Win;
-    [SerializeField] public Sprite Lose;
+    public bool playing, UIback;
+    public Image OpponentSelection;
+    public Sprite ScissorUI, PaperUI, StoneUI, Win, Lose;
     public Image[] WinningUISlots;
     public GameObject[] SelectionUI;
+    public event Action<int, int> RoundResolved;
+    public event Action<bool> MatchFinished;
+    private int rounds, wins, resultMask;
+    private bool finished;
 
-    List<int> TheSelection = new List<int>() {1, 2, 3};
-    List<Sprite> OpponentUI = new List<Sprite>();
-
-    // 1 = scissor
-    // 2 = paper
-    // 3 = stone
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void RestoreMatch(int played, int won, int mask)
     {
-        started = false;
-        winningcount = 0;
-        playingcount = 0;
-        playedtime = 0;
-        playerselection = 0;
-        ChildSelection = 0;
+        StopAllCoroutines();
+        rounds = Mathf.Clamp(played, 0, 3); wins = Mathf.Clamp(won, 0, rounds);
+        resultMask = mask; finished = rounds >= 3; playing = false;
+        for (int i = 0; i < WinningUISlots.Length; i++)
+            if (WinningUISlots[i] != null) WinningUISlots[i].sprite = i < rounds ? ((mask & (1 << i)) != 0 ? Win : Lose) : null;
+        ShowChoices(!finished);
+    }
+    private void ShowChoices(bool show)
+    {
+        foreach (GameObject choice in SelectionUI) if (choice != null) choice.SetActive(show);
+    }
+    public void Paper() => Choose(2);
+    public void Stone() => Choose(3);
+    public void Scissor() => Choose(1);
+    private void Choose(int choice)
+    {
+        if (playing || finished) return;
+        playerselection = choice; playing = true; ShowChoices(false);
+        StartCoroutine(ResolveRound(choice));
+    }
+    private IEnumerator ResolveRound(int choice)
+    {
+        Sprite[] sprites = { ScissorUI, PaperUI, StoneUI };
+        int opponent = UnityEngine.Random.Range(1, 4);
+        for (float elapsed = 0; elapsed < 1.2f; elapsed += Time.unscaledDeltaTime)
+        {
+            if (OpponentSelection != null) OpponentSelection.sprite = sprites[UnityEngine.Random.Range(0, 3)];
+            yield return null;
+        }
+        if (OpponentSelection != null) OpponentSelection.sprite = sprites[opponent - 1];
         playing = false;
-        UIback = true;
-
-        if (OpponentUI.Count == 0)
+        if (choice != opponent)
         {
-            OpponentUI.Add(ScissorUI);
-            OpponentUI.Add(PaperUI);
-            OpponentUI.Add(StoneUI);
+            bool won = (choice == 1 && opponent == 2) || (choice == 2 && opponent == 3) || (choice == 3 && opponent == 1);
+            if (won) { wins++; resultMask |= 1 << rounds; }
+            if (rounds < WinningUISlots.Length && WinningUISlots[rounds] != null) WinningUISlots[rounds].sprite = won ? Win : Lose;
+            rounds++;
+            RoundResolved?.Invoke(rounds, resultMask);
         }
-
-        foreach (Image image in WinningUISlots)
-        {
-            image.sprite = null;
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (playing)
-        {
-            playedtime += Time.deltaTime;
-            if (playedtime <= animationtime)
-            {
-                Sprite UIimage = OpponentUI[Random.Range(0, OpponentUI.Count)];
-                OpponentSelection.sprite = UIimage;
-            }
-            else
-            {
-                started = true;
-                playing = false;
-            }
-        }
-
-        if (!playing && started)
-        {
-            OpponentSelection.sprite = OpponentUI[ChildSelection - 1];
-
-            if (ChildSelection == playerselection)
-            {
-                Debug.Log("Draw");
-                started = false;
-                return;
-            }
-            else if (ChildSelection != playerselection)
-            {
-                if (ChildSelection == 1)
-                {
-                    if (playerselection == 2)
-                    {
-                        WinningUISlots[playingcount].sprite = Lose;
-                        started = false;
-                    }
-                    else if (playerselection == 3)
-                    {
-                        WinningUISlots[playingcount].sprite = Win;
-                        started = false;
-                        winningcount += 1;
-                    }
-                }
-                else if (ChildSelection == 2)
-                {
-                    if (playerselection == 1)
-                    {
-                        WinningUISlots[playingcount].sprite = Win;
-                        winningcount += 1;
-                        started = false;
-                    }
-                    else if (playerselection == 3)
-                    {
-                        WinningUISlots[playingcount].sprite = Lose;
-                        started = false;
-                    }
-                }
-                else if (ChildSelection == 3)
-                {
-                    if (playerselection == 1)
-                    {
-                        WinningUISlots[playingcount].sprite = Lose;
-                        started = false;
-                    }
-                    else if (playerselection == 2)
-                    {
-                        WinningUISlots[playingcount].sprite = Win;
-                        winningcount += 1;
-                        started = false;
-                    }
-                }
-                playingcount += 1;
-            }
-        }
-
-        if (playing && UIback == true)
-        {
-            foreach (GameObject selection in SelectionUI)
-            {
-                if (selection != SelectionUI[playerselection - 1])
-                {
-                    selection.SetActive(false);
-                }
-            }
-        }
-
-        if (!playing && UIback == true)
-        {
-            foreach (GameObject selection in SelectionUI)
-            {
-                selection.SetActive(true);
-                Debug.Log("SetUI");
-            }
-            UIback = false;
-        }
-
-        if (playingcount > 2)
-        {
-            ShowResult();
-        }
-    }
-
-    void RandomSelection()
-    {
-        int ComponentSelection  = TheSelection[Random.Range(0, TheSelection.Count)];
-        Debug.Log(ComponentSelection);
-
-        ChildSelection = ComponentSelection;
-
-        UIback = true;
-        playing = true;
-        playedtime = 0;
-    }
-
-    void ShowResult()
-    {
-        if (winningcount >= 2)
-        {
-            Debug.Log("YouWIN");
-            // giveItem
-        }
-        else
-        {
-            Debug.Log("YouLose");
-            // Set dialogue to child required candy
-        }
-    }
-
-    public void Paper()
-    {
-        playerselection = 2;
-
-        RandomSelection();
-    }
-
-    public void Stone()
-    {
-        playerselection = 3;
- 
-        RandomSelection();
-    }
-
-    public void Scissor()
-    {
-        playerselection = 1;
-
-        RandomSelection();
+        finished = rounds >= 3;
+        ShowChoices(!finished);
+        if (finished) MatchFinished?.Invoke(wins >= 2);
     }
 }

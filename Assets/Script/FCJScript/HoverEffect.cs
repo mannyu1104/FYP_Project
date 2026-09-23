@@ -74,7 +74,10 @@ public class HoverEffect : MonoBehaviour
 
     void Update()
     {
-        if (isPaused || MapButton.IsAnyMapOpen || WhiteBoard.IsAnyWhiteBoardOpen)
+        var dialogue = FindAnyObjectByType<DialogueController>();
+        if (isPaused || WelfareInteractionController.IsOpen ||
+            (dialogue != null && (dialogue.IsDialogueActive || dialogue.HasInteractionChoices)) ||
+            MapButton.IsAnyMapOpen || WhiteBoard.IsAnyWhiteBoardOpen)
         {
             for (int i = 0; i < hoverStates.Count; i++)
             {

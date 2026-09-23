@@ -24,6 +24,15 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     public bool isdragging;
 
     private bool initialized;
+    private Canvas boardDragCanvas;
+    private bool createdBoardDragCanvas, previousOverrideSorting;
+    private int previousSortingOrder;
+
+    public void ConfigureCandy(int id, TMP_Text label, Image icon)
+    {
+        initialized = true; thisID = id; thisType = "Ingame";
+        SumShowText = label; image = icon;
+    }
 
     void Start() => EnsureInitialized();
 
@@ -67,6 +76,15 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             parentAfterDrag = transform.parent;
             transform.SetParent(transform.root);
             transform.SetAsLastSibling();
+            if (WhiteBoard.IsAnyWhiteBoardOpen)
+            {
+                boardDragCanvas = GetComponent<Canvas>();
+                createdBoardDragCanvas = boardDragCanvas == null;
+                if (createdBoardDragCanvas) boardDragCanvas = gameObject.AddComponent<Canvas>();
+                previousOverrideSorting = boardDragCanvas.overrideSorting;
+                previousSortingOrder = boardDragCanvas.sortingOrder;
+                boardDragCanvas.overrideSorting = true; boardDragCanvas.sortingOrder = 3000;
+            }
             image.raycastTarget = false;
             SumShowText.raycastTarget = false;
         }
@@ -92,6 +110,13 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
             transform.position = transform.parent.position;
             image.raycastTarget = true;
             SumShowText.raycastTarget = true;
+            if (boardDragCanvas != null)
+            {
+                boardDragCanvas.overrideSorting = previousOverrideSorting;
+                boardDragCanvas.sortingOrder = previousSortingOrder;
+                if (createdBoardDragCanvas) Destroy(boardDragCanvas);
+                boardDragCanvas = null;
+            }
         }
         //else if (!thisUsed && thisGet == true)
         //{
@@ -103,6 +128,9 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (thisID == 9103) { WelfareInteractionController.Instance?.InspectParkKey(); return; }
+        if (thisID >= 9100 && thisID <= 9102)
+        { WelfareInteractionController.Instance?.InspectCandy(thisID - 9100); return; }
         if (thisGet && isdragging == false)
         {
             DesUI.SetActive(true);

@@ -57,6 +57,7 @@ public class LocationNavigator : MonoBehaviour
     [Tooltip("Back buttons. Element 0 is for entrance, element 1 is for staff room.")]
     [SerializeField] private GameObject[] backButtons = new GameObject[0];
 
+    public GameObject StaffRoomRoot => staffRoomObjects != null ? staffRoomObjects : staffRoomImage;
     public int SavedArea => staffRoomImage != null && staffRoomImage.activeSelf ? 2 :
         entranceImage != null && entranceImage.activeSelf ? 1 : 0;
     public void RestoreArea(int area)

@@ -501,7 +501,7 @@ public class DialogueController : MonoBehaviour
 
     public void HideNonDialogueUi()
     {
-        if (isDialogueActive)
+        if (isDialogueActive || interactionChoices != null)
         {
             return;
         }
@@ -1119,7 +1119,7 @@ public class DialogueController : MonoBehaviour
     private bool IsSettingsOpen()
     {
         MainMenuController menu = FindAnyObjectByType<MainMenuController>();
-        return SaveSlotPanel.IsOpen || (menu != null && menu.IsSettingsVisible);
+        return WelfareInteractionController.BlocksDialogue || SaveSlotPanel.IsOpen || (menu != null && menu.IsSettingsVisible);
     }
 
     [System.Serializable]
@@ -1145,8 +1145,55 @@ public class DialogueController : MonoBehaviour
         restoringConversation = false;
     }
 
+    private GameObject interactionChoices;
+    public bool HasInteractionChoices => interactionChoices != null;
+    public void ShowInteractionChoices(string[] labels, System.Action[] actions, bool[] enabledChoices = null)
+    {
+        ClearInteractionChoices();
+        SetPanelVisible(dialogueUIRoot, true);
+        SetPanelVisible(dialoguePanel, true);
+        interactionChoices = new GameObject("Dialogue choices", typeof(RectTransform));
+        var canvas = dialoguePanel.GetComponentInParent<Canvas>().rootCanvas;
+        interactionChoices.transform.SetParent(canvas.transform, false);
+        var root = (RectTransform)interactionChoices.transform;
+        root.anchorMin = Vector2.zero; root.anchorMax = Vector2.one;
+        root.offsetMin = root.offsetMax = Vector2.zero;
+        for (int i = 0; i < labels.Length; i++)
+        {
+            int index = i;
+            var obj = new GameObject("Choice", typeof(RectTransform), typeof(Image), typeof(Button));
+            obj.transform.SetParent(root, false);
+            var rect = (RectTransform)obj.transform;
+            rect.sizeDelta = new Vector2(360, 110);
+            float x = labels.Length == 1 ? .5f : Mathf.Lerp(.34f, .73f, (float)i / (labels.Length - 1));
+            rect.anchorMin = rect.anchorMax = new Vector2(x, .54f);
+            rect.anchoredPosition = Vector2.zero;
+            var graphic = obj.GetComponent<Image>();
+            if (skipButton != null && skipButton.targetGraphic is Image template) graphic.sprite = template.sprite;
+            graphic.color = new Color(.78f, .92f, 1f);
+            var button = obj.GetComponent<Button>();
+            button.interactable = enabledChoices == null || enabledChoices[i];
+            button.onClick.AddListener(() => { ClearInteractionChoices(); actions[index]?.Invoke(); });
+            var textObject = new GameObject("Label", typeof(RectTransform), typeof(TextMeshProUGUI));
+            textObject.transform.SetParent(obj.transform, false);
+            var text = textObject.GetComponent<TextMeshProUGUI>();
+            text.text = labels[i]; text.fontSize = 34; text.color = new Color(.12f,.2f,.27f);
+            text.alignment = TextAlignmentOptions.Center; text.raycastTarget = false;
+            text.rectTransform.anchorMin = Vector2.zero; text.rectTransform.anchorMax = Vector2.one;
+            text.rectTransform.offsetMin = text.rectTransform.offsetMax = Vector2.zero;
+            LocalizedFontController.Instance?.ApplyTo(text);
+        }
+    }
+    public void ClearInteractionChoices()
+    {
+        if (interactionChoices == null) return;
+        interactionChoices.SetActive(false); Destroy(interactionChoices); interactionChoices = null;
+        SetPanelVisible(dialoguePanel, false); SetPanelVisible(dialogueUIRoot, false);
+    }
+
     public void CancelConversation()
     {
+        ClearInteractionChoices();
         currentNpc = null;
         if (isDialogueActive) FinishDialogue();
         else HideNonDialogueUi();

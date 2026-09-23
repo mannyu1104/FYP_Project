@@ -35,6 +35,8 @@ public class CursorInteractionTarget : MonoBehaviour, IPointerClickHandler
 
     public void TriggerInspection()
     {
+        if (WelfareInteractionController.IsOpen ||
+            (WelfareInteractionController.Instance != null && WelfareInteractionController.Instance.IsChild(GetComponent<NPCDialogueTrigger>()))) return;
         if (InvestigationFlowController.Instance != null)
         {
             if (InvestigationFlowController.Instance.TryOpenDoor(gameObject)) return;

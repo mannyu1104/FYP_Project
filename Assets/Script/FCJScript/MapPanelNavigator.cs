@@ -69,6 +69,7 @@ public class MapPanelNavigator : MonoBehaviour
         UnpauseLookIfNeeded();
     }
 
+    public GameObject LocationRoot(int index) => index >= 0 && index < locationPanels.Count ? locationPanels[index] : null;
     public int SavedLocation => locationPanels.FindIndex(p => p != null && p.activeSelf);
     public void RestoreLocation(int index) => OpenPanelImmediately(index);
 

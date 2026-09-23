@@ -349,7 +349,7 @@ Instruction_009,玩法说明 Instruction,玩法,人物,Characters
 Instruction_010,玩法说明 Instruction,玩法,照片/图片类,Photos / Images
 Instruction_011,玩法说明 Instruction,玩法,搜寻关键字…,Enter Keyword…
 Instruction_012,玩法说明 Instruction,玩法,记录为重要线索,Record as Important Clue
-Character_010,人物 Character,玩家 / 侦探,玩家 / 侦探,Player / Detective
+Character_010,人物 Character,玩家 / 侦探,侦探（我）,Detective (Me)
 Character_011,人物 Character,陈志宏,陈志宏,Chen Zhihong
 Character_012,人物 Character,陈志宏,希望孤儿院院长,Director of Hope Orphanage
 Character_013,人物 Character,张慧玲,张慧玲,Zhang Huiling

@@ -19,6 +19,38 @@ MonoBehaviour:
     m_Items:
     - rid: 1944176950501704264
   m_TableData:
+  - m_Id: 9200000000007
+    m_Localized: "\u80cc\u5305\u5df2\u6ee1\uff0c\u5148\u6574\u7406\u4e00\u4e0b\uff0c\u518d\u6765\u62ff\u8fd9\u9897\u7cd6\u679c\u5427\u3002"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9200000000006
+    m_Localized: "\u6211\u8fd8\u6ca1\u51c6\u5907\u597d\uff0c\u7a0d\u540e\u518d\u6765\u966a\u6211\u73a9\u5427\u3002"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9200000000005
+    m_Localized: "\u8fd9\u6b21\u4f60\u8f93\u4e86\u3002\u4e0d\u8fc7\uff0c\u7ed9\u6211\u4e00\u9897\u7cd6\u679c\uff0c\u6211\u4e5f\u4f1a\u544a\u8bc9\u4f60\uff01"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9200000000004
+    m_Localized: "\u4f60\u8d62\u4e86\uff01\u6211\u544a\u8bc9\u4f60\u2026\u2026"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9200000000003
+    m_Localized: "\u6211\u4eec\u4e0d\u518d\u6bd4\u8d5b\u5566\u3002\u4f60\u7ed9\u6211\u4e00\u9897\u7cd6\u679c\uff0c\u6211\u4e5f\u4f1a\u544a\u8bc9\u4f60\uff01"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9200000000002
+    m_Localized: "\u60f3\u77e5\u9053\u60c5\u62a5\u7684\u8bdd\uff0c\u5148\u966a\u6211\u73a9\u4e00\u573a\u6e38\u620f\u5427\uff01"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9200000000001
+    m_Localized: "\u8fd9\u662f\u4e00\u9897\u7cd6\u679c\u3002\u5982\u679c\u6211\u662f\u5c0f\u5b69\u5b50\uff0c\u5e94\u8be5\u4f1a\u5f88\u559c\u6b22\u5427\u3002"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9200000000000
+    m_Localized: "\u7cd6\u679c"
+    m_Metadata:
+      m_Items: []
   - m_Id: 23825497923584
     m_Localized: "\u5165\u53E3\u5904"
     m_Metadata:
@@ -938,7 +970,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 8047910395940
-    m_Localized: "\u73A9\u5BB6 / \u4FA6\u63A2"
+    m_Localized: "侦探（我）"
     m_Metadata:
       m_Items: []
   - m_Id: 8047910395941

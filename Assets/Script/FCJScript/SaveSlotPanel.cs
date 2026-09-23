@@ -22,7 +22,7 @@ public class SaveSlotPanel : MonoBehaviour
         public List<SaveFile> files = new List<SaveFile>();
     }
     private static readonly string[] FileNames = { "inventory.json", "inventorylock.json", "map.json",
-        "dialogue_history.json", "clues.json", "story_progress.json", "notes.json" };
+        "dialogue_history.json", "clues.json", "story_progress.json", "notes.json", "welfare_progress.json", "whiteboard.json" };
     private static Snapshot pending;
     private static Snapshot[] slots;
     private static SaveSlotPanel instance;
@@ -57,7 +57,7 @@ public class SaveSlotPanel : MonoBehaviour
             if (string.IsNullOrEmpty(data.checksum) || data.checksum != Digest(data)) return null;
             foreach (string required in FileNames)
             {
-                if (required == "notes.json") continue;
+                if (required == "notes.json" || required == "welfare_progress.json" || required == "whiteboard.json") continue;
                 var file = data.files.Find(f => f != null && f.name == required);
                 if (file == null || string.IsNullOrEmpty(file.json) || !file.json.TrimStart().StartsWith("{")) return null;
             }
@@ -220,9 +220,12 @@ public class SaveSlotPanel : MonoBehaviour
         FindAnyObjectByType<MapPanelNavigator>(FindObjectsInactive.Include)?.RestoreLocation(data.location);
         if (data.location == 1) FindAnyObjectByType<LocationNavigator>(FindObjectsInactive.Include)?.RestoreArea(data.area);
         FindAnyObjectByType<LookController>(FindObjectsInactive.Include)?.RestoreLookX(data.lookX);
+        WelfareInteractionController.Instance?.LoadProgress();
+        foreach (var board in FindObjectsByType<WhiteBoardSurface>(FindObjectsInactive.Include)) board.LoadLayout();
         pending = null;
         if (InvestigationFlowController.Instance != null) InvestigationFlowController.Instance.TutorialScored = data.stage == InvestigationFlowController.Stage.Tutorial && data.part == -1;
         InvestigationFlowController.Instance?.RestoreStage(data.stage, Mathf.Max(0, data.part), data.conversation);
+        WelfareInteractionController.Instance?.ResumeSavedInteraction();
     }
     private void Build()
     {
@@ -233,7 +236,7 @@ public class SaveSlotPanel : MonoBehaviour
         scaler.matchWidthOrHeight = 0.5f;
         gameObject.AddComponent<GraphicRaycaster>();
         var shade = Rect("Backdrop", transform, Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
-        shade.gameObject.AddComponent<Image>().color = new Color(0.025f, 0.035f, 0.055f, 0.98f);
+        shade.gameObject.AddComponent<Image>().color = new Color(.94f, .97f, 1f, 1f);
         title = Label(shade, "", 36); title.rectTransform.anchorMin = new Vector2(.07f, .84f); title.rectTransform.anchorMax = new Vector2(.75f, .96f);
         for (int i = 0; i < SlotCount; i++)
         {
@@ -255,16 +258,16 @@ public class SaveSlotPanel : MonoBehaviour
     {
         var rect = Rect("Label", parent, Vector2.zero, Vector2.one, new Vector2(18, 8), new Vector2(-18, -8));
         var label = rect.gameObject.AddComponent<TextMeshProUGUI>(); label.text = text; label.fontSize = size;
-        label.color = new Color(.91f,.91f,.85f); label.alignment = TextAlignmentOptions.MidlineLeft;
+        label.color = new Color(.12f,.2f,.27f); label.alignment = TextAlignmentOptions.MidlineLeft;
         label.enableAutoSizing = true; label.fontSizeMin = 14; label.fontSizeMax = size; label.raycastTarget = false;
         LocalizedFontController.Instance?.ApplyTo(label);
         return label;
     }
     private static Button MakeButton(RectTransform rect, string text, UnityEngine.Events.UnityAction action)
     {
-        var image = rect.gameObject.AddComponent<Image>(); image.color = new Color(.13f,.18f,.23f);
+        var image = rect.gameObject.AddComponent<Image>(); image.color = new Color(.76f,.89f,.98f);
         var button = rect.gameObject.AddComponent<Button>(); button.targetGraphic = image;
-        var colors = button.colors; colors.highlightedColor = new Color(.75f,.88f,1); colors.disabledColor = new Color(.3f,.3f,.3f); button.colors = colors;
+        var colors = button.colors; colors.highlightedColor = new Color(.75f,.88f,1); colors.disabledColor = new Color(.78f,.81f,.84f); button.colors = colors;
         button.onClick.AddListener(action); Label(rect, text, 24); return button;
     }
 }

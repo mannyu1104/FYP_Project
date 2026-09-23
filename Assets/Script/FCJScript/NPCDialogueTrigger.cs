@@ -43,6 +43,7 @@ public class NPCDialogueTrigger : MonoBehaviour, IPointerClickHandler
 
     public void StartDialogue()
     {
+        if (WelfareInteractionController.Instance != null && WelfareInteractionController.Instance.TryInteract(this)) return;
         if (WhiteBoard.IsAnyWhiteBoardOpen)
         {
             return;

@@ -147,10 +147,11 @@ public class MainMenuController : MonoBehaviour
         if (CanLoadGame()) SaveSlotPanel.Open(this, false);
     }
 
-    public void SaveGame() { if (IsGameplayVisible) SaveSlotPanel.Open(this, true); }
+    public void SaveGame() { if (CanOpenGameplaySettings) SaveSlotPanel.Open(this, true); }
 
     public void CaptureSaveFiles()
     {
+        foreach (var board in FindObjectsByType<WhiteBoardSurface>(FindObjectsInactive.Include)) board.SaveLayout();
         ResolveReferences();
         if (saveSystem == null) throw new System.InvalidOperationException("SaveSystem missing");
         saveSystem.SaveInventory();
@@ -160,6 +161,7 @@ public class MainMenuController : MonoBehaviour
         FindAnyObjectByType<ClueManager>(FindObjectsInactive.Include)?.SaveClues();
         FindAnyObjectByType<NotesGrabber>(FindObjectsInactive.Include)?.FlushForSlot();
         InvestigationFlowController.Instance?.SaveProgress();
+        WelfareInteractionController.Instance?.SaveProgress();
     }
 
     public IEnumerator RestoreSlot()
@@ -256,12 +258,15 @@ public class MainMenuController : MonoBehaviour
         EnsurePanelBlocksRaycasts(settingsPanel);
         settingsOpenedFromGame = false;
         SetGameObject(settingsPanel, true);
+        EnsurePanelBlocksRaycasts(settingsPanel);
+        settingsPanel.transform.SetAsLastSibling();
         SetGameObject(returnToMainMenuButton, false);
         RefreshGameOverlayButtonVisibility();
     }
 
     public void OpenSettingsFromGame()
     {
+        if (!CanOpenGameplaySettings || IsSettingsVisible) return;
         ResolveReferences();
         HideDialogueFloatingUi();
 
@@ -270,6 +275,8 @@ public class MainMenuController : MonoBehaviour
         LookController look = FindAnyObjectByType<LookController>();
         settingsLookWasPaused = look != null && look.IsPaused;
         SetGameObject(settingsPanel, true);
+        EnsurePanelBlocksRaycasts(settingsPanel);
+        settingsPanel.transform.SetAsLastSibling();
         SetGameObject(returnToMainMenuButton, true);
         SetLookPaused(true);
         RefreshGameOverlayButtonVisibility();
@@ -293,6 +300,8 @@ public class MainMenuController : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
+        foreach (var map in FindObjectsByType<MapButton>(FindObjectsInactive.Include)) map.CloseMap();
+        foreach (var board in FindObjectsByType<WhiteBoard>(FindObjectsInactive.Include)) board.CloseWhiteBoard();
         InvestigationFlowController.Instance?.StopForMenu();
         settingsOpenedFromGame = false;
         ShowMainMenu();
@@ -321,18 +330,29 @@ public class MainMenuController : MonoBehaviour
     {
         bool dialogueActive = IsDialogueActive();
         bool historyOpen = IsHistoryOpen();
-        bool shouldShowGameOverlayButtons = gameRootPanel != null &&
-            gameRootPanel.activeInHierarchy &&
-            (settingsPanel == null || !settingsPanel.activeInHierarchy) &&
-            !dialogueActive &&
-            !historyOpen &&
-            !MapButton.IsAnyMapOpen &&
-            IsAnyVisibleLocationPanelActive();
-
-        bool openingSequence = InvestigationFlowController.Instance != null && InvestigationFlowController.Instance.IsOpeningSequence;
-        SetGameObject(gameSettingsButton, shouldShowGameOverlayButtons ||
-            (openingSequence && IsGameplayVisible && !IsSettingsVisible));
+        EnsureOverlayLayer(gameSettingsButton, 4000);
+        SetGameObject(gameSettingsButton, CanOpenGameplaySettings && !IsSettingsVisible && !SaveSlotPanel.IsOpen);
         SetHistoryButtonVisible(dialogueActive || historyOpen);
+    }
+
+    private bool CanOpenGameplaySettings
+    {
+        get
+        {
+            var computer = FindAnyObjectByType<ComputerCanvasController>(FindObjectsInactive.Include);
+            return IsGameplayVisible && !WelfareInteractionController.BlocksSettings &&
+                (computer == null || !computer.IsComputerOpen());
+        }
+    }
+
+    private static void EnsureOverlayLayer(GameObject target, int order)
+    {
+        if (target == null) return;
+        var canvas = target.GetComponent<Canvas>();
+        if (canvas == null) canvas = target.AddComponent<Canvas>();
+        canvas.overrideSorting = true;
+        canvas.sortingOrder = order;
+        if (target.GetComponent<GraphicRaycaster>() == null) target.AddComponent<GraphicRaycaster>();
     }
 
     private bool IsAnyVisibleLocationPanelActive()
@@ -511,7 +531,9 @@ public class MainMenuController : MonoBehaviour
             Path.Combine(Application.persistentDataPath, "dialogue_history.json"),
             Path.Combine(Application.persistentDataPath, "clues.json"),
             Path.Combine(Application.persistentDataPath, "story_progress.json"),
-            Path.Combine(Application.persistentDataPath, "notes.json")
+            Path.Combine(Application.persistentDataPath, "notes.json"),
+            Path.Combine(Application.persistentDataPath, "whiteboard.json"),
+            Path.Combine(Application.persistentDataPath, "welfare_progress.json")
         };
     }
 
@@ -763,6 +785,7 @@ public class MainMenuController : MonoBehaviour
             return;
         }
 
+        EnsureOverlayLayer(panel, 4001);
         CanvasGroup canvasGroup = panel.GetComponent<CanvasGroup>();
         if (canvasGroup == null)
         {

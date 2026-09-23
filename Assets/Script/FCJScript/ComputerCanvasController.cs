@@ -96,6 +96,7 @@ public class ComputerCanvasController : MonoBehaviour
 
     public void CloseComputer()
     {
+        if (!isComputerOpen) return;
         ResolveReferences();
 
         if (computerCanvas != null)

@@ -86,17 +86,14 @@ public class InteractionCursorController : MonoBehaviour
 
     void Update()
     {
-        if (pauseDuringDialogue)
-        {
-            DialogueController dialogueController = FindAnyObjectByType<DialogueController>();
-            isPaused = dialogueController != null && dialogueController.IsDialogueActive;
-        }
-
-        if (IsBlockingUiOpen())
+        var dialogue = FindAnyObjectByType<DialogueController>();
+        if ((dialogue != null && (dialogue.IsDialogueActive || dialogue.HasInteractionChoices)) ||
+            WelfareInteractionController.IsOpen || IsBlockingUiOpen())
         {
             ResetCursor();
             return;
         }
+        if (pauseDuringDialogue) isPaused = false;
 
         bool anyOverlayOpen = WhiteBoard.IsAnyWhiteBoardOpen || MapButton.IsAnyMapOpen;
         if (anyOverlayOpen)

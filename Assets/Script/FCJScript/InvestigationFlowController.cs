@@ -96,17 +96,9 @@ public class InvestigationFlowController : MonoBehaviour
             RectTransform rect = t as RectTransform;
             if (rect != null)
             {
-                rect.anchorMin = rect.anchorMax = new Vector2(0, 0.5f);
-                rect.pivot = new Vector2(0, 0.5f);
-                rect.sizeDelta = new Vector2(130, 46);
-                rect.localScale = Vector3.one;
-                rect.anchoredPosition = new Vector2(16, 62 - (sideButtons.Count - 1) * 58);
-            }
-            foreach (TMP_Text label in t.GetComponentsInChildren<TMP_Text>(true))
-            {
-                label.enableAutoSizing = true;
-                label.fontSizeMin = 14;
-                label.fontSizeMax = 24;
+                // Preserve the authored size, spacing and functional order. Object discovery
+                // order is unspecified, so it must never determine button positions.
+                rect.anchoredPosition += new Vector2(-24f, 0f);
             }
             Button button = t.GetComponent<Button>();
             if (button != null)
@@ -115,6 +107,9 @@ public class InvestigationFlowController : MonoBehaviour
                         if (!popupRoots.Contains(panel)) popupRoots.Add(panel);
             t.gameObject.SetActive(false);
         }
+        // Item details replace the inventory panel, so track them independently too.
+        foreach (DragableItem item in FindObjectsByType<DragableItem>(FindObjectsInactive.Include))
+            if (item.DesUI != null && !popupRoots.Contains(item.DesUI)) popupRoots.Add(item.DesUI);
         foreach (GameObject popup in popupRoots)
         {
             Canvas popupCanvas = popup.GetComponent<Canvas>();
@@ -140,6 +135,7 @@ public class InvestigationFlowController : MonoBehaviour
         ClueSubmission.AssessmentScored += TutorialFinished;
         CountingPoint.ScoreShown += LegacyTutorialScored;
         ApplyWorldVisibility();
+        if (GetComponent<WelfareInteractionController>() == null) gameObject.AddComponent<WelfareInteractionController>();
     }
 
     private void OnDestroy()
@@ -172,7 +168,8 @@ public class InvestigationFlowController : MonoBehaviour
         while (menu.IsSettingsVisible) yield return null;
         var lines = new List<DialogueController.DialogueLine>();
         foreach (string key in keys) lines.Add(new DialogueController.DialogueLine
-            { dialogueText = new LocalizedString("Script Assets", key) });
+            { speakerName = key.StartsWith("Story_") ? new LocalizedString("Script Assets", "Character_010") : null,
+              dialogueText = new LocalizedString("Script Assets", key) });
         if (resumeConversation != null)
         { dialogue.RestoreConversation(resumeConversation); resumeConversation = null; }
         else dialogue.StartConversation(lines, null);
@@ -365,8 +362,8 @@ public class InvestigationFlowController : MonoBehaviour
     private void LateUpdate()
     {
         if (menu == null || dialogue == null) return;
-        bool modal = SaveSlotPanel.IsOpen || menu.IsMenuVisible || menu.IsSettingsVisible || dialogue.IsDialogueActive || dialogue.IsHistoryOpen ||
-            (computer.IsComputerOpen() && CurrentStage != Stage.Tutorial) || MapButton.IsAnyMapOpen || WhiteBoard.IsAnyWhiteBoardOpen;
+        bool modal = WelfareInteractionController.IsOpen || SaveSlotPanel.IsOpen || menu.IsMenuVisible || menu.IsSettingsVisible || dialogue.IsDialogueActive || dialogue.IsHistoryOpen ||
+            (computer.IsComputerOpen() && CurrentStage != Stage.Tutorial) || MapButton.IsAnyMapOpen;
         foreach (GameObject popup in popupRoots) modal |= IsVisible(popup);
         bool show = CurrentStage != Stage.Menu &&
             (menu.IsGameplayVisible || (computer.IsComputerOpen() && CurrentStage == Stage.Tutorial)) && !modal;
@@ -379,6 +376,7 @@ public class InvestigationFlowController : MonoBehaviour
     public void StopForMenu()
     {
         StopSequence();
+        WelfareInteractionController.Instance?.StopForMenu();
         dialogue.CancelConversation();
         CurrentStage = Stage.Menu;
         computer.CloseComputer();

@@ -258,6 +258,7 @@ public class SaveSystem: MonoBehaviour
         foreach (var candidate in itemsload) candidate.EnsureInitialized();
         foreach (DragableItem putitem in itemsload)
         {
+            if (putitem.thisID >= 9100 && putitem.thisID <= 9102) continue;
             if (putitem.thisUsed == true)
             {
                 inventoryUsing.AddItem(putitem.gameObject);
