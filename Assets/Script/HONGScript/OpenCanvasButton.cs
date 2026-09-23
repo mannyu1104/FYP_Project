@@ -1,57 +1,109 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class OpenCanvasButton : MonoBehaviour
 {
+    //private bool MapOpen;
     [SerializeField] CanvasGroup InGameInventoryCanvas;
     [SerializeField] CanvasGroup TutorialInventoryCanvas;
     [SerializeField] CanvasGroup NotebookCanvas;
-    public CanvasGroup[] Panels => new[] { InGameInventoryCanvas, TutorialInventoryCanvas, NotebookCanvas };
-    public bool IsNotebookOpen => NotebookCanvas != null && NotebookCanvas.gameObject.activeInHierarchy && NotebookCanvas.alpha > .01f;
-    public bool OwnsShortcut(GameObject button) => NotebookCanvas != null && button.transform.IsChildOf(NotebookCanvas.transform);
-    public bool IsAnyOpen
+    [SerializeField] CanvasGroup ScoreShowing;
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
     {
-        get { foreach (var panel in Panels) if (panel != null && panel.gameObject.activeInHierarchy && panel.alpha > .01f) return true; return false; }
+        //MapOpen = false;
+        InGameInventoryCanvas.alpha = 0f;
+        InGameInventoryCanvas.interactable = false;
+        InGameInventoryCanvas.blocksRaycasts = false;
+
+        TutorialInventoryCanvas.alpha = 0f;
+        TutorialInventoryCanvas.interactable = false;
+        TutorialInventoryCanvas.blocksRaycasts = false;
+
+        NotebookCanvas.alpha = 0f;
+        NotebookCanvas.interactable = false;
+        NotebookCanvas.blocksRaycasts = false;
+
+        ScoreShowing.alpha = 0f;
+        ScoreShowing.interactable = false;
+        ScoreShowing.blocksRaycasts = false;
     }
-    void Awake()
+
+    // Update is called once per frame
+    //void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.M))
+    //    {
+    //        if (!MapOpen)
+    //        {
+    //            MapCanvas.alpha = 1f;
+    //            MapCanvas.interactable = true;
+    //            MapCanvas.blocksRaycasts = true;
+    //            MapOpen = true;
+    //        }
+    //        else if (MapOpen)
+    //        {
+    //            MapCanvas.alpha = 0f;
+    //            MapCanvas.interactable = false;
+    //            MapCanvas.blocksRaycasts = false;
+    //            MapOpen = false;
+    //        }
+    //    }
+    //}
+
+    public void AvaliableScoreCanva()
     {
-        foreach (var panel in Panels)
-        {
-            if (panel == null) continue;
-            var canvas = panel.GetComponent<Canvas>();
-            if (canvas == null) canvas = panel.gameObject.AddComponent<Canvas>();
-            canvas.overrideSorting = true; canvas.sortingOrder = 2001;
-            if (panel.GetComponent<GraphicRaycaster>() == null) panel.gameObject.AddComponent<GraphicRaycaster>();
-        }
-        CloseAll();
+        ScoreShowing.alpha = 1f;
+        ScoreShowing.interactable = true;
+        ScoreShowing.blocksRaycasts = true;
     }
-    private static void SetVisible(CanvasGroup panel, bool visible)
+
+    public void AvaliableNotebookCanva()
     {
-        if (panel == null) return;
-        if (visible) panel.gameObject.SetActive(true);
-        panel.alpha = visible ? 1f : 0f;
-        panel.interactable = visible; panel.blocksRaycasts = visible;
+        NotebookCanvas.alpha = 1f;
+        NotebookCanvas.interactable = true;
+        NotebookCanvas.blocksRaycasts = true;
     }
-    private void Open(CanvasGroup panel)
+
+    public void AvaliableInGameCanva()
     {
-        // AllNoteBook is the shared parent, not a third sibling page.
-        SetVisible(InGameInventoryCanvas, false);
-        SetVisible(TutorialInventoryCanvas, false);
-        SetVisible(NotebookCanvas, true);
-        if (panel != NotebookCanvas) SetVisible(panel, true);
-        foreach (var item in FindObjectsByType<DragableItem>(FindObjectsInactive.Include))
-            if (item.DesUI != null) item.DesUI.SetActive(false);
+        InGameInventoryCanvas.alpha = 1f;
+        InGameInventoryCanvas.interactable = true;
+        InGameInventoryCanvas.blocksRaycasts = true;
     }
-    public void CloseAll()
+
+    public void AvaliableTutorialCanva()
     {
-        foreach (var panel in Panels) SetVisible(panel, false);
-        foreach (var item in FindObjectsByType<DragableItem>(FindObjectsInactive.Include))
-            if (item.DesUI != null) item.DesUI.SetActive(false);
+        TutorialInventoryCanvas.alpha = 1f;
+        TutorialInventoryCanvas.interactable = true;
+        TutorialInventoryCanvas.blocksRaycasts = true;
     }
-    public void AvaliableNotebookCanva() => Open(NotebookCanvas);
-    public void AvaliableInGameCanva() => Open(InGameInventoryCanvas);
-    public void AvaliableTutorialCanva() => Open(TutorialInventoryCanvas);
-    public void DisablingNotebookCanva() => SetVisible(NotebookCanvas, false);
-    public void DisablingInGameCanva() => SetVisible(InGameInventoryCanvas, false);
-    public void DisablingTutorialCanva() => SetVisible(TutorialInventoryCanvas, false);
+
+    public void DiablingScoreCanva()
+    {
+        ScoreShowing.alpha = 0f;
+        ScoreShowing.interactable = false;
+        ScoreShowing.blocksRaycasts = false;
+    }
+
+    public void DisablingNotebookCanva()
+    {
+        NotebookCanvas.alpha = 0f;
+        NotebookCanvas.interactable = false;
+        NotebookCanvas.blocksRaycasts = false;
+    }
+
+    public void DisablingInGameCanva()
+    {
+        InGameInventoryCanvas.alpha = 0f;
+        InGameInventoryCanvas.interactable = false;
+        InGameInventoryCanvas.blocksRaycasts = false;
+    }
+
+    public void DisablingTutorialCanva()
+    {
+        TutorialInventoryCanvas.alpha = 0f;
+        TutorialInventoryCanvas.interactable = false;
+        TutorialInventoryCanvas.blocksRaycasts = false;
+    }
 }

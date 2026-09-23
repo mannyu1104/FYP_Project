@@ -11,6 +11,7 @@ public class CountingPoint : MonoBehaviour
     [SerializeField] public List<int> CorrectIDList = new List<int>();
     [SerializeField] public List<int> WrongIDList = new List<int>();
     [SerializeField] private TMP_Text ScoreShow;
+    [SerializeField] private TMP_Text AfterShow;
 
     private float Score;
     private int ScoreShowin;
@@ -60,9 +61,9 @@ public class CountingPoint : MonoBehaviour
                 {
                     Score += 100f / (CorrectIDList.Count + WrongIDList.Count);
                 }
-                else if (item.thisUsed == false) 
+                else if (item.thisUsed == false)
                 {
-                    Score -= 100f / ((CorrectIDList.Count + WrongIDList.Count)* 2f);
+                    Score -= 100f / ((CorrectIDList.Count + WrongIDList.Count) * 2f);
                 }
             }
             else if (WrongIDList.Contains(item.thisID))
@@ -76,6 +77,7 @@ public class CountingPoint : MonoBehaviour
                     Score -= 100f / ((CorrectIDList.Count + WrongIDList.Count) * 2f);
                 }
             }
+            item.thisTuto = true;
             Debug.Log(Score);
         }
 
@@ -90,4 +92,12 @@ public class CountingPoint : MonoBehaviour
         HasScoreBeenShown = true;
         ScoreShown?.Invoke();
     }
+
+    public void AfterShowCongrats()
+    {
+        AfterShow.text = "Congratulations !!!!" + ", " + "You Have Done Tutorial" + ", and your score is:" + ScoreShowin;
+    }
+
 }
+
+
