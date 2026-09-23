@@ -23,7 +23,7 @@ public class GridSystem : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             if (!GridOpen)
             {
