@@ -7,10 +7,15 @@ public class RopeSkipping : MonoBehaviour
 {
     public int currentJump;
     public int successJump;
-    private int maxJump;
+    private int maxJump = 20;
+    [SerializeField] private GameObject Camera;
+    [SerializeField] private GameObject Player;
     [SerializeField] private TMP_Text JumpCount;
+    [SerializeField] private TMP_Text SuccessCount;
     [SerializeField] private GameObject PlayerCollider;
     [SerializeField] private Animator Anim;
+    [SerializeField] private TMP_Text CountDownText;
+    [SerializeField] private GameObject ShowCount;
     public Jumping PlayerJump;
 
     private float JumpTime;
@@ -21,28 +26,41 @@ public class RopeSkipping : MonoBehaviour
     [SerializeField] float cooldown;
     private float forcooldown;
     private bool DoneCooldown;
+    public float CountDown;
 
-    [SerializeField] private float baseSwing = 2f;
-    private float maxSwing;
-    private float minSwing;
+    [SerializeField] private float baseSwing = 3.666667f;
+    private float maxSwing = 0.9f;
+    private float minSwing = 1.8f;
     private bool Swinged;
-    private bool Touched;
+    public bool Touched;
+    public bool playSkip;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        maxJump = 0;
         currentJump = 0;
         successJump = 0;
+        CountDown = 3f;
         Jumping = 0f;
         Jumped = false;
         DoneCooldown = true;
+        playSkip = false;
+        Touched = false;
+        SuccessCount.text = successJump.ToString();
+        JumpCount.text = currentJump.ToString();
+
+        StartGame();
+    }
+
+    public void StartGame()
+    {
+        StartCoroutine(CountDownPlay());
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (!Jumped && DoneCooldown)
+        if (!Jumped && DoneCooldown && playSkip)
         {
             if (Input.GetKey(KeyCode.Space))
             {
@@ -53,7 +71,7 @@ public class RopeSkipping : MonoBehaviour
             }
         }
 
-        if (Jumped)
+        if (Jumped && playSkip)
         {
             Jumping += Time.deltaTime;
 
@@ -79,7 +97,7 @@ public class RopeSkipping : MonoBehaviour
             }
         }
 
-        if (!DoneCooldown && Jumped == false)
+        if (!DoneCooldown && Jumped == false && playSkip)
         {
             forcooldown += Time.deltaTime;
             if (forcooldown > cooldown)
@@ -88,14 +106,46 @@ public class RopeSkipping : MonoBehaviour
             }
         }
 
-        if (Swinged)
+        if (playSkip && !Swinged && currentJump < maxJump)
         {
-            CheckSuccess();
+            Swinged = true;
+            RopeSwingAnim();
         }
 
-        if (currentJump < maxJump)
+        if (playSkip && currentJump >= maxJump)
         {
-            RopeSwingAnim();
+            if (successJump >= 10)
+            {
+                Camera.transform.SetParent(null);
+                Debug.Log("YouWin");
+                playSkip = false;
+                return;
+            }
+            else
+            {
+                Camera.transform.SetParent(null);
+                Debug.Log("YouLose");
+                playSkip = false;
+                return;
+            }
+        }
+
+    }
+
+    void CheckSuccess()
+    {
+        if (Touched)
+        {
+            Touched = false;
+            Swinged = false;
+            SuccessCount.text = successJump.ToString();
+        }
+        else if (!Touched)
+        {
+            successJump += 1;
+            Touched = false;
+            Swinged = false;
+            SuccessCount.text = successJump.ToString();
         }
     }
 
@@ -106,34 +156,48 @@ public class RopeSkipping : MonoBehaviour
 
     void RopeSwingAnim()
     {
-        StartCoroutine(PlaySwingDown());
+        StartCoroutine(PlaySwingUp());
     }
 
-    IEnumerator PlaySwingDown()
+    IEnumerator PlaySwingUp()
     {
         float randomSwing = Random.Range(minSwing, maxSwing);
 
-        Anim.speed = baseSwing / randomSwing;
-        Anim.Play("MyAnimation");
+        Anim.speed = 1.0f * randomSwing;
+        Anim.Play("SwingUp", 0, 0f);
 
-        yield return new WaitForSeconds(baseSwing * randomSwing);
+        Debug.Log(randomSwing);
 
-        Swinged = true;
+        yield return new WaitForSeconds(baseSwing / randomSwing);
+
         currentJump += 1;
+        JumpCount.text = currentJump.ToString();
+        CheckSuccess();
     }
 
-    void CheckSuccess()
+    IEnumerator CountDownPlay()
     {
-        if (Touched)
-        {
-            Swinged = false;
-            return;
-        }
-        else if (!Touched)
-        {
-            Swinged = false;
-            successJump += 1;
-        }
+        ShowCount.SetActive(true);
+        CountDownText.text = CountDown.ToString();
+        yield return new WaitForSeconds(1f);
+        CountDown -= 1f;
+        CountDownText.text = CountDown.ToString();
+        yield return new WaitForSeconds(1f);
+        CountDown -= 1f;
+        CountDownText.text = CountDown.ToString();
+        yield return new WaitForSeconds(1f);
+        CountDownText.text = "Start !!!!";
+        yield return new WaitForSeconds(0.8f);
+
+        playSkip = true;
+        ShowCount.SetActive(false);
+        Camera.transform.SetParent(Player.transform, false);
     }
- 
+
+    public void Touching()
+    {
+        Touched = true;
+    }
+
+
 }

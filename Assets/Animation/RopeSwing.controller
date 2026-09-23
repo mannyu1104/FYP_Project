@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1102 &-8471689324290548268
+--- !u!1102 &-8441736116275663262
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
@@ -26,14 +26,14 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &-8429067553437031763
+--- !u!1102 &-8218486358306425384
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SwingDown
+  m_Name: Stop
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -46,7 +46,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 04aa3934abf441d48a8373f414503f12, type: 2}
+  m_Motion: {fileID: 7400000, guid: 6c5f6c7d2f665254193ccfb271d660fe, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -62,21 +62,21 @@ AnimatorStateMachine:
   m_Name: Base Layer
   m_ChildStates:
   - serializedVersion: 1
-    m_State: {fileID: -8471689324290548268}
-    m_Position: {x: 30, y: -30, z: 0}
+    m_State: {fileID: -8218486358306425384}
+    m_Position: {x: 10, y: 90, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: -8429067553437031763}
-    m_Position: {x: 230, y: 60, z: 0}
+    m_State: {fileID: -8441736116275663262}
+    m_Position: {x: 270, y: 60, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 380, y: -10, z: 0}
-  m_EntryPosition: {x: -40, y: 70, z: 0}
-  m_ExitPosition: {x: 460, y: 120, z: 0}
+  m_AnyStatePosition: {x: 430, y: -10, z: 0}
+  m_EntryPosition: {x: 20, y: 0, z: 0}
+  m_ExitPosition: {x: 500, y: 140, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: -8471689324290548268}
+  m_DefaultState: {fileID: -8218486358306425384}
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0
