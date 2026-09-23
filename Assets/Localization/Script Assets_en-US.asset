@@ -2329,27 +2329,27 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 358793172426769
-    m_Localized: "---Language---"
+    m_Localized: ---Language---
     m_Metadata:
       m_Items: []
   - m_Id: 358793172426770
-    m_Localized: "---Sound---"
+    m_Localized: ---Sound---
     m_Metadata:
       m_Items: []
   - m_Id: 358793172426771
-    m_Localized: "---Save---"
+    m_Localized: ---Save---
     m_Metadata:
       m_Items: []
   - m_Id: 358793172426772
-    m_Localized: "Master Volume:"
+    m_Localized: 'Master Volume:'
     m_Metadata:
       m_Items: []
   - m_Id: 358793172426773
-    m_Localized: "BGM Volume:"
+    m_Localized: 'BGM Volume:'
     m_Metadata:
       m_Items: []
   - m_Id: 358793172426774
-    m_Localized: "SFX Volume:"
+    m_Localized: 'SFX Volume:'
     m_Metadata:
       m_Items: []
   - m_Id: 358793172426775
@@ -2388,8 +2388,42 @@ MonoBehaviour:
     m_Localized: Park
     m_Metadata:
       m_Items: []
-  m_Metadata:
-    m_Items: []
+  - m_Id: 8344430492196864
+    m_Localized: Blue Morpho Pharmaceutical Company
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8356100924973056
+    m_Localized: Unlocked
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8356103722573824
+    m_Localized: Already unlocked
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8356106339819520
+    m_Localized: No location found with that name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8358194683781120
+    m_Localized: Home
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8358253789913088
+    m_Localized: Kindness Welfare Home
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8358242045861888
+    m_Localized: Hope Orphanage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8358282688667648
+    m_Localized: Blue Morpho Pharmaceutical Company
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8358266297327616
+    m_Localized: Park
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

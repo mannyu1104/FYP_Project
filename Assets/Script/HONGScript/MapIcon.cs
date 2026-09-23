@@ -29,7 +29,9 @@ public class MapIcon : MonoBehaviour
         {
             image.sprite = Mapdetials.ImageUnlocked;
             imageName.sprite = UnlockedFrame;
-            SumShowText.text = Mapdetials.PlaceName;
+            //SumShowText.text = Mapdetials.PlaceName;
+            SumShowText.text = Mapdetials.PlaceNameLocalized.GetLocalizedString();
+
         }
         if (!thisUnlocked)
         {
@@ -50,7 +52,9 @@ public class MapIcon : MonoBehaviour
         thisUnlocked = true;
         image.sprite = Mapdetials.ImageUnlocked;
         imageName.sprite = UnlockedFrame;
-        SumShowText.text = Mapdetials.PlaceName;
+        //SumShowText.text = Mapdetials.PlaceName;
+        SumShowText.text = Mapdetials.PlaceNameLocalized.GetLocalizedString();
+
     }
 
     public void NotUnlock()

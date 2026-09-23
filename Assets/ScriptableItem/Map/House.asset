@@ -15,5 +15,17 @@ MonoBehaviour:
   ImageLocked: {fileID: 618376261, guid: 4ac4e11f855028746aa8c77a0d7a9a21, type: 3}
   ImageUnlocked: {fileID: 485175610, guid: 59f75c9eee414eb45a6ad3544ccc4567, type: 3}
   PlaceName: House
+  PlaceNameLocalized:
+    m_TableReference:
+      m_TableCollectionName: GUID:bae3f0c0768e84a4b91ae3b46e2c292f
+    m_TableEntryReference:
+      m_KeyId: 8358194683781120
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   MapID: 0
   Unlocked: 1
+  references:
+    version: 2
+    RefIds: []

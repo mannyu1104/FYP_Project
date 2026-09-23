@@ -23,7 +23,7 @@ public class SearchBarController : MonoBehaviour
 
         if (searchInputField != null)
         {
-            // Allow pressing Enter to trigger the search as well.
+            // Allow pressing Enter to trigger
             searchInputField.onSubmit.AddListener(_ => OnSearchSubmitted());
         }
     }
