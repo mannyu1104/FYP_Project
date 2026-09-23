@@ -13,6 +13,7 @@ public class Unlocking : MonoBehaviour
             ItemState = UnlockingTarget.GetComponent<DragableItemSave>();
             ItemState.thisShow = true;
             inventory.AddItem(UnlockingTarget);
+            ItemState.DeleteOther();
         }
         else
         {

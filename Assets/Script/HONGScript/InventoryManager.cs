@@ -113,7 +113,8 @@ public class InventoryManager : MonoBehaviour
         {
             mapitem.LoadSetParent();
         }
-        Debug.Log("Adding");
+        Debug.Log(mapitem.parentAfterDrag);
+        Debug.Log(mapitem.thisName);
     }
 
     //void SetNewItem(Item item, InventorySlot slot)

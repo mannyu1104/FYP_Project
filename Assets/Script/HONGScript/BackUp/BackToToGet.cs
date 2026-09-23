@@ -13,7 +13,11 @@ public class BackToToGet : MonoBehaviour
         {
             DragableItem item = collision.gameObject.GetComponent<DragableItem>();
 
-            if (item.thisUsed == true && item.thisType == "Tutorial")
+            if (item == null)
+            {
+                return;
+            }
+            else if (item.thisUsed == true && item.thisType == "Tutorial")
             {
                 currentTarget = collision.gameObject;
             }
