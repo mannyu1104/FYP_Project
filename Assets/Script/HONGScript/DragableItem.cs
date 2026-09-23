@@ -15,6 +15,8 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     public string thisType;
     public string thisName;
+    public string thisSave;
+    public string thisSaveDes;
     public string thisDescription;
     //public bool thisShow;
     public bool thisGet;
@@ -22,7 +24,8 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     public int thisID;
     [SerializeField] private TMP_Text Description;
     public GameObject DesUI;
-    public GameObject InvenUI;
+    public GameObject ButtonUI;
+    public GameObject ButtonUI2;
     public bool isdragging;
 
     public void Start()
@@ -38,6 +41,18 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         //{
         //    image.sprite = item.Image;
         //}
+        thisSave = dragSourceData.ClueTitle.GetLocalizedString();
+        thisSaveDes = dragSourceData.ClueSummary.GetLocalizedString();
+        if (thisName != thisSave)
+        {
+            thisName = thisSave;
+            SumShowText.text = thisName;
+        }
+        if (thisSaveDes != thisDescription)
+        {
+            thisDescription = thisSaveDes;
+            Description.text = thisDescription;
+        }
     }
 
     public void InitialiseItem(Item newItem)
@@ -47,7 +62,6 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         thisUsed = newItem.Used;
         thisID = newItem.ItemID;
         //thisShow = newItem.Show;
-        thisDescription = dragSourceData.ClueSummary.GetLocalizedString();
         thisName = dragSourceData.ClueTitle.GetLocalizedString();
         //thisName = item.TutorialClueDataTest.TutorialClueName.GetLocalizedString();
         thisType = newItem.TypeofItem;
@@ -103,7 +117,8 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         {
             DesUI.SetActive(true);
             Description.text = thisDescription;
-            InvenUI.SetActive(false);
+            ButtonUI.SetActive(false);
+            ButtonUI2.SetActive(false);
         }
     }
 
