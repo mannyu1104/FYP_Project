@@ -21,6 +21,7 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     //public bool thisShow;
     public bool thisGet;
     public bool thisUsed;
+    public bool thisTuto;
     public int thisID;
     [SerializeField] private TMP_Text Description;
     public GameObject DesUI;
@@ -31,6 +32,7 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
     public void Start()
     {
         InitialiseItem(item);
+        thisTuto = false;
 
         SumShowText.text = thisName;
     }
@@ -71,7 +73,7 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (thisGet == true)
+        if (thisGet == true && thisTuto == false)
         {
             Debug.Log("StartDrag");
             parentAfterDrag = transform.parent;
@@ -84,7 +86,7 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (thisGet == true)
+        if (thisGet == true && thisTuto == false)
         {
             Debug.Log("Dragging");
             transform.position = Input.mousePosition;
@@ -94,7 +96,7 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (thisGet == true)
+        if (thisGet == true && thisTuto == false)
         {
             Debug.Log("EndDrag");
             isdragging = false;

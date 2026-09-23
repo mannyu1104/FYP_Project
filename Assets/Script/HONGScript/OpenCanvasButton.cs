@@ -6,6 +6,7 @@ public class OpenCanvasButton : MonoBehaviour
     [SerializeField] CanvasGroup InGameInventoryCanvas;
     [SerializeField] CanvasGroup TutorialInventoryCanvas;
     [SerializeField] CanvasGroup NotebookCanvas;
+    [SerializeField] CanvasGroup ScoreShowing;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,6 +23,10 @@ public class OpenCanvasButton : MonoBehaviour
         NotebookCanvas.alpha = 0f;
         NotebookCanvas.interactable = false;
         NotebookCanvas.blocksRaycasts = false;
+
+        ScoreShowing.alpha = 0f;
+        ScoreShowing.interactable = false;
+        ScoreShowing.blocksRaycasts = false;
     }
 
     // Update is called once per frame
@@ -46,6 +51,13 @@ public class OpenCanvasButton : MonoBehaviour
     //    }
     //}
 
+    public void AvaliableScoreCanva()
+    {
+        ScoreShowing.alpha = 1f;
+        ScoreShowing.interactable = true;
+        ScoreShowing.blocksRaycasts = true;
+    }
+
     public void AvaliableNotebookCanva()
     {
         NotebookCanvas.alpha = 1f;
@@ -65,6 +77,13 @@ public class OpenCanvasButton : MonoBehaviour
         TutorialInventoryCanvas.alpha = 1f;
         TutorialInventoryCanvas.interactable = true;
         TutorialInventoryCanvas.blocksRaycasts = true;
+    }
+
+    public void DiablingScoreCanva()
+    {
+        ScoreShowing.alpha = 0f;
+        ScoreShowing.interactable = false;
+        ScoreShowing.blocksRaycasts = false;
     }
 
     public void DisablingNotebookCanva()
