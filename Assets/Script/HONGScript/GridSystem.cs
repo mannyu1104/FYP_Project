@@ -79,15 +79,8 @@ public class GridSystem : MonoBehaviour
         }
 
         Unlocking unlockbutton = FindAnyObjectByType<Unlocking>();
-        if (unlockbutton != null)
-        {
-            GridOpen = false;
-            Destroy(unlockbutton.gameObject);
-        }
-        else if (unlockbutton == null)
-        {
-            GridOpen = false;
-            return;
-        }
+        Destroy(unlockbutton.gameObject);
+
+        GridOpen = false;
     }
 }
