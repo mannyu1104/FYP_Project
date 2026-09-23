@@ -35,6 +35,11 @@ public class CursorInteractionTarget : MonoBehaviour, IPointerClickHandler
 
     public void TriggerInspection()
     {
+        if (InvestigationFlowController.Instance != null)
+        {
+            if (InvestigationFlowController.Instance.TryOpenDoor(gameObject)) return;
+            if (InvestigationFlowController.Instance.IsOpeningSequence) return;
+        }
         if (GetComponent<ComputerAccessPoint>() != null)
         {
             return;

@@ -15,6 +15,27 @@ public class CountingPoint : MonoBehaviour
     private float Score;
     private int ScoreShowin;
 
+    private void Awake()
+    {
+        var button = GetComponent<UnityEngine.UI.Button>();
+        if (button == null) return;
+        // Gate the entire persistent click, including the score panel's SetActive call.
+        var originalClick = button.onClick;
+        button.onClick = new UnityEngine.UI.Button.ButtonClickedEvent();
+        button.onClick.AddListener(() => { if (HasCollectedClues()) originalClick.Invoke(); });
+    }
+
+    private bool HasCollectedClues()
+    {
+        foreach (var item in FindObjectsByType<DragableItem>(FindObjectsInactive.Include))
+        {
+            item.EnsureInitialized();
+            if ((CorrectIDList.Contains(item.thisID) || WrongIDList.Contains(item.thisID)) &&
+                (item.thisGet || item.thisUsed)) return true;
+        }
+        return false;
+    }
+
     private void Start()
     {
         Score = 0;
@@ -27,6 +48,7 @@ public class CountingPoint : MonoBehaviour
 
     public void CountingPoints()
     {
+        if (!HasCollectedClues()) return;
         DragableItem[] items = FindObjectsByType<DragableItem>();
         Score = 0;
 

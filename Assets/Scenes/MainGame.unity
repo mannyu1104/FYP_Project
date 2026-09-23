@@ -16533,13 +16533,9 @@ MonoBehaviour:
   loadInventoryOnLoadGame: 1
   loadMapItemsOnLoadGame: 1
   loadUnlockedMapsOnLoadGame: 1
-  resetDialogueProgressOnNewGame: 1
   loadDialogueProgressOnLoadGame: 1
   saveRecordButtons: []
   saveRecordMarkerFileName: fcj_save_record_marker.json
-  requireSaveDataFileForLoadButton: 1
-  showDeleteSaveTestButton: 1
-  deleteSaveTestButton: {fileID: 0}
   screenTransitionController: {fileID: 2056682094}
   useTransitionOnStartGame: 1
   gameSettingsButton: {fileID: 333899234}
@@ -17536,10 +17532,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LocalizedFontController
   chineseFontAsset: {fileID: 11400000, guid: 23355c7b5fd799c4a98dd3e31afbe373, type: 2}
   englishFontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  addChineseFallbackToEnglish: 1
-  includeInactiveSceneObjects: 1
-  applyChineseFontToCjkTextInEditMode: 1
-  cleanGeneratedSubMeshesInEditMode: 1
 --- !u!4 &1959024302
 Transform:
   m_ObjectHideFlags: 0

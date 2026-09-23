@@ -64,24 +64,22 @@ public class SaveSystem: MonoBehaviour
     public InventoryManager inventorymanager;
     public InventoryManagerINFO inventoryUsing;
 
-    private string path;
-    private string pathmap;
-    private string pathitemlock;
+    private string path => Path.Combine(Application.persistentDataPath, "inventory.json");
+    private string pathmap => Path.Combine(Application.persistentDataPath, "map.json");
+    private string pathitemlock => Path.Combine(Application.persistentDataPath, "inventorylock.json");
 
     private void Awake()
     {
         instance = this;
 
-        path = Application.persistentDataPath + "/inventory.json";
-        pathmap = Application.persistentDataPath + "/map.json";
-        pathitemlock = Application.persistentDataPath + "/inventorylock.json";
     }
 
     public void SaveInventory()
     {
         InventorySaveData data = new InventorySaveData();
 
-        DragableItem[] items = FindObjectsByType<DragableItem>();
+        DragableItem[] items = FindObjectsByType<DragableItem>(FindObjectsInactive.Include);
+        foreach (var candidate in items) candidate.EnsureInitialized();
 
         foreach (DragableItem item in items)
         {
@@ -100,13 +98,17 @@ public class SaveSystem: MonoBehaviour
 
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(path, json);
+        ClueManager clues = FindAnyObjectByType<ClueManager>(FindObjectsInactive.Include);
+        if (clues != null) clues.SaveClues();
+        InvestigationFlowController.Instance?.SaveProgress();
     }
 
     public void SaveInventoryMap()
     {
         ItemLockSaveData data = new ItemLockSaveData();
 
-        DragableItemSave[] items = FindObjectsByType<DragableItemSave>();
+        DragableItemSave[] items = FindObjectsByType<DragableItemSave>(FindObjectsInactive.Include);
+        foreach (var candidate in items) candidate.EnsureInitialized();
 
         foreach (DragableItemSave item in items)
         {
@@ -131,7 +133,8 @@ public class SaveSystem: MonoBehaviour
     {
         MapSaveData data = new MapSaveData();
 
-        MapIcon[] items = FindObjectsByType<MapIcon>();
+        MapIcon[] items = FindObjectsByType<MapIcon>(FindObjectsInactive.Include);
+        foreach (var candidate in items) candidate.EnsureInitialized();
 
         foreach (MapIcon item in items)
         {
@@ -155,6 +158,8 @@ public class SaveSystem: MonoBehaviour
 
     public void LoadGame()
     {
+        ClueManager clues = FindAnyObjectByType<ClueManager>(FindObjectsInactive.Include);
+        if (clues != null) clues.LoadClues();
         if (!File.Exists(path))
         {
             return;
@@ -163,7 +168,8 @@ public class SaveSystem: MonoBehaviour
         string json = File.ReadAllText(path);
         InventorySaveData data = JsonUtility.FromJson<InventorySaveData>(json);
 
-        DragableItem[] items = FindObjectsByType<DragableItem>();
+        DragableItem[] items = FindObjectsByType<DragableItem>(FindObjectsInactive.Include);
+        foreach (var candidate in items) candidate.EnsureInitialized();
 
         foreach (ItemBooleanData dataItem in data.ItemBool)
         {
@@ -193,7 +199,8 @@ public class SaveSystem: MonoBehaviour
         string json = File.ReadAllText(pathitemlock);
         ItemLockSaveData data = JsonUtility.FromJson<ItemLockSaveData>(json);
 
-        DragableItemSave[] items = FindObjectsByType<DragableItemSave>();
+        DragableItemSave[] items = FindObjectsByType<DragableItemSave>(FindObjectsInactive.Include);
+        foreach (var candidate in items) candidate.EnsureInitialized();
 
         foreach (ItemLockBooleanData dataItem in data.ItemLockBool)
         {
@@ -223,7 +230,8 @@ public class SaveSystem: MonoBehaviour
         string json = File.ReadAllText(pathmap);
         MapSaveData data = JsonUtility.FromJson<MapSaveData>(json);
 
-        MapIcon[] items = FindObjectsByType<MapIcon>();
+        MapIcon[] items = FindObjectsByType<MapIcon>(FindObjectsInactive.Include);
+        foreach (var candidate in items) candidate.EnsureInitialized();
 
         foreach (MapBooleanData dataItem in data.MapBool)
         {
@@ -246,7 +254,8 @@ public class SaveSystem: MonoBehaviour
 
     private void PutInInventory()
     {
-        DragableItem[] itemsload = FindObjectsByType<DragableItem>();
+        DragableItem[] itemsload = FindObjectsByType<DragableItem>(FindObjectsInactive.Include);
+        foreach (var candidate in itemsload) candidate.EnsureInitialized();
         foreach (DragableItem putitem in itemsload)
         {
             if (putitem.thisUsed == true)
@@ -263,7 +272,8 @@ public class SaveSystem: MonoBehaviour
 
     private void PutInInventoryMapItem()
     {
-        DragableItemSave[] itemsload = FindObjectsByType<DragableItemSave>();
+        DragableItemSave[] itemsload = FindObjectsByType<DragableItemSave>(FindObjectsInactive.Include);
+        foreach (var candidate in itemsload) candidate.EnsureInitialized();
         foreach (DragableItemSave putitem in itemsload)
         {
             if (putitem.thisUsed == true)
@@ -279,7 +289,8 @@ public class SaveSystem: MonoBehaviour
 
     private void PutInInventoryMap()
     {
-        MapIcon[] itemsload = FindObjectsByType<MapIcon>();
+        MapIcon[] itemsload = FindObjectsByType<MapIcon>(FindObjectsInactive.Include);
+        foreach (var candidate in itemsload) candidate.EnsureInitialized();
         foreach (MapIcon putitem in itemsload)
         {
             if (putitem.thisUnlocked == true)

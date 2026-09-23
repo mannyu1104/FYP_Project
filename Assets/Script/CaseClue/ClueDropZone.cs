@@ -23,7 +23,11 @@ public class ClueDropZone : MonoBehaviour, IDropHandler
             return; // something else was being dragged, ignore it
         }
 
+        ClueBoardEntryUI entry = dropped.GetComponent<ClueBoardEntryUI>();
+        ClueBoardUI board = entry != null ? entry.Board : null;
+        if (board == null || !board.AcceptsDestination(contentParent)) return;
         dropped.transform.SetParent(contentParent);
         dropped.transform.SetAsLastSibling();
+        board.RecordPlacement(entry);
     }
 }

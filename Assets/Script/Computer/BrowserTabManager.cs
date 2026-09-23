@@ -30,6 +30,9 @@ public class BrowserTabManager : MonoBehaviour
     // Open a page. If a tab with the same PageId already exists, switch to it.
     public BrowserTab OpenPage(IBrowserPage page)
     {
+        if (InvestigationFlowController.Instance != null && InvestigationFlowController.Instance.IsOpeningSequence &&
+            (page is not WebPageDataScriptableObject data || data.LayoutType != PageLayoutType.News ||
+             InvestigationFlowController.Instance.CurrentStage != InvestigationFlowController.Stage.ReadingNews)) return null;
         BrowserTab existing = FindTabByPageId(page.PageId);
         if (existing != null)
         {

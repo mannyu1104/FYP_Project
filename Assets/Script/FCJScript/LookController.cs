@@ -39,6 +39,18 @@ public class LookController : MonoBehaviour
     private int currentSceneIndex = -1;
     private bool isPaused;
 
+    public float SavedLookX => movementRoot != null ? movementRoot.anchoredPosition.x :
+        roomImage != null ? roomImage.anchoredPosition.x : 0;
+    public void RestoreLookX(float x)
+    {
+        RectTransform target = movementRoot != null ? movementRoot : roomImage;
+        if (target == null) return;
+        Vector2 position = target.anchoredPosition;
+        position.x = x;
+        target.anchoredPosition = position;
+        targetX = x;
+    }
+
     public bool IsPaused => isPaused;
 
     void Start()

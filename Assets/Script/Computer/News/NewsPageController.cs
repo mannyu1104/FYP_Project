@@ -19,7 +19,22 @@ public class NewsPageController : ListDetailPageController<NewsArticleData, News
     [Header("Clue")]
     [SerializeField] private ClueRecordButton clueRecordButton;
 
-    public void ShowArticleDetail(NewsArticleData article) => ShowDetail(article);
+    public IReadOnlyList<NewsArticleData> Articles => items;
+    private bool detailWasOpened;
+
+    public void ShowArticleDetail(NewsArticleData article)
+    {
+        if (InvestigationFlowController.Instance != null && !InvestigationFlowController.Instance.AllowsArticle(article)) return;
+        ShowDetail(article);
+    }
+
+    public override void ShowList()
+    {
+        base.ShowList();
+        if (!detailWasOpened) return;
+        detailWasOpened = false;
+        InvestigationFlowController.Instance?.ArticleClosed();
+    }
 
     private readonly List<GameObject> spawnedComments = new List<GameObject>();
 
@@ -42,6 +57,8 @@ public class NewsPageController : ListDetailPageController<NewsArticleData, News
     protected override void OnDetailShown(NewsArticleData article)
     {
         clueRecordButton.SetSource(article);
+        detailWasOpened = true;
+        InvestigationFlowController.Instance?.ArticleOpened(article);
     }
 
     protected override void BindListItem(NewsListItemUI listItemUI, NewsArticleData article)

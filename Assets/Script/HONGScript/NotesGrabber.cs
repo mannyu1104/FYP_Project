@@ -3,7 +3,6 @@ using TMPro;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.CompilerServices;
-using UnityEditor.Search;
 
 [System.Serializable]
 public class NotesSaveData
@@ -103,6 +102,13 @@ public class NotesGrabber : MonoBehaviour
         Notes.Clear();
     }
 
+    public void FlushForSlot()
+    {
+        if (pagenum < 1 || Notes.Count == 0) return;
+        Notes[pagenum - 1] = noteInput.text;
+        SaveAllData();
+    }
+
     public void SaveAllData()
     {
         NotesSaveData data = new NotesSaveData();
@@ -126,6 +132,7 @@ public class NotesGrabber : MonoBehaviour
             return;
         }
 
+        Notes.Clear();
         string json = File.ReadAllText(path);
         NotesSaveData data = JsonUtility.FromJson<NotesSaveData>(json);
 

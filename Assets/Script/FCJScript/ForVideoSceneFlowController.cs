@@ -34,6 +34,7 @@ public class ForVideoSceneFlowController : MonoBehaviour
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     private static void CreateForVideoSceneController()
     {
+        if (InvestigationFlowController.Instance != null) return;
         if (SceneManager.GetActiveScene().name != SceneName)
         {
             return;

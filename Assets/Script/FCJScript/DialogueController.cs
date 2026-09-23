@@ -189,9 +189,9 @@ public class DialogueController : MonoBehaviour
             historyController = historyPanel.GetComponent<DialogueHistoryPanel>();
         }
 
-        ApplyChineseFont();
+        LocalizedFontController.Instance?.ApplyFontNow();
 
-        if (loadHistoryAutomatically)
+        if (loadHistoryAutomatically && !MainMenuController.IsStartingNewGame && !SaveSlotPanel.HasPendingLoad)
         {
             LoadDialogueHistory();
         }
@@ -241,8 +241,14 @@ public class DialogueController : MonoBehaviour
 
     void Update()
     {
+        if (IsSettingsOpen()) return;
         if (!isDialogueActive)
         {
+            if (IsHistoryPanelOpen() && (WasHistoryClosePressed() || WasHistoryTogglePressed()))
+                ToggleHistory();
+            else if (WasHistoryTogglePressed() && allowHistoryOutsideDialogue &&
+                     lookController != null && !lookController.IsPaused)
+                ToggleHistory();
             return;
         }
 
@@ -300,7 +306,7 @@ public class DialogueController : MonoBehaviour
         isAutoMode = false;
         suppressAdvance = true;
 
-        if (historyEntries.Count > 0)
+        if (!restoringConversation && historyEntries.Count > 0)
         {
             historyEntries.Add(string.Empty);
         }
@@ -402,7 +408,7 @@ public class DialogueController : MonoBehaviour
             RefreshContinueIndicator();
         }
 
-        historyEntries.Add(string.IsNullOrEmpty(speakerNameValue)
+        if (!restoringConversation) historyEntries.Add(string.IsNullOrEmpty(speakerNameValue)
             ? dialogueTextValue
             : speakerNameValue + ": " + dialogueTextValue);
         UpdateHistoryText();
@@ -667,7 +673,13 @@ public class DialogueController : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSecondsRealtime(autoAdvanceSeconds);
+        float elapsed = 0f;
+        while (elapsed < autoAdvanceSeconds)
+        {
+            if (!IsSettingsOpen() && !IsHistoryPanelOpen()) elapsed += Time.unscaledDeltaTime;
+            yield return null;
+        }
+        while (IsSettingsOpen() || IsHistoryPanelOpen()) yield return null;
 
         if (isDialogueActive && isAutoMode)
         {
@@ -717,6 +729,7 @@ public class DialogueController : MonoBehaviour
 
         while (visibleCharacterCount < text.Length)
         {
+            if (IsSettingsOpen()) { yield return null; continue; }
             characterTimer += Time.unscaledDeltaTime * speed;
             int targetCharacterCount = Mathf.Min(text.Length, Mathf.FloorToInt(characterTimer));
 
@@ -1103,6 +1116,42 @@ public class DialogueController : MonoBehaviour
         }
     }
 
+    private bool IsSettingsOpen()
+    {
+        MainMenuController menu = FindAnyObjectByType<MainMenuController>();
+        return SaveSlotPanel.IsOpen || (menu != null && menu.IsSettingsVisible);
+    }
+
+    [System.Serializable]
+    public class ConversationSnapshot
+    {
+        public List<DialogueLine> lines;
+        public string npcId;
+        public int line;
+    }
+    private bool restoringConversation;
+    public ConversationSnapshot CaptureConversation() => !isDialogueActive ? null : new ConversationSnapshot
+        { lines = currentLines, npcId = currentNpc != null ? currentNpc.SaveId : null, line = currentLineIndex };
+
+    public void RestoreConversation(ConversationSnapshot data)
+    {
+        if (data == null || data.lines == null || data.lines.Count == 0) return;
+        NPCDialogueTrigger npc = null;
+        foreach (var candidate in FindObjectsByType<NPCDialogueTrigger>(FindObjectsInactive.Include))
+            if (candidate.SaveId == data.npcId) { npc = candidate; break; }
+        restoringConversation = true;
+        StartConversation(data.lines.GetRange(Mathf.Clamp(data.line, 0, data.lines.Count - 1),
+            data.lines.Count - Mathf.Clamp(data.line, 0, data.lines.Count - 1)), npc);
+        restoringConversation = false;
+    }
+
+    public void CancelConversation()
+    {
+        currentNpc = null;
+        if (isDialogueActive) FinishDialogue();
+        else HideNonDialogueUi();
+    }
+
     public void ClearHistory()
     {
         historyEntries.Clear();
@@ -1112,6 +1161,7 @@ public class DialogueController : MonoBehaviour
 
     public void SaveDialogueHistory()
     {
+        if (MainMenuController.IsStartingNewGame || SaveSlotPanel.HasPendingLoad) return;
         if (string.IsNullOrEmpty(dialogueSavePath))
         {
             dialogueSavePath = Path.Combine(Application.persistentDataPath, "dialogue_history.json");
@@ -1163,7 +1213,7 @@ public class DialogueController : MonoBehaviour
             return;
         }
 
-        NPCDialogueTrigger[] npcs = FindObjectsByType<NPCDialogueTrigger>(FindObjectsInactive.Exclude);
+        NPCDialogueTrigger[] npcs = FindObjectsByType<NPCDialogueTrigger>(FindObjectsInactive.Include);
 
         for (int i = 0; i < npcs.Length; i++)
         {
@@ -1175,7 +1225,7 @@ public class DialogueController : MonoBehaviour
 
     private List<NPCSaveData> CreateNPCSaveData()
     {
-        NPCDialogueTrigger[] npcs = FindObjectsByType<NPCDialogueTrigger>(FindObjectsInactive.Exclude);
+        NPCDialogueTrigger[] npcs = FindObjectsByType<NPCDialogueTrigger>(FindObjectsInactive.Include);
         List<NPCSaveData> data = new List<NPCSaveData>();
 
         for (int i = 0; i < npcs.Length; i++)
@@ -1198,7 +1248,7 @@ public class DialogueController : MonoBehaviour
             return;
         }
 
-        NPCDialogueTrigger[] npcs = FindObjectsByType<NPCDialogueTrigger>(FindObjectsInactive.Exclude);
+        NPCDialogueTrigger[] npcs = FindObjectsByType<NPCDialogueTrigger>(FindObjectsInactive.Include);
 
         for (int i = 0; i < npcs.Length; i++)
         {

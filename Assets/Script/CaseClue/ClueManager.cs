@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Localization;
@@ -16,6 +17,7 @@ public class ClueManager : MonoBehaviour
         public LocalizedString summary;
         public ClueCredibility credibility;
         public CaseDefinition caseDefinition;
+        public bool inJudgmentZone;
     }
 
     public CaseDefinition CurrentCase { get; set; }
@@ -38,7 +40,7 @@ public class ClueManager : MonoBehaviour
 
     private void Update()
     {
-        if (Keyboard.current.rKey.wasPressedThisFrame)
+        if (Keyboard.current != null && Keyboard.current.rKey.wasPressedThisFrame)
         {
             PrintAllClues();
         }
@@ -75,7 +77,74 @@ public class ClueManager : MonoBehaviour
     // Call this if the player can retry the puzzle without reloading the scene.
     public void ClearAllClues()
     {
+        foreach (ClueBoardUI board in FindObjectsByType<ClueBoardUI>(FindObjectsInactive.Include))
+            board.ClearEntries();
         recordedClues.Clear();
+    }
+
+    [Serializable]
+    private class SavedClue
+    {
+        public LocalizedString title;
+        public LocalizedString summary;
+        public ClueCredibility credibility;
+        public string caseId;
+        public bool inJudgmentZone;
+    }
+
+    [Serializable]
+    private class ClueSaveData
+    {
+        public List<SavedClue> clues = new List<SavedClue>();
+    }
+
+    public void SaveClues()
+    {
+        if (MainMenuController.IsStartingNewGame) return;
+        ClueSaveData data = new ClueSaveData();
+        foreach (RecordedClue clue in recordedClues)
+        {
+            data.clues.Add(new SavedClue
+            {
+                title = clue.title,
+                summary = clue.summary,
+                credibility = clue.credibility,
+                caseId = clue.caseDefinition != null ? clue.caseDefinition.name : string.Empty,
+                inJudgmentZone = clue.inJudgmentZone
+            });
+        }
+        File.WriteAllText(Path.Combine(Application.persistentDataPath, "clues.json"), JsonUtility.ToJson(data, true));
+    }
+
+    public void LoadClues()
+    {
+        string path = Path.Combine(Application.persistentDataPath, "clues.json");
+        ClueSaveData data = File.Exists(path)
+            ? JsonUtility.FromJson<ClueSaveData>(File.ReadAllText(path))
+            : new ClueSaveData();
+        if (data == null || data.clues == null) return;
+
+        ClearAllClues();
+        CaseDefinition[] cases = Resources.FindObjectsOfTypeAll<CaseDefinition>();
+        foreach (SavedClue saved in data.clues)
+        {
+            CaseDefinition definition = Array.Find(cases, candidate => candidate.name == saved.caseId);
+            if (definition == null && !string.IsNullOrEmpty(saved.caseId))
+            {
+                Debug.LogWarning("Cannot restore clue for missing case: " + saved.caseId, this);
+                continue;
+            }
+            recordedClues.Add(new RecordedClue
+            {
+                title = saved.title,
+                summary = saved.summary,
+                credibility = saved.credibility,
+                caseDefinition = definition,
+                inJudgmentZone = saved.inJudgmentZone
+            });
+        }
+        foreach (ClueBoardUI board in FindObjectsByType<ClueBoardUI>(FindObjectsInactive.Include))
+            if (board.isActiveAndEnabled) board.RefreshEntries();
     }
 
     // For debugging purposes, print all recorded clues to the console

@@ -21,7 +21,7 @@ public class InventoryManager : MonoBehaviour
                 for (int i = 0; i < inventorySlotsForTutorial.Length; i++)
                 {
                     InventorySlot slot = inventorySlotsForTutorial[i];
-                    DragableItem iteminslot = slot.GetComponentInChildren<DragableItem>();
+                    DragableItem iteminslot = slot.GetComponentInChildren<DragableItem>(true);
                     if (iteminslot == null)
                     {
                         SetNewItem(item, slot);
@@ -34,7 +34,7 @@ public class InventoryManager : MonoBehaviour
                 for (int i = 0; i < inventorySlotsForIngame.Length; i++)
                 {
                     InventorySlot slot = inventorySlotsForIngame[i];
-                    DragableItem iteminslot = slot.GetComponentInChildren<DragableItem>();
+                    DragableItem iteminslot = slot.GetComponentInChildren<DragableItem>(true);
                     if (iteminslot == null)
                     {
                         SetNewItem(item, slot);
@@ -55,7 +55,7 @@ public class InventoryManager : MonoBehaviour
                 for (int i = 0; i < inventorySlotsForMap.Length; i++)
                 {
                     InventorySlot slot = inventorySlotsForMap[i];
-                    DragableItemSave iteminslot = slot.GetComponentInChildren<DragableItemSave>();
+                    DragableItemSave iteminslot = slot.GetComponentInChildren<DragableItemSave>(true);
                     if (iteminslot == null)
                     {
                         SetNewItemMap(item, slot);

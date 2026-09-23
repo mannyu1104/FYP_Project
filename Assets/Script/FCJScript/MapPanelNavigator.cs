@@ -69,6 +69,11 @@ public class MapPanelNavigator : MonoBehaviour
         UnpauseLookIfNeeded();
     }
 
+    public int SavedLocation => locationPanels.FindIndex(p => p != null && p.activeSelf);
+    public void RestoreLocation(int index) => OpenPanelImmediately(index);
+
+    public void ResetToHome() => OpenPanelImmediately(HomeIndex);
+
     public void OpenHome()
     {
         OpenPanel(HomeIndex);

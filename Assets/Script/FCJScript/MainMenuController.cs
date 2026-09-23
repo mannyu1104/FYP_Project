@@ -3,13 +3,18 @@ using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 /// <summary>
 /// Controls the main menu, settings panel, and game start flow.
 /// </summary>
 public class MainMenuController : MonoBehaviour
 {
-    private const string DeleteSaveTestButtonName = "DeleteSaveTestButton";
+    public static bool IsStartingNewGame { get; private set; }
+
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetNewGameRequest() => IsStartingNewGame = false;
 
     [System.Serializable]
     private class VisibleLocationPanel
@@ -29,24 +34,17 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private GameObject gameRootPanel;
 
     [Header("Save / Load")]
-    [Tooltip("Hidden until a save record exists.")]
+    [Tooltip("Always visible; disabled until a valid save slot exists.")]
     [SerializeField] private GameObject loadGameButton;
     [Tooltip("Optional save system used by the Load Game button.")]
     [SerializeField] private SaveSystem saveSystem;
     [SerializeField] private bool loadInventoryOnLoadGame = true;
     [SerializeField] private bool loadMapItemsOnLoadGame = true;
     [SerializeField] private bool loadUnlockedMapsOnLoadGame = true;
-    [SerializeField] private bool resetDialogueProgressOnNewGame = true;
     [SerializeField] private bool loadDialogueProgressOnLoadGame = true;
     [Tooltip("Buttons that create a loadable save record after they are clicked.")]
     [SerializeField] private List<GameObject> saveRecordButtons = new List<GameObject>();
     [SerializeField] private string saveRecordMarkerFileName = "fcj_save_record_marker.json";
-    [SerializeField] private bool requireSaveDataFileForLoadButton = true;
-    [Header("Testing")]
-    [Tooltip("Creates a temporary main menu button for deleting save data while testing Load Game visibility.")]
-    [SerializeField] private bool showDeleteSaveTestButton = true;
-    [SerializeField] private GameObject deleteSaveTestButton;
-
     [Header("Transition")]
     [SerializeField] private ScreenTransitionController screenTransitionController;
     [SerializeField] private bool useTransitionOnStartGame = true;
@@ -67,6 +65,7 @@ public class MainMenuController : MonoBehaviour
     [SerializeField] private bool pauseLookOnMenu = true;
 
     private bool settingsOpenedFromGame;
+    private bool settingsLookWasPaused;
     private RectTransform historyButtonRect;
     private RectTransform settingsButtonRect;
     private bool historyButtonWasPlaced;
@@ -79,13 +78,16 @@ public class MainMenuController : MonoBehaviour
     private Vector2 historyButtonOriginalAnchoredPosition;
     private Vector3 historyButtonOriginalLocalScale;
     private bool historyButtonOriginalStateCached;
+    private readonly List<Button> loadButtons = new List<Button>();
     private readonly HashSet<Button> boundSaveRecordButtons = new HashSet<Button>();
 
     private void Awake()
     {
         ResolveReferences();
-        EnsureDeleteSaveTestButton();
         BindSaveRecordButtons();
+        foreach (Button button in FindObjectsByType<Button>(FindObjectsInactive.Include))
+            if (button.name == "LoadButton" || button.name == "Load" || button.gameObject == loadGameButton)
+            { loadButtons.Add(button); button.onClick = new Button.ButtonClickedEvent(); button.onClick.AddListener(LoadGame); }
         RefreshLoadGameButtonVisibility();
     }
 
@@ -95,11 +97,28 @@ public class MainMenuController : MonoBehaviour
         {
             ShowMainMenu();
         }
+        if (SaveSlotPanel.HasPendingLoad) StartCoroutine(RestoreSlot());
+        else if (IsStartingNewGame) StartCoroutine(CompleteNewGame());
+    }
+
+    private IEnumerator CompleteNewGame()
+    {
+        // Allow scene Start methods and the video flow to observe the main menu first.
+        yield return null;
+        IsStartingNewGame = false;
+        StartGameplayImmediately();
+        if (dialogueController != null)
+        {
+            dialogueController.ClearHistory();
+            dialogueController.ResetAllNPCProgress();
+        }
+        if (GameStateManager.Instance != null)
+            GameStateManager.Instance.ChangeState(GameState.Normal);
+        InvestigationFlowController.Instance?.BeginNewGame();
     }
 
     private void LateUpdate()
     {
-        EnsureDeleteSaveTestButton();
         BindSaveRecordButtons();
         RefreshGameOverlayButtonVisibility();
         RefreshLoadGameButtonVisibility();
@@ -125,44 +144,60 @@ public class MainMenuController : MonoBehaviour
 
     public void LoadGame()
     {
+        if (CanLoadGame()) SaveSlotPanel.Open(this, false);
+    }
+
+    public void SaveGame() { if (IsGameplayVisible) SaveSlotPanel.Open(this, true); }
+
+    public void CaptureSaveFiles()
+    {
         ResolveReferences();
+        if (saveSystem == null) throw new System.InvalidOperationException("SaveSystem missing");
+        saveSystem.SaveInventory();
+        saveSystem.SaveInventoryMap();
+        saveSystem.SaveMap();
+        dialogueController?.SaveDialogueHistory();
+        FindAnyObjectByType<ClueManager>(FindObjectsInactive.Include)?.SaveClues();
+        FindAnyObjectByType<NotesGrabber>(FindObjectsInactive.Include)?.FlushForSlot();
+        InvestigationFlowController.Instance?.SaveProgress();
+    }
 
-        if (!CanLoadGame())
-        {
-            RefreshLoadGameButtonVisibility();
-            return;
-        }
-
-        if (useTransitionOnStartGame && screenTransitionController != null)
-        {
-            screenTransitionController.PlayTransition(LoadGameImmediately);
-            return;
-        }
-
-        LoadGameImmediately();
+    public IEnumerator RestoreSlot()
+    {
+        yield return null;
+        yield return UnityEngine.Localization.Settings.LocalizationSettings.InitializationOperation;
+        SaveSlotPanel.WritePendingFiles();
+        StartGameplayImmediately();
+        LoadSavedProgress();
+        SaveSlotPanel.RestorePendingState();
     }
 
     private void NewGameImmediately()
     {
-        StartGameplayImmediately();
-
-        if (resetDialogueProgressOnNewGame && dialogueController != null)
+        Scene scene = gameObject.scene;
+        if (string.IsNullOrEmpty(scene.path))
         {
-            dialogueController.ClearHistory();
-            dialogueController.ResetAllNPCProgress();
-        }
-    }
-
-    private void LoadGameImmediately()
-    {
-        if (!CanLoadGame())
-        {
-            RefreshLoadGameButtonVisibility();
+            Debug.LogError("Save the scene before starting a new game.", this);
             return;
         }
-
-        StartGameplayImmediately();
-        LoadSavedProgress();
+#if !UNITY_EDITOR
+        if (!Application.CanStreamedLevelBeLoaded(scene.path))
+        {
+            Debug.LogError("The gameplay scene must be included in the build scene list.", this);
+            return;
+        }
+#endif
+        IsStartingNewGame = true;
+        // A new run must not combine its dialogue with the previous run's inventory.
+        DeleteSaveFileIfExists(GetSaveRecordMarkerPath());
+        foreach (string path in GetSaveDataPaths()) DeleteSaveFileIfExists(path);
+        CountingPoint.ResetTutorialCompletion();
+#if UNITY_EDITOR
+        UnityEditor.SceneManagement.EditorSceneManager.LoadSceneInPlayMode(
+            scene.path, new LoadSceneParameters(LoadSceneMode.Single));
+#else
+        SceneManager.LoadScene(scene.path);
+#endif
     }
 
     private void StartGameplayImmediately()
@@ -208,6 +243,9 @@ public class MainMenuController : MonoBehaviour
         {
             dialogueController.LoadDialogueHistory();
         }
+        ClueManager clues = FindAnyObjectByType<ClueManager>(FindObjectsInactive.Include);
+        if (clues != null) clues.LoadClues();
+        if (!SaveSlotPanel.HasPendingLoad) InvestigationFlowController.Instance?.LoadProgress();
     }
 
     public void OpenSettings()
@@ -229,6 +267,8 @@ public class MainMenuController : MonoBehaviour
 
         EnsurePanelBlocksRaycasts(settingsPanel);
         settingsOpenedFromGame = true;
+        LookController look = FindAnyObjectByType<LookController>();
+        settingsLookWasPaused = look != null && look.IsPaused;
         SetGameObject(settingsPanel, true);
         SetGameObject(returnToMainMenuButton, true);
         SetLookPaused(true);
@@ -245,7 +285,7 @@ public class MainMenuController : MonoBehaviour
         if (settingsOpenedFromGame)
         {
             settingsOpenedFromGame = false;
-            SetLookPaused(false);
+            SetLookPaused(settingsLookWasPaused);
         }
 
         RefreshGameOverlayButtonVisibility();
@@ -253,6 +293,7 @@ public class MainMenuController : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
+        InvestigationFlowController.Instance?.StopForMenu();
         settingsOpenedFromGame = false;
         ShowMainMenu();
     }
@@ -260,7 +301,6 @@ public class MainMenuController : MonoBehaviour
     public void ShowMainMenu()
     {
         ResolveReferences();
-        EnsureDeleteSaveTestButton();
         HideDialogueFloatingUi();
 
         SetGameObject(mainMenuPanel, true);
@@ -272,6 +312,10 @@ public class MainMenuController : MonoBehaviour
         RefreshGameOverlayButtonVisibility();
         RefreshLoadGameButtonVisibility();
     }
+
+    public bool IsMenuVisible => mainMenuPanel != null && mainMenuPanel.activeInHierarchy;
+    public bool IsSettingsVisible => settingsPanel != null && settingsPanel.activeInHierarchy;
+    public bool IsGameplayVisible => gameRootPanel != null && gameRootPanel.activeInHierarchy && !IsMenuVisible;
 
     private void RefreshGameOverlayButtonVisibility()
     {
@@ -285,7 +329,9 @@ public class MainMenuController : MonoBehaviour
             !MapButton.IsAnyMapOpen &&
             IsAnyVisibleLocationPanelActive();
 
-        SetGameObject(gameSettingsButton, shouldShowGameOverlayButtons);
+        bool openingSequence = InvestigationFlowController.Instance != null && InvestigationFlowController.Instance.IsOpeningSequence;
+        SetGameObject(gameSettingsButton, shouldShowGameOverlayButtons ||
+            (openingSequence && IsGameplayVisible && !IsSettingsVisible));
         SetHistoryButtonVisible(dialogueActive || historyOpen);
     }
 
@@ -317,7 +363,14 @@ public class MainMenuController : MonoBehaviour
 
         if (saveSystem == null)
         {
-            saveSystem = FindAnyObjectByType<SaveSystem>();
+            foreach (SaveSystem candidate in FindObjectsByType<SaveSystem>(FindObjectsInactive.Include))
+            {
+                if (candidate.inventorymanager != null && candidate.inventoryUsing != null)
+                {
+                    saveSystem = candidate;
+                    break;
+                }
+            }
         }
 
         if (screenTransitionController == null)
@@ -352,7 +405,7 @@ public class MainMenuController : MonoBehaviour
             }
         }
 
-        if (loadGameButton == null)
+        if (loadGameButton == null || loadGameButton.name != "LoadGameButton")
         {
             GameObject button = GameObject.Find("LoadGameButton");
             if (button == null)
@@ -361,11 +414,6 @@ public class MainMenuController : MonoBehaviour
             }
 
             loadGameButton = button;
-        }
-
-        if (deleteSaveTestButton == null)
-        {
-            deleteSaveTestButton = FindSceneObjectByName(DeleteSaveTestButtonName);
         }
 
         if (gameSettingsButton == null)
@@ -396,21 +444,22 @@ public class MainMenuController : MonoBehaviour
 
     private void RefreshLoadGameButtonVisibility()
     {
-        SetGameObject(loadGameButton, CanLoadGame());
+        bool available = CanLoadGame();
+        if (loadGameButton != null) loadGameButton.SetActive(true);
+        foreach (Button button in loadButtons)
+        {
+            if (button == null) continue;
+            button.interactable = available;
+            button.transition = Selectable.Transition.ColorTint;
+            ColorBlock colors = button.colors;
+            colors.disabledColor = new Color(0.16f, 0.16f, 0.16f, 1f);
+            button.colors = colors;
+        }
     }
 
     public void RegisterSaveRecord()
     {
-        try
-        {
-            File.WriteAllText(GetSaveRecordMarkerPath(), System.DateTime.Now.ToString("O"));
-        }
-        catch (System.Exception exception)
-        {
-            Debug.LogWarning($"MainMenuController: Failed to create save record marker. {exception.Message}", this);
-        }
-
-        RefreshLoadGameButtonVisibility();
+        SaveGame();
     }
 
     public void DeleteSaveRecordForTest()
@@ -425,138 +474,6 @@ public class MainMenuController : MonoBehaviour
 
         RefreshLoadGameButtonVisibility();
         Debug.Log("MainMenuController: Test save files deleted. Load Game visibility refreshed.", this);
-    }
-
-    private void EnsureDeleteSaveTestButton()
-    {
-        if (!showDeleteSaveTestButton)
-        {
-            SetGameObject(deleteSaveTestButton, false);
-            return;
-        }
-
-        if (mainMenuPanel == null)
-        {
-            return;
-        }
-
-        if (deleteSaveTestButton == null)
-        {
-            Transform existing = FindChildByName(mainMenuPanel.transform, DeleteSaveTestButtonName);
-            if (existing != null)
-            {
-                deleteSaveTestButton = existing.gameObject;
-            }
-        }
-
-        if (deleteSaveTestButton == null)
-        {
-            deleteSaveTestButton = CreateDeleteSaveTestButton();
-        }
-
-        if (deleteSaveTestButton == null)
-        {
-            return;
-        }
-
-        SetGameObject(deleteSaveTestButton, true);
-
-        Button button = deleteSaveTestButton.GetComponent<Button>();
-        if (button != null)
-        {
-            SetDeleteSaveButtonClick(button);
-        }
-
-        TMP_Text text = deleteSaveTestButton.GetComponentInChildren<TMP_Text>(true);
-        if (text != null && string.IsNullOrWhiteSpace(text.text))
-        {
-            text.text = "Delete Save";
-        }
-    }
-
-    private GameObject CreateDeleteSaveTestButton()
-    {
-        GameObject template = FindSceneObjectByName("QuitGameButton");
-        GameObject buttonObject;
-
-        if (template != null)
-        {
-            buttonObject = Instantiate(template, mainMenuPanel.transform);
-            buttonObject.name = DeleteSaveTestButtonName;
-            PositionDeleteSaveButton(buttonObject.transform as RectTransform, template.transform as RectTransform);
-        }
-        else
-        {
-            buttonObject = new GameObject(DeleteSaveTestButtonName, typeof(RectTransform), typeof(Image), typeof(Button));
-            buttonObject.transform.SetParent(mainMenuPanel.transform, false);
-
-            RectTransform rectTransform = buttonObject.transform as RectTransform;
-            if (rectTransform != null)
-            {
-                rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
-                rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
-                rectTransform.pivot = new Vector2(0.5f, 0.5f);
-                rectTransform.sizeDelta = new Vector2(260f, 58f);
-                rectTransform.anchoredPosition = new Vector2(0f, -180f);
-            }
-
-            Image image = buttonObject.GetComponent<Image>();
-            if (image != null)
-            {
-                image.color = Color.white;
-            }
-
-            GameObject textObject = new GameObject("Text (TMP)", typeof(RectTransform), typeof(TextMeshProUGUI));
-            textObject.transform.SetParent(buttonObject.transform, false);
-
-            RectTransform textRect = textObject.transform as RectTransform;
-            if (textRect != null)
-            {
-                textRect.anchorMin = Vector2.zero;
-                textRect.anchorMax = Vector2.one;
-                textRect.offsetMin = Vector2.zero;
-                textRect.offsetMax = Vector2.zero;
-            }
-        }
-
-        TMP_Text text = buttonObject.GetComponentInChildren<TMP_Text>(true);
-        if (text != null)
-        {
-            text.text = "Delete Save";
-            text.alignment = TextAlignmentOptions.Center;
-            text.fontSize = 28f;
-            text.enableAutoSizing = false;
-        }
-
-        Button button = buttonObject.GetComponent<Button>();
-        if (button != null)
-        {
-            SetDeleteSaveButtonClick(button);
-        }
-
-        buttonObject.SetActive(true);
-        return buttonObject;
-    }
-
-    private void SetDeleteSaveButtonClick(Button button)
-    {
-        button.onClick = new Button.ButtonClickedEvent();
-        button.onClick.AddListener(DeleteSaveRecordForTest);
-    }
-
-    private void PositionDeleteSaveButton(RectTransform buttonRect, RectTransform templateRect)
-    {
-        if (buttonRect == null || templateRect == null)
-        {
-            return;
-        }
-
-        buttonRect.anchorMin = templateRect.anchorMin;
-        buttonRect.anchorMax = templateRect.anchorMax;
-        buttonRect.pivot = templateRect.pivot;
-        buttonRect.sizeDelta = templateRect.sizeDelta;
-        buttonRect.anchoredPosition = templateRect.anchoredPosition + new Vector2(0f, -70f);
-        buttonRect.localScale = templateRect.localScale;
     }
 
     private void DeleteSaveFileIfExists(string path)
@@ -576,40 +493,12 @@ public class MainMenuController : MonoBehaviour
 
     private bool CanLoadGame()
     {
-        bool markerExists = File.Exists(GetSaveRecordMarkerPath());
-        bool saveDataExists = HasAnySaveDataFile();
-
-        if (markerExists && requireSaveDataFileForLoadButton && !saveDataExists)
-        {
-            DeleteSaveFileIfExists(GetSaveRecordMarkerPath());
-            markerExists = false;
-        }
-
-        if (requireSaveDataFileForLoadButton)
-        {
-            return markerExists && saveDataExists;
-        }
-
-        return markerExists;
+        return SaveSlotPanel.HasSaves;
     }
 
     private string GetSaveRecordMarkerPath()
     {
         return Path.Combine(Application.persistentDataPath, saveRecordMarkerFileName);
-    }
-
-    private bool HasAnySaveDataFile()
-    {
-        string[] saveDataPaths = GetSaveDataPaths();
-        for (int i = 0; i < saveDataPaths.Length; i++)
-        {
-            if (File.Exists(saveDataPaths[i]))
-            {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     private string[] GetSaveDataPaths()
@@ -619,7 +508,10 @@ public class MainMenuController : MonoBehaviour
             Path.Combine(Application.persistentDataPath, "inventory.json"),
             Path.Combine(Application.persistentDataPath, "inventorylock.json"),
             Path.Combine(Application.persistentDataPath, "map.json"),
-            Path.Combine(Application.persistentDataPath, "dialogue_history.json")
+            Path.Combine(Application.persistentDataPath, "dialogue_history.json"),
+            Path.Combine(Application.persistentDataPath, "clues.json"),
+            Path.Combine(Application.persistentDataPath, "story_progress.json"),
+            Path.Combine(Application.persistentDataPath, "notes.json")
         };
     }
 
@@ -638,7 +530,8 @@ public class MainMenuController : MonoBehaviour
             Button button = buttonObject.GetComponent<Button>();
             if (button != null && boundSaveRecordButtons.Add(button))
             {
-                button.onClick.AddListener(RegisterSaveRecord);
+                button.onClick = new Button.ButtonClickedEvent();
+                button.onClick.AddListener(SaveGame);
             }
         }
     }
@@ -654,7 +547,7 @@ public class MainMenuController : MonoBehaviour
         for (int i = 0; i < transforms.Length; i++)
         {
             Transform target = transforms[i];
-            if (target.name == "SaveButton" && target.gameObject.scene.IsValid())
+            if ((target.name == "SaveButton" || target.name == "Save") && target.gameObject.scene.IsValid())
             {
                 saveRecordButtons.Add(target.gameObject);
             }

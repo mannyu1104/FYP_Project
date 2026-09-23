@@ -2,7 +2,6 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class MapIcon : MonoBehaviour
 {
@@ -16,8 +15,14 @@ public class MapIcon : MonoBehaviour
     public bool thisUnlocked;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private bool initialized;
+
+    void Start() => EnsureInitialized();
+
+    public void EnsureInitialized()
     {
+        if (initialized) return;
+        initialized = true;
         InitialiseItem(Mapdetials);
 
         if (thisUnlocked)

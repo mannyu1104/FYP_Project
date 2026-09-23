@@ -15,13 +15,29 @@ public class ClueBoardUI : MonoBehaviour
     // Read by ClueSubmission when the player hits Submit.
     public IReadOnlyList<ClueBoardEntryUI> Entries => entries;
 
+    private ClueSubmission submission;
+    private ClueSubmission Submission
+    {
+        get
+        {
+            if (submission == null)
+                foreach (ClueSubmission candidate in FindObjectsByType<ClueSubmission>(FindObjectsInactive.Include))
+                    if (candidate.Board == this) { submission = candidate; break; }
+            return submission;
+        }
+    }
+
+    private void Start() => OnEnable();
+
     private void OnEnable()
     {
         // Only spawn clues we haven't seen before. This is deliberate: if the
         // player already dragged some clues into the judgment zone and then
         // leaves to question another witness, coming back here must NOT reset
         // their sorting progress.
+        if (ClueManager.Instance == null) return;
         SpawnAnyNewClues();
+        ClueManager.Instance.OnClueRecorded -= HandleClueRecorded;
         ClueManager.Instance.OnClueRecorded += HandleClueRecorded;
     }
 
@@ -45,6 +61,36 @@ public class ClueBoardUI : MonoBehaviour
         }
     }
 
+    public void RefreshEntries()
+    {
+        if (ClueManager.Instance != null) SpawnAnyNewClues();
+    }
+
+    public void ClearEntries()
+    {
+        foreach (ClueBoardEntryUI entry in entries)
+        {
+            if (entry == null) continue;
+            entry.gameObject.SetActive(false);
+            Destroy(entry.gameObject);
+        }
+        entries.Clear();
+        spawnedClues.Clear();
+    }
+
+    public bool AcceptsDestination(Transform destination)
+    {
+        return destination == unsortedContent ||
+            (Submission != null && destination == Submission.JudgmentContent);
+    }
+
+    public void RecordPlacement(ClueBoardEntryUI entry)
+    {
+        ClueSubmission submission = Submission;
+        if (entry != null && entries.Contains(entry) && submission != null)
+            entry.SetJudgmentPlacement(entry.transform.parent == submission.JudgmentContent);
+    }
+
     private void HandleClueRecorded(ClueManager.RecordedClue clue)
     {
         AddEntry(clue);
@@ -60,6 +106,10 @@ public class ClueBoardUI : MonoBehaviour
         spawnedClues.Add(clue);
         ClueBoardEntryUI entry = Instantiate(entryPrefab, unsortedContent);
         entry.Set(clue);
+        entry.Board = this;
         entries.Add(entry);
+        ClueSubmission submission = Submission;
+        if (clue.inJudgmentZone && submission != null && submission.JudgmentContent != null)
+            entry.transform.SetParent(submission.JudgmentContent, false);
     }
 }
