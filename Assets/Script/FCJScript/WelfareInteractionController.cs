@@ -60,9 +60,9 @@ public class WelfareInteractionController : MonoBehaviour
         foreach (var candidate in FindObjectsByType<RopeSkipping>(FindObjectsInactive.Include))
             if (!candidate.gameObject.activeInHierarchy && candidate.gameObject.scene == gameObject.scene)
             { template = candidate; break; }
-        // Prefer the editable scene instance; the variant references the same original
-        // prefab and remains available when the scene instance is removed or replaced.
-        GameObject source = template != null ? template.transform.root.gameObject : Resources.Load<GameObject>("WelfareRopeGame");
+        // Prefer the editable scene instance; otherwise load the original prefab
+        // directly from Resources (its GUID is unchanged).
+        GameObject source = template != null ? template.transform.root.gameObject : Resources.Load<GameObject>("RopeGamePrefab");
         if (source == null || source.GetComponentInChildren<RopeSkipping>(true) == null)
         {
             Debug.LogError("Rope game prefab is missing or has no RopeSkipping component.", this);

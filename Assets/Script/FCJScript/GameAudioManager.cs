@@ -34,12 +34,55 @@ public class GameAudioManager : MonoBehaviour
     [SerializeField] private AudioClip menuBgm;
     [SerializeField] private AudioClip tutorialBgm;
     [SerializeField] private AudioClip locationFootstepsSfx;
+    [Tooltip("Footstep loudness multiplier. 1 = original, 2 = twice the amplitude. Still follows Master and SFX volume.")]
+    [Range(0f, 4f)] [SerializeField] private float locationFootstepsVolume = 1f;
     [SerializeField] private AudioClip dialogueTypingSfx;
+    [SerializeField] private AudioClip doorKnockSfx;
+    [Range(-1f, 1f)] [SerializeField] private float doorKnockPan = .7f;
+    [Range(0f, 1f)] [SerializeField] private float doorKnockVolume = 1f;
+    private AudioSource doorKnockSource;
+
+    public void PlayDoorKnock()
+    {
+        if (doorKnockSfx == null) return;
+        if (doorKnockSource == null) doorKnockSource = GetOrCreateAudioSource("Door Knock Source");
+        doorKnockSource.playOnAwake = false;
+        doorKnockSource.loop = false;
+        doorKnockSource.spatialBlend = 0f;
+        doorKnockSource.panStereo = doorKnockPan;
+        doorKnockSource.volume = masterVolume * sfxVolume * doorKnockVolume;
+        doorKnockSource.clip = doorKnockSfx;
+        doorKnockSource.Play();
+    }
+
     [SerializeField] private bool autoButtonSounds = true;
     public AudioClip DialogueTypingSfx => dialogueTypingSfx;
+    private AudioSource typingSource;
+    public void PlayDialogueTyping(AudioClip clip)
+    {
+        if (clip == null) return;
+        if (typingSource == null) typingSource = GetOrCreateAudioSource("Dialogue Typing Source");
+        if (typingSource.isPlaying && typingSource.clip == clip) return;
+        typingSource.Stop();
+        typingSource.playOnAwake = false;
+        typingSource.loop = false;
+        typingSource.spatialBlend = 0f;
+        typingSource.volume = masterVolume * sfxVolume;
+        typingSource.clip = clip;
+        typingSource.Play();
+    }
+    public void StopDialogueTyping()
+    {
+        if (typingSource != null) typingSource.Stop();
+    }
+
     private float nextButtonScan;
     private AudioClip selectedBgm;
-    public void PlayLocationFootsteps() => PlaySfx(locationFootstepsSfx);
+    public void PlayLocationFootsteps()
+    {
+        if (locationFootstepsSfx != null && sfxSource != null)
+            sfxSource.PlayOneShot(locationFootstepsSfx, locationFootstepsVolume);
+    }
 
     [Header("Panel BGM")]
     [Tooltip("First active panel in this list decides the current BGM.")]
@@ -285,6 +328,8 @@ public class GameAudioManager : MonoBehaviour
 
     private void ApplyVolumes()
     {
+        if (typingSource != null) typingSource.volume = masterVolume * sfxVolume;
+        if (doorKnockSource != null) doorKnockSource.volume = masterVolume * sfxVolume * doorKnockVolume;
         if (bgmSource != null)
         {
             bgmSource.volume = masterVolume * bgmVolume;

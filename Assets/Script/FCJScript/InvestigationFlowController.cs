@@ -39,7 +39,6 @@ public class InvestigationFlowController : MonoBehaviour
     public int ConversationPart { get; private set; }
     private DialogueController.ConversationSnapshot resumeConversation;
     private Image sleepOverlay;
-    private AudioClip knock;
     private readonly Dictionary<GameObject, bool> worldObjects = new Dictionary<GameObject, bool>();
     private readonly Dictionary<GameObject, bool> computerObjects = new Dictionary<GameObject, bool>();
     private readonly List<GameObject> sideButtons = new List<GameObject>();
@@ -154,7 +153,6 @@ public class InvestigationFlowController : MonoBehaviour
         ClueSubmission.AssessmentScored -= TutorialFinished;
         CountingPoint.ScoreShown -= LegacyTutorialScored;
         if (Instance == this) Instance = null;
-        if (knock != null) Destroy(knock);
     }
 
     public void BeginNewGame()
@@ -524,22 +522,7 @@ public class InvestigationFlowController : MonoBehaviour
     }
     private void PlayKnock()
     {
-        if (knock == null)
-        {
-            const int rate = 22050;
-            float[] samples = new float[rate];
-            var random = new System.Random(17);
-            foreach (float onset in new[] { 0f, 0.25f, 0.52f })
-                for (int i = 0; i < rate / 6; i++)
-                {
-                    float time = (float)i / rate;
-                    samples[(int)(onset * rate) + i] += 0.55f * Mathf.Exp(-45f * time) *
-                        (0.65f * Mathf.Sin(2 * Mathf.PI * 145 * time) + 0.35f * (float)(random.NextDouble() * 2 - 1));
-                }
-            knock = AudioClip.Create("Door knocks", samples.Length, 1, rate, false);
-            knock.SetData(samples, 0);
-        }
-        GameAudioManager.Instance?.PlaySfx(knock);
+        GameAudioManager.Instance?.PlayDoorKnock();
     }
 
     private static GameObject FindObject(string name)
