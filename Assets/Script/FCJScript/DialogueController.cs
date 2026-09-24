@@ -717,8 +717,11 @@ public class DialogueController : MonoBehaviour
         }
     }
 
+    private void OnDisable() => StopTypingRoutine();
+
     private IEnumerator TypeDialogue(string text)
     {
+        GameAudioManager.Instance?.StopDialogueTyping();
         isTyping = true;
         SetDialogueText(string.Empty);
 
@@ -729,7 +732,7 @@ public class DialogueController : MonoBehaviour
 
         while (visibleCharacterCount < text.Length)
         {
-            if (IsSettingsOpen()) { yield return null; continue; }
+            if (IsSettingsOpen()) { GameAudioManager.Instance?.StopDialogueTyping(); yield return null; continue; }
             characterTimer += Time.unscaledDeltaTime * speed;
             int targetCharacterCount = Mathf.Min(text.Length, Mathf.FloorToInt(characterTimer));
 
@@ -738,12 +741,15 @@ public class DialogueController : MonoBehaviour
                 int previousVisibleCharacterCount = visibleCharacterCount;
                 visibleCharacterCount = targetCharacterCount;
                 SetDialogueText(text.Substring(0, visibleCharacterCount));
-                PlayTypingSoundIfNeeded(text, previousVisibleCharacterCount, visibleCharacterCount, ref lastTypingSoundTime);
+                if (visibleCharacterCount < text.Length)
+                    PlayTypingSoundIfNeeded(text, previousVisibleCharacterCount, visibleCharacterCount, ref lastTypingSoundTime);
+                else GameAudioManager.Instance?.StopDialogueTyping();
             }
 
             yield return null;
         }
 
+        GameAudioManager.Instance?.StopDialogueTyping();
         SetDialogueText(text);
         isTyping = false;
         typingRoutine = null;
@@ -781,7 +787,7 @@ public class DialogueController : MonoBehaviour
                 continue;
             }
 
-            GameAudioManager.Instance.PlaySfx(clip);
+            GameAudioManager.Instance.PlayDialogueTyping(clip);
             lastSoundTime = Time.unscaledTime;
             return;
         }
@@ -918,6 +924,7 @@ public class DialogueController : MonoBehaviour
 
     private void StopTypingRoutine()
     {
+        GameAudioManager.Instance?.StopDialogueTyping();
         if (typingRoutine != null)
         {
             StopCoroutine(typingRoutine);

@@ -185,8 +185,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -203,10 +203,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 63.6
-  m_fontSizeBase: 24
+  m_fontSize: 44.8
+  m_fontSizeBase: 44.8
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
@@ -638,8 +638,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -3.8814697, y: 106.29445}
-  m_SizeDelta: {x: -16.932251, y: -232.7639}
+  m_AnchoredPosition: {x: -0.4171753, y: 94.70367}
+  m_SizeDelta: {x: -76.438, y: -236.4242}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &76148041
 GameObject:
@@ -1507,8 +1507,26 @@ MonoBehaviour:
   - {fileID: 1373294942}
   - {fileID: 228703310}
   - {fileID: 1944477244}
-  - {fileID: 1894124715}
-  - {fileID: 315815337}
+  - {fileID: 2100000021}
+  - {fileID: 1799397660}
+  - {fileID: 522091764}
+  - {fileID: 943872412}
+  - {fileID: 477230134}
+  - {fileID: 403558035}
+  - {fileID: 1397097289}
+  - {fileID: 2100000041}
+  - {fileID: 2100000031}
+  - {fileID: 94063818}
+  - {fileID: 408756423}
+  - {fileID: 1145915556}
+  - {fileID: 702765099}
+  - {fileID: 2100000051}
+  - {fileID: 408816635}
+  - {fileID: 1794107787}
+  - {fileID: 749603926}
+  - {fileID: 1320451813}
+  - {fileID: 1599312798}
+  - {fileID: 1027046155}
   hoverParameters:
     autoCreateGlowOutline: 1
     autoCalculateGlowRange: 1
@@ -1738,19 +1756,19 @@ MonoBehaviour:
     hotspot: {x: 0, y: 0}
     cursorMode: 0
   - presetName: Talk
-    cursorTexture: {fileID: 2800000, guid: 35e5bcbfc83dbdf44ab306b946b9de9c, type: 3}
+    cursorTexture: {fileID: 2800000, guid: 0df20f358708a134895aa96a672ef21b, type: 3}
     hotspot: {x: 0, y: 0}
     cursorMode: 0
   - presetName: UseComputer
-    cursorTexture: {fileID: 2800000, guid: 68fdbe0e30dc3784198c6010a64e9f84, type: 3}
+    cursorTexture: {fileID: 2800000, guid: f5739125f137e954797509898f300276, type: 3}
     hotspot: {x: 0, y: 0}
     cursorMode: 0
   - presetName: Search
-    cursorTexture: {fileID: 10912, guid: 0000000000000000f000000000000000, type: 0}
+    cursorTexture: {fileID: 2800000, guid: f5739125f137e954797509898f300276, type: 3}
     hotspot: {x: 0, y: 0}
     cursorMode: 0
   - presetName: Map
-    cursorTexture: {fileID: 2800000, guid: 516e338cfffb46e458e23509f6c00213, type: 3}
+    cursorTexture: {fileID: 2800000, guid: 3d21616cb560d7846931a8d2a6c081d4, type: 3}
     hotspot: {x: 0, y: 0}
     cursorMode: 0
   - presetName: Back
@@ -2220,14 +2238,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1282361153, guid: c393c9e3359bce8499b22a36ba54e1cc, type: 3}
+  m_Sprite: {fileID: -1293357269, guid: fe1b4e3713091014d80a2c3c414d9f61, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2261,8 +2279,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -21.431519, y: 73.438416}
-  m_SizeDelta: {x: 894.2358, y: 453.6371}
+  m_AnchoredPosition: {x: -2.8737, y: 127.60436}
+  m_SizeDelta: {x: 728.4525, y: 355.2087}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &228703315
 MonoBehaviour:
@@ -3178,8 +3196,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -690.85, y: -261}
-  m_SizeDelta: {x: 452.9942, y: 74.1676}
+  m_AnchoredPosition: {x: -731.8828, y: -261}
+  m_SizeDelta: {x: 370.9284, y: 74.1676}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &327294687
 MonoBehaviour:
@@ -3257,8 +3275,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: -192411688, guid: 7dd3764956483f642a8c994eef973617, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -3336,8 +3354,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 343907822}
+  m_Children: []
   m_Father: {fileID: 1784880319}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -3366,8 +3383,8 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.42830187, g: 0.7801782, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.20188677, g: 0.6217683, b: 1, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -3421,8 +3438,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: -1901633622, guid: 661a3b9d9a1754947878d22b74be79eb, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -3438,143 +3455,6 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 333899234}
-  m_CullTransparentMesh: 1
---- !u!1 &343907821
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 343907822}
-  - component: {fileID: 343907824}
-  - component: {fileID: 343907823}
-  m_Layer: 5
-  m_Name: Text (TMP)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &343907822
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 343907821}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 333899235}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &343907823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 343907821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: Setting
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 23355c7b5fd799c4a98dd3e31afbe373, type: 2}
-  m_sharedMaterial: {fileID: -2843963497593350622, guid: 23355c7b5fd799c4a98dd3e31afbe373, type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 35
-  m_fontSizeBase: 24
-  m_fontWeight: 400
-  m_enableAutoSizing: 1
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 1
-  m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_characterHorizontalScale: 1
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_EmojiFallbackSupport: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &343907824
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 343907821}
   m_CullTransparentMesh: 1
 --- !u!1 &376733274
 GameObject:
@@ -3792,7 +3672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b415fa0449598804d909f214e96a005d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
-  cursorPresetName: View
+  cursorPresetName: Search
   enableInspectDialogue: 1
   itemName:
     m_TableReference:
@@ -4031,7 +3911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b415fa0449598804d909f214e96a005d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
-  cursorPresetName: View
+  cursorPresetName: Talk
   enableInspectDialogue: 1
   itemName:
     m_TableReference:
@@ -4170,8 +4050,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1068, y: -200}
-  m_SizeDelta: {x: 329.7273, y: 554.8119}
+  m_AnchoredPosition: {x: 1123, y: -99}
+  m_SizeDelta: {x: 468.162, y: 787.7476}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &411055834
 MonoBehaviour:
@@ -4460,8 +4340,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 1701818959, guid: 18fd9f8d2150a0c42a850de0849c7012, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -4808,8 +4688,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4826,10 +4706,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 55.25
-  m_fontSizeBase: 24
+  m_fontSize: 64.1
+  m_fontSizeBase: 64.1
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
@@ -4987,6 +4867,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 486584596}
   m_CullTransparentMesh: 1
+--- !u!114 &501291190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100000041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b415fa0449598804d909f214e96a005d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
+  cursorPresetName: View
+  enableInspectDialogue: 1
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  itemDescriptionLines: []
+  itemSprite: {fileID: 0}
+  showInspectImage: 1
+  customCursorPresetName: 
+  customCursorPresetIndex: 0
+  interactionType: 0
+  useCustomPreset: 0
+  cursorPresetIndex: 0
+  dialogueController: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &502391552
 GameObject:
   m_ObjectHideFlags: 0
@@ -5112,7 +5027,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 278, y: -220}
+  m_AnchoredPosition: {x: 257, y: -78}
   m_SizeDelta: {x: 88.8952, y: 61.0748}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &522091766
@@ -6811,7 +6726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b415fa0449598804d909f214e96a005d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
-  cursorPresetName: View
+  cursorPresetName: Search
   enableInspectDialogue: 1
   itemName:
     m_TableReference:
@@ -7499,7 +7414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b415fa0449598804d909f214e96a005d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
-  cursorPresetName: View
+  cursorPresetName: Talk
   enableInspectDialogue: 1
   itemName:
     m_TableReference:
@@ -7730,7 +7645,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &825842873
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8112,8 +8027,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -719.08, y: -402}
-  m_SizeDelta: {x: 396.5379, y: 85.4134}
+  m_AnchoredPosition: {x: -774.3817, y: -383}
+  m_SizeDelta: {x: 285.9366, y: 75.2756}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &878828677
 MonoBehaviour:
@@ -8191,8 +8106,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: -192411688, guid: 7dd3764956483f642a8c994eef973617, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -8259,7 +8174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b415fa0449598804d909f214e96a005d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
-  cursorPresetName: View
+  cursorPresetName: Search
   enableInspectDialogue: 1
   itemName:
     m_TableReference:
@@ -8480,8 +8395,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -6.356018, y: -44.389885}
-  m_SizeDelta: {x: -64.559814, y: -97.8678}
+  m_AnchoredPosition: {x: -0.4171753, y: -23.759903}
+  m_SizeDelta: {x: -76.438, y: -122.4903}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &907160104
 PrefabInstance:
@@ -10016,7 +9931,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 1282361153, guid: c393c9e3359bce8499b22a36ba54e1cc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10353,8 +10268,12 @@ MonoBehaviour:
   defaultBgm: {fileID: 0}
   menuBgm: {fileID: 8300000, guid: 82eee69a5fc25c54ea8fff6c6c8168e6, type: 3}
   tutorialBgm: {fileID: 8300000, guid: c97078e9936c65a4fa6b3f22bb53cb38, type: 3}
-  locationFootstepsSfx: {fileID: 0}
-  dialogueTypingSfx: {fileID: 0}
+  locationFootstepsSfx: {fileID: 8300000, guid: ac13def967dbe2f429a4704eda052fdb, type: 3}
+  locationFootstepsVolume: 2.03
+  dialogueTypingSfx: {fileID: 8300000, guid: 7cc131e1ee177a44287e21679186bb9b, type: 3}
+  doorKnockSfx: {fileID: 8300000, guid: d783020dc1035454db0cc8a35c8061b1, type: 3}
+  doorKnockPan: 0.7
+  doorKnockVolume: 1
   autoButtonSounds: 1
   panelBgms:
   - panel: {fileID: 600168711}
@@ -10998,8 +10917,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -11488,7 +11407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b415fa0449598804d909f214e96a005d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
-  cursorPresetName: View
+  cursorPresetName: Talk
   enableInspectDialogue: 1
   itemName:
     m_TableReference:
@@ -12256,8 +12175,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -22.4516, y: -143.12671}
-  m_SizeDelta: {x: 332.9352, y: 210.7469}
+  m_AnchoredPosition: {x: -29.6248, y: -34.44214}
+  m_SizeDelta: {x: 233.5801, y: 115.749}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1373294944
 MonoBehaviour:
@@ -12271,7 +12190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b415fa0449598804d909f214e96a005d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
-  cursorPresetName: View
+  cursorPresetName: UseComputer
   enableInspectDialogue: 0
   itemName:
     m_TableReference:
@@ -12500,7 +12419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b415fa0449598804d909f214e96a005d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
-  cursorPresetName: View
+  cursorPresetName: Search
   enableInspectDialogue: 1
   itemName:
     m_TableReference:
@@ -13015,7 +12934,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b415fa0449598804d909f214e96a005d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
-  cursorPresetName: View
+  cursorPresetName: Talk
   enableInspectDialogue: 1
   itemName:
     m_TableReference:
@@ -13207,8 +13126,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 665.7964, y: -90.37894}
-  m_SizeDelta: {x: 456.8456, y: 785.7381}
+  m_AnchoredPosition: {x: 610.7863, y: -14.413}
+  m_SizeDelta: {x: 399.2162, y: 733.3478}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1499908518
 MonoBehaviour:
@@ -13289,7 +13208,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 672848932, guid: 30a7b23a1dd0acc4f9f11f05dd56c15c, type: 3}
+  m_Sprite: {fileID: -332361880, guid: c9b65beccab100f46aaa19c56d945763, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13628,7 +13547,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1047057236, guid: 215e5238634c95b4a98b61e2b5584474, type: 3}
+  m_Sprite: {fileID: 1414313533, guid: 58ee389b61496c448a54de5c311ece67, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14286,7 +14205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b415fa0449598804d909f214e96a005d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
-  cursorPresetName: View
+  cursorPresetName: Talk
   enableInspectDialogue: 1
   itemName:
     m_TableReference:
@@ -14455,8 +14374,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -14473,7 +14392,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 67.1
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -14772,7 +14691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b415fa0449598804d909f214e96a005d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
-  cursorPresetName: View
+  cursorPresetName: Search
   enableInspectDialogue: 1
   itemName:
     m_TableReference:
@@ -14865,8 +14784,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 694.7516, y: -220}
-  m_SizeDelta: {x: 122.7664, y: 121.5932}
+  m_AnchoredPosition: {x: 562.27686, y: -132.52274}
+  m_SizeDelta: {x: 115.3201, y: 80.6387}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1652625591
 GameObject:
@@ -14904,6 +14823,41 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1653680379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100000021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b415fa0449598804d909f214e96a005d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
+  cursorPresetName: View
+  enableInspectDialogue: 1
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  itemDescriptionLines: []
+  itemSprite: {fileID: 0}
+  showInspectImage: 1
+  customCursorPresetName: 
+  customCursorPresetIndex: 0
+  interactionType: 0
+  useCustomPreset: 0
+  cursorPresetIndex: 0
+  dialogueController: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1655318232
 GameObject:
   m_ObjectHideFlags: 0
@@ -15152,8 +15106,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -664, y: -125}
-  m_SizeDelta: {x: 506.7004, y: 97.6026}
+  m_AnchoredPosition: {x: -664, y: -128.76065}
+  m_SizeDelta: {x: 506.7004, y: 90.0813}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1707024472
 MonoBehaviour:
@@ -15231,8 +15185,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: -192411688, guid: 7dd3764956483f642a8c994eef973617, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -15497,8 +15451,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: -192411688, guid: 7dd3764956483f642a8c994eef973617, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -15707,7 +15661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b415fa0449598804d909f214e96a005d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
-  cursorPresetName: View
+  cursorPresetName: Talk
   enableInspectDialogue: 1
   itemName:
     m_TableReference:
@@ -16101,6 +16055,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1816950708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100000031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b415fa0449598804d909f214e96a005d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
+  cursorPresetName: View
+  enableInspectDialogue: 1
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  itemDescriptionLines: []
+  itemSprite: {fileID: 0}
+  showInspectImage: 1
+  customCursorPresetName: 
+  customCursorPresetIndex: 0
+  interactionType: 0
+  useCustomPreset: 0
+  cursorPresetIndex: 0
+  dialogueController: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &1822214063
 GameObject:
   m_ObjectHideFlags: 0
@@ -16269,8 +16258,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -879.6436, y: -340.44458}
-  m_SizeDelta: {x: 821.4695, y: 399.1109}
+  m_AnchoredPosition: {x: -879.6436, y: -285.43475}
+  m_SizeDelta: {x: 821.4695, y: 509.1306}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1822657336
 MonoBehaviour:
@@ -16954,7 +16943,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -16995,8 +16984,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1086.6644, y: -51.67}
-  m_SizeDelta: {x: 386.6711, y: 976.66}
+  m_AnchoredPosition: {x: 1204.5667, y: -18.5999}
+  m_SizeDelta: {x: 150.8667, y: 1042.8003}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1944477250
 MonoBehaviour:
@@ -17686,6 +17675,7 @@ GameObject:
   - component: {fileID: 2100000024}
   - component: {fileID: 2100000025}
   - component: {fileID: 2100000030}
+  - component: {fileID: 1653680379}
   m_Layer: 5
   m_Name: "\u53BB\u5165\u53E3\u5904\u6309\u94AE"
   m_TagString: Untagged
@@ -17851,6 +17841,7 @@ GameObject:
   - component: {fileID: 2100000034}
   - component: {fileID: 2100000035}
   - component: {fileID: 2100000040}
+  - component: {fileID: 1816950708}
   m_Layer: 5
   m_Name: "\u53BB\u804C\u5458\u5BA4\u6309\u94AE"
   m_TagString: Untagged
@@ -18016,6 +18007,7 @@ GameObject:
   - component: {fileID: 2100000044}
   - component: {fileID: 2100000045}
   - component: {fileID: 2100000050}
+  - component: {fileID: 501291190}
   m_Layer: 5
   m_Name: "\u8FD4\u56DE\u5B64\u513F\u9662\u6309\u94AE(\u5165\u53E3)"
   m_TagString: Untagged
@@ -18181,6 +18173,7 @@ GameObject:
   - component: {fileID: 2100000054}
   - component: {fileID: 2100000055}
   - component: {fileID: 2100000060}
+  - component: {fileID: 2100000061}
   m_Layer: 5
   m_Name: "\u8FD4\u56DE\u5165\u53E3\u5904\u6309\u94AE(\u804C\u5458\u5BA4)"
   m_TagString: Untagged
@@ -18333,6 +18326,41 @@ MonoBehaviour:
   backButtons:
   - {fileID: 2100000041}
   - {fileID: 2100000051}
+--- !u!114 &2100000061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100000051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b415fa0449598804d909f214e96a005d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CursorInteractionTarget
+  cursorPresetName: View
+  enableInspectDialogue: 1
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  itemDescriptionLines: []
+  itemSprite: {fileID: 0}
+  showInspectImage: 1
+  customCursorPresetName: 
+  customCursorPresetIndex: 0
+  interactionType: 0
+  useCustomPreset: 0
+  cursorPresetIndex: 0
+  dialogueController: {fileID: 0}
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &2108679742
 GameObject:
   m_ObjectHideFlags: 0
