@@ -42,7 +42,7 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  postImage: {fileID: 1366167481, guid: e3c09cc79b4d6c948bf6dd70ec60f69d, type: 3}
+  postImage: {fileID: 0}
   comments:
   - account: {fileID: 11400000, guid: 0d6f3b10396c1f9438365347062d938c, type: 2}
     commentText:
