@@ -11,7 +11,7 @@ public class CountingPoint : MonoBehaviour
     [SerializeField] public List<int> CorrectIDList = new List<int>();
     [SerializeField] public List<int> WrongIDList = new List<int>();
     [SerializeField] private TMP_Text ScoreShow;
-    [SerializeField] private TMP_Text AfterShow;
+    //[SerializeField] private TMP_Text AfterShow;
 
     private float Score;
     private int ScoreShowin;
@@ -94,10 +94,10 @@ public class CountingPoint : MonoBehaviour
         ScoreShown?.Invoke();
     }
 
-    public void AfterShowCongrats()
-    {
-        AfterShow.text = "Congratulations !!!!" + ", " + "You Have Done Tutorial" + ", and your score is:" + ScoreShowin;
-    }
+    // public void AfterShowCongrats()
+    // {
+    //     AfterShow.text = "Congratulations !!!!" + ", " + "You Have Done Tutorial" + ", and your score is:" + ScoreShowin;
+    // }
 
 }
 
