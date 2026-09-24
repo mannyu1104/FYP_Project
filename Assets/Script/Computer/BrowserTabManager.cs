@@ -30,6 +30,7 @@ public class BrowserTabManager : MonoBehaviour
     // Open a page. If a tab with the same PageId already exists, switch to it.
     public BrowserTab OpenPage(IBrowserPage page)
     {
+        if (page == null) return null;
         if (InvestigationFlowController.Instance != null && InvestigationFlowController.Instance.IsOpeningSequence &&
             (page is not WebPageDataScriptableObject data || data.LayoutType != PageLayoutType.News ||
              InvestigationFlowController.Instance.CurrentStage != InvestigationFlowController.Stage.ReadingNews)) return null;
@@ -87,7 +88,7 @@ public class BrowserTabManager : MonoBehaviour
 
     private void SetActiveTab(BrowserTab tab)
     {
-        if (ActiveTab == tab) return;
+        // Reopening an existing tab must restore content hidden by the home view.
         ActiveTab = tab;
         OnActiveTabChanged?.Invoke(tab);
     }

@@ -148,6 +148,13 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         if (thisGet == true && thisTuto == false)
         {
             Debug.Log("EndDrag");
+            if (WelfareInteractionController.Instance != null &&
+                WelfareInteractionController.Instance.TryGiveCandy(this, eventData.position))
+            {
+                if (image != null) image.raycastTarget = true;
+                if (SumShowText != null) SumShowText.raycastTarget = true;
+                return;
+            }
             foreach (var receiver in FindObjectsByType<UsingEvent>())
                 if (receiver.TryDrop(this, eventData.position, eventData.pressEventCamera)) break;
             isdragging = false;

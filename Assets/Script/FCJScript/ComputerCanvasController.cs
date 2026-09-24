@@ -31,7 +31,6 @@ public class ComputerCanvasController : MonoBehaviour
     private bool wasMainGameCanvasActive;
     private bool wasLookPaused;
     private bool isComputerOpen;
-    private bool hideReturnButtonUntilBrowserCloses;
 
     private void Awake()
     {
@@ -77,7 +76,6 @@ public class ComputerCanvasController : MonoBehaviour
 
         wasMainGameCanvasActive = mainGameCanvas.activeSelf;
         isComputerOpen = true;
-        hideReturnButtonUntilBrowserCloses = false;
 
         if (lookController != null && pauseLookWhileComputerOpen)
         {
@@ -300,22 +298,10 @@ public class ComputerCanvasController : MonoBehaviour
             return false;
         }
 
-        if (hideReturnButtonUntilBrowserCloses)
-        {
-            if (BrowserTabManager.Instance != null && BrowserTabManager.Instance.ActiveTab == null)
-            {
-                hideReturnButtonUntilBrowserCloses = false;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        if (BrowserTabManager.Instance != null && BrowserTabManager.Instance.ActiveTab != null)
-        {
+        // A browser may retain tabs while its window is closed.
+        // Only visible windows should hide the desktop power button.
+        if (IsVisiblePanel(FindChildByName(computerCanvas.transform, "Internet  Discovery Panel")))
             return false;
-        }
 
         for (int i = 0; i < panelsThatHideReturnButton.Length; i++)
         {
@@ -355,7 +341,6 @@ public class ComputerCanvasController : MonoBehaviour
 
     private void OnBrowserAppOpened()
     {
-        hideReturnButtonUntilBrowserCloses = true;
         SetReturnButtonVisible(false);
     }
 }

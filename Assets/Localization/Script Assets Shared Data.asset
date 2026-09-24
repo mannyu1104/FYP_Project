@@ -15,6 +15,14 @@ MonoBehaviour:
   m_TableCollectionName: Script Assets
   m_TableCollectionNameGuidString: bae3f0c0768e84a4b91ae3b46e2c292f
   m_Entries:
+  - m_Id: 9200000000008
+    m_Key: Child_RopeControls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9200000000009
+    m_Key: Tutorial_DragItems
+    m_Metadata:
+      m_Items: []
   - m_Id: 9200000000007
     m_Key: Candy_BagFull
     m_Metadata:

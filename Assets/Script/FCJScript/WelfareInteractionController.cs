@@ -37,6 +37,7 @@ public class WelfareInteractionController : MonoBehaviour
     public Action<Action<bool>> RopeLauncher { get; set; }
     private Progress data;
     private readonly NPCDialogueTrigger[] children = new NPCDialogueTrigger[3];
+    [SerializeField] private Image[] candyPlaceholders = new Image[3]; // Home, park, staff office.
     private readonly GameObject[] pickups = new GameObject[3];
     private readonly DragableItem[] candy = new DragableItem[3];
     private InventoryManager inventory;
@@ -208,12 +209,13 @@ public class WelfareInteractionController : MonoBehaviour
     private void ShowChildChoices(int index)
     {
         data.interaction = InteractionPhase.Choices; data.interactionIndex = index;
-        bool finished = data.children[index].finished;
+        // End the interaction so the player can open the inventory and drag candy.
+        if (data.children[index].finished) { ClosePanel(); return; }
         Dialogue.ShowInteractionChoices(
-            new[] { finished ? L("\u7ed9\u4e88\u7cd6\u679c", "Give candy") : (data.children[index].rope ? L("\u8df3\u7ef3", "Jump rope") : L("\u526a\u5200\u77f3\u5934\u5e03", "Rock, paper, scissors")), L("\u6682\u65f6\u79bb\u5f00", "Leave") },
-            new Action[] { () => { if (finished) GiveCandy(index); else StartGame(index); }, ClosePanel },
-            new[] { !finished || AvailableCandy() >= 0, true });
+            new[] { data.children[index].rope ? L("\u8df3\u7ef3", "Jump rope") : L("\u526a\u5200\u77f3\u5934\u5e03", "Rock, paper, scissors"), L("\u6682\u65f6\u79bb\u5f00", "Leave") },
+            new Action[] { () => StartGame(index), ClosePanel });
     }
+
     private IEnumerator PlayLater(int index)
     {
         data.interaction = InteractionPhase.PlayLater; data.interactionIndex = index;
@@ -225,10 +227,7 @@ public class WelfareInteractionController : MonoBehaviour
         if (state.finished) return;
         if (state.rope)
         {
-            if (RopeLauncher == null) { StartRope(index); return; }
-            ClearPanelContents();
-            bool answered = false;
-            RopeLauncher(won => { if (answered || this == null) return; answered = true; Finish(index, won); });
+            StartCoroutine(ExplainAndStartRope(index));
             return;
         }
         var prefab = Resources.Load<GameObject>("WelfareRockPaperScissors");
@@ -247,6 +246,21 @@ public class WelfareInteractionController : MonoBehaviour
             Destroy(match); match = null; ClosePanel();
         });
     }
+    private IEnumerator ExplainAndStartRope(int index)
+    {
+        yield return Say("Child_RopeControls", index);
+        if (!interactionActive || data.children[index].finished) yield break;
+        LaunchRope(index);
+    }
+
+    private void LaunchRope(int index)
+    {
+        if (RopeLauncher == null) { StartRope(index); return; }
+        ClearPanelContents();
+        bool answered = false;
+        RopeLauncher(won => { if (answered || this == null) return; answered = true; Finish(index, won); });
+    }
+
     private void Finish(int index, bool won)
     {
         var state = data.children[index];
@@ -263,18 +277,43 @@ public class WelfareInteractionController : MonoBehaviour
         if (won) { ClosePanel(); TellClue(index); }
         else ShowChildChoices(index);
     }
-    private int AvailableCandy()
+    public bool TryGiveCandy(DragableItem item, Vector2 screenPosition)
     {
-        for (int i = 0; i < 3; i++) if (data.collected[i] && !data.consumed[i]) return i;
-        return -1;
-    }
-    private void GiveCandy(int index)
-    {
-        if (!data.children[index].finished || data.children[index].unlocked) return;
-        int id = AvailableCandy(); if (id < 0) return;
-        data.consumed[id] = true; data.children[index].unlocked = true;
-        if (candy[id] != null) { candy[id].thisGet = false; candy[id].thisUsed = true; candy[id].transform.SetParent(transform); candy[id].gameObject.SetActive(false); }
-        ClosePanel(); TellClue(index);
+        if (item == null || IsOpen || !CanInteract()) return false;
+        int id = Array.IndexOf(candy, item);
+        if (id < 0 || !data.collected[id] || data.consumed[id] || !item.thisGet || item.thisUsed)
+            return false;
+        for (int index = 0; index < children.Length; index++)
+        {
+            var child = children[index];
+            if (child == null || !child.gameObject.activeInHierarchy ||
+                !data.children[index].finished || data.children[index].unlocked) continue;
+            bool visible = true;
+            foreach (var group in child.GetComponentsInParent<CanvasGroup>())
+                if (group.alpha <= .01f) { visible = false; break; }
+            if (!visible) continue;
+            var rect = child.transform as RectTransform;
+            var canvas = child.GetComponentInParent<Canvas>();
+            var camera = canvas != null && canvas.renderMode != RenderMode.ScreenSpaceOverlay
+                ? canvas.worldCamera : null;
+            if (rect == null || !RectTransformUtility.RectangleContainsScreenPoint(rect, screenPosition, camera))
+                continue;
+
+            // Consume the exact candy that was dropped, once, and free its inventory slot.
+            data.consumed[id] = true;
+            data.children[index].unlocked = true;
+            item.thisGet = false;
+            item.thisUsed = true;
+            item.isdragging = false;
+            item.parentAfterDrag = transform;
+            item.transform.SetParent(transform, false);
+            item.gameObject.SetActive(false);
+            foreach (var inventoryPanel in FindObjectsByType<OpenCanvasButton>(FindObjectsInactive.Include))
+                inventoryPanel.CloseAll();
+            TellClue(index);
+            return true;
+        }
+        return false;
     }
     private void TellClue(int index)
     {
@@ -285,26 +324,29 @@ public class WelfareInteractionController : MonoBehaviour
     private void CreateCandy(int id, GameObject parent, Vector2 anchor)
     {
         if (parent == null) { Debug.LogError("Candy location missing: " + id); return; }
-        var pickup = Button(parent.transform, L("糖果", "Candy"), Vector2.zero, () => { if (!IsOpen && CanInteract()) InspectCandy(id); });
-        var rect = (RectTransform)pickup.transform; rect.anchorMin = rect.anchorMax = anchor; rect.sizeDelta = new Vector2(72, 40);
-        var pickupLabel = pickup.GetComponentInChildren<TMP_Text>();
-        pickupLabel.gameObject.SetActive(false);
-        var target = pickup.gameObject.AddComponent<CursorInteractionTarget>();
+        Image placeholder = candyPlaceholders != null && id < candyPlaceholders.Length ? candyPlaceholders[id] : null;
+        foreach (var candidate in parent.GetComponentsInChildren<Image>(true))
+            if (placeholder == null && candidate.name.Contains("\u7cd6\u679c")) { placeholder = candidate; break; }
+        if (placeholder == null) { Debug.LogWarning("Candy image placeholder missing in " + parent.name, parent); return; }
+        pickups[id] = placeholder.gameObject;
+        var pickup = placeholder.GetComponent<Button>();
+        if (pickup == null) pickup = placeholder.gameObject.AddComponent<Button>();
+        pickup.onClick.AddListener(() => { if (!IsOpen && CanInteract()) InspectCandy(id); });
+        var target = placeholder.GetComponent<CursorInteractionTarget>();
+        if (target == null) target = placeholder.gameObject.AddComponent<CursorInteractionTarget>();
         target.cursorPresetName = "View";
         target.enableInspectDialogue = false;
         target.itemName = TextKey("Candy_Name");
         target.itemDescriptionLines = new List<LocalizedString> { TextKey("Candy_Description") };
         target.showInspectImage = false;
-        CandyWrapper(pickup.transform, -42); CandyWrapper(pickup.transform, 42);
-        pickup.name = "CandyPickup_" + id; pickups[id] = pickup.gameObject;
-        pickup.GetComponent<Image>().color = new Color(1, .62f, .75f);
         var itemObject = new GameObject("Candy_" + id, typeof(RectTransform), typeof(Image));
         itemObject.transform.SetParent(transform, false);
         int itemLayer = LayerMask.NameToLayer("Item");
         if (itemLayer >= 0) itemObject.layer = itemLayer;
-        var image = itemObject.GetComponent<Image>(); image.color = new Color(1, .62f, .75f);
+        var image = itemObject.GetComponent<Image>(); image.sprite = placeholder.sprite; image.color = placeholder.color; image.preserveAspect = true;
         var text = Label(itemObject.transform, L("糖果", "Candy"), Vector2.zero, 20);
         text.rectTransform.sizeDelta = new Vector2(90, 38);
+        text.gameObject.SetActive(placeholder.sprite == null);
         candy[id] = itemObject.AddComponent<DragableItem>(); candy[id].ConfigureCandy(9100 + id, text, image);
         candy[id].thisName = L("\u7cd6\u679c", "Candy");
         candy[id].thisDescription = L("\u8fd9\u662f\u4e00\u9897\u7cd6\u679c\u3002\u5982\u679c\u6211\u662f\u5c0f\u5b69\u5b50\uff0c\u5e94\u8be5\u4f1a\u5f88\u559c\u6b22\u5427\u3002", "A piece of candy. If I were a child, I would probably love it.");
@@ -360,7 +402,7 @@ public class WelfareInteractionController : MonoBehaviour
             lastChinese = Chinese;
             for (int i = 0; i < 3; i++)
             {
-                if (pickups[i] != null) pickups[i].GetComponentInChildren<TMP_Text>(true).text = L("\u7cd6\u679c", "Candy");
+
                 if (candy[i] != null) candy[i].GetComponentInChildren<TMP_Text>(true).text = L("\u7cd6\u679c", "Candy");
             }
         }

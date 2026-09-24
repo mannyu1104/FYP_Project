@@ -33,6 +33,8 @@ public class InvestigationFlowController : MonoBehaviour
     private NewsArticleData openingArticle;
     private bool articleWasOpened;
     public bool TutorialScored { get; set; }
+    private readonly List<GameObject> dragHints = new List<GameObject>();
+    private bool dragHintDismissed, dragHintWasVisible;
     private Coroutine sequence;
     public int ConversationPart { get; private set; }
     private DialogueController.ConversationSnapshot resumeConversation;
@@ -160,6 +162,8 @@ public class InvestigationFlowController : MonoBehaviour
         StopSequence();
         if (home != null) FindAnyObjectByType<MapPanelNavigator>()?.ResetToHome();
         TutorialScored = false;
+        dragHintDismissed = false;
+        dragHintWasVisible = false;
         CurrentStage = Stage.Introduction;
         ApplyWorldVisibility();
         sequence = StartCoroutine(Introduction());
@@ -387,6 +391,17 @@ public class InvestigationFlowController : MonoBehaviour
     private void LateUpdate()
     {
         if (menu == null || dialogue == null) return;
+        if (dragHints.Count == 0)
+            foreach (var rect in FindObjectsByType<RectTransform>(FindObjectsInactive.Include))
+                if (rect.name == "Drag Tutorial Hint" || rect.name == "Drag Direction" || rect.name.StartsWith("Arrow Shaft") || rect.name.StartsWith("Arrow Head"))
+                    dragHints.Add(rect.gameObject);
+        bool hintVisible = !dragHintDismissed && CurrentStage == Stage.Tutorial && tutorial != null && tutorial.activeInHierarchy;
+        bool notebookVisible = false;
+        foreach (var panel in FindObjectsByType<OpenCanvasButton>(FindObjectsInactive.Include)) notebookVisible |= panel.IsNotebookOpen;
+        hintVisible &= notebookVisible;
+        if (hintVisible && dragHintWasVisible && Input.GetMouseButtonDown(0)) { dragHintDismissed = true; hintVisible = false; }
+        foreach (var hint in dragHints) if (hint != null) hint.SetActive(hintVisible);
+        dragHintWasVisible = hintVisible;
         bool modal = WelfareInteractionController.IsOpen || SaveSlotPanel.IsOpen || menu.IsMenuVisible || menu.IsSettingsVisible || dialogue.IsDialogueActive || dialogue.IsHistoryOpen ||
             (computer.IsComputerOpen() && CurrentStage != Stage.Tutorial) || MapButton.IsAnyMapOpen;
         foreach (GameObject popup in popupRoots) modal |= IsVisible(popup);

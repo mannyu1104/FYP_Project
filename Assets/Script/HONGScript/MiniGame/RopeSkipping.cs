@@ -7,6 +7,38 @@ public class RopeSkipping : MonoBehaviour
 {
     public event System.Action<bool> MatchFinished;
     private bool finished;
+    private bool countdownStarted;
+    [SerializeField] private GameObject abandonConfirmation;
+    private bool confirmingAbandon;
+    private float previousTimeScale;
+
+    public void AskAbandon()
+    {
+        if (finished || confirmingAbandon || abandonConfirmation == null) return;
+        previousTimeScale = Time.timeScale;
+        confirmingAbandon = true;
+        Time.timeScale = 0f;
+        abandonConfirmation.SetActive(true);
+    }
+    public void CancelAbandon()
+    {
+        if (!confirmingAbandon) return;
+        Time.timeScale = previousTimeScale;
+        confirmingAbandon = false;
+        if (abandonConfirmation != null) abandonConfirmation.SetActive(false);
+    }
+    public void ConfirmAbandon()
+    {
+        if (!confirmingAbandon || finished) return;
+        CancelAbandon();
+        StopAllCoroutines();
+        finished = true;
+        playSkip = false;
+        MatchFinished?.Invoke(false);
+    }
+    private void OnDisable() { CancelAbandon(); }
+
+
     public int currentJump;
     public int successJump;
     private int maxJump = 20;
@@ -51,12 +83,17 @@ public class RopeSkipping : MonoBehaviour
         SuccessCount.text = successJump.ToString();
         JumpCount.text = currentJump.ToString();
 
+        // The child dialogue explains the controls before this match is activated.
         StartGame();
     }
 
     public void StartGame()
     {
-        StartCoroutine(CountDownPlay());
+        if (countdownStarted || finished) return;
+        countdownStarted = true;
+        if (abandonConfirmation != null) abandonConfirmation.SetActive(false);
+        ShowCount.SetActive(false);
+        playSkip = true;
     }
 
     // Update is called once per frame
@@ -164,25 +201,6 @@ public class RopeSkipping : MonoBehaviour
         currentJump += 1;
         JumpCount.text = currentJump.ToString();
         CheckSuccess();
-    }
-
-    IEnumerator CountDownPlay()
-    {
-        ShowCount.SetActive(true);
-        CountDownText.text = CountDown.ToString();
-        yield return new WaitForSeconds(1f);
-        CountDown -= 1f;
-        CountDownText.text = CountDown.ToString();
-        yield return new WaitForSeconds(1f);
-        CountDown -= 1f;
-        CountDownText.text = CountDown.ToString();
-        yield return new WaitForSeconds(1f);
-        CountDownText.text = "Start !!!!";
-        yield return new WaitForSeconds(0.8f);
-
-        playSkip = true;
-        ShowCount.SetActive(false);
-        // Keep the authored camera framing; jumping must not move or detach the camera.
     }
 
     public void Touching()

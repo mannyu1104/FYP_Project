@@ -37,16 +37,37 @@ public class WebPageContentController : MonoBehaviour
         Instance = this;
     }
 
+    private BrowserTabManager subscribedManager;
+
     private void OnEnable()
     {
-        BrowserTabManager.Instance.OnActiveTabChanged += DisplayTab;
+        BindTabManager();
+    }
 
-        HideAllStates();
+    private void Start()
+    {
+        // OnEnable can run before the manager's Awake on initial scene load.
+        if (subscribedManager == null) BindTabManager();
+    }
+
+    private void BindTabManager()
+    {
+        subscribedManager = BrowserTabManager.Instance;
+        if (subscribedManager == null) { HideAllStates(); return; }
+        subscribedManager.OnActiveTabChanged += DisplayTab;
+        DisplayTab(subscribedManager.ActiveTab);
     }
 
     private void OnDisable()
     {
-        BrowserTabManager.Instance.OnActiveTabChanged -= DisplayTab;
+        if (subscribedManager != null)
+            subscribedManager.OnActiveTabChanged -= DisplayTab;
+        subscribedManager = null;
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this) Instance = null;
     }
 
     private void DisplayTab(BrowserTab tab)
@@ -149,6 +170,7 @@ public class WebPageContentController : MonoBehaviour
 
     private void Show(CanvasGroup group)
     {
+        if (group == null) return;
         group.alpha = 1f;
         group.interactable = true;
         group.blocksRaycasts = true;
@@ -156,6 +178,7 @@ public class WebPageContentController : MonoBehaviour
 
     private void Hide(CanvasGroup group)
     {
+        if (group == null) return;
         group.alpha = 0f;
         group.interactable = false;
         group.blocksRaycasts = false;

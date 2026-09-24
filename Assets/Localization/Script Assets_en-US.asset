@@ -19,6 +19,14 @@ MonoBehaviour:
     m_Items:
     - rid: 1944176950501704265
   m_TableData:
+  - m_Id: 9200000000008
+    m_Localized: "Press [Space] to jump as the rope approaches! The match starts when this dialogue ends. Get ready!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9200000000009
+    m_Localized: "During the exercise, open the inventory in your notebook. Hold the left mouse button on a collected clue, drag it to the submission area on the right, then release to place it on the board. Click Submit to see your score."
+    m_Metadata:
+      m_Items: []
   - m_Id: 9200000000007
     m_Localized: "My bag is full. I should make room before picking up this candy."
     m_Metadata:
@@ -28,7 +36,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 9200000000005
-    m_Localized: "You lost this time. But give me a candy and I will still tell you!"
+    m_Localized: "You lost this time. But open your inventory and drag a candy onto me, and I will still tell you!"
     m_Metadata:
       m_Items: []
   - m_Id: 9200000000004
@@ -36,7 +44,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 9200000000003
-    m_Localized: "No more matches. Give me a candy and I will tell you!"
+    m_Localized: "No more matches. Open your inventory and drag a candy onto me, and I will tell you!"
     m_Metadata:
       m_Items: []
   - m_Id: 9200000000002
