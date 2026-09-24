@@ -10098,7 +10098,7 @@ GameObject:
   - component: {fileID: 1148708420}
   - component: {fileID: 1148708421}
   m_Layer: 0
-  m_Name: "AudioManager\uFF08\u8FD8\u6CA1\u6709\u653E\u58F0\u97F3\uFF09"
+  m_Name: AudioManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17063,7 +17063,7 @@ GameObject:
   - component: {fileID: 2090279258}
   - component: {fileID: 2090279257}
   m_Layer: 0
-  m_Name: "DialogueManager\uFF08\u8FD8\u6CA1\u6709\u653E\u58F0\u97F3\uFF09"
+  m_Name: DialogueManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
