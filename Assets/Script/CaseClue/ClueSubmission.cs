@@ -100,7 +100,7 @@ public class ClueSubmission : MonoBehaviour
             ? Mathf.Clamp(Mathf.RoundToInt(100f * score / maximumScore), 0, 100)
             : 0;
 
-        resultText.text = $"{score} / 100";
+        //resultText.text = $"{score} / 100";
         HasScoredSubmission = true;
 
         ShowScorePanel(score);
