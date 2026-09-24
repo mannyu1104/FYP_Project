@@ -6493,7 +6493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 443eab514c9768249af9a8d922d263e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapButton
-  mapPanel: {fileID: 960000000000000002}
+  mapPanel: {fileID: 0}
   startClosed: 1
   pauseLookWhenOpen: 1
   closedCursorPresetName: Map
@@ -8493,11 +8493,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 11776432593981292, guid: 640ef1a6587266e4d8022d4d15ce05bc, type: 3}
       propertyPath: m_fontSize
-      value: 43.75
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 109034756899816526, guid: 640ef1a6587266e4d8022d4d15ce05bc, type: 3}
       propertyPath: m_fontSize
-      value: 43.75
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 594520945557975031, guid: 640ef1a6587266e4d8022d4d15ce05bc, type: 3}
       propertyPath: m_fontSize
@@ -8521,19 +8521,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1520508856218856906, guid: 640ef1a6587266e4d8022d4d15ce05bc, type: 3}
       propertyPath: m_fontSize
-      value: 43.75
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 1684973885178665114, guid: 640ef1a6587266e4d8022d4d15ce05bc, type: 3}
       propertyPath: m_fontSize
-      value: 43.75
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 1885746065582970762, guid: 640ef1a6587266e4d8022d4d15ce05bc, type: 3}
       propertyPath: m_fontSize
-      value: 43.75
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 2014676378446449377, guid: 640ef1a6587266e4d8022d4d15ce05bc, type: 3}
       propertyPath: m_fontSize
-      value: 43.75
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 2197298617590701719, guid: 640ef1a6587266e4d8022d4d15ce05bc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -8565,7 +8565,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2396358986530987307, guid: 640ef1a6587266e4d8022d4d15ce05bc, type: 3}
       propertyPath: m_fontSize
-      value: 43.75
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 2456770867837101261, guid: 640ef1a6587266e4d8022d4d15ce05bc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8609,7 +8609,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2717351262206345349, guid: 640ef1a6587266e4d8022d4d15ce05bc, type: 3}
       propertyPath: m_fontSize
-      value: 43.75
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 3188880526129392980, guid: 640ef1a6587266e4d8022d4d15ce05bc, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3286661823602956551, guid: 640ef1a6587266e4d8022d4d15ce05bc, type: 3}
       propertyPath: m_IsActive
@@ -8625,11 +8629,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3706695475464587446, guid: 640ef1a6587266e4d8022d4d15ce05bc, type: 3}
       propertyPath: m_fontSize
-      value: 43.75
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 4020629881375017419, guid: 640ef1a6587266e4d8022d4d15ce05bc, type: 3}
       propertyPath: m_fontSize
-      value: 43.75
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 4424139986509717425, guid: 640ef1a6587266e4d8022d4d15ce05bc, type: 3}
       propertyPath: m_IsActive
@@ -8637,7 +8641,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4541168910579091307, guid: 640ef1a6587266e4d8022d4d15ce05bc, type: 3}
       propertyPath: m_fontSize
-      value: 43.75
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 4787374169234036678, guid: 640ef1a6587266e4d8022d4d15ce05bc, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4821824447551563054, guid: 640ef1a6587266e4d8022d4d15ce05bc, type: 3}
       propertyPath: m_fontSize
@@ -8645,11 +8653,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5601050412930597493, guid: 640ef1a6587266e4d8022d4d15ce05bc, type: 3}
       propertyPath: m_fontSize
-      value: 43.75
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 5865404257635063434, guid: 640ef1a6587266e4d8022d4d15ce05bc, type: 3}
       propertyPath: m_fontSize
-      value: 43.75
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 6341225479676324766, guid: 640ef1a6587266e4d8022d4d15ce05bc, type: 3}
       propertyPath: m_fontSize
@@ -8657,11 +8665,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6428196953518817499, guid: 640ef1a6587266e4d8022d4d15ce05bc, type: 3}
       propertyPath: m_fontSize
-      value: 43.75
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 6948739114234260669, guid: 640ef1a6587266e4d8022d4d15ce05bc, type: 3}
       propertyPath: m_fontSize
-      value: 43.75
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 7214066438430798120, guid: 640ef1a6587266e4d8022d4d15ce05bc, type: 3}
       propertyPath: m_IsActive
@@ -8669,11 +8677,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7420599085913670964, guid: 640ef1a6587266e4d8022d4d15ce05bc, type: 3}
       propertyPath: m_fontSize
-      value: 43.75
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 7513282208889160155, guid: 640ef1a6587266e4d8022d4d15ce05bc, type: 3}
       propertyPath: m_fontSize
-      value: 43.75
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 7601476209971133203, guid: 640ef1a6587266e4d8022d4d15ce05bc, type: 3}
       propertyPath: m_fontSize
@@ -8681,7 +8689,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8039926710037797155, guid: 640ef1a6587266e4d8022d4d15ce05bc, type: 3}
       propertyPath: m_fontSize
-      value: 43.75
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 8051142058507806139, guid: 640ef1a6587266e4d8022d4d15ce05bc, type: 3}
       propertyPath: m_fontSize
@@ -9399,7 +9407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 443eab514c9768249af9a8d922d263e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapButton
-  mapPanel: {fileID: 960000000000000002}
+  mapPanel: {fileID: 0}
   startClosed: 1
   pauseLookWhenOpen: 1
   closedCursorPresetName: Map
@@ -10343,11 +10351,16 @@ MonoBehaviour:
   sfxSource: {fileID: 0}
   defaultButtonSfx: {fileID: 0}
   defaultBgm: {fileID: 0}
+  menuBgm: {fileID: 8300000, guid: 82eee69a5fc25c54ea8fff6c6c8168e6, type: 3}
+  tutorialBgm: {fileID: 8300000, guid: c97078e9936c65a4fa6b3f22bb53cb38, type: 3}
+  locationFootstepsSfx: {fileID: 0}
+  dialogueTypingSfx: {fileID: 0}
+  autoButtonSounds: 1
   panelBgms:
   - panel: {fileID: 600168711}
     bgmClip: {fileID: 0}
   - panel: {fileID: 669448267}
-    bgmClip: {fileID: 0}
+    bgmClip: {fileID: 8300000, guid: b1227b16677b0e84c96740998b4f4078, type: 3}
   - panel: {fileID: 723132413}
     bgmClip: {fileID: 0}
   - panel: {fileID: 647693061}
@@ -11266,7 +11279,7 @@ MonoBehaviour:
   - {fileID: 723132413}
   - {fileID: 647693061}
   - {fileID: 825842872}
-  mapPanel: {fileID: 960000000000000002}
+  mapPanel: {fileID: 0}
   closeMapAfterSelection: 1
   unpauseLookAfterSelection: 1
   orphanageNavigator: {fileID: 0}
@@ -15884,7 +15897,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 443eab514c9768249af9a8d922d263e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapButton
-  mapPanel: {fileID: 960000000000000002}
+  mapPanel: {fileID: 0}
   startClosed: 1
   pauseLookWhenOpen: 1
   closedCursorPresetName: Map
@@ -16657,7 +16670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 443eab514c9768249af9a8d922d263e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapButton
-  mapPanel: {fileID: 960000000000000002}
+  mapPanel: {fileID: 0}
   startClosed: 1
   pauseLookWhenOpen: 1
   closedCursorPresetName: Map
@@ -16867,7 +16880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 443eab514c9768249af9a8d922d263e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapButton
-  mapPanel: {fileID: 960000000000000002}
+  mapPanel: {fileID: 0}
   startClosed: 1
   pauseLookWhenOpen: 1
   closedCursorPresetName: Map
@@ -18785,11 +18798,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2135843693}
   m_CullTransparentMesh: 1
---- !u!1 &960000000000000002 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 900000000000000002, guid: 640ef1a6587266e4d8022d4d15ce05bc, type: 3}
-  m_PrefabInstance: {fileID: 907160104}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
