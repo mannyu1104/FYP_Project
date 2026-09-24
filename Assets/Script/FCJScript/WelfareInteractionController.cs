@@ -47,6 +47,46 @@ public class WelfareInteractionController : MonoBehaviour
     private GameObject modal, match;
     private readonly List<Behaviour> suspendedForRope = new List<Behaviour>();
 
+    [SerializeField] private Sprite childGameBackground;
+
+    private void ApplyChildBackground(GameObject gameRoot, int index)
+    {
+        Sprite sprite = childGameBackground;
+        if (sprite == null)
+        {
+            var navigator = FindAnyObjectByType<MapPanelNavigator>();
+            var location = navigator != null ? navigator.LocationRoot(2) : null;
+            float largest = 0f;
+            if (location != null)
+                foreach (var image in location.GetComponentsInChildren<Image>(true))
+                {
+                    if (image.sprite == null || image.GetComponentInParent<NPCDialogueTrigger>() != null) continue;
+                    float area = image.rectTransform.rect.width * image.rectTransform.rect.height;
+                    if (area > largest) { largest = area; sprite = image.sprite; }
+                }
+        }
+        if (sprite == null) return;
+        // The rope prefab already has an authored backdrop; preserve its camera framing.
+        foreach (var image in gameRoot.GetComponentsInChildren<Image>(true))
+            if (image.name == "Image" && image.rectTransform.sizeDelta.x >= 1900)
+            {
+                image.sprite = sprite;
+                image.color = Color.white;
+                image.raycastTarget = false;
+                return;
+            }
+        // RPS overlays the existing dialogue scene; its modal shade uses the same backdrop.
+        if (modal != null)
+        {
+            var shade = modal.transform.Find("Shade");
+            if (shade != null && shade.TryGetComponent<Image>(out var image))
+            {
+                image.sprite = sprite;
+                image.color = Color.white;
+            }
+        }
+    }
+
     private void RestoreRopeView()
     {
         foreach (var component in suspendedForRope)
@@ -71,6 +111,7 @@ public class WelfareInteractionController : MonoBehaviour
         }
         match = Instantiate(source);
         match.name = "Child Rope Match";
+        ApplyChildBackground(match, index);
         match.transform.position += new Vector3(1000, 0, 0);
         foreach (var events in match.GetComponentsInChildren<UnityEngine.EventSystems.EventSystem>(true))
             events.gameObject.SetActive(false);
@@ -244,6 +285,7 @@ public class WelfareInteractionController : MonoBehaviour
         if (prefab == null) { Debug.LogError("Welfare RPS prefab missing"); return; }
         ClearPanelContents();
         match = Instantiate(prefab);
+        ApplyChildBackground(match, index);
         var game = match.GetComponentInChildren<ScissorPaperStone>(true);
         int wins = 0; for (int i = 0; i < state.rounds; i++) if ((state.mask & (1 << i)) != 0) wins++;
         game.RestoreMatch(state.rounds, wins, state.mask);

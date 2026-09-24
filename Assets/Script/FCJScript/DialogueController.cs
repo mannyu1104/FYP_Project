@@ -65,6 +65,9 @@ public class DialogueController : MonoBehaviour
     public Button autoButton;
     public Button skipButton;
 
+    [Tooltip("Optional dialogue choice background. Leave empty for a plain rectangular button.")]
+    public Sprite interactionChoiceBackground;
+
     [Header("Optional Legacy Text")]
     [Tooltip("Only assign these when using the legacy UI Text component instead of TextMeshPro.")]
     [HideInInspector]
@@ -1177,7 +1180,8 @@ public class DialogueController : MonoBehaviour
             rect.anchorMin = rect.anchorMax = new Vector2(x, .54f);
             rect.anchoredPosition = Vector2.zero;
             var graphic = obj.GetComponent<Image>();
-            if (skipButton != null && skipButton.targetGraphic is Image template) graphic.sprite = template.sprite;
+            graphic.sprite = interactionChoiceBackground;
+            graphic.type = interactionChoiceBackground != null ? Image.Type.Sliced : Image.Type.Simple;
             graphic.color = new Color(.78f, .92f, 1f);
             var button = obj.GetComponent<Button>();
             button.interactable = enabledChoices == null || enabledChoices[i];

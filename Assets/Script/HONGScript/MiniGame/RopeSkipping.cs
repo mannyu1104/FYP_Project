@@ -34,9 +34,27 @@ public class RopeSkipping : MonoBehaviour
         StopAllCoroutines();
         finished = true;
         playSkip = false;
+        PrepareToReturn();
         MatchFinished?.Invoke(false);
     }
-    private void OnDisable() { CancelAbandon(); }
+    // Call before deactivating the match, never during a hierarchy callback.
+    private void PrepareToReturn()
+    {
+        if (Camera == null) return;
+        Camera.transform.SetParent(null, true);
+        Camera.SetActive(false);
+    }
+
+    private void OnDisable()
+    {
+        CancelAbandon();
+        // An attached camera is disabled with its parent automatically.
+        // A camera detached on normal completion is already inactive.
+    }
+    private void OnDestroy()
+    {
+        if (Camera != null && Camera.transform.parent == null) Destroy(Camera);
+    }
 
 
     public int currentJump;
@@ -52,6 +70,10 @@ public class RopeSkipping : MonoBehaviour
     [SerializeField] private GameObject ShowCount;
     public Jumping PlayerJump;
 
+    [SerializeField] private RectTransform jumpBackground;
+    [SerializeField, Min(0f)] private float jumpVisualPixelsPerUnit = 65f;
+    private Vector2 backgroundPosition;
+    private float backgroundGroundY;
     private float JumpTime;
     private float Jumping;
     public float StartCooldown;
@@ -83,6 +105,15 @@ public class RopeSkipping : MonoBehaviour
         SuccessCount.text = successJump.ToString();
         JumpCount.text = currentJump.ToString();
 
+        if (jumpBackground == null)
+        {
+            foreach (var image in transform.root.GetComponentsInChildren<UnityEngine.UI.Image>(true))
+                if (image.name == "Image" && image.rectTransform.sizeDelta.x >= 1900)
+                { jumpBackground = image.rectTransform; break; }
+        }
+        if (jumpBackground != null) backgroundPosition = jumpBackground.anchoredPosition;
+        if (Player != null) backgroundGroundY = Player.transform.position.y;
+
         // The child dialogue explains the controls before this match is activated.
         StartGame();
     }
@@ -94,10 +125,16 @@ public class RopeSkipping : MonoBehaviour
         if (abandonConfirmation != null) abandonConfirmation.SetActive(false);
         ShowCount.SetActive(false);
         playSkip = true;
-        Camera.transform.SetParent(Player.transform, null);
+        // Keep the camera fixed. The UI backdrop provides first-person jump motion.
     }
 
-    // Update is called once per frame
+    void LateUpdate()
+    {
+        if (jumpBackground != null && Player != null)
+            jumpBackground.anchoredPosition = backgroundPosition +
+                Vector2.down * Mathf.Max(0f, Player.transform.position.y - backgroundGroundY) * jumpVisualPixelsPerUnit;
+    }
+
     void FixedUpdate()
     {
         if (!Jumped && DoneCooldown && playSkip)
@@ -156,6 +193,7 @@ public class RopeSkipping : MonoBehaviour
         {
             finished = true;
             playSkip = false;
+            PrepareToReturn();
             MatchFinished?.Invoke(successJump >= 10);
         }
     }

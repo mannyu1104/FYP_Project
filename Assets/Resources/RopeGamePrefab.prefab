@@ -205,6 +205,8 @@ MonoBehaviour:
   CountDownText: {fileID: 2026891505314731247}
   ShowCount: {fileID: 1616519290495016208}
   PlayerJump: {fileID: 4886223454041648957}
+  jumpBackground: {fileID: 2042801484404050276}
+  jumpVisualPixelsPerUnit: 65
   StartCooldown: 0
   cooldown: 0.8
   CountDown: 0
@@ -1486,7 +1488,7 @@ RectTransform:
   m_GameObject: {fileID: 5601687030385839421}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1138611332391637182}
