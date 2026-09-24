@@ -4,6 +4,7 @@ public class OpenMap : MonoBehaviour
 {
     private bool MapOpen;
     [SerializeField] CanvasGroup MapCanvas;
+    [SerializeField] bool mKeyToOpen = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,7 +28,7 @@ public class OpenMap : MonoBehaviour
     void Update()
     {
         if (MapCanvas == null) return;
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.M) && mKeyToOpen)
         {
             foreach (var button in FindObjectsByType<MapButton>(FindObjectsInactive.Include))
                 if (button.mapPanel == MapCanvas.gameObject)
