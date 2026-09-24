@@ -94,6 +94,7 @@ public class RopeSkipping : MonoBehaviour
         if (abandonConfirmation != null) abandonConfirmation.SetActive(false);
         ShowCount.SetActive(false);
         playSkip = true;
+        Camera.transform.SetParent(Player.transform, null);
     }
 
     // Update is called once per frame
