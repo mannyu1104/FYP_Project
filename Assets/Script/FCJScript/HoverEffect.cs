@@ -427,16 +427,18 @@ public class HoverEffect : MonoBehaviour
 
         if (state.glowOutline != null)
         {
-            state.glowOutline.SetActive(state.isHovered);
+            state.glowOutline.SetActive(state.isHovered && state.spriteRenderer != null && state.spriteRenderer.color.a > .001f);
         }
 
-        SetGlowLayersActive(state, state.isHovered);
+        bool visible = state.uiGraphic != null ? state.uiGraphic.color.a > .001f : state.spriteRenderer != null && state.spriteRenderer.color.a > .001f;
+        SetGlowLayersActive(state, state.isHovered && visible);
     }
 
     private void SetItemColor(HoverState state, Color targetColor)
     {
         if (state.uiGraphic != null)
         {
+            targetColor.a = state.uiGraphic.color.a; // Preserve Inspector transparency.
             state.uiGraphic.color = Color.Lerp(
                 state.uiGraphic.color,
                 targetColor,
@@ -446,6 +448,7 @@ public class HoverEffect : MonoBehaviour
 
         if (state.spriteRenderer != null)
         {
+            targetColor.a = state.spriteRenderer.color.a;
             state.spriteRenderer.color = Color.Lerp(
                 state.spriteRenderer.color,
                 targetColor,
@@ -458,11 +461,13 @@ public class HoverEffect : MonoBehaviour
     {
         if (state.uiGraphic != null)
         {
+            targetColor.a = state.uiGraphic.color.a;
             state.uiGraphic.color = targetColor;
         }
 
         if (state.spriteRenderer != null)
         {
+            targetColor.a = state.spriteRenderer.color.a;
             state.spriteRenderer.color = targetColor;
         }
     }

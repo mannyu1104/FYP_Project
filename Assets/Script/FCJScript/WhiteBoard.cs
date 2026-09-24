@@ -223,11 +223,21 @@ public class WhiteBoardSurface : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData e)
     {
-        if (!WhiteBoard.IsAnyWhiteBoardOpen || e.pointerDrag == null) return;
-        var item = e.pointerDrag.GetComponent<DragableItem>();
-        if (item == null || !item.thisGet || item.thisUsed) return;
-        if (RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)transform, e.position, e.pressEventCamera, out var position))
-            Place(item, position);
+        if (e.pointerDrag != null) TryPlace(e.pointerDrag.GetComponent<DragableItem>(), e.position);
+    }
+
+    public bool TryPlace(DragableItem item, Vector2 screenPosition)
+    {
+        if (!WhiteBoard.IsAnyWhiteBoardOpen || !gameObject.activeInHierarchy || item == null || !item.thisGet || item.thisUsed) return false;
+        var menu = FindAnyObjectByType<MainMenuController>();
+        if (SaveSlotPanel.IsOpen || (menu != null && menu.IsSettingsVisible)) return false;
+        var canvas = GetComponentInParent<Canvas>();
+        var camera = canvas != null && canvas.renderMode != RenderMode.ScreenSpaceOverlay ? canvas.worldCamera : null;
+        var rect = (RectTransform)transform;
+        if (!RectTransformUtility.RectangleContainsScreenPoint(rect, screenPosition, camera)) return false;
+        if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(rect, screenPosition, camera, out var position)) return false;
+        Place(item, position);
+        return true;
     }
 
     private void Place(DragableItem item, Vector2 position)

@@ -126,7 +126,8 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         {
             Debug.Log("StartDrag");
             parentAfterDrag = transform.parent;
-            transform.SetParent(transform.root);
+            var canvas = GetComponentInParent<Canvas>();
+            transform.SetParent(canvas != null ? canvas.rootCanvas.transform : transform.root, true);
             transform.SetAsLastSibling();
             image.raycastTarget = false;
             SumShowText.raycastTarget = false;
@@ -148,6 +149,9 @@ public class DragableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEnd
         if (thisGet == true && thisTuto == false)
         {
             Debug.Log("EndDrag");
+            if (WhiteBoard.IsAnyWhiteBoardOpen)
+                foreach (var surface in FindObjectsByType<WhiteBoardSurface>())
+                    if (surface.TryPlace(this, eventData.position)) break;
             if (WelfareInteractionController.Instance != null &&
                 WelfareInteractionController.Instance.TryGiveCandy(this, eventData.position))
             {

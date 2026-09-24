@@ -402,8 +402,7 @@ public class InvestigationFlowController : MonoBehaviour
         if (hintVisible && dragHintWasVisible && Input.GetMouseButtonDown(0)) { dragHintDismissed = true; hintVisible = false; }
         foreach (var hint in dragHints) if (hint != null) hint.SetActive(hintVisible);
         dragHintWasVisible = hintVisible;
-        bool modal = WelfareInteractionController.IsOpen || SaveSlotPanel.IsOpen || menu.IsMenuVisible || menu.IsSettingsVisible || dialogue.IsDialogueActive || dialogue.IsHistoryOpen ||
-            (computer.IsComputerOpen() && CurrentStage != Stage.Tutorial) || MapButton.IsAnyMapOpen;
+        bool modal = WelfareInteractionController.IsOpen || SaveSlotPanel.IsOpen || menu.IsMenuVisible || menu.IsSettingsVisible || dialogue.IsDialogueActive || dialogue.IsHistoryOpen || MapButton.IsAnyMapOpen;
         foreach (GameObject popup in popupRoots) modal |= IsVisible(popup);
         var inventoryPanels = FindObjectsByType<OpenCanvasButton>(FindObjectsInactive.Include);
         foreach (var inventory in inventoryPanels) modal |= inventory.IsAnyOpen;
@@ -411,7 +410,7 @@ public class InvestigationFlowController : MonoBehaviour
         foreach (var item in FindObjectsByType<DragableItem>(FindObjectsInactive.Include))
             if (IsVisible(item.DesUI)) { itemDetailsVisible = true; break; }
         bool show = CurrentStage != Stage.Menu &&
-            (menu.IsGameplayVisible || (computer.IsComputerOpen() && CurrentStage == Stage.Tutorial)) && !modal;
+            (menu.IsGameplayVisible || computer.IsComputerOpen()) && !modal;
         foreach (GameObject button in notebookButtons) SetObject(button, show);
         foreach (GameObject button in sideButtons)
         {

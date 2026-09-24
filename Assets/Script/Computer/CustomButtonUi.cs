@@ -39,6 +39,7 @@ public class CustomButtonUi : Selectable, IPointerClickHandler
         switch (eventData.button)
         {
             case PointerEventData.InputButton.Left:
+                GameAudioManager.Instance?.PlayButtonSfx();
                 HandleLeftClick();
                 break;
             case PointerEventData.InputButton.Right:

@@ -271,19 +271,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76fb342cfbb45c543865b637bbfccdf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DragableItem
+  dragSourceData: {fileID: 0}
   item: {fileID: 0}
   image: {fileID: -7607125817507554266}
   parentAfterDrag: {fileID: 0}
   SumShowText: {fileID: 1186964710076862174}
   thisType: 
   thisName: 
+  thisSave: 
+  thisSaveDes: 
   thisDescription: 
   thisGet: 0
   thisUsed: 0
+  thisTuto: 0
   thisID: 0
   Description: {fileID: 0}
   DesUI: {fileID: 0}
-  InvenUI: {fileID: 0}
+  ButtonUI: {fileID: 0}
+  ButtonUI2: {fileID: 0}
   isdragging: 0
 --- !u!114 &-7607125817507554266
 MonoBehaviour:

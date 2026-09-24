@@ -37,7 +37,16 @@ public class OpenCanvasButton : MonoBehaviour
     // or disappear unexpectedly at runtime.
     void Start()
     {
-        // Intentionally left empty.
+        // Keep the notebook above the whiteboard, including its outside-click layer.
+        if (NotebookCanvas != null)
+        {
+            var canvas = NotebookCanvas.GetComponent<Canvas>();
+            if (canvas == null) canvas = NotebookCanvas.gameObject.AddComponent<Canvas>();
+            canvas.overrideSorting = true;
+            canvas.sortingOrder = 1900;
+            if (NotebookCanvas.GetComponent<UnityEngine.UI.GraphicRaycaster>() == null)
+                NotebookCanvas.gameObject.AddComponent<UnityEngine.UI.GraphicRaycaster>();
+        }
     }
 
     // Update is called once per frame

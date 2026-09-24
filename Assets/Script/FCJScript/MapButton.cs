@@ -33,6 +33,7 @@ public class MapButton : MonoBehaviour
 
     private void Awake()
     {
+        ResolveNewMap();
         SetupCursorTarget();
         InitializeMapPanelOnce();
 
@@ -46,6 +47,21 @@ public class MapButton : MonoBehaviour
         isOpen = mapPanel != null && mapPanel.activeSelf;
         isAnyMapOpen = isOpen;
         RefreshCursorState();
+    }
+
+    private void ResolveNewMap()
+    {
+        foreach (var root in gameObject.scene.GetRootGameObjects())
+        {
+            if (root.name != "GameObject(New)") continue;
+            foreach (var canvas in root.GetComponentsInChildren<Canvas>(true))
+                if (canvas.name == "CanvasMap")
+                {
+                    if (mapPanel != null && mapPanel != canvas.gameObject) mapPanel.SetActive(false);
+                    mapPanel = canvas.gameObject;
+                    return;
+                }
+        }
     }
 
     private void SetupCursorTarget()
@@ -126,13 +142,8 @@ public class MapButton : MonoBehaviour
             return;
         }
 
-        if (visible == isAnyMapOpen)
-        {
-            isOpen = visible;
-            RefreshCursorState();
-            return;
-        }
-
+        // Always apply visibility: activating a destination's button can already
+        // change the shared flag before the map panel itself has been closed.
         isAnyMapOpen = visible;
         isOpen = visible;
 

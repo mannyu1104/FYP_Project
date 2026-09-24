@@ -35,24 +35,29 @@ public class SummaryButton : MonoBehaviour
             return;
         }
 
-        try
+        if (inventory == null) inventory = GetComponentInParent<InventoryManager>();
+        if (inventory == null) return;
+        // The old list contains only tutorial clues. Include the authored news and
+        // social-media clue objects in this same inventory prefab, even while hidden.
+        foreach (var item in transform.root.GetComponentsInChildren<DragableItem>(true))
         {
-            var initHandle = UnityEngine.Localization.Settings.LocalizationSettings.InitializationOperation;
-            if (!initHandle.IsDone)
+            if (item == null) continue;
+            var obj = item.gameObject;
+            item.EnsureInitialized();
+            var title = item.dragSourceData != null ? item.dragSourceData.ClueTitle : null;
+            bool matches = title != null && title.TableReference.Equals(clue.title.TableReference) &&
+                title.TableEntryReference.Equals(clue.title.TableEntryReference);
+            if (!matches && title == null)
             {
-                return;
+                var init = UnityEngine.Localization.Settings.LocalizationSettings.InitializationOperation;
+                if (init.IsDone) matches = string.Equals(clue.title.GetLocalizedString(), item.thisName, StringComparison.OrdinalIgnoreCase);
             }
-
-            NowTitle = clue.title.GetLocalizedString() ?? string.Empty;
-        }
-        catch
-        {
-            NowTitle = string.Empty;
+            if (!matches) continue;
+            if (item.thisGet || item.thisUsed) return;
+            inventory.AddItem(obj);
+            if (item.thisGet) obj.SetActive(true);
             return;
         }
-
-        Debug.Log(NowTitle);
-        BecomeInvet();
     }
 
 
@@ -70,7 +75,7 @@ public class SummaryButton : MonoBehaviour
             return;
         }
 
-        DragableItem[] items = FindObjectsByType<DragableItem>();
+        DragableItem[] items = FindObjectsByType<DragableItem>(FindObjectsInactive.Include);
 
         Debug.Log(gameObject.name);
         foreach (DragableItem item in items)

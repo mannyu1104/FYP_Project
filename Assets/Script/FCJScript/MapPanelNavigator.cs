@@ -35,6 +35,8 @@ public class MapPanelNavigator : MonoBehaviour
     public void OpenPanel(int panelIndex)
     {
         ResolveReferences();
+        if (panelIndex >= 0 && panelIndex < locationPanels.Count && panelIndex != SavedLocation)
+            GameAudioManager.Instance?.PlayLocationFootsteps();
 
         if (useTransition && screenTransitionController != null)
         {
@@ -97,11 +99,14 @@ public class MapPanelNavigator : MonoBehaviour
 
     private void CloseMapIfNeeded()
     {
-        if (closeMapAfterSelection && mapPanel != null)
-        {
-            mapPanel.SetActive(false);
-            MapButton.SyncMapState(false);
-        }
+        if (!closeMapAfterSelection) return;
+        // Location buttons resolve the current map prefab. The navigator's older
+        // serialized panel may be missing or still point to the legacy map.
+        foreach (var button in FindObjectsByType<MapButton>(FindObjectsInactive.Include))
+            if (button.gameObject.scene == gameObject.scene && button.mapPanel != null)
+                button.CloseMap();
+        if (mapPanel != null) mapPanel.SetActive(false);
+        MapButton.SyncMapState(false);
     }
 
     private void UnpauseLookIfNeeded()

@@ -60,9 +60,16 @@ public class WelfareInteractionController : MonoBehaviour
         foreach (var candidate in FindObjectsByType<RopeSkipping>(FindObjectsInactive.Include))
             if (!candidate.gameObject.activeInHierarchy && candidate.gameObject.scene == gameObject.scene)
             { template = candidate; break; }
-        if (template == null) { StartCoroutine(PlayLater(index)); return; }
-        // The inactive scene prefab remains editable; each encounter gets a fresh match.
-        match = Instantiate(template.transform.root.gameObject);
+        // Prefer the editable scene instance; the variant references the same original
+        // prefab and remains available when the scene instance is removed or replaced.
+        GameObject source = template != null ? template.transform.root.gameObject : Resources.Load<GameObject>("WelfareRopeGame");
+        if (source == null || source.GetComponentInChildren<RopeSkipping>(true) == null)
+        {
+            Debug.LogError("Rope game prefab is missing or has no RopeSkipping component.", this);
+            StartCoroutine(PlayLater(index));
+            return;
+        }
+        match = Instantiate(source);
         match.name = "Child Rope Match";
         match.transform.position += new Vector3(1000, 0, 0);
         foreach (var events in match.GetComponentsInChildren<UnityEngine.EventSystems.EventSystem>(true))
@@ -124,12 +131,15 @@ public class WelfareInteractionController : MonoBehaviour
         foreach (var npc in FindObjectsByType<NPCDialogueTrigger>(FindObjectsInactive.Include))
             if (npc.name == "\u8001\u7237\u7237") parkElder = npc;
         foreach (var target in FindObjectsByType<CursorInteractionTarget>(FindObjectsInactive.Include))
-            if (target.name == "\u94a5\u5319\uff08\u65e0\u56fe\uff09") parkKey = target;
+            if ((target.name == "\u94a5\u5319" || target.name == "\u94a5\u5319\uff08\u65e0\u56fe\uff09") &&
+                map != null && map.LocationRoot(3) != null && target.transform.IsChildOf(map.LocationRoot(3).transform))
+                parkKey = target;
         if (parkKey != null)
         {
             parkKey.enableInspectDialogue = false;
             var button = parkKey.GetComponent<Button>();
             if (button == null) button = parkKey.gameObject.AddComponent<Button>();
+            button.onClick.RemoveListener(PickUpParkKey);
             button.onClick.AddListener(PickUpParkKey);
             var obj = new GameObject("Park key inventory", typeof(RectTransform), typeof(Image));
             obj.transform.SetParent(transform, false);
@@ -412,7 +422,7 @@ public class WelfareInteractionController : MonoBehaviour
     }
     private void PickUpParkKey()
     {
-        if (!CanInteract() || IsOpen || parkElder == null || !parkElder.HasTalked || data.parkKeyCollected || inventory == null) return;
+        if (!CanInteract() || IsOpen || parkElder == null || !parkElder.HasTalked || data.parkKeyCollected || inventory == null || keyItem == null) return;
         keyItem.gameObject.SetActive(true);
         inventory.AddItem(keyItem.gameObject);
         if (!keyItem.thisGet) { keyItem.gameObject.SetActive(false); return; }

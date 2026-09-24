@@ -758,7 +758,8 @@ public class DialogueController : MonoBehaviour
 
     private void PlayTypingSoundIfNeeded(string text, int previousVisibleCount, int currentVisibleCount, ref float lastSoundTime)
     {
-        if (!playTypingSound || typingSfx == null || GameAudioManager.Instance == null)
+        var clip = typingSfx != null ? typingSfx : GameAudioManager.Instance?.DialogueTypingSfx;
+        if (!playTypingSound || clip == null || GameAudioManager.Instance == null)
         {
             return;
         }
@@ -780,7 +781,7 @@ public class DialogueController : MonoBehaviour
                 continue;
             }
 
-            GameAudioManager.Instance.PlaySfx(typingSfx);
+            GameAudioManager.Instance.PlaySfx(clip);
             lastSoundTime = Time.unscaledTime;
             return;
         }

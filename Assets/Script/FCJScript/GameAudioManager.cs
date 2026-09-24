@@ -30,6 +30,17 @@ public class GameAudioManager : MonoBehaviour
     [Tooltip("Optional BGM used when no panel BGM matches.")]
     [SerializeField] private AudioClip defaultBgm;
 
+    [Header("Simple Game Audio")]
+    [SerializeField] private AudioClip menuBgm;
+    [SerializeField] private AudioClip tutorialBgm;
+    [SerializeField] private AudioClip locationFootstepsSfx;
+    [SerializeField] private AudioClip dialogueTypingSfx;
+    [SerializeField] private bool autoButtonSounds = true;
+    public AudioClip DialogueTypingSfx => dialogueTypingSfx;
+    private float nextButtonScan;
+    private AudioClip selectedBgm;
+    public void PlayLocationFootsteps() => PlaySfx(locationFootstepsSfx);
+
     [Header("Panel BGM")]
     [Tooltip("First active panel in this list decides the current BGM.")]
     [SerializeField] private List<PanelBgm> panelBgms = new List<PanelBgm>();
@@ -49,7 +60,6 @@ public class GameAudioManager : MonoBehaviour
     [SerializeField] private Slider sfxVolumeSlider;
 
     private bool isRefreshingSliders;
-    private GameObject currentBgmPanel;
 
     public float MasterVolume => masterVolume;
     public float BgmVolume => bgmVolume;
@@ -64,7 +74,7 @@ public class GameAudioManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+        // Scene-owned references are rebuilt on new game; volumes persist in PlayerPrefs.
 
         EnsureAudioSources();
         LoadVolumes();
@@ -80,6 +90,13 @@ public class GameAudioManager : MonoBehaviour
     private void Update()
     {
         RefreshPanelBgm(false);
+        if (autoButtonSounds && Time.unscaledTime >= nextButtonScan)
+        {
+            nextButtonScan = Time.unscaledTime + .5f;
+            foreach (var button in FindObjectsByType<Button>(FindObjectsInactive.Include))
+                if (button.GetComponent<ButtonSoundPlayer>() == null && button.GetComponent<CustomButtonUi>() == null)
+                    button.gameObject.AddComponent<ButtonSoundPlayer>();
+        }
     }
 
     private void OnValidate()
@@ -122,7 +139,7 @@ public class GameAudioManager : MonoBehaviour
             return;
         }
 
-        sfxSource.PlayOneShot(clip, masterVolume * sfxVolume);
+        sfxSource.PlayOneShot(clip);
     }
 
     public void PlayBgm(AudioClip clip)
@@ -172,32 +189,26 @@ public class GameAudioManager : MonoBehaviour
 
     private void RefreshPanelBgm(bool forceRefresh)
     {
-        PanelBgm activePanelBgm = FindActivePanelBgm();
-        GameObject activePanel = activePanelBgm != null ? activePanelBgm.panel : null;
-
-        if (!forceRefresh && activePanel == currentBgmPanel)
+        var flow = InvestigationFlowController.Instance;
+        AudioClip desired = null;
+        if (flow != null)
         {
-            return;
+            if (flow.CurrentStage == InvestigationFlowController.Stage.Menu) desired = menuBgm;
+            else if (flow.CurrentStage == InvestigationFlowController.Stage.Introduction ||
+                     flow.CurrentStage == InvestigationFlowController.Stage.AwaitTutorial ||
+                     flow.CurrentStage == InvestigationFlowController.Stage.Tutorial) desired = tutorialBgm;
         }
+        var panel = FindActivePanelBgm();
+        if (desired == null) desired = panel != null ? panel.bgmClip : defaultBgm;
+        if (!forceRefresh && selectedBgm == desired) return;
+        selectedBgm = desired;
+        if (desired != null) PlayBgm(desired);
+        else if (stopBgmWhenNoPanelMatches) StopBgm();
+    }
 
-        currentBgmPanel = activePanel;
-
-        if (activePanelBgm != null)
-        {
-            PlayBgm(activePanelBgm.bgmClip);
-            return;
-        }
-
-        if (defaultBgm != null)
-        {
-            PlayBgm(defaultBgm);
-            return;
-        }
-
-        if (stopBgmWhenNoPanelMatches)
-        {
-            StopBgm();
-        }
+    private void OnDestroy()
+    {
+        if (Instance == this) Instance = null;
     }
 
     private PanelBgm FindActivePanelBgm()
@@ -205,7 +216,7 @@ public class GameAudioManager : MonoBehaviour
         for (int i = 0; i < panelBgms.Count; i++)
         {
             PanelBgm panelBgm = panelBgms[i];
-            if (panelBgm != null && panelBgm.panel != null && panelBgm.panel.activeInHierarchy)
+            if (panelBgm != null && panelBgm.panel != null && panelBgm.panel.activeInHierarchy && panelBgm.bgmClip != null)
             {
                 return panelBgm;
             }

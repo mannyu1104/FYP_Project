@@ -134,6 +134,17 @@ public class ComputerCanvasController : MonoBehaviour
 
     private void ResolveReferences()
     {
+        // Replaced prefab instances can lose their scene reference. Resolve only
+        // the current scene's new UI hierarchy, never the legacy computer.
+        if (computerCanvas == null)
+            foreach (var root in gameObject.scene.GetRootGameObjects())
+                if (root.name == "GameObject(New)")
+                {
+                    var canvas = FindChildByName(root.transform, "Computer Canvas");
+                    if (canvas != null) computerCanvas = canvas.gameObject;
+                    break;
+                }
+
         if (returnToGameButton == null && computerCanvas != null)
         {
             Transform power = FindChildByName(computerCanvas.transform, "Power Button");
